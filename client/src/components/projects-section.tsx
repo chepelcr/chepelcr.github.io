@@ -101,7 +101,7 @@ export default function ProjectsSection() {
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} className="skill-badge">
+                      <Badge key={techIndex} className="bg-accent text-accent-foreground">
                         {tech}
                       </Badge>
                     ))}

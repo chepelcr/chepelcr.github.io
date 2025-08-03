@@ -60,7 +60,7 @@ export default function ExperienceSection() {
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {exp.skills.map((skill, skillIndex) => (
-                        <Badge key={skillIndex} className="skill-badge">
+                        <Badge key={skillIndex} className="bg-accent text-accent-foreground">
                           {skill}
                         </Badge>
                       ))}
