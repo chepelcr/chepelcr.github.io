@@ -27,6 +27,7 @@ const certifications = [
     date: "13-04-2023",
     description: "Certificación de nivel asociado en arquitectura de soluciones AWS",
     badge: "AWS",
+    verifyUrl: "https://www.credly.com/badges/44e22e53-62a4-4bd5-9211-12d3b428623a/linked_in_profile",
   },
   {
     name: "AWS Certified Cloud Practitioner",
@@ -41,6 +42,23 @@ const certifications = [
     date: "22-03-2023",
     description: "Certificación fundamental de servicios de Microsoft Azure",
     badge: "Azure",
+    verifyUrl: "https://www.credly.com/badges/58f0d676-95d7-409f-bb29-16219c4b982b/linked_in_profile",
+  },
+  {
+    name: "CCNA: Introduction to Networks",
+    provider: "Cisco",
+    date: "2023",
+    description: "Certificación en fundamentos de redes y tecnologías Cisco",
+    badge: "Cisco",
+    verifyUrl: "https://www.youracclaim.com/badges/9c7bdce0-a8f3-4502-9ec2-efd607822f72?source=linked_in_profile",
+  },
+  {
+    name: "EF SET English Certificate",
+    provider: "EF Education First",
+    date: "2023",
+    description: "Certificación de nivel de inglés - Nivel B2",
+    badge: "EF SET",
+    verifyUrl: "https://www.efset.org/cert/Km8PLK",
   },
 ];
 
@@ -107,7 +125,17 @@ export default function EducationSection() {
                     <p className="text-muted-foreground font-mono mb-2">
                       Fecha de activación: {cert.date}
                     </p>
-                    <p className="text-muted-foreground text-sm">{cert.description}</p>
+                    <p className="text-muted-foreground text-sm mb-3">{cert.description}</p>
+                    {cert.verifyUrl && (
+                      <a
+                        href={cert.verifyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-accent hover:text-accent/80 text-sm font-medium underline"
+                      >
+                        Verificar Certificación
+                      </a>
+                    )}
                   </CardContent>
                 </Card>
               ))}
