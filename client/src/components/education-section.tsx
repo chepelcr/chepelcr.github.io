@@ -116,13 +116,13 @@ export default function EducationSection() {
             {certifications.map((cert, index) => (
               <Card key={index} className="bg-card border-border card-hover h-full">
                 <CardContent className="p-6 h-full flex flex-col">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="text-lg font-semibold">{cert.name}</h4>
-                    <Badge className="bg-accent text-accent-foreground">
+                  <div className="flex items-start justify-between mb-4">
+                    <h4 className="text-lg font-semibold pr-2">{cert.name}</h4>
+                    <Badge className="bg-accent text-accent-foreground flex-shrink-0">
                       {cert.badge}
                     </Badge>
                   </div>
-                  <p className="text-muted-foreground font-mono mb-2">
+                  <p className="text-muted-foreground font-mono mb-2 min-h-[1.5rem]">
                     Fecha de activación: {cert.date}
                   </p>
                   <p className="text-muted-foreground text-sm mb-4 flex-grow">{cert.description}</p>
