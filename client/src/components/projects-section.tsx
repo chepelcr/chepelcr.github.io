@@ -123,16 +123,15 @@ export default function ProjectsSection() {
                       Ver Detalles
                     </Button>
                   )}
-                  <Button 
-                    variant="outline" 
-                    className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
-                  >
-                    {project.liveUrl ? (
-                      <><Info className="mr-2 h-4 w-4" />Más Info</>
-                    ) : (
-                      <><Github className="mr-2 h-4 w-4" />Código Fuente</>
-                    )}
-                  </Button>
+                  {project.liveUrl && (
+                    <Button 
+                      variant="outline" 
+                      className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+                    >
+                      <Info className="mr-2 h-4 w-4" />
+                      Más Info
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>
