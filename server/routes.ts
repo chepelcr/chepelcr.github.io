@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { sendContactEmail } from "./email.js";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form endpoint
@@ -23,11 +24,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
       
-      // In a real application, you would:
-      // 1. Save the message to a database
-      // 2. Send an email notification
-      // 3. Send an auto-response to the user
-      
+      // Log the submission
       console.log("Contact form submission:", {
         name,
         email,
@@ -35,6 +32,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
         message,
         timestamp: new Date().toISOString(),
       });
+      
+      // Send email notification
+      const emailResult = await sendContactEmail({ name, email, subject, message });
+      
+      if (!emailResult.success) {
+        console.error("Failed to send email:", emailResult.error);
+        return res.status(500).json({
+          message: "Error al enviar el mensaje. Por favor intenta más tarde.",
+          success: false
+        });
+      }
       
       res.json({ 
         message: "Mensaje enviado exitosamente. Te contactaré pronto.",

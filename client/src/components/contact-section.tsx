@@ -59,17 +59,48 @@ export default function ContactSection() {
   });
   const { toast } = useToast();
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
-    // Simulate form submission
-    toast({
-      title: "¡Mensaje enviado!",
-      description: "Te contactaré pronto. Gracias por tu interés.",
-    });
-    
-    // Reset form
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok && result.success) {
+        toast({
+          title: "¡Mensaje enviado!",
+          description: "Te contactaré pronto. Gracias por tu interés.",
+        });
+        
+        // Reset form
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        toast({
+          title: "Error al enviar mensaje",
+          description: result.message || "Hubo un problema al enviar tu mensaje. Por favor intenta más tarde.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Error de conexión",
+        description: "No se pudo conectar con el servidor. Verifica tu conexión e intenta nuevamente.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -208,10 +239,11 @@ export default function ContactSection() {
                 
                 <Button 
                   type="submit" 
-                  className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+                  disabled={isSubmitting}
+                  className="w-full bg-accent text-accent-foreground hover:bg-accent/90 disabled:opacity-50"
                 >
                   <Send className="mr-2 h-4 w-4" />
-                  Enviar Mensaje
+                  {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
                 </Button>
               </form>
             </CardContent>
