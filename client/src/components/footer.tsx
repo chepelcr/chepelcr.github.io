@@ -23,7 +23,7 @@ const socialLinks = [
   },
   {
     icon: Github,
-    href: "#",
+    href: "https://github.com/chepelcr",
     label: "GitHub",
   },
 ];
