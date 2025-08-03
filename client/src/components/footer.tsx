@@ -1,4 +1,5 @@
 import { Mail, Phone, Globe, Linkedin, Github, Heart } from "lucide-react";
+import { useLanguage } from "@/contexts/language-context";
 
 const socialLinks = [
   {
@@ -29,6 +30,8 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const { t } = useLanguage();
+  
   return (
     <footer className="bg-slate border-t border-border py-12">
       <div className="container-spacing">
@@ -38,8 +41,7 @@ export default function Footer() {
               José Pablo Campos Solano
             </h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Desarrollador de software especializado en soluciones Backend con Java, Python y AWS. 
-              Creando sistemas escalables que impulsan el crecimiento empresarial.
+              {t("footer.description")}
             </p>
           </div>
           
@@ -61,10 +63,10 @@ export default function Footer() {
           
           <div className="border-t border-border pt-8">
             <p className="text-muted-foreground">
-              &copy; 2024 José Pablo Campos Solano. Todos los derechos reservados.
+              &copy; 2024 José Pablo Campos Solano. {t("footer.rights")}
             </p>
             <p className="text-muted-foreground text-sm mt-2 flex items-center justify-center">
-              Desarrollado con <Heart className="h-4 w-4 text-red-500 mx-1" /> utilizando tecnologías modernas
+              {t("footer.developedWith")} <Heart className="h-4 w-4 text-red-500 mx-1" /> {t("footer.modernTech")}
             </p>
           </div>
         </div>
