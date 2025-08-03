@@ -39,11 +39,12 @@ export async function sendContactEmail(data: EmailData): Promise<{ success: bool
     const transporter = createTransporter();
     
     // Email to José Pablo (the website owner)
-    // Note: The 'from' email must be verified in Amazon SES
+    // Note: Both 'from' and 'to' emails must be verified in Amazon SES when in sandbox mode
     const fromEmail = process.env.AWS_SES_FROM_EMAIL || 'noreply@jcampos.dev';
+    const toEmail = process.env.AWS_SES_TO_EMAIL || 'chepelcr@outlook.com';
     const mailOptions = {
       from: `"Portfolio Contact Form" <${fromEmail}>`,
-      to: 'chepelcr@outlook.com', // José Pablo's email
+      to: toEmail, // José Pablo's verified email
       replyTo: data.email,
       subject: `Contacto desde Portfolio: ${data.subject}`,
       html: `
