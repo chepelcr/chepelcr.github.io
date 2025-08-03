@@ -7,33 +7,26 @@ export interface EmailData {
   message: string;
 }
 
-// Create transporter based on available environment variables
+// Create transporter for Amazon SES SMTP
 function createTransporter() {
-  // Option 1: Gmail SMTP (most common)
-  if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
+  // Amazon SES SMTP configuration
+  if (process.env.AWS_SES_SMTP_USERNAME && process.env.AWS_SES_SMTP_PASSWORD) {
+    const region = process.env.AWS_SES_REGION || 'us-east-1';
     return nodemailer.createTransport({
-      service: 'gmail',
+      host: `email-smtp.${region}.amazonaws.com`,
+      port: 587,
+      secure: false, // true for 465, false for other ports
       auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD
+        user: process.env.AWS_SES_SMTP_USERNAME,
+        pass: process.env.AWS_SES_SMTP_PASSWORD
       }
     });
   }
   
-  // Option 2: Generic SMTP
-  if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD) {
-    return nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: process.env.SMTP_SECURE === 'true',
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD
-      }
-    });
-  }
+  // Fallback: Development mode - log emails to console
+  console.log('📧 Amazon SES SMTP credentials not found. Running in development mode.');
+  console.log('To enable email sending, set: AWS_SES_SMTP_USERNAME, AWS_SES_SMTP_PASSWORD, and optionally AWS_SES_REGION');
   
-  // Option 3: Development mode - log emails to console
   return nodemailer.createTransport({
     streamTransport: true,
     newline: 'unix',
@@ -46,8 +39,10 @@ export async function sendContactEmail(data: EmailData): Promise<{ success: bool
     const transporter = createTransporter();
     
     // Email to José Pablo (the website owner)
+    // Note: The 'from' email must be verified in Amazon SES
+    const fromEmail = process.env.AWS_SES_FROM_EMAIL || 'noreply@jcampos.dev';
     const mailOptions = {
-      from: `"Portfolio Contact Form" <noreply@jcampos.dev>`,
+      from: `"Portfolio Contact Form" <${fromEmail}>`,
       to: 'chepelcr@outlook.com', // José Pablo's email
       replyTo: data.email,
       subject: `Contacto desde Portfolio: ${data.subject}`,
