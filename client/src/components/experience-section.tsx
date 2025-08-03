@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/contexts/language-context";
 import { Briefcase, Code, Globe } from "lucide-react";
 
 const experiences = [
@@ -24,12 +25,14 @@ const experiences = [
 ];
 
 export default function ExperienceSection() {
+  const { t } = useLanguage();
+  
   return (
     <section id="experience" className="section-spacing bg-slate">
       <div className="container-spacing">
         <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16">
           <Briefcase className="inline-block text-accent mr-4" />
-          Experiencia Laboral
+          {t("experience.title")}
         </h2>
         
         <div className="relative">

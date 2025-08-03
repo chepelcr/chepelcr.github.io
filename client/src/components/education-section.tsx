@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/contexts/language-context";
 import { GraduationCap, Award, BookOpen } from "lucide-react";
 
 const education = [
@@ -79,12 +80,14 @@ const training = [
 ];
 
 export default function EducationSection() {
+  const { t } = useLanguage();
+  
   return (
     <section id="education" className="section-spacing bg-navy">
       <div className="container-spacing">
         <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16">
           <GraduationCap className="inline-block text-accent mr-4" />
-          Educación y Certificaciones
+          {t("education.title")}
         </h2>
         
         {/* Education Section */}

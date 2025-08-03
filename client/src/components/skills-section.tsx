@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/contexts/language-context";
 import { 
   Code, 
   Cloud, 
@@ -92,19 +93,21 @@ function SkillCard({ title, skills, icon: Icon }: { title: string; skills: any[]
 }
 
 export default function SkillsSection() {
+  const { t } = useLanguage();
+  
   return (
     <section id="skills" className="section-spacing bg-navy">
       <div className="container-spacing">
         <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16">
           <Code className="inline-block text-accent mr-4" />
-          Habilidades Técnicas
+          {t("skills.title")}
         </h2>
         
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
-          <SkillCard title="Tecnologías Principales" skills={coreSkills} icon={Code} />
-          <SkillCard title="Cloud & Infraestructura" skills={cloudSkills} icon={Cloud} />
-          <SkillCard title="Bases de Datos" skills={databaseSkills} icon={Database} />
-          <SkillCard title="Herramientas & Servicios" skills={toolsSkills} icon={Settings} />
+          <SkillCard title={t("skills.backend")} skills={coreSkills} icon={Code} />
+          <SkillCard title={t("skills.cloud")} skills={cloudSkills} icon={Cloud} />
+          <SkillCard title={t("skills.databases")} skills={databaseSkills} icon={Database} />
+          <SkillCard title={t("skills.tools")} skills={toolsSkills} icon={Settings} />
         </div>
 
         {/* Soft Skills */}

@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/contexts/language-context";
 import { 
   Laptop, 
   Eye, 
@@ -56,12 +57,14 @@ const otherProjects = [
 ];
 
 export default function ProjectsSection() {
+  const { t } = useLanguage();
+  
   return (
     <section id="projects" className="section-spacing bg-slate">
       <div className="container-spacing">
         <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16">
           <Laptop className="inline-block text-accent mr-4" />
-          Proyectos Destacados
+          {t("projects.title")}
         </h2>
         
         <div className="grid lg:grid-cols-2 gap-8 mb-16">
