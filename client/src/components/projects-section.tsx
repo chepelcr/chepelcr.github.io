@@ -19,6 +19,7 @@ const mainProjects = [
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
     technologies: ["Java Spring Boot", "Python", "AWS Services", "PostgreSQL", "Docker", "Kafka"],
     type: "ERP System",
+    ivoiUrl: "https://frontend.dev.ivois.io",
   },
   {
     title: "Sitio Web de Comandos Linux",
@@ -65,8 +66,8 @@ export default function ProjectsSection() {
         
         <div className="grid lg:grid-cols-2 gap-8 mb-16">
           {mainProjects.map((project, index) => (
-            <Card key={index} className="bg-card border-border card-hover">
-              <CardContent className="p-8">
+            <Card key={index} className="bg-card border-border card-hover h-full">
+              <CardContent className="p-8 h-full flex flex-col">
                 <div className="mb-6">
                   <img
                     src={project.image}
@@ -95,7 +96,7 @@ export default function ProjectsSection() {
                   </div>
                 )}
                 
-                <div className="mb-6">
+                <div className="mb-6 flex-grow">
                   <h4 className="font-semibold mb-3">
                     {project.features ? "Tecnologías:" : "Tecnologías Utilizadas:"}
                   </h4>
@@ -108,8 +109,16 @@ export default function ProjectsSection() {
                   </div>
                 </div>
                 
-                <div className="flex flex-col sm:flex-row gap-4">
-                  {project.liveUrl ? (
+                <div className="flex flex-col sm:flex-row gap-4 mt-auto">
+                  {project.ivoiUrl ? (
+                    <Button 
+                      className="bg-accent text-accent-foreground hover:bg-accent/90"
+                      onClick={() => window.open(project.ivoiUrl, "_blank")}
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      Entrar a IVOIS
+                    </Button>
+                  ) : project.liveUrl ? (
                     <Button 
                       className="bg-accent text-accent-foreground hover:bg-accent/90"
                       onClick={() => window.open(project.liveUrl, "_blank")}
@@ -121,15 +130,6 @@ export default function ProjectsSection() {
                     <Button className="bg-accent text-accent-foreground hover:bg-accent/90">
                       <Eye className="mr-2 h-4 w-4" />
                       Ver Detalles
-                    </Button>
-                  )}
-                  {project.liveUrl && (
-                    <Button 
-                      variant="outline" 
-                      className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
-                    >
-                      <Info className="mr-2 h-4 w-4" />
-                      Más Info
                     </Button>
                   )}
                 </div>
