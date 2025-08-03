@@ -1,0 +1,81 @@
+NATIONALITY
+Costa Rica
+CONTACT
+Phone: (506) 7039-1069
+Email: chepelcr@outlook.com
+LANGUAGES
+Spanish: Nativo
+
+English: B2
+PROFILE
+I am a software developer specialized in BackEnd with Java (Spring Boot) and Python. For the past two years, I've been developing my own ERP system for electronic invoicing, integrating microservices, relational databases, asynchronous messaging, and cloud services with AWS.
+I've been involved in open-source software communities and actively attend technology events like Firefox and Drupal Camp. I'm passionate about building scalable, clean solutions focused on generating real impact on business processes.
+SOFT SKILLS
+Analytical thinking
+Problem-solving focus
+Autonomy and responsibility
+Clear and effective communication with multidisciplinary teams
+Collaborative work in technical and community environments
+Adaptability to change and continuous learning
+Commitment to quality and meeting objectives
+Initiative and curiosity about new technologies and methodologies.		JOSÉ PABLO CAMPOS SOLANO
+
+Id: 1-1664-0506
+EDUCATION
+Universidad de Costa Rica, Sede del Pacifico
+Bachiller en Informática Empresarial (2017 – 2022)
+
+Liceo de Costa Rica
+Programa del Bachillerato Internacional (2015-2016)
+Bachiller en Educación Media (2010 - 2016)
+
+Escuela Estados Unidos de América, San Joaquín de Flores.
+Escuela primaria (2003 - 2009)
+		TRAINING
+		Academia de Tecnología UCR
+-	CCNAv7: Introduction to networks.
+-	NDG Linux I.
+
+Centro Comunitario Miramar (CECI)
+-	PHP – Electronic Billing – Hacienda
+-	Inteligencia Artificial
+-	Advanced Excel
+Universidad de Costa Rica
+-	Business English Elementary A
+Academia Lider
+-	Elementary English	AWS Skill Builder
+-	AWS Cloud Practitioner Essentials
+-	AWS Partner Certification Readiness - Solutions Architect – Associate
+-	AWS Security Fundamentals Second Edition
+-	AWS Partner: Well-Architected Best Practices
+-	AWS Partner: Accreditation (Technical)
+		
+CERTIFICATIONS
+AWS Certified Solutions Architect
+Activation date: 13-04-2023
+
+AWS Certified Cloud Practitioner
+Activation date: 16-02-2023
+
+Microsoft Certified: Azure Fundamentals
+Activation date: 22-03-2023	
+TECHNICAL SKILLS
+AWS Infrastructure
+Microservices architecture
+Serverless programming
+Java, Python, PHP
+Rest API Services
+Linux
+HTML, JavaScript.
+Oracle, Microsoft SQL Server
+MySQL, PostgreSQL
+Docker, Kafka, Redis
+		
+WORK EXPERIENCE
+		Modas Laura
+-	Ad honorem web developer.
+•	2021 – Actual
+ERP Design and development.	IFZ Sociedad Anonima
+-	Java Developer
+•	July-2022– June-2025
+Microservices development, AWS services and infrastructure  management.
