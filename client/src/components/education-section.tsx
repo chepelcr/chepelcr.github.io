@@ -35,6 +35,7 @@ const certifications = [
     date: "16-02-2023",
     description: "Certificación fundamental de servicios y conceptos de AWS",
     badge: "AWS",
+    verifyUrl: "https://www.credly.com/badges/2c7deda1-87a3-44c5-aa78-324803af975c/linked_in_profile",
   },
   {
     name: "Microsoft Certified: Azure Fundamentals",
