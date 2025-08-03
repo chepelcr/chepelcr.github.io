@@ -3,20 +3,23 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/theme-toggle";
-
-const navigationItems = [
-  { href: "#home", label: "Inicio" },
-  { href: "#about", label: "Acerca de" },
-  { href: "#skills", label: "Habilidades" },
-  { href: "#experience", label: "Experiencia" },
-  { href: "#education", label: "Educación" },
-  { href: "#projects", label: "Proyectos" },
-  { href: "#contact", label: "Contacto" },
-];
+import { LanguageToggle } from "@/components/language-toggle";
+import { useLanguage } from "@/contexts/language-context";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLanguage();
+
+  const navigationItems = [
+    { href: "#home", label: t("nav.home") },
+    { href: "#about", label: t("nav.about") },
+    { href: "#skills", label: t("nav.skills") },
+    { href: "#experience", label: t("nav.experience") },
+    { href: "#education", label: t("nav.education") },
+    { href: "#projects", label: t("nav.projects") },
+    { href: "#contact", label: t("nav.contact") },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,11 +61,15 @@ export default function Navigation() {
                 {item.label}
               </button>
             ))}
-            <ThemeToggle />
+            <div className="flex items-center space-x-2">
+              <LanguageToggle />
+              <ThemeToggle />
+            </div>
           </div>
 
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center space-x-2">
+            <LanguageToggle />
             <ThemeToggle />
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>

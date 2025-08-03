@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Download, Mail, ExternalLink } from "lucide-react";
+import { useLanguage } from "@/contexts/language-context";
 
 export default function HeroSection() {
+  const { t } = useLanguage();
   const handleScroll = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -19,11 +21,10 @@ export default function HeroSection() {
               <span className="text-accent">Campos Solano</span>
             </h1>
             <h2 className="text-xl lg:text-2xl text-muted-foreground mb-8">
-              Software Developer | Backend Specialist | AWS Solutions Architect
+              {t("hero.title")} | {t("hero.subtitle")}
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl">
-              Desarrollador de software especializado en BackEnd con Java (Spring Boot) y Python. 
-              Experto en arquitectura de microservicios, servicios cloud con AWS y desarrollo de sistemas ERP.
+              {t("hero.description")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button 
@@ -32,7 +33,7 @@ export default function HeroSection() {
                 onClick={() => handleScroll("contact")}
               >
                 <Mail className="mr-2 h-4 w-4" />
-                Contactar
+                {t("hero.contactMe")}
               </Button>
               <Button 
                 variant="outline" 
@@ -41,7 +42,7 @@ export default function HeroSection() {
                 onClick={() => handleScroll("projects")}
               >
                 <ExternalLink className="mr-2 h-4 w-4" />
-                Ver Proyectos
+                {t("projects.viewProject")}
               </Button>
             </div>
           </div>
