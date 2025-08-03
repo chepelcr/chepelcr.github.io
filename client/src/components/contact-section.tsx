@@ -226,19 +226,91 @@ export default function ContactSection() {
                 Descarga mi CV
               </h3>
               <p className="text-muted-foreground mb-6">
-                Obtén una copia completa de mi currículum vitae en formato PDF
+                Obtén una copia completa de mi currículum vitae
               </p>
               <Button 
                 className="bg-accent text-accent-foreground hover:bg-accent/90"
                 onClick={() => {
+                  const cvData = {
+                    personalInfo: {
+                      name: "José Pablo Campos Rivera",
+                      email: "chepelcr@outlook.com", 
+                      phone: "+506 7039-1069",
+                      nationality: "Costa Rica"
+                    },
+                    education: [
+                      {
+                        degree: "Bachiller en Informática Empresarial",
+                        institution: "Universidad de Costa Rica, Sede del Pacífico",
+                        period: "2017 - 2022"
+                      }
+                    ],
+                    certifications: [
+                      "AWS Certified Solutions Architect (13-04-2023)",
+                      "AWS Certified Cloud Practitioner (16-02-2023)", 
+                      "Microsoft Certified: Azure Fundamentals (22-03-2023)",
+                      "CCNA: Introduction to Networks (2023)",
+                      "EF SET English Certificate - Nivel B2 (2023)"
+                    ],
+                    skills: [
+                      "Java Spring Boot", "Python", "AWS Services", "PostgreSQL", 
+                      "Docker", "Kafka", "HTML", "CSS", "JavaScript", "Git"
+                    ],
+                    projects: [
+                      {
+                        title: "Sistema ERP para Facturación Electrónica",
+                        description: "Sistema integral de gestión empresarial desarrollado con arquitectura de microservicios"
+                      },
+                      {
+                        title: "Sitio Web de Comandos Linux", 
+                        description: "Plataforma educativa interactiva para aprender comandos básicos de Linux"
+                      }
+                    ]
+                  };
+                  
+                  const cvContent = `
+CURRÍCULUM VITAE
+José Pablo Campos Rivera
+
+INFORMACIÓN PERSONAL
+Email: ${cvData.personalInfo.email}
+Teléfono: ${cvData.personalInfo.phone}
+Nacionalidad: ${cvData.personalInfo.nationality}
+
+EDUCACIÓN
+${cvData.education.map(edu => `${edu.degree}\n${edu.institution}\n${edu.period}`).join('\n\n')}
+
+CERTIFICACIONES
+${cvData.certifications.map(cert => `• ${cert}`).join('\n')}
+
+HABILIDADES TÉCNICAS
+${cvData.skills.join(', ')}
+
+PROYECTOS DESTACADOS
+${cvData.projects.map(proj => `${proj.title}\n${proj.description}`).join('\n\n')}
+
+Desarrollador Backend con experiencia en sistemas ERP, microservicios y certificaciones AWS.
+Especializado en Java Spring Boot, Python y arquitecturas cloud.
+                  `.trim();
+                  
+                  const blob = new Blob([cvContent], { type: 'text/plain;charset=utf-8' });
+                  const url = URL.createObjectURL(blob);
+                  const link = document.createElement('a');
+                  link.href = url;
+                  link.download = 'Jose_Pablo_Campos_CV.txt';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                  URL.revokeObjectURL(url);
+                  
                   toast({
-                    title: "Descarga iniciada",
-                    description: "El CV se descargará próximamente.",
+                    title: "CV Descargado",
+                    description: "El archivo CV se ha descargado exitosamente.",
                   });
                 }}
               >
                 <Download className="mr-2 h-4 w-4" />
-                Descargar CV (PDF)
+                Descargar CV
               </Button>
             </CardContent>
           </Card>
