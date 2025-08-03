@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/language-context";
 import { 
   Mail, 
   Phone, 
@@ -51,6 +52,7 @@ const availability = [
 ];
 
 export default function ContactSection() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -112,7 +114,7 @@ export default function ContactSection() {
       <div className="container-spacing">
         <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16">
           <Mail className="inline-block text-accent mr-4" />
-          Contacto
+          {t("contact.title")}
         </h2>
         
         <div className="grid lg:grid-cols-2 gap-12 items-start">

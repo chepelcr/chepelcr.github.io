@@ -70,6 +70,14 @@ const translations = {
     "about.yearsExperience": "Años de Experiencia",
     "about.projectsCompleted": "Proyectos Completados",
     "about.certifications": "Certificaciones",
+    "about.professionalProfile": "Perfil Profesional",
+    "about.personalInfo": "Información Personal",
+    "about.nationality": "Nacionalidad:",
+    "about.languages": "Idiomas:",
+    "about.phone": "Teléfono:",
+    "about.id": "ID:",
+    "about.profileDesc1": "Soy un desarrollador de software especializado en BackEnd con Java (Spring Boot) y Python. Durante los últimos dos años, he estado desarrollando mi propio sistema ERP para facturación electrónica, integrando microservicios, bases de datos relacionales, mensajería asíncrona y servicios cloud con AWS.",
+    "about.profileDesc2": "He participado en comunidades de software de código abierto y asisto activamente a eventos de tecnología como Firefox y Drupal Camp. Me apasiona construir soluciones escalables y limpias enfocadas en generar un impacto real en los procesos de negocio.",
     
     // Skills Section
     "skills.title": "Habilidades Técnicas",
@@ -138,6 +146,14 @@ const translations = {
     "about.yearsExperience": "Years of Experience",
     "about.projectsCompleted": "Projects Completed",
     "about.certifications": "Certifications",
+    "about.professionalProfile": "Professional Profile",
+    "about.personalInfo": "Personal Information",
+    "about.nationality": "Nationality:",
+    "about.languages": "Languages:",
+    "about.phone": "Phone:",
+    "about.id": "ID:",
+    "about.profileDesc1": "I am a software developer specialized in Backend with Java (Spring Boot) and Python. For the last two years, I have been developing my own ERP system for electronic invoicing, integrating microservices, relational databases, asynchronous messaging and cloud services with AWS.",
+    "about.profileDesc2": "I have participated in open source software communities and actively attend technology events such as Firefox and Drupal Camp. I am passionate about building scalable and clean solutions focused on generating real impact on business processes.",
     
     // Skills Section
     "skills.title": "Technical Skills",

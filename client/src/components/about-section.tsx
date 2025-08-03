@@ -1,13 +1,15 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { User, Briefcase, Heart, Phone, Mail, MapPin, Globe } from "lucide-react";
+import { useLanguage } from "@/contexts/language-context";
 
 export default function AboutSection() {
+  const { t } = useLanguage();
   return (
     <section id="about" className="section-spacing bg-slate">
       <div className="container-spacing">
         <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16">
           <User className="inline-block text-accent mr-4" />
-          Acerca de Mí
+          {t("about.title")}
         </h2>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -22,17 +24,13 @@ export default function AboutSection() {
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-4 text-accent flex items-center">
                   <Briefcase className="mr-2" />
-                  Perfil Profesional
+                  {t("about.professionalProfile")}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Soy un desarrollador de software especializado en BackEnd con Java (Spring Boot) y Python. 
-                  Durante los últimos dos años, he estado desarrollando mi propio sistema ERP para facturación electrónica, 
-                  integrando microservicios, bases de datos relacionales, mensajería asíncrona y servicios cloud con AWS.
+                  {t("about.profileDesc1")}
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  He participado en comunidades de software de código abierto y asisto activamente a eventos de tecnología 
-                  como Firefox y Drupal Camp. Me apasiona construir soluciones escalables y limpias enfocadas en generar 
-                  un impacto real en los procesos de negocio.
+                  {t("about.profileDesc2")}
                 </p>
               </CardContent>
             </Card>
@@ -41,23 +39,23 @@ export default function AboutSection() {
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-4 text-accent flex items-center">
                   <Heart className="mr-2" />
-                  Información Personal
+                  {t("about.personalInfo")}
                 </h3>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <p className="text-muted-foreground">Nacionalidad:</p>
+                    <p className="text-muted-foreground">{t("about.nationality")}</p>
                     <p className="font-semibold">Costa Rica</p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground">Idiomas:</p>
+                    <p className="text-muted-foreground">{t("about.languages")}</p>
                     <p className="font-semibold">Español (Nativo), Inglés (B2)</p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground">ID:</p>
+                    <p className="text-muted-foreground">{t("about.id")}</p>
                     <p className="font-semibold font-mono">1-1664-0506</p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground">Teléfono:</p>
+                    <p className="text-muted-foreground">{t("about.phone")}</p>
                     <p className="font-semibold">(506) 7039-1069</p>
                   </div>
                 </div>
