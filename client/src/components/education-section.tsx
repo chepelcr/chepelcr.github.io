@@ -122,9 +122,11 @@ export default function EducationSection() {
                       {cert.badge}
                     </Badge>
                   </div>
-                  <p className="text-muted-foreground font-mono mb-2 min-h-[1.5rem]">
-                    Fecha de activación: {cert.date}
-                  </p>
+                  <div className="h-[1.75rem] flex items-center mb-2">
+                    <p className="text-muted-foreground font-mono">
+                      Fecha de activación: {cert.date}
+                    </p>
+                  </div>
                   <p className="text-muted-foreground text-sm mb-4 flex-grow">{cert.description}</p>
                   {cert.verifyUrl && (
                     <a
