@@ -87,65 +87,63 @@ export default function EducationSection() {
           Educación y Certificaciones
         </h2>
         
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Education */}
-          <div>
-            <h3 className="text-2xl font-semibold mb-8 text-accent flex items-center">
-              <GraduationCap className="mr-3" />
-              Educación
-            </h3>
-            <div className="space-y-6">
-              {education.map((edu, index) => (
-                <Card key={index} className="bg-card border-border card-hover">
-                  <CardContent className="p-6">
-                    <h4 className="text-lg font-semibold mb-2">{edu.degree}</h4>
-                    <p className="text-accent font-medium mb-2">{edu.institution}</p>
-                    <p className="text-muted-foreground font-mono">{edu.period}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+        {/* Education Section */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-semibold mb-8 text-accent text-center flex items-center justify-center">
+            <GraduationCap className="mr-3" />
+            Educación
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {education.map((edu, index) => (
+              <Card key={index} className="bg-card border-border card-hover">
+                <CardContent className="p-6">
+                  <h4 className="text-lg font-semibold mb-2">{edu.degree}</h4>
+                  <p className="text-accent font-medium mb-2">{edu.institution}</p>
+                  <p className="text-muted-foreground font-mono">{edu.period}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
+        </div>
 
-          {/* Certifications */}
-          <div>
-            <h3 className="text-2xl font-semibold mb-8 text-accent flex items-center">
-              <Award className="mr-3" />
-              Certificaciones
-            </h3>
-            <div className="space-y-6">
-              {certifications.map((cert, index) => (
-                <Card key={index} className="bg-card border-border card-hover">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <h4 className="text-lg font-semibold">{cert.name}</h4>
-                      <Badge className="bg-accent text-accent-foreground">
-                        {cert.badge}
-                      </Badge>
-                    </div>
-                    <p className="text-muted-foreground font-mono mb-2">
-                      Fecha de activación: {cert.date}
-                    </p>
-                    <p className="text-muted-foreground text-sm mb-3">{cert.description}</p>
-                    {cert.verifyUrl && (
-                      <a
-                        href={cert.verifyUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-accent hover:text-accent/80 text-sm font-medium underline"
-                      >
-                        Verificar Certificación
-                      </a>
-                    )}
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+        {/* Certifications Section */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-semibold mb-8 text-accent text-center flex items-center justify-center">
+            <Award className="mr-3" />
+            Certificaciones
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {certifications.map((cert, index) => (
+              <Card key={index} className="bg-card border-border card-hover">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="text-lg font-semibold">{cert.name}</h4>
+                    <Badge className="bg-accent text-accent-foreground">
+                      {cert.badge}
+                    </Badge>
+                  </div>
+                  <p className="text-muted-foreground font-mono mb-2">
+                    Fecha de activación: {cert.date}
+                  </p>
+                  <p className="text-muted-foreground text-sm mb-3">{cert.description}</p>
+                  {cert.verifyUrl && (
+                    <a
+                      href={cert.verifyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block px-3 py-1 bg-accent/10 border border-accent/20 rounded text-accent hover:bg-accent hover:text-white text-sm font-medium transition-colors duration-200"
+                    >
+                      Verificar Certificación
+                    </a>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
 
         {/* Training Section */}
-        <div className="mt-16">
+        <div>
           <h3 className="text-2xl font-semibold mb-8 text-accent text-center flex items-center justify-center">
             <BookOpen className="mr-3" />
             Capacitaciones Adicionales
