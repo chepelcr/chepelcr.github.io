@@ -38,8 +38,8 @@ const contactInfo = [
   {
     icon: Globe,
     label: "Sitio Web",
-    value: "jcampos.dev/Comandos-linux",
-    href: "https://jcampos.dev/Comandos-linux/",
+    value: "jcampos.dev",
+    href: "https://jcampos.dev",
   },
 ];
 

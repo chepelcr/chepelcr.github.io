@@ -13,7 +13,7 @@ const socialLinks = [
   },
   {
     icon: Globe,
-    href: "https://jcampos.dev/Comandos-linux/",
+    href: "https://jcampos.dev",
     label: "Website",
   },
   {
