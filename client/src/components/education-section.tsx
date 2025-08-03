@@ -114,8 +114,8 @@ export default function EducationSection() {
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certifications.map((cert, index) => (
-              <Card key={index} className="bg-card border-border card-hover">
-                <CardContent className="p-6">
+              <Card key={index} className="bg-card border-border card-hover h-full">
+                <CardContent className="p-6 h-full flex flex-col">
                   <div className="flex items-center justify-between mb-4">
                     <h4 className="text-lg font-semibold">{cert.name}</h4>
                     <Badge className="bg-accent text-accent-foreground">
@@ -125,13 +125,13 @@ export default function EducationSection() {
                   <p className="text-muted-foreground font-mono mb-2">
                     Fecha de activación: {cert.date}
                   </p>
-                  <p className="text-muted-foreground text-sm mb-3">{cert.description}</p>
+                  <p className="text-muted-foreground text-sm mb-4 flex-grow">{cert.description}</p>
                   {cert.verifyUrl && (
                     <a
                       href={cert.verifyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block px-3 py-1 bg-accent/10 border border-accent/20 rounded text-accent hover:bg-accent hover:text-white text-sm font-medium transition-colors duration-200"
+                      className="inline-block px-3 py-1 bg-accent/10 border border-accent/20 rounded text-accent hover:bg-accent hover:text-white text-sm font-medium transition-colors duration-200 mt-auto"
                     >
                       Verificar Certificación
                     </a>
