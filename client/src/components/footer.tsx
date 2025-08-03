@@ -18,7 +18,7 @@ const socialLinks = [
   },
   {
     icon: Linkedin,
-    href: "#",
+    href: "https://www.linkedin.com/in/jose-pablo-campos/",
     label: "LinkedIn",
   },
   {
