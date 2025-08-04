@@ -196,6 +196,12 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   // Add spacing before Skills Section
   yPosition += 10;
 
+  // Force Skills Section to second column if on second page
+  if (isSecondPage && currentColumn === 1) {
+    currentColumn = 2;
+    yPosition = 20;
+  }
+
   // Skills Section
   checkPageBreak();
   addTitle(language === 'es' ? 'Habilidades Técnicas' : 'Technical Skills');
