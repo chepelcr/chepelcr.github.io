@@ -52,17 +52,17 @@ export default function ExperienceSection() {
                     <exp.icon className="h-6 w-6" />
                   </div>
                 </div>
-                <Card className="flex-1 bg-card border-border card-hover">
-                  <CardContent className="p-6">
+                <Card className="flex-1 bg-card border-border card-hover h-full">
+                  <CardContent className="p-6 h-full flex flex-col">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                       <h3 className="text-xl font-semibold text-accent">{exp.title}</h3>
                       <span className="text-muted-foreground font-mono">{exp.period}</span>
                     </div>
                     <p className="text-lg font-medium mb-2">{exp.company}</p>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
+                    <p className="text-muted-foreground leading-relaxed mb-4 flex-grow">
                       {exp.description}
                     </p>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 mt-auto">
                       {exp.skills.map((skill, skillIndex) => (
                         <Badge key={skillIndex} className="bg-accent text-accent-foreground">
                           {skill}
