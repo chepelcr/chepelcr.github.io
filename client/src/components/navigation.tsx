@@ -31,8 +31,8 @@ export default function Navigation() {
   }, []);
 
   const handleClick = (section: Section) => {
-    navigateToSection(section);
     setIsOpen(false);
+    navigateToSection(section);
   };
 
   return (

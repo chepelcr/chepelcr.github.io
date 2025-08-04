@@ -16,13 +16,15 @@ export function useScrollSpy({ language, currentSection }: UseScrollSpyProps) {
     
     const observer = new IntersectionObserver(
       (entries) => {
-        // Find the most visible section
-        let mostVisibleEntry = entries.reduce((max, entry) => 
-          entry.intersectionRatio > max.intersectionRatio ? entry : max
-        );
+        if (isScrollingRef.current) return;
 
-        if (mostVisibleEntry.isIntersecting && !isScrollingRef.current) {
-          const section = mostVisibleEntry.target.id as Section;
+        // Find the section that's most visible and above the fold
+        const visibleSections = entries
+          .filter(entry => entry.isIntersecting && entry.intersectionRatio > 0.5)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visibleSections.length > 0) {
+          const section = visibleSections[0].target.id as Section;
           const expectedPath = section === "home" ? `/${language}` : `/${language}/${section}`;
           
           if (location !== expectedPath) {
@@ -32,8 +34,8 @@ export function useScrollSpy({ language, currentSection }: UseScrollSpyProps) {
         }
       },
       {
-        threshold: [0.3, 0.6, 0.9], // Multiple thresholds for better detection
-        rootMargin: '-80px 0px -50% 0px' // Account for navbar and focus on top half
+        threshold: [0.5, 0.7], // Reduced thresholds, section needs to be at least 50% visible
+        rootMargin: '-100px 0px -40% 0px' // More conservative margins
       }
     );
 
@@ -54,7 +56,7 @@ export function useScrollSpy({ language, currentSection }: UseScrollSpyProps) {
     if (isScrolling) {
       setTimeout(() => {
         isScrollingRef.current = false;
-      }, 1500);
+      }, 2000); // Increased timeout to allow smooth scrolling to complete
     }
   };
 

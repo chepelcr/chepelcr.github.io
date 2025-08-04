@@ -19,16 +19,14 @@ export default function Home() {
 
   // Scroll to section when URL contains a section (for direct navigation)
   useEffect(() => {
-    if (currentSection && currentSection !== "home") {
-      const timer = setTimeout(() => {
-        const element = document.querySelector(`#${currentSection}`);
-        if (element) {
-          setScrolling(true);
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-      return () => clearTimeout(timer);
-    }
+    const timer = setTimeout(() => {
+      const element = document.querySelector(`#${currentSection || 'home'}`);
+      if (element) {
+        setScrolling(true);
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
+    return () => clearTimeout(timer);
   }, [currentSection, setScrolling]);
 
   return (
