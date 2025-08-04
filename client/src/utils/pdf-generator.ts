@@ -110,10 +110,10 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   doc.setFontSize(10);
   doc.setTextColor(lightTextColor);
   const contactInfo = [
-    `📧 ${data.personalInfo.email}`,
-    `📱 ${data.personalInfo.phone}`,
-    `📍 ${data.personalInfo.location}`,
-    `🗣️ ${data.personalInfo.languages}`
+    `Email: ${data.personalInfo.email}`,
+    `Phone: ${data.personalInfo.phone}`,
+    `Location: ${data.personalInfo.location}`,
+    `Languages: ${data.personalInfo.languages}`
   ];
   
   contactInfo.forEach((info) => {
