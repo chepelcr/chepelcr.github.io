@@ -63,6 +63,11 @@ export default function Home() {
             // Prioritize sections closer to the top of viewport
             const aDistance = Math.abs(a.boundingRect.top);
             const bDistance = Math.abs(b.boundingRect.top);
+            
+            // If distances are similar, prefer higher intersection ratio
+            if (Math.abs(aDistance - bDistance) < 50) {
+              return b.ratio - a.ratio;
+            }
             return aDistance - bDistance;
           });
 
