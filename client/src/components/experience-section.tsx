@@ -31,24 +31,26 @@ export default function ExperienceSection() {
   return (
     <section id="experience" className="section-spacing bg-slate">
       <div className="container-spacing">
-        <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16">
-          <Briefcase className="inline-block text-accent mr-4" />
-          {t("experience.title")}
-        </h2>
-        
-        <div className="relative">
-          {/* Timeline line */}
-          <div 
-            className="absolute left-8 top-16 w-0.5 bg-accent hidden md:block" 
-            style={{height: 'calc(100% - 64px)'}}
-          />
+        <div className="relative mb-16">
+          <h2 className="text-3xl lg:text-4xl font-bold text-center">
+            <Briefcase className="inline-block text-accent mr-4" />
+            {t("experience.title")}
+          </h2>
           
           {/* Begin circle - aligned with title */}
-          <div className="hidden md:block absolute left-0 top-0">
+          <div className="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2">
             <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center">
               <Play className="h-6 w-6" />
             </div>
           </div>
+        </div>
+        
+        <div className="relative">
+          {/* Timeline line */}
+          <div 
+            className="absolute left-8 top-0 w-0.5 bg-accent hidden md:block" 
+            style={{height: '100%'}}
+          />
           
           <div className="space-y-12 pt-20">
             {experiences.map((exp, index) => (
