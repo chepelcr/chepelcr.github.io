@@ -13,88 +13,68 @@ import { useLanguage, type Section } from "@/contexts/language-context";
 
 export default function Home() {
   const params = useParams();
-  const { currentSection, language } = useLanguage();
+  const { language } = useLanguage();
 
-  // Handle direct URL navigation on page load
+  // Handle direct URL navigation
   useEffect(() => {
-    const urlParams = params as { section?: string };
-    const targetSection = urlParams.section;
+    const pathParts = window.location.pathname.split('/').filter(Boolean);
+    const targetSection = pathParts[1]; // section from URL
     
     if (targetSection && targetSection !== "home") {
-      // Multiple attempts to ensure scrolling works
-      const scrollToSection = () => {
-        const element = document.querySelector(`#${targetSection}`);
+      const scrollToTarget = () => {
+        const element = document.getElementById(targetSection);
         if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-          return true;
+          // Wait a bit for page to settle, then scroll
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 100);
         }
-        return false;
       };
       
-      // Try immediately
-      if (!scrollToSection()) {
-        // Try after 500ms
-        const timer1 = setTimeout(() => {
-          if (!scrollToSection()) {
-            // Try after 1000ms
-            setTimeout(scrollToSection, 500);
-          }
-        }, 500);
-        return () => clearTimeout(timer1);
-      }
+      // Try multiple times to ensure it works
+      scrollToTarget();
+      setTimeout(scrollToTarget, 300);
+      setTimeout(scrollToTarget, 600);
     }
-  }, [params]);
+  }, [window.location.pathname]);
 
-  // Improved scroll spy for URL updates
+  // Simple, reliable scroll spy
   useEffect(() => {
-    const sections: Section[] = ["home", "about", "skills", "experience", "education", "projects", "contact"];
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Find all visible sections
-        const visibleSections = entries
-          .filter(entry => entry.isIntersecting)
-          .map(entry => ({
-            id: entry.target.id as Section,
-            ratio: entry.intersectionRatio,
-            boundingRect: entry.boundingClientRect
-          }))
-          .sort((a, b) => {
-            // Prioritize sections closer to the top of viewport
-            const aDistance = Math.abs(a.boundingRect.top);
-            const bDistance = Math.abs(b.boundingRect.top);
+    let ticking = false;
+    
+    const updateURL = () => {
+      if (ticking) return;
+      ticking = true;
+      
+      requestAnimationFrame(() => {
+        const sections = ["home", "about", "skills", "experience", "education", "projects", "contact"];
+        const scrollPosition = window.scrollY + 150; // Account for fixed nav
+        
+        let currentSection = "home";
+        
+        for (const sectionId of sections) {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            const elementTop = window.scrollY + rect.top;
             
-            // If distances are similar, prefer higher intersection ratio
-            if (Math.abs(aDistance - bDistance) < 50) {
-              return b.ratio - a.ratio;
+            if (scrollPosition >= elementTop) {
+              currentSection = sectionId;
             }
-            return aDistance - bDistance;
-          });
-
-        if (visibleSections.length > 0) {
-          const currentSection = visibleSections[0].id;
-          const expectedPath = currentSection === "home" ? `/${language}` : `/${language}/${currentSection}`;
-          
-          if (window.location.pathname !== expectedPath) {
-            window.history.replaceState({}, '', expectedPath);
           }
         }
-      },
-      {
-        threshold: [0.3, 0.5, 0.7],
-        rootMargin: '-80px 0px -50% 0px'
-      }
-    );
+        
+        const expectedPath = currentSection === "home" ? `/${language}` : `/${language}/${currentSection}`;
+        if (window.location.pathname !== expectedPath) {
+          window.history.replaceState({}, '', expectedPath);
+        }
+        
+        ticking = false;
+      });
+    };
 
-    // Observe all sections
-    sections.forEach(sectionId => {
-      const element = document.querySelector(`#${sectionId}`);
-      if (element) {
-        observer.observe(element);
-      }
-    });
-
-    return () => observer.disconnect();
+    window.addEventListener('scroll', updateURL, { passive: true });
+    return () => window.removeEventListener('scroll', updateURL);
   }, [language]);
 
   return (

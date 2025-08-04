@@ -43,29 +43,16 @@ export default function Navigation() {
   const handleClick = (section: Section) => {
     setIsOpen(false);
     
-    // Update URL first
-    const newPath = section === "home" ? `/${language}` : `/${language}/${section}`;
-    window.history.pushState({}, '', newPath);
+    // Simple, reliable navigation
+    const element = document.getElementById(section);
     
-    // Force scroll to section with multiple attempts
-    const scrollToSection = () => {
-      const element = document.querySelector(`#${section}`);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-        return true;
-      }
-      return false;
-    };
-    
-    // Try immediately
-    if (!scrollToSection()) {
-      // Try after short delay if element not found
-      setTimeout(() => {
-        if (!scrollToSection()) {
-          // Final attempt after longer delay
-          setTimeout(scrollToSection, 200);
-        }
-      }, 100);
+    if (element) {
+      // Update URL
+      const newPath = section === "home" ? `/${language}` : `/${language}/${section}`;
+      window.history.pushState({}, '', newPath);
+      
+      // Scroll to element
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
