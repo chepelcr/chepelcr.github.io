@@ -33,10 +33,10 @@ export function ThemeProvider({
   useEffect(() => {
     const root = window.document.documentElement
 
-    // Add transitioning class for fade effect
+    // Add transitioning class for subtle fade effect
     root.classList.add("theme-transitioning")
     
-    // Short delay for fade in effect
+    // Quick theme change while overlay is visible
     setTimeout(() => {
       root.classList.remove("light", "dark")
 
@@ -50,12 +50,12 @@ export function ThemeProvider({
       } else {
         root.classList.add(theme)
       }
-      
-      // Remove transitioning class after theme change
-      setTimeout(() => {
-        root.classList.remove("theme-transitioning")
-      }, 150)
-    }, 150)
+    }, 100)
+    
+    // Remove transitioning class after transition completes
+    setTimeout(() => {
+      root.classList.remove("theme-transitioning")
+    }, 300)
   }, [theme])
 
   const value = {
