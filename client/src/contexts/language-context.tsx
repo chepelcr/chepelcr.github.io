@@ -187,6 +187,9 @@ const translations = {
     "contact.other": "Otro",
     "contact.downloadCV": "Descarga mi CV",
     "contact.downloadCVDesc": "Obtén una copia completa de mi currículum vitae",
+    "contact.defaultSubject": "Contacto desde el portafolio",
+    "contact.emailClientTitle": "Cliente de email abierto",
+    "contact.emailClientDesc": "Se ha abierto tu cliente de email predeterminado con el mensaje preparado.",
     
     // Footer
     "footer.description": "Desarrollador de software especializado en soluciones Backend con Java, Python y AWS. Creando sistemas escalables que impulsan el crecimiento empresarial.",
@@ -335,6 +338,9 @@ const translations = {
     "contact.other": "Other",
     "contact.downloadCV": "Download my CV",
     "contact.downloadCVDesc": "Get a complete copy of my curriculum vitae",
+    "contact.defaultSubject": "Contact from portfolio",
+    "contact.emailClientTitle": "Email client opened",
+    "contact.emailClientDesc": "Your default email client has been opened with the prepared message.",
     
     // Footer
     "footer.description": "Software developer specialized in Backend solutions with Java, Python and AWS. Creating scalable systems that drive business growth.",
