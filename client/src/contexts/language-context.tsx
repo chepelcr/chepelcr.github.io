@@ -45,15 +45,25 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   }, [location]);
 
   const setLanguage = (lang: Language) => {
-    const pathParts = location.split('/').filter(Boolean);
-    const currentSectionFromUrl = pathParts[1] || "home";
+    // Add transitioning class for smooth language change
+    document.body.classList.add("language-transitioning");
     
-    setLanguageState(lang);
-    localStorage.setItem("portfolio-language", lang);
-    
-    // Navigate to new language with current section
-    const newPath = currentSectionFromUrl === "home" ? `/${lang}` : `/${lang}/${currentSectionFromUrl}`;
-    navigate(newPath);
+    setTimeout(() => {
+      const pathParts = location.split('/').filter(Boolean);
+      const currentSectionFromUrl = pathParts[1] || "home";
+      
+      setLanguageState(lang);
+      localStorage.setItem("portfolio-language", lang);
+      
+      // Navigate to new language with current section
+      const newPath = currentSectionFromUrl === "home" ? `/${lang}` : `/${lang}/${currentSectionFromUrl}`;
+      navigate(newPath);
+      
+      // Remove transitioning class after change
+      setTimeout(() => {
+        document.body.classList.remove("language-transitioning");
+      }, 300);
+    }, 150);
   };
 
   const navigateToSection = (section: Section, updateUrl: boolean = true) => {

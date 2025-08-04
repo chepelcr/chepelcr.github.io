@@ -65,13 +65,23 @@
   }
 
   /* Enhanced smooth theme transitions */
-  * {
+  *,
+  *::before,
+  *::after {
     transition: background-color 0.8s cubic-bezier(0.23, 1, 0.32, 1),
                 color 0.8s cubic-bezier(0.23, 1, 0.32, 1),
                 border-color 0.8s cubic-bezier(0.23, 1, 0.32, 1),
                 box-shadow 0.8s cubic-bezier(0.23, 1, 0.32, 1),
                 fill 0.8s cubic-bezier(0.23, 1, 0.32, 1),
-                stroke 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+                stroke 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                background-image 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  /* Language transition effects */
+  .language-transitioning {
+    opacity: 0.7;
+    transform: translateY(-2px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
   
   /* Background fade overlay */
@@ -142,7 +152,20 @@
 }
 
 .gradient-bg {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--slate) 100%);
+  background: linear-gradient(135deg, 
+    hsl(var(--navy)) 0%, 
+    hsl(var(--slate)) 25%, 
+    hsl(var(--navy)) 50%, 
+    hsl(var(--slate)) 75%, 
+    hsl(var(--navy)) 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  transition: background 0.8s cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .section-spacing {
