@@ -40,26 +40,26 @@ const toolsSkills = [
   { name: "Redis", level: "Intermedio", icon: "⚡" },
 ];
 
-const softSkills = [
+const getSoftSkills = (t: any) => [
   {
     icon: Brain,
-    title: "Pensamiento Analítico",
-    description: "Enfoque en resolución de problemas",
+    title: t("skills.analyticalThinking"),
+    description: t("skills.analyticalDesc"),
   },
   {
     icon: Users,
-    title: "Trabajo Colaborativo",
-    description: "Comunicación efectiva con equipos multidisciplinarios",
+    title: t("skills.teamwork"),
+    description: t("skills.teamworkDesc"),
   },
   {
     icon: RotateCcw,
-    title: "Adaptabilidad",
-    description: "Capacidad de cambio y aprendizaje continuo",
+    title: t("skills.adaptability"),
+    description: t("skills.adaptabilityDesc"),
   },
   {
     icon: Rocket,
-    title: "Iniciativa",
-    description: "Curiosidad por nuevas tecnologías y metodologías",
+    title: t("skills.initiative"),
+    description: t("skills.initiativeDesc"),
   },
 ];
 
@@ -94,6 +94,7 @@ function SkillCard({ title, skills, icon: Icon }: { title: string; skills: any[]
 
 export default function SkillsSection() {
   const { t } = useLanguage();
+  const softSkills = getSoftSkills(t);
   
   return (
     <section id="skills" className="section-spacing bg-navy">
@@ -115,7 +116,7 @@ export default function SkillsSection() {
           <CardContent className="p-8">
             <h3 className="text-2xl font-semibold mb-8 text-accent text-center">
               <Brain className="inline-block mr-3" />
-              Habilidades Blandas
+              {t("skills.softSkills")}
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {softSkills.map((skill, index) => (
