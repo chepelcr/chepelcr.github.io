@@ -15,42 +15,40 @@ export default function Home() {
   const params = useParams();
   const { currentSection, language } = useLanguage();
 
-  // Scroll to section on direct URL access
+  // Scroll to section ONLY on direct URL access (page load/refresh)
   useEffect(() => {
     if (currentSection && currentSection !== "home") {
-      // Wait for page to render then scroll
       const timer = setTimeout(() => {
         const element = document.querySelector(`#${currentSection}`);
         if (element) {
           element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
-      }, 100);
+      }, 200);
       return () => clearTimeout(timer);
     }
   }, [currentSection]);
 
-  // Simple scroll spy for URL updates
+  // Passive scroll spy - only updates URL, no scrolling
   useEffect(() => {
     const sections: Section[] = ["home", "about", "skills", "experience", "education", "projects", "contact"];
 
     const observer = new IntersectionObserver(
       (entries) => {
         const visibleSections = entries
-          .filter(entry => entry.isIntersecting && entry.intersectionRatio > 0.6)
+          .filter(entry => entry.isIntersecting && entry.intersectionRatio > 0.5)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (visibleSections.length > 0) {
           const section = visibleSections[0].target.id as Section;
           const expectedPath = section === "home" ? `/${language}` : `/${language}/${section}`;
-          
           if (window.location.pathname !== expectedPath) {
             window.history.replaceState({}, '', expectedPath);
           }
         }
       },
       {
-        threshold: [0.6],
-        rootMargin: '-80px 0px -30% 0px'
+        threshold: [0.5],
+        rootMargin: '-100px 0px -30% 0px'
       }
     );
 

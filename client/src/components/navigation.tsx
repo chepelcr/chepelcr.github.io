@@ -33,12 +33,7 @@ export default function Navigation() {
 
   const handleClick = (section: Section) => {
     setIsOpen(false);
-    
-    // Scroll to section manually without using the context navigation
-    const element = document.querySelector(`#${section}`);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    navigateToSection(section);
   };
 
   return (

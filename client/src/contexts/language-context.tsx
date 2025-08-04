@@ -62,6 +62,14 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
       const newPath = section === "home" ? `/${language}` : `/${language}/${section}`;
       navigate(newPath);
     }
+    
+    // Always scroll to the section
+    setTimeout(() => {
+      const element = document.querySelector(`#${section}`);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 50);
   };
 
   const t = (key: string): string => {
