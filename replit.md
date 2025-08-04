@@ -109,11 +109,12 @@ Preferred communication style: Simple, everyday language.
 ### URL-Based Routing System (January 2025)
 - **Language-Prefixed URLs**: Implemented `/es` and `/en` URL prefixes for bilingual navigation
 - **Section-Based Routing**: URLs show current section (e.g., `/es/about`, `/en/projects`)
-- **Navigation Integration**: All navigation elements use URL-based routing instead of anchor scrolling
+- **Navigation Integration**: All navigation elements use URL-based routing with smooth scrolling
 - **URL Sync**: Current language and section automatically sync with browser URL
 - **Deep Linking**: Direct access to specific sections via URL (e.g., `/en/contact`)
 - **Fallback Handling**: Root URL (`/`) redirects to saved language preference
 - **Active States**: Navigation items highlight based on current URL section
 - **Scroll-Based URL Updates**: URLs automatically update based on scroll position using Intersection Observer
-- **Intelligent Section Detection**: Uses multiple thresholds to accurately detect the most visible section
-- **Smooth Integration**: Temporary disabling of scroll tracking during programmatic navigation to prevent conflicts
+- **Natural Scroll Behavior**: Manual scrolling controls URL updates without automatic section jumping
+- **Single-Click Navigation**: Fixed double-click issues for immediate navigation response
+- **Optimized Scroll Detection**: 40% visibility threshold for accurate section detection across all sections
