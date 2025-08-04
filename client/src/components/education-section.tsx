@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/contexts/language-context";
-import { GraduationCap, Award, BookOpen } from "lucide-react";
+import { GraduationCap, Award, BookOpen, ExternalLink } from "lucide-react";
 
 const getEducation = (t: any) => [
   {
@@ -140,8 +140,9 @@ export default function EducationSection() {
                         href={cert.verifyUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center px-4 py-2 bg-accent/10 border border-accent/20 rounded-lg text-accent hover:bg-accent hover:text-white text-sm font-medium transition-colors duration-200 w-full justify-center"
+                        className="inline-flex items-center px-4 py-2 bg-accent/10 border border-accent/20 rounded-lg text-accent hover:bg-accent hover:text-white text-sm font-medium transition-colors duration-200 w-full justify-center gap-2"
                       >
+                        <ExternalLink className="h-4 w-4" />
                         {t("education.verifyCredential")}
                       </a>
                     </div>
