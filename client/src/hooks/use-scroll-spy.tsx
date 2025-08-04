@@ -54,9 +54,12 @@ export function useScrollSpy({ language, currentSection }: UseScrollSpyProps) {
   const setScrolling = (isScrolling: boolean) => {
     isScrollingRef.current = isScrolling;
     if (isScrolling) {
-      setTimeout(() => {
+      // Clear any previous timeout
+      const timeoutId = setTimeout(() => {
         isScrollingRef.current = false;
-      }, 2000); // Increased timeout to allow smooth scrolling to complete
+      }, 2500); // Longer timeout to ensure smooth scrolling completes
+      
+      return () => clearTimeout(timeoutId);
     }
   };
 

@@ -17,16 +17,18 @@ export default function Home() {
   const { currentSection, language } = useLanguage();
   const { setScrolling } = useScrollSpy({ language, currentSection });
 
-  // Scroll to section when URL contains a section (for direct navigation)
+  // Scroll to section when current section changes
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const element = document.querySelector(`#${currentSection || 'home'}`);
-      if (element) {
-        setScrolling(true);
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 100);
-    return () => clearTimeout(timer);
+    if (currentSection) {
+      const timer = setTimeout(() => {
+        const element = document.querySelector(`#${currentSection}`);
+        if (element) {
+          setScrolling(true);
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 50);
+      return () => clearTimeout(timer);
+    }
   }, [currentSection, setScrolling]);
 
   return (
