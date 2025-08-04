@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "wouter";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
@@ -14,43 +14,29 @@ import { useLanguage, type Section } from "@/contexts/language-context";
 export default function Home() {
   const params = useParams();
   const { currentSection, language } = useLanguage();
-  const [hasInitiallyScrolled, setHasInitiallyScrolled] = useState(false);
-  const [scrollSpyEnabled, setScrollSpyEnabled] = useState(false);
 
-  // Handle initial scroll on page load with direct URL
+  // Scroll to section on direct URL access
   useEffect(() => {
-    if (currentSection && !hasInitiallyScrolled) {
+    if (currentSection && currentSection !== "home") {
+      // Wait for page to render then scroll
       const timer = setTimeout(() => {
-        if (currentSection !== "home") {
-          const element = document.querySelector(`#${currentSection}`);
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
+        const element = document.querySelector(`#${currentSection}`);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
-        setHasInitiallyScrolled(true);
-        // Enable scroll spy after initial navigation is complete
-        setTimeout(() => setScrollSpyEnabled(true), 2000);
-      }, 500);
-      
-      return () => clearTimeout(timer);
-    } else if (hasInitiallyScrolled && !scrollSpyEnabled) {
-      // Enable scroll spy if we've already handled initial load
-      const timer = setTimeout(() => setScrollSpyEnabled(true), 1000);
+      }, 100);
       return () => clearTimeout(timer);
     }
-  }, [currentSection, hasInitiallyScrolled, scrollSpyEnabled]);
+  }, [currentSection]);
 
-  // Only update URL based on scroll position when scroll spy is enabled
+  // Simple scroll spy for URL updates
   useEffect(() => {
-    if (!scrollSpyEnabled) return;
-
     const sections: Section[] = ["home", "about", "skills", "experience", "education", "projects", "contact"];
 
     const observer = new IntersectionObserver(
       (entries) => {
-        // Find the most visible section
         const visibleSections = entries
-          .filter(entry => entry.isIntersecting && entry.intersectionRatio > 0.5)
+          .filter(entry => entry.isIntersecting && entry.intersectionRatio > 0.6)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (visibleSections.length > 0) {
@@ -63,12 +49,11 @@ export default function Home() {
         }
       },
       {
-        threshold: [0.5, 0.7],
-        rootMargin: '-120px 0px -40% 0px'
+        threshold: [0.6],
+        rootMargin: '-80px 0px -30% 0px'
       }
     );
 
-    // Observe all sections
     sections.forEach(sectionId => {
       const element = document.querySelector(`#${sectionId}`);
       if (element) {
@@ -76,8 +61,8 @@ export default function Home() {
       }
     });
 
-    return () => observer.disconnect();
-  }, [language, scrollSpyEnabled]);
+    return () => observer.disconnect();  
+  }, [language]);
 
   return (
     <div className="min-h-screen bg-navy text-foreground">
