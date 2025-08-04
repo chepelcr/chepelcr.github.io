@@ -39,12 +39,12 @@ export default function ExperienceSection() {
         <div className="relative">
           {/* Timeline line */}
           <div 
-            className="absolute left-1/2 transform -translate-x-0.5 top-16 w-0.5 bg-accent hidden md:block" 
+            className="absolute left-8 top-16 w-0.5 bg-accent hidden md:block" 
             style={{height: 'calc(100% - 64px)'}}
           />
           
           {/* Begin circle - aligned with title */}
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 top-0">
+          <div className="hidden md:block absolute left-0 top-0">
             <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center">
               <Play className="h-6 w-6" />
             </div>
