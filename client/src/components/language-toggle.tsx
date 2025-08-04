@@ -32,7 +32,6 @@ export function LanguageToggle() {
         >
           <span className="mr-2">🇪🇸</span>
           <span>Español</span>
-          {language === "es" && <span className="ml-auto">✓</span>}
         </DropdownMenuItem>
         <DropdownMenuItem 
           onClick={() => setLanguage("en")}
@@ -42,7 +41,6 @@ export function LanguageToggle() {
         >
           <span className="mr-2">🇺🇸</span>
           <span>English</span>
-          {language === "en" && <span className="ml-auto">✓</span>}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
