@@ -114,3 +114,6 @@ Preferred communication style: Simple, everyday language.
 - **Deep Linking**: Direct access to specific sections via URL (e.g., `/en/contact`)
 - **Fallback Handling**: Root URL (`/`) redirects to saved language preference
 - **Active States**: Navigation items highlight based on current URL section
+- **Scroll-Based URL Updates**: URLs automatically update based on scroll position using Intersection Observer
+- **Intelligent Section Detection**: Uses multiple thresholds to accurately detect the most visible section
+- **Smooth Integration**: Temporary disabling of scroll tracking during programmatic navigation to prevent conflicts

@@ -33,14 +33,6 @@ export default function Navigation() {
   const handleClick = (section: Section) => {
     navigateToSection(section);
     setIsOpen(false);
-    
-    // Scroll to section after navigation
-    setTimeout(() => {
-      const element = document.querySelector(`#${section}`);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 100);
   };
 
   return (

@@ -10,23 +10,26 @@ import ProjectsSection from "@/components/projects-section";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 import { useLanguage } from "@/contexts/language-context";
+import { useScrollSpy } from "@/hooks/use-scroll-spy";
 
 export default function Home() {
   const params = useParams();
-  const { currentSection } = useLanguage();
+  const { currentSection, language } = useLanguage();
+  const { setScrolling } = useScrollSpy({ language, currentSection });
 
-  // Scroll to section when URL contains a section
+  // Scroll to section when URL contains a section (for direct navigation)
   useEffect(() => {
     if (currentSection && currentSection !== "home") {
       const timer = setTimeout(() => {
         const element = document.querySelector(`#${currentSection}`);
         if (element) {
+          setScrolling(true);
           element.scrollIntoView({ behavior: "smooth" });
         }
       }, 100);
       return () => clearTimeout(timer);
     }
-  }, [currentSection]);
+  }, [currentSection, setScrolling]);
 
   return (
     <div className="min-h-screen bg-navy text-foreground">

@@ -8,7 +8,7 @@ type LanguageContextType = {
   language: Language;
   currentSection: Section | null;
   setLanguage: (lang: Language) => void;
-  navigateToSection: (section: Section) => void;
+  navigateToSection: (section: Section, updateUrl?: boolean) => void;
   t: (key: string) => string;
 };
 
@@ -56,10 +56,12 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     navigate(newPath);
   };
 
-  const navigateToSection = (section: Section) => {
+  const navigateToSection = (section: Section, updateUrl: boolean = true) => {
     setCurrentSection(section);
-    const newPath = section === "home" ? `/${language}` : `/${language}/${section}`;
-    navigate(newPath);
+    if (updateUrl) {
+      const newPath = section === "home" ? `/${language}` : `/${language}/${section}`;
+      navigate(newPath);
+    }
   };
 
   const t = (key: string): string => {
