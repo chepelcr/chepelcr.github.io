@@ -8,7 +8,7 @@ type LanguageContextType = {
   language: Language;
   currentSection: Section | null;
   setLanguage: (lang: Language) => void;
-  navigateToSection: (section: Section, updateUrl?: boolean) => void;
+  navigateToSection: (section: Section, updateUrl?: boolean, scroll?: boolean) => void;
   t: (key: string) => string;
 };
 
@@ -56,20 +56,22 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     navigate(newPath);
   };
 
-  const navigateToSection = (section: Section, updateUrl: boolean = true) => {
+  const navigateToSection = (section: Section, updateUrl: boolean = true, scroll: boolean = true) => {
     setCurrentSection(section);
     if (updateUrl) {
       const newPath = section === "home" ? `/${language}` : `/${language}/${section}`;
       navigate(newPath);
     }
     
-    // Always scroll to the section
-    setTimeout(() => {
-      const element = document.querySelector(`#${section}`);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 50);
+    // Only scroll if explicitly requested
+    if (scroll) {
+      setTimeout(() => {
+        const element = document.querySelector(`#${section}`);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 50);
+    }
   };
 
   const t = (key: string): string => {

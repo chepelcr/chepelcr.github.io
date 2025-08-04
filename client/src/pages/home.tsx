@@ -13,7 +13,7 @@ import { useLanguage, type Section } from "@/contexts/language-context";
 
 export default function Home() {
   const params = useParams();
-  const { currentSection, language } = useLanguage();
+  const { currentSection, language, navigateToSection } = useLanguage();
 
   // Scroll to section ONLY on direct URL access (page load/refresh)
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Home() {
         if (element) {
           element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
-      }, 200);
+      }, 300);
       return () => clearTimeout(timer);
     }
   }, [currentSection]);
@@ -40,6 +40,10 @@ export default function Home() {
 
         if (visibleSections.length > 0) {
           const section = visibleSections[0].target.id as Section;
+          // Update section context WITHOUT scrolling and WITHOUT URL update
+          navigateToSection(section, false, false);
+          
+          // Update URL manually
           const expectedPath = section === "home" ? `/${language}` : `/${language}/${section}`;
           if (window.location.pathname !== expectedPath) {
             window.history.replaceState({}, '', expectedPath);
@@ -60,7 +64,7 @@ export default function Home() {
     });
 
     return () => observer.disconnect();  
-  }, [language]);
+  }, [language, navigateToSection]);
 
   return (
     <div className="min-h-screen bg-navy text-foreground">
