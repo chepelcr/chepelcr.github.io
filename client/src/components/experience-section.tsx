@@ -5,21 +5,21 @@ import { Briefcase, Code, Globe } from "lucide-react";
 
 const getExperiences = (t: any) => [
   {
-    title: t("experience.javaDevTitle"),
-    company: t("experience.javaDevCompany"),
-    period: t("experience.javaDevPeriod"),
-    description: t("experience.javaDevDesc"),
-    skills: ["Java", "AWS", "Microservices", "Spring Boot"],
-    icon: Code,
-    current: true,
-  },
-  {
     title: t("experience.webDevTitle"),
     company: t("experience.webDevCompany"),
     period: t("experience.webDevPeriod"),
     description: t("experience.webDevDesc"),
     skills: ["ERP Development", "Electronic Invoicing", "PHP", "MySQL"],
     icon: Globe,
+    current: true,
+  },
+  {
+    title: t("experience.javaDevTitle"),
+    company: t("experience.javaDevCompany"),
+    period: t("experience.javaDevPeriod"),
+    description: t("experience.javaDevDesc"),
+    skills: ["Java", "AWS", "Microservices", "Spring Boot"],
+    icon: Code,
     current: true,
   },
 ];
@@ -38,9 +38,19 @@ export default function ExperienceSection() {
         
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-accent hidden md:block" />
+          <div className="absolute left-8 top-8 bottom-8 w-0.5 bg-accent hidden md:block" />
           
-          <div className="space-y-12">
+          {/* Begin circle */}
+          <div className="hidden md:block absolute left-4 top-0">
+            <div className="w-8 h-8 rounded-full bg-accent border-4 border-accent-foreground"></div>
+          </div>
+          
+          {/* End circle */}
+          <div className="hidden md:block absolute left-4 bottom-0">
+            <div className="w-8 h-8 rounded-full bg-accent border-4 border-accent-foreground"></div>
+          </div>
+          
+          <div className="space-y-12 pt-8 pb-8">
             {experiences.map((exp, index) => (
               <div key={index} className="relative flex items-start space-x-8">
                 <div className="hidden md:block">
