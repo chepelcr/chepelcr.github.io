@@ -15,6 +15,19 @@ export default function Home() {
   const params = useParams();
   const { currentSection, language } = useLanguage();
 
+  // Scroll to section when entering via direct URL
+  useEffect(() => {
+    if (currentSection && currentSection !== "home") {
+      const timer = setTimeout(() => {
+        const element = document.querySelector(`#${currentSection}`);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 300); // Delay to ensure page is fully loaded
+      return () => clearTimeout(timer);
+    }
+  }, [currentSection]);
+
   // Only update URL based on scroll position, no automatic scrolling
   useEffect(() => {
     const sections: Section[] = ["home", "about", "skills", "experience", "education", "projects", "contact"];
