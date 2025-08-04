@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Download, Mail, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
+import { downloadCV } from "@/utils/pdf-generator";
 
 export default function HeroSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const handleScroll = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -39,10 +40,10 @@ export default function HeroSection() {
                 variant="outline" 
                 size="lg"
                 className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
-                onClick={() => handleScroll("projects")}
+                onClick={() => downloadCV(language)}
               >
-                <ExternalLink className="mr-2 h-4 w-4" />
-                {t("projects.viewProject")}
+                <Download className="mr-2 h-4 w-4" />
+                {t("hero.downloadCV")}
               </Button>
             </div>
           </div>
