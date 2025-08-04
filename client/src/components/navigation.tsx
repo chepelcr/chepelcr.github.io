@@ -43,17 +43,17 @@ export default function Navigation() {
   const handleClick = (section: Section) => {
     setIsOpen(false);
     
-    // Simple, reliable navigation
-    const element = document.getElementById(section);
+    // Update URL first
+    const newPath = section === "home" ? `/${language}` : `/${language}/${section}`;
+    window.history.pushState({}, '', newPath);
     
-    if (element) {
-      // Update URL
-      const newPath = section === "home" ? `/${language}` : `/${language}/${section}`;
-      window.history.pushState({}, '', newPath);
-      
-      // Scroll to element
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    // Find and scroll to element
+    setTimeout(() => {
+      const element = document.getElementById(section);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
   };
 
   return (

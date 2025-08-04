@@ -18,25 +18,20 @@ export default function Home() {
   // Handle direct URL navigation
   useEffect(() => {
     const pathParts = window.location.pathname.split('/').filter(Boolean);
-    const targetSection = pathParts[1]; // section from URL
+    const targetSection = pathParts[1];
     
     if (targetSection && targetSection !== "home") {
-      const scrollToTarget = () => {
+      // Wait for page to render completely
+      const timer = setTimeout(() => {
         const element = document.getElementById(targetSection);
         if (element) {
-          // Wait a bit for page to settle, then scroll
-          setTimeout(() => {
-            element.scrollIntoView({ behavior: "smooth", block: "start" });
-          }, 100);
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
-      };
+      }, 1000);
       
-      // Try multiple times to ensure it works
-      scrollToTarget();
-      setTimeout(scrollToTarget, 300);
-      setTimeout(scrollToTarget, 600);
+      return () => clearTimeout(timer);
     }
-  }, [window.location.pathname]);
+  }, []);
 
   // Simple, reliable scroll spy
   useEffect(() => {
