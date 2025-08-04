@@ -171,6 +171,9 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     addBulletPoint(`${cert.name} (${cert.date})`);
   });
 
+  // Add spacing before Skills Section
+  yPosition += 10;
+
   // Skills Section
   checkPageBreak();
   addTitle(language === 'es' ? 'Habilidades Técnicas' : 'Technical Skills');
