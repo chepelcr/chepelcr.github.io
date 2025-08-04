@@ -33,22 +33,29 @@ export function ThemeProvider({
   useEffect(() => {
     const root = window.document.documentElement
 
-    // Add transition class for smooth theme changes
-    root.style.transition = 'background-color 0.4s ease, color 0.4s ease'
+    // Add transitioning class for fade effect
+    root.classList.add("theme-transitioning")
     
-    root.classList.remove("light", "dark")
+    // Short delay for fade in effect
+    setTimeout(() => {
+      root.classList.remove("light", "dark")
 
-    if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light"
+      if (theme === "system") {
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "dark"
+          : "light"
 
-      root.classList.add(systemTheme)
-      return
-    }
-
-    root.classList.add(theme)
+        root.classList.add(systemTheme)
+      } else {
+        root.classList.add(theme)
+      }
+      
+      // Remove transitioning class after theme change
+      setTimeout(() => {
+        root.classList.remove("theme-transitioning")
+      }, 150)
+    }, 150)
   }, [theme])
 
   const value = {
