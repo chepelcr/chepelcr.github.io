@@ -18,9 +18,9 @@ export function useScrollSpy({ language, currentSection }: UseScrollSpyProps) {
       (entries) => {
         if (isScrollingRef.current) return;
 
-        // Find the section that's most visible and above the fold
+        // Only update URL if user is manually scrolling (not programmatic navigation)
         const visibleSections = entries
-          .filter(entry => entry.isIntersecting && entry.intersectionRatio > 0.5)
+          .filter(entry => entry.isIntersecting && entry.intersectionRatio > 0.8)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (visibleSections.length > 0) {
@@ -34,8 +34,8 @@ export function useScrollSpy({ language, currentSection }: UseScrollSpyProps) {
         }
       },
       {
-        threshold: [0.5, 0.7], // Reduced thresholds, section needs to be at least 50% visible
-        rootMargin: '-100px 0px -40% 0px' // More conservative margins
+        threshold: [0.8], // Higher threshold - section needs to be 80% visible
+        rootMargin: '-120px 0px -30% 0px' // Very conservative margins
       }
     );
 

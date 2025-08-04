@@ -38,16 +38,11 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     const urlSection = pathParts[1] as Section;
 
     if (urlLang === "es" || urlLang === "en") {
-      if (urlLang !== language) {
-        setLanguageState(urlLang);
-        localStorage.setItem("portfolio-language", urlLang);
-      }
-      const newSection = urlSection || "home";
-      if (newSection !== currentSection) {
-        setCurrentSection(newSection);
-      }
+      setLanguageState(urlLang);
+      localStorage.setItem("portfolio-language", urlLang);
+      setCurrentSection(urlSection || "home");
     }
-  }, [location, language, currentSection]);
+  }, [location]);
 
   const setLanguage = (lang: Language) => {
     const pathParts = location.split('/').filter(Boolean);

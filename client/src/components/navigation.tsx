@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -10,6 +10,7 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { t, currentSection, navigateToSection } = useLanguage();
+  const isNavigatingRef = useRef(false);
 
   const navigationItems = [
     { section: "home" as Section, label: t("nav.home") },
@@ -32,7 +33,13 @@ export default function Navigation() {
 
   const handleClick = (section: Section) => {
     setIsOpen(false);
+    isNavigatingRef.current = true;
     navigateToSection(section);
+    
+    // Reset navigation flag after scrolling completes
+    setTimeout(() => {
+      isNavigatingRef.current = false;
+    }, 3000);
   };
 
   return (

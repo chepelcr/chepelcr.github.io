@@ -10,12 +10,10 @@ import ProjectsSection from "@/components/projects-section";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 import { useLanguage, type Section } from "@/contexts/language-context";
-import { useScrollSpy } from "@/hooks/use-scroll-spy";
 
 export default function Home() {
   const params = useParams();
   const { currentSection, language } = useLanguage();
-  const { setScrolling } = useScrollSpy({ language, currentSection });
 
   // Scroll to section when current section changes
   useEffect(() => {
@@ -23,13 +21,12 @@ export default function Home() {
       const timer = setTimeout(() => {
         const element = document.querySelector(`#${currentSection}`);
         if (element) {
-          setScrolling(true);
           element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }, 100);
       return () => clearTimeout(timer);
     }
-  }, [currentSection, setScrolling]);
+  }, [currentSection]);
 
   return (
     <div className="min-h-screen bg-navy text-foreground">
