@@ -98,6 +98,14 @@ const translations = {
     // Experience Section
     "experience.title": "Experiencia Profesional",
     "experience.current": "Actual",
+    "experience.javaDevTitle": "Java Developer",
+    "experience.javaDevCompany": "IFZ Sociedad Anónima",
+    "experience.javaDevPeriod": "Julio 2022 - Junio 2025",
+    "experience.javaDevDesc": "Desarrollo de microservicios, gestión de servicios AWS e infraestructura. Implementación de soluciones escalables utilizando arquitecturas modernas y mejores prácticas de desarrollo en la nube.",
+    "experience.webDevTitle": "Web Developer Ad Honorem",
+    "experience.webDevCompany": "Modas Laura",
+    "experience.webDevPeriod": "2021 - Actual",
+    "experience.webDevDesc": "Diseño y desarrollo de sistema ERP personalizado para la gestión empresarial. Implementación de soluciones de facturación electrónica y automatización de procesos de negocio.",
     
     // Education Section
     "education.title": "Educación",
@@ -183,6 +191,14 @@ const translations = {
     // Experience Section
     "experience.title": "Professional Experience",
     "experience.current": "Current",
+    "experience.javaDevTitle": "Java Developer",
+    "experience.javaDevCompany": "IFZ Sociedad Anónima",
+    "experience.javaDevPeriod": "July 2022 - June 2025",
+    "experience.javaDevDesc": "Development of microservices, AWS services management and infrastructure. Implementation of scalable solutions using modern architectures and cloud development best practices.",
+    "experience.webDevTitle": "Web Developer Ad Honorem",
+    "experience.webDevCompany": "Modas Laura",
+    "experience.webDevPeriod": "2021 - Current",
+    "experience.webDevDesc": "Design and development of custom ERP system for business management. Implementation of electronic invoicing solutions and business process automation.",
     
     // Education Section
     "education.title": "Education",

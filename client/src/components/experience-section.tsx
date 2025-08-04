@@ -3,22 +3,22 @@ import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/contexts/language-context";
 import { Briefcase, Code, Globe } from "lucide-react";
 
-const experiences = [
+const getExperiences = (t: any) => [
   {
-    title: "Java Developer",
-    company: "IFZ Sociedad Anónima",
-    period: "Julio 2022 - Junio 2025",
-    description: "Desarrollo de microservicios, gestión de servicios AWS e infraestructura. Implementación de soluciones escalables utilizando arquitecturas modernas y mejores prácticas de desarrollo en la nube.",
-    skills: ["Java", "AWS", "Microservicios", "Spring Boot"],
+    title: t("experience.javaDevTitle"),
+    company: t("experience.javaDevCompany"),
+    period: t("experience.javaDevPeriod"),
+    description: t("experience.javaDevDesc"),
+    skills: ["Java", "AWS", "Microservices", "Spring Boot"],
     icon: Code,
     current: true,
   },
   {
-    title: "Web Developer Ad Honorem",
-    company: "Modas Laura",
-    period: "2021 - Actual",
-    description: "Diseño y desarrollo de sistema ERP personalizado para la gestión empresarial. Implementación de soluciones de facturación electrónica y automatización de procesos de negocio.",
-    skills: ["ERP Development", "Facturación Electrónica", "PHP", "MySQL"],
+    title: t("experience.webDevTitle"),
+    company: t("experience.webDevCompany"),
+    period: t("experience.webDevPeriod"),
+    description: t("experience.webDevDesc"),
+    skills: ["ERP Development", "Electronic Invoicing", "PHP", "MySQL"],
     icon: Globe,
     current: true,
   },
@@ -26,6 +26,7 @@ const experiences = [
 
 export default function ExperienceSection() {
   const { t } = useLanguage();
+  const experiences = getExperiences(t);
   
   return (
     <section id="experience" className="section-spacing bg-slate">
