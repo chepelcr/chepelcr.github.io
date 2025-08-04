@@ -108,12 +108,12 @@ const translations = {
     "experience.webDevDesc": "Diseño y desarrollo de sistema ERP personalizado para la gestión empresarial. Implementación de soluciones de facturación electrónica y automatización de procesos de negocio.",
     
     // Education Section
-    "education.title": "Educación",
-    "education.degree": "Grado en Ingeniería en Sistemas de Información",
-    "education.university": "Universidad Fidélitas",
-    "education.duration": "2019 - 2023",
-    "education.certifications": "Certificaciones",
-    "education.viewCredential": "Ver Credencial",
+    "education.title": "Educación y Certificaciones",
+    "education.educationSubtitle": "Educación",
+    "education.certificationsSubtitle": "Certificaciones",
+    "education.trainingSubtitle": "Capacitaciones Adicionales",
+    "education.activationDate": "Fecha de activación:",
+    "education.verifyCredential": "Verificar Certificación",
     
     // Projects Section
     "projects.title": "Proyectos Destacados",
@@ -201,12 +201,12 @@ const translations = {
     "experience.webDevDesc": "Design and development of custom ERP system for business management. Implementation of electronic invoicing solutions and business process automation.",
     
     // Education Section
-    "education.title": "Education",
-    "education.degree": "Bachelor's Degree in Information Systems Engineering",
-    "education.university": "Universidad Fidélitas",
-    "education.duration": "2019 - 2023",
-    "education.certifications": "Certifications",
-    "education.viewCredential": "View Credential",
+    "education.title": "Education and Certifications",
+    "education.educationSubtitle": "Education",
+    "education.certificationsSubtitle": "Certifications",
+    "education.trainingSubtitle": "Additional Training",
+    "education.activationDate": "Activation date:",
+    "education.verifyCredential": "Verify Certification",
     
     // Projects Section
     "projects.title": "Featured Projects",
