@@ -48,7 +48,7 @@ export default function AboutSection() {
                   </div>
                   <div>
                     <p className="text-muted-foreground">{t("about.languages")}</p>
-                    <p className="font-semibold">Español (Nativo), Inglés (B2)</p>
+                    <p className="font-semibold">{t("about.languageProficiency")}</p>
                   </div>
                   <div>
                     <p className="text-muted-foreground">{t("about.id")}</p>
