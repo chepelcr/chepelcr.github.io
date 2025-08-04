@@ -210,9 +210,9 @@ const translations = {
     "education.trainingSubtitle": "Additional Training",
     "education.activationDate": "Activation date:",
     "education.verifyCredential": "Verify Certification",
-    "education.businessInformatics": "Bachelor in Business Informatics",
+    "education.businessInformatics": "Bachelor in Computer Business",
     "education.internationalBaccalaureate": "International Baccalaureate Diploma Programme",
-    "education.mediaEducation": "Bachelor in Media Education",
+    "education.mediaEducation": "Secondary Education",
     
     // Projects Section
     "projects.title": "Featured Projects",
