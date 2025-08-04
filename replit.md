@@ -83,7 +83,7 @@ Preferred communication style: Simple, everyday language.
 - **Custom Domain**: CNAME file configured for https://jcampos.dev/ deployment
 
 ### Deployment Features
-- **Automated CI/CD**: Deploys automatically on push to main branch
+- **Automated CI/CD**: Deploys automatically on push to dev branch
 - **Static Site Optimization**: Removes server dependencies while maintaining full frontend functionality
 - **Email Integration**: Contact form opens default email client with pre-filled message
 - **PDF Generation**: CV download functionality works in static environment

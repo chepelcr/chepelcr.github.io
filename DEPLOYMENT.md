@@ -19,7 +19,7 @@ This guide will help you deploy your portfolio website to your GitHub Pages repo
    ```bash
    git add .
    git commit -m "Portfolio website deployment"
-   git push -u origin main
+   git push -u origin dev
    ```
 
 3. **Enable GitHub Pages:**
@@ -44,7 +44,7 @@ This guide will help you deploy your portfolio website to your GitHub Pages repo
 
 ### GitHub Actions Workflow
 - Located in `.github/workflows/deploy.yml`
-- Automatically builds and deploys on push to main branch
+- Automatically builds and deploys on push to dev branch
 - Uses optimized build configuration for static hosting
 
 ### Build Configuration
