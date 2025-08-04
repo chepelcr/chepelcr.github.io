@@ -51,7 +51,7 @@ export default function ExperienceSection() {
             className="absolute left-8 w-0.5 bg-accent hidden md:block" 
             style={{
               top: '-64px',
-              height: `calc(100% - 64px)`
+              height: `calc(100% - 112px)`
             }}
           />
           
