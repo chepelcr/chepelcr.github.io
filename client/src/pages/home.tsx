@@ -17,14 +17,30 @@ export default function Home() {
 
   // Scroll to section when entering via direct URL
   useEffect(() => {
+    console.log('Current section changed to:', currentSection);
     if (currentSection && currentSection !== "home") {
-      const timer = setTimeout(() => {
+      const scrollToSection = () => {
         const element = document.querySelector(`#${currentSection}`);
+        console.log('Looking for element:', `#${currentSection}`, 'Found:', !!element);
         if (element) {
+          console.log('Scrolling to section:', currentSection);
           element.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          // Try again after a short delay if element not found
+          setTimeout(scrollToSection, 100);
         }
-      }, 300); // Delay to ensure page is fully loaded
-      return () => clearTimeout(timer);
+      };
+      
+      // Multiple attempts to ensure scroll happens
+      const timer1 = setTimeout(scrollToSection, 100);
+      const timer2 = setTimeout(scrollToSection, 500);
+      const timer3 = setTimeout(scrollToSection, 1000);
+      
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        clearTimeout(timer3);
+      };
     }
   }, [currentSection]);
 
