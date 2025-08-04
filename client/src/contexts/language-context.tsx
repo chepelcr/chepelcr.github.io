@@ -114,6 +114,9 @@ const translations = {
     "education.trainingSubtitle": "Capacitaciones Adicionales",
     "education.activationDate": "Fecha de activación:",
     "education.verifyCredential": "Verificar Certificación",
+    "education.businessInformatics": "Bachiller en Informática Empresarial",
+    "education.internationalBaccalaureate": "Programa del Bachillerato Internacional",
+    "education.mediaEducation": "Bachiller en Educación Media",
     
     // Projects Section
     "projects.title": "Proyectos Destacados",
@@ -207,6 +210,9 @@ const translations = {
     "education.trainingSubtitle": "Additional Training",
     "education.activationDate": "Activation date:",
     "education.verifyCredential": "Verify Certification",
+    "education.businessInformatics": "Bachelor in Business Informatics",
+    "education.internationalBaccalaureate": "International Baccalaureate Diploma Programme",
+    "education.mediaEducation": "Bachelor in Media Education",
     
     // Projects Section
     "projects.title": "Featured Projects",
