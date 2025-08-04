@@ -13,48 +13,59 @@ import { useLanguage, type Section } from "@/contexts/language-context";
 
 export default function Home() {
   const params = useParams();
-  const { currentSection, language, navigateToSection } = useLanguage();
+  const { currentSection, language } = useLanguage();
 
-  // Scroll to section ONLY on direct URL access (page load/refresh)
+  // Handle direct URL navigation on page load
   useEffect(() => {
-    if (currentSection && currentSection !== "home") {
+    const urlParams = params as { section?: string };
+    const targetSection = urlParams.section || currentSection;
+    
+    if (targetSection && targetSection !== "home") {
       const timer = setTimeout(() => {
-        const element = document.querySelector(`#${currentSection}`);
+        const element = document.querySelector(`#${targetSection}`);
         if (element) {
           element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
-      }, 300);
+      }, 500);
       return () => clearTimeout(timer);
     }
-  }, [currentSection]);
+  }, [params, currentSection]);
 
-  // Passive scroll spy - only updates URL, no scrolling
+  // Simple scroll spy for URL updates only
   useEffect(() => {
     const sections: Section[] = ["home", "about", "skills", "experience", "education", "projects", "contact"];
+    let isScrolling = false;
 
     const observer = new IntersectionObserver(
       (entries) => {
+        if (isScrolling) return;
+        
         const visibleSections = entries
-          .filter(entry => entry.isIntersecting && entry.intersectionRatio > 0.5)
+          .filter(entry => entry.isIntersecting && entry.intersectionRatio > 0.4)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (visibleSections.length > 0) {
           const section = visibleSections[0].target.id as Section;
-          // Update section context WITHOUT scrolling and WITHOUT URL update
-          navigateToSection(section, false, false);
-          
-          // Update URL manually
           const expectedPath = section === "home" ? `/${language}` : `/${language}/${section}`;
+          
           if (window.location.pathname !== expectedPath) {
             window.history.replaceState({}, '', expectedPath);
           }
         }
       },
       {
-        threshold: [0.5],
-        rootMargin: '-100px 0px -30% 0px'
+        threshold: [0.4, 0.6],
+        rootMargin: '-80px 0px -40% 0px'
       }
     );
+
+    // Track scrolling to prevent conflicts
+    const handleScroll = () => {
+      isScrolling = true;
+      setTimeout(() => { isScrolling = false; }, 150);
+    };
+
+    window.addEventListener('scroll', handleScroll);
 
     sections.forEach(sectionId => {
       const element = document.querySelector(`#${sectionId}`);
@@ -63,8 +74,11 @@ export default function Home() {
       }
     });
 
-    return () => observer.disconnect();  
-  }, [language, navigateToSection]);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [language]);
 
   return (
     <div className="min-h-screen bg-navy text-foreground">

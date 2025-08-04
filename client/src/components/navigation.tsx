@@ -5,12 +5,21 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
 import { useLanguage, type Section } from "@/contexts/language-context";
+import { useLocation } from "wouter";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const { t, currentSection, navigateToSection } = useLanguage();
-  const isNavigatingRef = useRef(false);
+  const { t, language } = useLanguage();
+  const [location] = useLocation();
+  
+  // Get current section from URL
+  const getCurrentSection = (): Section => {
+    const pathParts = location.split('/').filter(Boolean);
+    return (pathParts[1] as Section) || "home";
+  };
+  
+  const currentSection = getCurrentSection();
 
   const navigationItems = [
     { section: "home" as Section, label: t("nav.home") },
@@ -33,7 +42,16 @@ export default function Navigation() {
 
   const handleClick = (section: Section) => {
     setIsOpen(false);
-    navigateToSection(section);
+    
+    // Update URL and scroll manually
+    const newPath = section === "home" ? `/${language}` : `/${language}/${section}`;
+    window.history.pushState({}, '', newPath);
+    
+    // Scroll to section
+    const element = document.querySelector(`#${section}`);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   return (
