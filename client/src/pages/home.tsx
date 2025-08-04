@@ -18,7 +18,7 @@ export default function Home() {
   // Handle direct URL navigation on page load
   useEffect(() => {
     const urlParams = params as { section?: string };
-    const targetSection = urlParams.section || currentSection;
+    const targetSection = urlParams.section;
     
     if (targetSection && targetSection !== "home") {
       const timer = setTimeout(() => {
@@ -26,22 +26,19 @@ export default function Home() {
         if (element) {
           element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
-      }, 500);
+      }, 800);
       return () => clearTimeout(timer);
     }
-  }, [params, currentSection]);
+  }, [params]);
 
   // Simple scroll spy for URL updates only
   useEffect(() => {
     const sections: Section[] = ["home", "about", "skills", "experience", "education", "projects", "contact"];
-    let isScrolling = false;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (isScrolling) return;
-        
         const visibleSections = entries
-          .filter(entry => entry.isIntersecting && entry.intersectionRatio > 0.4)
+          .filter(entry => entry.isIntersecting && entry.intersectionRatio > 0.5)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (visibleSections.length > 0) {
@@ -54,18 +51,10 @@ export default function Home() {
         }
       },
       {
-        threshold: [0.4, 0.6],
-        rootMargin: '-80px 0px -40% 0px'
+        threshold: [0.5],
+        rootMargin: '-100px 0px -30% 0px'
       }
     );
-
-    // Track scrolling to prevent conflicts
-    const handleScroll = () => {
-      isScrolling = true;
-      setTimeout(() => { isScrolling = false; }, 150);
-    };
-
-    window.addEventListener('scroll', handleScroll);
 
     sections.forEach(sectionId => {
       const element = document.querySelector(`#${sectionId}`);
@@ -74,10 +63,7 @@ export default function Home() {
       }
     });
 
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => observer.disconnect();
   }, [language]);
 
   return (
