@@ -180,61 +180,61 @@ export default function ContactSection() {
           <Card className="bg-card border-border">
             <CardContent className="p-8">
               <h3 className="text-2xl font-semibold mb-6 text-accent">
-                Envíame un Mensaje
+                {t("contact.sendMessage")}
               </h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <Label htmlFor="name">Nombre Completo</Label>
+                  <Label htmlFor="name">{t("contact.fullName")}</Label>
                   <Input
                     id="name"
                     value={formData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
-                    placeholder="Tu nombre completo"
+                    placeholder={t("contact.fullNamePlaceholder")}
                     required
                     className="bg-slate border-border focus:border-accent"
                   />
                 </div>
                 
                 <div>
-                  <Label htmlFor="email">Correo Electrónico</Label>
+                  <Label htmlFor="email">{t("contact.email")}</Label>
                   <Input
                     id="email"
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    placeholder="tu@email.com"
+                    placeholder={t("contact.emailPlaceholder")}
                     required
                     className="bg-slate border-border focus:border-accent"
                   />
                 </div>
                 
                 <div>
-                  <Label htmlFor="subject">Asunto</Label>
+                  <Label htmlFor="subject">{t("contact.subject")}</Label>
                   <Select 
                     value={formData.subject} 
                     onValueChange={(value) => handleInputChange("subject", value)}
                   >
                     <SelectTrigger className="bg-slate border-border focus:border-accent">
-                      <SelectValue placeholder="Selecciona un asunto" />
+                      <SelectValue placeholder={t("contact.selectSubject")} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="desarrollo">Desarrollo de Software</SelectItem>
-                      <SelectItem value="aws">Consultoría AWS</SelectItem>
-                      <SelectItem value="erp">Sistema ERP</SelectItem>
-                      <SelectItem value="freelance">Proyecto Freelance</SelectItem>
-                      <SelectItem value="laboral">Oportunidad Laboral</SelectItem>
-                      <SelectItem value="otro">Otro</SelectItem>
+                      <SelectItem value="desarrollo">{t("contact.softwareDev")}</SelectItem>
+                      <SelectItem value="aws">{t("contact.awsConsultancy")}</SelectItem>
+                      <SelectItem value="erp">{t("contact.erpSystem")}</SelectItem>
+                      <SelectItem value="freelance">{t("contact.freelanceProject")}</SelectItem>
+                      <SelectItem value="laboral">{t("contact.jobOpportunity")}</SelectItem>
+                      <SelectItem value="otro">{t("contact.other")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 
                 <div>
-                  <Label htmlFor="message">Mensaje</Label>
+                  <Label htmlFor="message">{t("contact.message")}</Label>
                   <Textarea
                     id="message"
                     value={formData.message}
                     onChange={(e) => handleInputChange("message", e.target.value)}
-                    placeholder="Describe tu proyecto o consulta..."
+                    placeholder={t("contact.messagePlaceholder")}
                     rows={5}
                     required
                     className="bg-slate border-border focus:border-accent resize-none"
@@ -247,7 +247,7 @@ export default function ContactSection() {
                   className="w-full bg-accent text-accent-foreground hover:bg-accent/90 disabled:opacity-50"
                 >
                   <Send className="mr-2 h-4 w-4" />
-                  {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
+                  {isSubmitting ? t("contact.sending") : t("contact.send")}
                 </Button>
               </form>
             </CardContent>
@@ -259,10 +259,10 @@ export default function ContactSection() {
           <Card className="bg-card border-border inline-block">
             <CardContent className="p-8">
               <h3 className="text-xl font-semibold mb-4 text-accent">
-                Descarga mi CV
+                {t("contact.downloadCV")}
               </h3>
               <p className="text-muted-foreground mb-6">
-                Obtén una copia completa de mi currículum vitae
+                {t("contact.downloadCVDesc")}
               </p>
               <Button 
                 className="bg-accent text-accent-foreground hover:bg-accent/90"
