@@ -62,18 +62,17 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
       const newPath = currentSectionFromUrl === "home" ? `/${lang}` : `/${lang}/${currentSectionFromUrl}`;
       navigate(newPath);
       
+      // Immediately restore scroll position to prevent flash
+      window.scrollTo({ top: currentScrollY, behavior: 'instant' });
+      
       // Add slide-in animation
+      document.body.classList.remove("language-transitioning");
       document.body.classList.add("slide-in");
       
-      // Restore scroll position after navigation
+      // Remove slide-in class after animation
       setTimeout(() => {
-        window.scrollTo({ top: currentScrollY, behavior: 'instant' });
-        
-        // Remove all transition classes
-        setTimeout(() => {
-          document.body.classList.remove("language-transitioning", "slide-in");
-        }, 300);
-      }, 50);
+        document.body.classList.remove("slide-in");
+      }, 300);
     }, 300);
   };
 
