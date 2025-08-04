@@ -94,15 +94,15 @@ export default function EducationSection() {
         <div className="mb-16">
           <h3 className="text-2xl font-semibold mb-8 text-accent text-center flex items-center justify-center">
             <GraduationCap className="mr-3" />
-            Educación
+            {t("education.educationSubtitle")}
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {education.map((edu, index) => (
-              <Card key={index} className="bg-card border-border card-hover">
-                <CardContent className="p-6">
-                  <h4 className="text-lg font-semibold mb-2">{edu.degree}</h4>
-                  <p className="text-accent font-medium mb-2">{edu.institution}</p>
-                  <p className="text-muted-foreground font-mono">{edu.period}</p>
+              <Card key={index} className="bg-card border-border card-hover h-full">
+                <CardContent className="p-6 h-full flex flex-col">
+                  <h4 className="text-lg font-semibold mb-3 leading-tight">{edu.degree}</h4>
+                  <p className="text-accent font-medium mb-3 flex-grow">{edu.institution}</p>
+                  <p className="text-muted-foreground font-mono text-sm">{edu.period}</p>
                 </CardContent>
               </Card>
             ))}
@@ -113,33 +113,35 @@ export default function EducationSection() {
         <div className="mb-16">
           <h3 className="text-2xl font-semibold mb-8 text-accent text-center flex items-center justify-center">
             <Award className="mr-3" />
-            Certificaciones
+            {t("education.certificationsSubtitle")}
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certifications.map((cert, index) => (
               <Card key={index} className="bg-card border-border card-hover h-full">
                 <CardContent className="p-6 h-full flex flex-col">
-                  <div className="flex items-start justify-between mb-4 min-h-[3.5rem]">
-                    <h4 className="text-lg font-semibold pr-2 leading-tight">{cert.name}</h4>
-                    <Badge className="bg-accent text-accent-foreground flex-shrink-0">
+                  <div className="flex items-start justify-between mb-4">
+                    <h4 className="text-lg font-semibold pr-2 leading-tight flex-grow">{cert.name}</h4>
+                    <Badge className="bg-accent text-accent-foreground flex-shrink-0 ml-2">
                       {cert.badge}
                     </Badge>
                   </div>
-                  <div className="h-[1.75rem] flex items-center mb-2">
-                    <p className="text-muted-foreground font-mono">
-                      Fecha de activación: {cert.date}
+                  <div className="mb-3">
+                    <p className="text-muted-foreground font-mono text-sm">
+                      {t("education.activationDate")} {cert.date}
                     </p>
                   </div>
-                  <p className="text-muted-foreground text-sm mb-4 flex-grow">{cert.description}</p>
+                  <p className="text-muted-foreground text-sm mb-6 flex-grow leading-relaxed">{cert.description}</p>
                   {cert.verifyUrl && (
-                    <a
-                      href={cert.verifyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block px-3 py-1 bg-accent/10 border border-accent/20 rounded text-accent hover:bg-accent hover:text-white text-sm font-medium transition-colors duration-200 mt-auto"
-                    >
-                      Verificar Certificación
-                    </a>
+                    <div className="mt-auto">
+                      <a
+                        href={cert.verifyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-4 py-2 bg-accent/10 border border-accent/20 rounded-lg text-accent hover:bg-accent hover:text-white text-sm font-medium transition-colors duration-200 w-full justify-center"
+                      >
+                        {t("education.verifyCredential")}
+                      </a>
+                    </div>
                   )}
                 </CardContent>
               </Card>
@@ -151,7 +153,7 @@ export default function EducationSection() {
         <div>
           <h3 className="text-2xl font-semibold mb-8 text-accent text-center flex items-center justify-center">
             <BookOpen className="mr-3" />
-            Capacitaciones Adicionales
+            {t("education.trainingSubtitle")}
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {training.map((item, index) => (
