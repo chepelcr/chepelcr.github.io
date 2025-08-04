@@ -15,31 +15,15 @@ export default function Home() {
   const params = useParams();
   const { currentSection, language } = useLanguage();
 
-  // Scroll to section when current section changes
-  useEffect(() => {
-    if (currentSection) {
-      const timer = setTimeout(() => {
-        const element = document.querySelector(`#${currentSection}`);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  }, [currentSection]);
-
-  // Simple scroll spy to update URL based on scroll position
+  // Only update URL based on scroll position, no automatic scrolling
   useEffect(() => {
     const sections: Section[] = ["home", "about", "skills", "experience", "education", "projects", "contact"];
-    let isScrollingProgrammatically = false;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (isScrollingProgrammatically) return;
-
-        // Find the most visible section with lower threshold for better detection
+        // Find the most visible section
         const visibleSections = entries
-          .filter(entry => entry.isIntersecting && entry.intersectionRatio > 0.3)
+          .filter(entry => entry.isIntersecting && entry.intersectionRatio > 0.4)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (visibleSections.length > 0) {
@@ -47,14 +31,13 @@ export default function Home() {
           const expectedPath = section === "home" ? `/${language}` : `/${language}/${section}`;
           
           if (window.location.pathname !== expectedPath) {
-            console.log(`Updating URL to: ${expectedPath} for section: ${section}`);
             window.history.replaceState({}, '', expectedPath);
           }
         }
       },
       {
-        threshold: [0.3, 0.5, 0.7], // Multiple thresholds for better detection
-        rootMargin: '-80px 0px -40% 0px' // Less aggressive margins
+        threshold: [0.4, 0.6, 0.8],
+        rootMargin: '-100px 0px -30% 0px'
       }
     );
 
@@ -63,26 +46,11 @@ export default function Home() {
       const element = document.querySelector(`#${sectionId}`);
       if (element) {
         observer.observe(element);
-      } else {
-        console.warn(`Section element #${sectionId} not found`);
       }
     });
 
-    // Disable scroll spy during programmatic scrolling
-    const handleScrollStart = () => {
-      isScrollingProgrammatically = true;
-      setTimeout(() => {
-        isScrollingProgrammatically = false;
-      }, 1500); // Reduced timeout
-    };
-
-    // Listen for section changes to disable scroll spy temporarily
-    if (currentSection) {
-      handleScrollStart();
-    }
-
     return () => observer.disconnect();
-  }, [language, currentSection]);
+  }, [language]);
 
   return (
     <div className="min-h-screen bg-navy text-foreground">
