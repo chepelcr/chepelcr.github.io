@@ -13,51 +13,53 @@ import {
   TrendingUp 
 } from "lucide-react";
 
-const mainProjects = [
+const getMainProjects = (t: any) => [
   {
-    title: "Sistema ERP para Facturación Electrónica",
-    description: "Sistema integral de gestión empresarial desarrollado con arquitectura de microservicios. Incluye facturación electrónica integrada con el Ministerio de Hacienda de Costa Rica, gestión de inventario, reportes avanzados y API REST para integraciones.",
+    title: t("projects.erpTitle"),
+    description: t("projects.erpDesc"),
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
     technologies: ["Java Spring Boot", "Python", "AWS Services", "PostgreSQL", "Docker", "Kafka"],
     type: "ERP System",
     ivoiUrl: "https://frontend.dev.ivois.io",
   },
   {
-    title: "Sitio Web de Comandos Linux",
-    description: "Plataforma educativa interactiva para aprender comandos básicos de Linux. Incluye conceptos fundamentales, ejemplos prácticos, herramientas de administración y utilidades para desarrolladores y administradores de sistemas.",
+    title: t("projects.linuxTitle"),
+    description: t("projects.linuxDesc"),
     image: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
     technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
     type: "Educational Platform",
     liveUrl: "https://jcampos.dev/Comandos-linux/",
     features: [
-      "Interface interactiva y responsive",
-      "Ejemplos de comandos categorizados",
-      "Guías de seguridad informática",
-      "Herramientas de administración",
+      t("projects.feature1"),
+      t("projects.feature2"),
+      t("projects.feature3"),
+      t("projects.feature4"),
     ],
   },
 ];
 
-const otherProjects = [
+const getOtherProjects = (t: any) => [
   {
-    title: "Microservicio de Inteligencia Artificial",
-    description: "Servicio de procesamiento de datos con algoritmos de ML",
+    title: t("projects.aiTitle"),
+    description: t("projects.aiDesc"),
     icon: Bot,
   },
   {
-    title: "E-commerce API",
-    description: "API REST para plataforma de comercio electrónico",
+    title: t("projects.ecommerceTitle"),
+    description: t("projects.ecommerceDesc"),
     icon: ShoppingCart,
   },
   {
-    title: "Dashboard de Analytics",
-    description: "Panel de control para análisis de datos empresariales",
+    title: t("projects.dashboardTitle"),
+    description: t("projects.dashboardDesc"),
     icon: TrendingUp,
   },
 ];
 
 export default function ProjectsSection() {
   const { t } = useLanguage();
+  const mainProjects = getMainProjects(t);
+  const otherProjects = getOtherProjects(t);
   
   return (
     <section id="projects" className="section-spacing bg-slate">
@@ -87,7 +89,7 @@ export default function ProjectsSection() {
                 
                 {project.features && (
                   <div className="mb-6">
-                    <h4 className="font-semibold mb-3">Características:</h4>
+                    <h4 className="font-semibold mb-3">{t("projects.characteristics")}</h4>
                     <ul className="text-muted-foreground space-y-2">
                       {project.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="flex items-center">
@@ -101,7 +103,7 @@ export default function ProjectsSection() {
                 
                 <div className="mb-6 flex-grow">
                   <h4 className="font-semibold mb-3">
-                    {project.features ? "Tecnologías:" : "Tecnologías Utilizadas:"}
+                    {project.features ? t("projects.technologies") : t("projects.technologiesUsed")}
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, techIndex) => (
@@ -119,7 +121,7 @@ export default function ProjectsSection() {
                       onClick={() => window.open(project.ivoiUrl, "_blank")}
                     >
                       <ExternalLink className="mr-2 h-4 w-4" />
-                      Entrar a IVOIS
+                      {t("projects.enterIvois")}
                     </Button>
                   ) : project.liveUrl ? (
                     <Button 
@@ -127,12 +129,12 @@ export default function ProjectsSection() {
                       onClick={() => window.open(project.liveUrl, "_blank")}
                     >
                       <ExternalLink className="mr-2 h-4 w-4" />
-                      Visitar Sitio
+                      {t("projects.visitSite")}
                     </Button>
                   ) : (
                     <Button className="bg-accent text-accent-foreground hover:bg-accent/90">
                       <Eye className="mr-2 h-4 w-4" />
-                      Ver Detalles
+                      {t("projects.viewDetails")}
                     </Button>
                   )}
                 </div>
@@ -143,7 +145,7 @@ export default function ProjectsSection() {
 
         {/* Additional Projects Preview */}
         <div className="text-center">
-          <h3 className="text-xl font-semibold mb-8 text-accent">Otros Proyectos</h3>
+          <h3 className="text-xl font-semibold mb-8 text-accent">{t("projects.otherProjects")}</h3>
           <div className="grid md:grid-cols-3 gap-6">
             {otherProjects.map((project, index) => (
               <Card key={index} className="bg-card border-border card-hover">
