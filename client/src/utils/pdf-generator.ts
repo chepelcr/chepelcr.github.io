@@ -42,9 +42,14 @@ interface CVData {
 export function generatePDF(data: CVData, language: 'es' | 'en') {
   const doc = new jsPDF();
   let yPosition = 20;
+  let currentColumn = 1; // 1 for left, 2 for right
+  let isSecondPage = false;
   const pageWidth = doc.internal.pageSize.width;
   const margin = 20;
   const contentWidth = pageWidth - 2 * margin;
+  const columnWidth = (contentWidth - 10) / 2; // 10 for column gap
+  const leftColumnX = margin;
+  const rightColumnX = margin + columnWidth + 10;
 
   // Colors
   const primaryColor = '#22c55e'; // Green accent
@@ -52,17 +57,21 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   const lightTextColor = '#6b7280';
 
   // Helper functions
+  const getCurrentX = () => currentColumn === 1 ? leftColumnX : rightColumnX;
+  const getCurrentWidth = () => isSecondPage ? columnWidth : contentWidth;
+
   const addTitle = (title: string, size: number = 16) => {
     doc.setFontSize(size);
     doc.setTextColor(primaryColor);
     doc.setFont('helvetica', 'bold');
-    doc.text(title, margin, yPosition);
+    doc.text(title, getCurrentX(), yPosition);
     yPosition += size === 16 ? 12 : 8;
     
     // Add underline
     doc.setDrawColor(primaryColor);
     doc.setLineWidth(0.5);
-    doc.line(margin, yPosition - 2, margin + doc.getTextWidth(title), yPosition - 2);
+    const titleWidth = doc.getTextWidth(title);
+    doc.line(getCurrentX(), yPosition - 2, getCurrentX() + titleWidth, yPosition - 2);
     yPosition += 8;
   };
 
@@ -71,8 +80,8 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     doc.setTextColor(color);
     doc.setFont('helvetica', isBold ? 'bold' : 'normal');
     
-    const lines = doc.splitTextToSize(text, contentWidth);
-    doc.text(lines, margin, yPosition);
+    const lines = doc.splitTextToSize(text, getCurrentWidth());
+    doc.text(lines, getCurrentX(), yPosition);
     yPosition += lines.length * fontSize * 0.6 + 4;
   };
 
@@ -80,21 +89,34 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     doc.setFontSize(10);
     doc.setTextColor(textColor);
     doc.setFont('helvetica', 'normal');
-    doc.text('•', margin + indent, yPosition);
+    doc.text('•', getCurrentX() + indent, yPosition);
     
-    const lines = doc.splitTextToSize(text, contentWidth - indent - 5);
-    doc.text(lines, margin + indent + 8, yPosition);
+    const lines = doc.splitTextToSize(text, getCurrentWidth() - indent - 5);
+    doc.text(lines, getCurrentX() + indent + 8, yPosition);
     yPosition += lines.length * 6 + 2;
   };
 
   const checkPageBreak = (additionalSpace: number = 20) => {
     if (yPosition + additionalSpace > doc.internal.pageSize.height - 20) {
-      doc.addPage();
-      yPosition = 20;
+      if (!isSecondPage) {
+        doc.addPage();
+        yPosition = 20;
+        isSecondPage = true;
+        currentColumn = 1;
+      } else if (currentColumn === 1) {
+        // Switch to right column
+        currentColumn = 2;
+        yPosition = 20;
+      } else {
+        // Add new page and reset
+        doc.addPage();
+        yPosition = 20;
+        currentColumn = 1;
+      }
     }
   };
 
-  // Header
+  // Header (always full width on first page)
   doc.setFontSize(24);
   doc.setTextColor(primaryColor);
   doc.setFont('helvetica', 'bold');
@@ -107,7 +129,7 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   doc.text(data.personalInfo.title, margin, yPosition);
   yPosition += 20;
 
-  // Contact Information
+  // Contact Information (always full width on first page)
   doc.setFontSize(10);
   doc.setTextColor(lightTextColor);
   const contactLabels = {
