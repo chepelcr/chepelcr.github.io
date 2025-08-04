@@ -26,6 +26,9 @@ This guide will help you deploy your portfolio website to your GitHub Pages repo
    - Go to your repository on GitHub
    - Navigate to Settings → Pages
    - Set Source to "GitHub Actions"
+   - Navigate to Settings → Actions → General
+   - Under "Workflow permissions", select "Read and write permissions"
+   - Check "Allow GitHub Actions to create and approve pull requests"
    - The workflow will automatically deploy your site
 
 4. **Your site will be available at:**
@@ -85,6 +88,14 @@ To use a custom domain:
 3. Enable custom domain in GitHub Pages settings
 
 ## Troubleshooting
+
+### Permission Issues
+If you see "Permission denied" or "403" errors during deployment:
+1. Go to your repository on GitHub
+2. Navigate to Settings → Actions → General
+3. Under "Workflow permissions", select "Read and write permissions"  
+4. Check "Allow GitHub Actions to create and approve pull requests"
+5. Re-run the failed workflow from the Actions tab
 
 ### Build Fails
 - Check that all dependencies are installed: `npm install`
