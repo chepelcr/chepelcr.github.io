@@ -26,17 +26,23 @@ export function LanguageToggle() {
       <DropdownMenuContent align="end" className="bg-card border-border">
         <DropdownMenuItem 
           onClick={() => setLanguage("es")}
-          className="hover:bg-accent hover:text-accent-foreground cursor-pointer"
+          className={`hover:bg-accent hover:text-accent-foreground cursor-pointer ${
+            language === "es" ? "bg-accent text-accent-foreground" : ""
+          }`}
         >
           <span className="mr-2">🇪🇸</span>
           <span>Español</span>
+          {language === "es" && <span className="ml-auto">✓</span>}
         </DropdownMenuItem>
         <DropdownMenuItem 
           onClick={() => setLanguage("en")}
-          className="hover:bg-accent hover:text-accent-foreground cursor-pointer"
+          className={`hover:bg-accent hover:text-accent-foreground cursor-pointer ${
+            language === "en" ? "bg-accent text-accent-foreground" : ""
+          }`}
         >
           <span className="mr-2">🇺🇸</span>
           <span>English</span>
+          {language === "en" && <span className="ml-auto">✓</span>}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -45,6 +45,11 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   }, [location]);
 
   const setLanguage = (lang: Language) => {
+    // Don't transition if already on the selected language
+    if (lang === language) {
+      return;
+    }
+    
     // Get current scroll position to maintain it
     const currentScrollY = window.scrollY;
     
@@ -62,12 +67,14 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
       const newPath = currentSectionFromUrl === "home" ? `/${lang}` : `/${lang}/${currentSectionFromUrl}`;
       navigate(newPath);
       
-      // Immediately restore scroll position to prevent flash
-      window.scrollTo({ top: currentScrollY, behavior: 'instant' });
-      
       // Add slide-in animation
       document.body.classList.remove("language-transitioning");
       document.body.classList.add("slide-in");
+      
+      // Restore scroll position immediately after navigation
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: currentScrollY, behavior: 'instant' });
+      });
       
       // Remove slide-in class after animation
       setTimeout(() => {
