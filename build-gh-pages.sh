@@ -5,11 +5,12 @@ echo "🚀 Building portfolio for GitHub Pages..."
 # Clean previous build
 rm -rf dist/gh-pages
 
-# Build the project using the standard vite build
-npx vite build
-mkdir -p dist/gh-pages
-cp -r dist/public/* dist/gh-pages/
-cp client/public/CNAME dist/gh-pages/
+# Build the project using the GitHub Pages vite config
+npx vite build --config vite.config.gh-pages.ts
+
+# Copy additional files needed for GitHub Pages
+cp client/public/CNAME dist/gh-pages/ 2>/dev/null || true
+cp client/public/404.html dist/gh-pages/ 2>/dev/null || true
 
 echo "✅ Build completed!"
 echo "📁 Build files are in: dist/gh-pages"
