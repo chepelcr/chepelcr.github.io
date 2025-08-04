@@ -45,7 +45,10 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   }, [location]);
 
   const setLanguage = (lang: Language) => {
-    // Add transitioning class for smooth language change
+    // Get current scroll position to maintain it
+    const currentScrollY = window.scrollY;
+    
+    // Add slide-out animation
     document.body.classList.add("language-transitioning");
     
     setTimeout(() => {
@@ -59,11 +62,19 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
       const newPath = currentSectionFromUrl === "home" ? `/${lang}` : `/${lang}/${currentSectionFromUrl}`;
       navigate(newPath);
       
-      // Remove transitioning class after change
+      // Add slide-in animation
+      document.body.classList.add("slide-in");
+      
+      // Restore scroll position after navigation
       setTimeout(() => {
-        document.body.classList.remove("language-transitioning");
-      }, 300);
-    }, 150);
+        window.scrollTo({ top: currentScrollY, behavior: 'instant' });
+        
+        // Remove all transition classes
+        setTimeout(() => {
+          document.body.classList.remove("language-transitioning", "slide-in");
+        }, 300);
+      }, 50);
+    }, 300);
   };
 
   const navigateToSection = (section: Section, updateUrl: boolean = true) => {
