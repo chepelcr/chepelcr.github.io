@@ -39,12 +39,12 @@ export default function ExperienceSection() {
         <div className="relative">
           {/* Timeline line */}
           <div 
-            className="absolute left-8 top-16 w-0.5 bg-accent hidden md:block" 
+            className="absolute left-1/2 transform -translate-x-0.5 top-16 w-0.5 bg-accent hidden md:block" 
             style={{height: 'calc(100% - 64px)'}}
           />
           
           {/* Begin circle - aligned with title */}
-          <div className="hidden md:block absolute left-4 top-0">
+          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 top-0">
             <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center">
               <Play className="h-6 w-6" />
             </div>
@@ -53,35 +53,31 @@ export default function ExperienceSection() {
           <div className="space-y-12 pt-20">
             {experiences.map((exp, index) => (
               <div key={index} className="relative">
-                <Card className="bg-card border-border card-hover h-full ml-20 md:ml-24">
-                  <CardContent className="p-6 h-full flex flex-col">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                      <h3 className="text-xl font-semibold text-accent">{exp.title}</h3>
-                      <span className="text-muted-foreground font-mono">{exp.period}</span>
+                <div className="flex items-start gap-8">
+                  <div className="hidden md:block flex-shrink-0">
+                    <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center">
+                      <exp.icon className="h-6 w-6" />
                     </div>
-                    <p className="text-lg font-medium mb-2">{exp.company}</p>
-                    <p className="text-muted-foreground leading-relaxed mb-4 flex-grow">
-                      {exp.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {exp.skills.map((skill, skillIndex) => (
-                        <Badge key={skillIndex} className="bg-accent text-accent-foreground">
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                {/* Experience icon positioned at bottom of card */}
-                <div className="hidden md:block absolute left-4 bottom-0">
-                  <div className={`w-16 h-16 rounded-full flex items-center justify-center ${
-                    exp.current 
-                      ? "bg-accent text-accent-foreground" 
-                      : "bg-slate border-2 border-accent"
-                  }`}>
-                    <exp.icon className="h-6 w-6" />
                   </div>
+                  <Card className="flex-1 bg-card border-border card-hover h-full">
+                    <CardContent className="p-6 h-full flex flex-col">
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                        <h3 className="text-xl font-semibold text-accent">{exp.title}</h3>
+                        <span className="text-muted-foreground font-mono">{exp.period}</span>
+                      </div>
+                      <p className="text-lg font-medium mb-2">{exp.company}</p>
+                      <p className="text-muted-foreground leading-relaxed mb-4 flex-grow">
+                        {exp.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mt-auto">
+                        {exp.skills.map((skill, skillIndex) => (
+                          <Badge key={skillIndex} className="bg-accent text-accent-foreground">
+                            {skill}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
             ))}
