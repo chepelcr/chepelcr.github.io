@@ -4,13 +4,7 @@ import { useLanguage } from "@/contexts/language-context";
 import { downloadCV } from "@/utils/pdf-generator";
 
 export default function HeroSection() {
-  const { t, language } = useLanguage();
-  const handleScroll = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const { t, language, navigateToSection } = useLanguage();
 
   return (
     <section id="home" className="section-spacing gradient-bg pt-32">
@@ -31,7 +25,7 @@ export default function HeroSection() {
               <Button 
                 size="lg" 
                 className="bg-accent text-accent-foreground hover:bg-accent/90"
-                onClick={() => handleScroll("contact")}
+                onClick={() => navigateToSection("contact")}
               >
                 <Mail className="mr-2 h-4 w-4" />
                 {t("hero.contactMe")}

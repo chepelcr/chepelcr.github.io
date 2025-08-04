@@ -1,10 +1,14 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { useLocation } from "wouter";
 
 export type Language = "es" | "en";
+export type Section = "home" | "about" | "skills" | "experience" | "education" | "projects" | "contact";
 
 type LanguageContextType = {
   language: Language;
+  currentSection: Section | null;
   setLanguage: (lang: Language) => void;
+  navigateToSection: (section: Section) => void;
   t: (key: string) => string;
 };
 
@@ -23,14 +27,39 @@ type LanguageProviderProps = {
 };
 
 export function LanguageProvider({ children }: LanguageProviderProps) {
-  const [language, setLanguageState] = useState<Language>(() => {
-    const saved = localStorage.getItem("portfolio-language");
-    return (saved as Language) || "es";
-  });
+  const [location, navigate] = useLocation();
+  const [language, setLanguageState] = useState<Language>("es");
+  const [currentSection, setCurrentSection] = useState<Section | null>(null);
+
+  // Parse language and section from URL
+  useEffect(() => {
+    const pathParts = location.split('/').filter(Boolean);
+    const urlLang = pathParts[0] as Language;
+    const urlSection = pathParts[1] as Section;
+
+    if (urlLang === "es" || urlLang === "en") {
+      setLanguageState(urlLang);
+      localStorage.setItem("portfolio-language", urlLang);
+      setCurrentSection(urlSection || "home");
+    }
+  }, [location]);
 
   const setLanguage = (lang: Language) => {
+    const pathParts = location.split('/').filter(Boolean);
+    const currentSectionFromUrl = pathParts[1] || "home";
+    
     setLanguageState(lang);
     localStorage.setItem("portfolio-language", lang);
+    
+    // Navigate to new language with current section
+    const newPath = currentSectionFromUrl === "home" ? `/${lang}` : `/${lang}/${currentSectionFromUrl}`;
+    navigate(newPath);
+  };
+
+  const navigateToSection = (section: Section) => {
+    setCurrentSection(section);
+    const newPath = section === "home" ? `/${language}` : `/${language}/${section}`;
+    navigate(newPath);
   };
 
   const t = (key: string): string => {
@@ -39,7 +68,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, currentSection, setLanguage, navigateToSection, t }}>
       {children}
     </LanguageContext.Provider>
   );

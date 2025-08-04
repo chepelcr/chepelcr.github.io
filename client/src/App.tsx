@@ -1,17 +1,35 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/contexts/language-context";
+import { useEffect } from "react";
 import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
 
 function Router() {
+  const [location, navigate] = useLocation();
+
+  // Handle root redirect to default language
+  useEffect(() => {
+    if (location === "/") {
+      const savedLanguage = localStorage.getItem("portfolio-language") || "es";
+      navigate(`/${savedLanguage}`);
+    }
+  }, [location, navigate]);
+
   return (
     <Switch>
-      <Route path="/" component={Home} />
+      {/* Language-prefixed routes */}
+      <Route path="/es" component={Home} />
+      <Route path="/es/:section" component={Home} />
+      <Route path="/en" component={Home} />
+      <Route path="/en/:section" component={Home} />
+      
+      {/* Fallback for old URLs without language prefix */}
+      <Route path="/" component={() => null} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -105,3 +105,12 @@ Preferred communication style: Simple, everyday language.
 - **Error Resolution**: Resolved duplicate translation keys and mapping function errors
 - **Component Architecture**: Implemented dynamic data functions that accept translation context for localized content
 - **Professional Experience Timeline**: Implemented complete timeline design with begin circle, experience icons, and precise line alignment
+
+### URL-Based Routing System (January 2025)
+- **Language-Prefixed URLs**: Implemented `/es` and `/en` URL prefixes for bilingual navigation
+- **Section-Based Routing**: URLs show current section (e.g., `/es/about`, `/en/projects`)
+- **Navigation Integration**: All navigation elements use URL-based routing instead of anchor scrolling
+- **URL Sync**: Current language and section automatically sync with browser URL
+- **Deep Linking**: Direct access to specific sections via URL (e.g., `/en/contact`)
+- **Fallback Handling**: Root URL (`/`) redirects to saved language preference
+- **Active States**: Navigation items highlight based on current URL section

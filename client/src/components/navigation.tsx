@@ -4,21 +4,21 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
-import { useLanguage } from "@/contexts/language-context";
+import { useLanguage, type Section } from "@/contexts/language-context";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, currentSection, navigateToSection } = useLanguage();
 
   const navigationItems = [
-    { href: "#home", label: t("nav.home") },
-    { href: "#about", label: t("nav.about") },
-    { href: "#skills", label: t("nav.skills") },
-    { href: "#experience", label: t("nav.experience") },
-    { href: "#education", label: t("nav.education") },
-    { href: "#projects", label: t("nav.projects") },
-    { href: "#contact", label: t("nav.contact") },
+    { section: "home" as Section, label: t("nav.home") },
+    { section: "about" as Section, label: t("nav.about") },
+    { section: "skills" as Section, label: t("nav.skills") },
+    { section: "experience" as Section, label: t("nav.experience") },
+    { section: "education" as Section, label: t("nav.education") },
+    { section: "projects" as Section, label: t("nav.projects") },
+    { section: "contact" as Section, label: t("nav.contact") },
   ];
 
   useEffect(() => {
@@ -30,12 +30,17 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleClick = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
-    }
+  const handleClick = (section: Section) => {
+    navigateToSection(section);
+    setIsOpen(false);
+    
+    // Scroll to section after navigation
+    setTimeout(() => {
+      const element = document.querySelector(`#${section}`);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
   };
 
   return (
@@ -46,17 +51,22 @@ export default function Navigation() {
     >
       <div className="container-spacing">
         <div className="flex justify-between items-center py-4">
-          <div className="text-xl font-bold text-accent">
+          <button
+            onClick={() => handleClick("home")}
+            className="text-xl font-bold text-accent hover:text-accent/80 transition-colors"
+          >
             José Pablo Campos
-          </div>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navigationItems.map((item) => (
               <button
-                key={item.href}
-                onClick={() => handleClick(item.href)}
-                className="hover:text-accent transition-colors cursor-pointer"
+                key={item.section}
+                onClick={() => handleClick(item.section)}
+                className={`hover:text-accent transition-colors cursor-pointer ${
+                  currentSection === item.section ? "text-accent" : ""
+                }`}
               >
                 {item.label}
               </button>
@@ -81,9 +91,11 @@ export default function Navigation() {
               <div className="flex flex-col space-y-4 mt-8">
                 {navigationItems.map((item) => (
                   <button
-                    key={item.href}
-                    onClick={() => handleClick(item.href)}
-                    className="text-left py-2 hover:text-accent transition-colors text-lg"
+                    key={item.section}
+                    onClick={() => handleClick(item.section)}
+                    className={`text-left py-2 hover:text-accent transition-colors text-lg ${
+                      currentSection === item.section ? "text-accent" : ""
+                    }`}
                   >
                     {item.label}
                   </button>
