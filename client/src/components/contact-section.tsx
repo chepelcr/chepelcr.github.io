@@ -18,10 +18,10 @@ import {
   Clock
 } from "lucide-react";
 
-const contactInfo = [
+const getContactInfo = (t: any) => [
   {
     icon: Phone,
-    label: "Teléfono",
+    label: t("contact.phone"),
     value: "(506) 7039-1069",
     href: "tel:+50670391069",
   },
@@ -33,26 +33,28 @@ const contactInfo = [
   },
   {
     icon: MapPin,
-    label: "Ubicación",
+    label: t("contact.location"),
     value: "Costa Rica",
   },
   {
     icon: Globe,
-    label: "Sitio Web",
+    label: t("contact.website"),
     value: "jcampos.dev",
     href: "https://jcampos.dev",
   },
 ];
 
-const availability = [
-  { service: "Proyectos Freelance", status: "Disponible", color: "bg-green-500" },
-  { service: "Consultorías AWS", status: "Disponible", color: "bg-green-500" },
-  { service: "Desarrollo de ERP", status: "Disponible", color: "bg-green-500" },
-  { service: "Tiempo Completo", status: "Considerando", color: "bg-yellow-500" },
+const getAvailability = (t: any) => [
+  { service: t("contact.freelanceProjects"), status: t("contact.available"), color: "bg-green-500" },
+  { service: t("contact.awsConsulting"), status: t("contact.available"), color: "bg-green-500" },
+  { service: t("contact.erpDevelopment"), status: t("contact.available"), color: "bg-green-500" },
+  { service: t("contact.fullTime"), status: t("contact.considering"), color: "bg-yellow-500" },
 ];
 
 export default function ContactSection() {
   const { t } = useLanguage();
+  const contactInfo = getContactInfo(t);
+  const availability = getAvailability(t);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -80,24 +82,24 @@ export default function ContactSection() {
       
       if (response.ok && result.success) {
         toast({
-          title: "¡Mensaje enviado!",
-          description: "Te contactaré pronto. Gracias por tu interés.",
+          title: t("contact.messageSentTitle"),
+          description: t("contact.messageSentDesc"),
         });
         
         // Reset form
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
         toast({
-          title: "Error al enviar mensaje",
-          description: result.message || "Hubo un problema al enviar tu mensaje. Por favor intenta más tarde.",
+          title: t("contact.errorSendingTitle"),
+          description: result.message || t("contact.errorSendingDesc"),
           variant: "destructive",
         });
       }
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
-        title: "Error de conexión",
-        description: "No se pudo conectar con el servidor. Verifica tu conexión e intenta nuevamente.",
+        title: t("contact.connectionErrorTitle"),
+        description: t("contact.connectionErrorDesc"),
         variant: "destructive",
       });
     } finally {
@@ -123,7 +125,7 @@ export default function ContactSection() {
             <Card className="bg-card border-border">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-semibold mb-6 text-accent">
-                  Información de Contacto
+                  {t("contact.contactInfo")}
                 </h3>
                 <div className="space-y-6">
                   {contactInfo.map((item, index) => (
@@ -156,7 +158,7 @@ export default function ContactSection() {
               <CardContent className="p-8">
                 <h3 className="text-2xl font-semibold mb-6 text-accent flex items-center">
                   <Clock className="mr-3" />
-                  Disponibilidad
+                  {t("contact.availability")}
                 </h3>
                 <div className="space-y-4">
                   {availability.map((item, index) => (
