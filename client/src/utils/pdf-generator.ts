@@ -19,6 +19,7 @@ interface CVData {
   }>;
   education: Array<{
     degree: string;
+    institution: string;
     period: string;
   }>;
   certifications: Array<{
@@ -157,8 +158,9 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   
   data.education.forEach((edu) => {
     addText(edu.degree, 11, textColor, true);
+    addText(edu.institution, 10, lightTextColor);
     addText(edu.period, 10, lightTextColor);
-    yPosition += 4;
+    yPosition += 6;
   });
 
   // Certifications Section
@@ -251,29 +253,40 @@ export function downloadCV(language: 'es' | 'en') {
     education: [
       {
         degree: language === 'es' ? 'Bachiller en Informática Empresarial' : 'Bachelor in Business Informatics',
-        period: '2019 - 2021'
+        institution: 'Universidad de Costa Rica, Sede del Pacífico',
+        period: '2017 - 2022'
       },
       {
         degree: language === 'es' ? 'Programa del Bachillerato Internacional' : 'International Baccalaureate Diploma Programme',
-        period: '2017 - 2019'
+        institution: 'Liceo de Costa Rica',
+        period: '2015 - 2016'
+      },
+      {
+        degree: language === 'es' ? 'Bachiller en Educación Media' : 'Bachelor in Media Education',
+        institution: 'Liceo de Costa Rica', 
+        period: '2010 - 2016'
       }
     ],
     certifications: [
       {
+        name: 'AWS Certified Solutions Architect',
+        date: '13-04-2023'
+      },
+      {
         name: 'AWS Certified Cloud Practitioner',
-        date: '2023'
+        date: '16-02-2023'
       },
       {
-        name: 'Microsoft Azure Fundamentals',
-        date: '2023'
-      },
-      {
-        name: 'Cisco Networking Basics',
-        date: '2022'
+        name: 'Microsoft Certified: Azure Fundamentals',
+        date: '22-03-2023'
       },
       {
         name: 'CCNA: Introduction to Networks',
-        date: '2022'
+        date: '2023'
+      },
+      {
+        name: 'EF SET English Certificate - Nivel B2',
+        date: '2023'
       }
     ],
     skills: {
