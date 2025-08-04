@@ -48,11 +48,14 @@ export default function ExperienceSection() {
         <div className="relative">
           {/* Timeline line */}
           <div 
-            className="absolute left-8 top-0 w-0.5 bg-accent hidden md:block" 
-            style={{height: '100%'}}
+            className="absolute left-8 w-0.5 bg-accent hidden md:block" 
+            style={{
+              top: '-64px',
+              height: `calc(100% - 64px)`
+            }}
           />
           
-          <div className="space-y-12 pt-20">
+          <div className="space-y-12">
             {experiences.map((exp, index) => (
               <div key={index} className="relative">
                 <div className="flex items-start gap-8">
