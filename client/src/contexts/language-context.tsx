@@ -53,6 +53,12 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     // Get current scroll position to maintain it
     const currentScrollY = window.scrollY;
     
+    // Prevent any scrolling during transition
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${currentScrollY}px`;
+    document.body.style.width = '100%';
+    
     // Add slide-out animation
     document.body.classList.add("language-transitioning");
     
@@ -71,14 +77,16 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
       document.body.classList.remove("language-transitioning");
       document.body.classList.add("slide-in");
       
-      // Restore scroll position immediately after navigation
-      requestAnimationFrame(() => {
-        window.scrollTo({ top: currentScrollY, behavior: 'instant' });
-      });
-      
-      // Remove slide-in class after animation
+      // Remove slide-in class and restore scroll after animation
       setTimeout(() => {
         document.body.classList.remove("slide-in");
+        
+        // Restore scroll position and body styles
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo({ top: currentScrollY, behavior: 'instant' });
       }, 300);
     }, 300);
   };
