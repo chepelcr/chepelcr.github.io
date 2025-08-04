@@ -1,0 +1,109 @@
+# GitHub Pages Deployment Guide
+
+This guide will help you deploy your portfolio website to GitHub Pages.
+
+## Quick Setup
+
+### Option 1: Automatic Deployment (Recommended)
+
+1. **Create a GitHub repository:**
+   ```bash
+   # Initialize git if not already done
+   git init
+   
+   # Add your GitHub repository as origin
+   git remote add origin https://github.com/yourusername/portfolio.git
+   ```
+
+2. **Push your code to GitHub:**
+   ```bash
+   git add .
+   git commit -m "Initial portfolio commit"
+   git push -u origin main
+   ```
+
+3. **Enable GitHub Pages:**
+   - Go to your repository on GitHub
+   - Navigate to Settings → Pages
+   - Set Source to "GitHub Actions"
+   - The workflow will automatically deploy your site
+
+4. **Your site will be available at:**
+   `https://yourusername.github.io/portfolio`
+
+### Option 2: Manual Build
+
+1. **Build the static files:**
+   ```bash
+   ./build-gh-pages.sh
+   ```
+
+2. **Deploy the `dist/gh-pages` folder to your GitHub Pages repository**
+
+## Configuration Details
+
+### GitHub Actions Workflow
+- Located in `.github/workflows/deploy.yml`
+- Automatically builds and deploys on push to main branch
+- Uses optimized build configuration for static hosting
+
+### Build Configuration
+- Uses `vite.config.gh-pages.ts` for GitHub Pages specific settings
+- Sets base path to `/portfolio/`
+- Removes server-side dependencies
+- Optimizes for static hosting
+
+## Features Available on GitHub Pages
+
+✅ **Available:**
+- Complete portfolio website
+- Responsive design
+- Dark/light mode
+- Language switching (Spanish/English)
+- PDF CV generation
+- All animations and interactions
+
+❌ **Not Available (Static Hosting Limitations):**
+- Contact form email sending (backend required)
+- Database functionality
+- Server-side features
+
+## Customization
+
+### Change Repository Name
+If you want to use a different repository name, update the `base` path in `vite.config.gh-pages.ts`:
+
+```typescript
+base: "/your-repo-name/",
+```
+
+### Custom Domain
+To use a custom domain:
+1. Add a `CNAME` file to the `client/public` folder with your domain
+2. Configure DNS settings with your domain provider
+3. Enable custom domain in GitHub Pages settings
+
+## Troubleshooting
+
+### Build Fails
+- Check that all dependencies are installed: `npm install`
+- Ensure Node.js version 18+ is being used
+
+### Site Not Loading
+- Verify the base path matches your repository name
+- Check GitHub Pages settings are configured correctly
+- Wait a few minutes for DNS propagation
+
+### Assets Not Loading
+- Ensure all assets use relative paths
+- Check that the base path is correctly set in the build configuration
+
+## Manual Deployment Alternative
+
+If you prefer manual deployment:
+
+1. Build locally: `./build-gh-pages.sh`
+2. Create a new branch called `gh-pages`
+3. Copy contents of `dist/gh-pages` to the root of the `gh-pages` branch
+4. Push the `gh-pages` branch to GitHub
+5. Set GitHub Pages source to "Deploy from a branch" → `gh-pages`

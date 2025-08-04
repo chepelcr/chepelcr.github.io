@@ -66,46 +66,25 @@ export default function ContactSection() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
     
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      
-      const result = await response.json();
-      
-      if (response.ok && result.success) {
-        toast({
-          title: t("contact.messageSentTitle"),
-          description: t("contact.messageSentDesc"),
-        });
-        
-        // Reset form
-        setFormData({ name: "", email: "", subject: "", message: "" });
-      } else {
-        toast({
-          title: t("contact.errorSendingTitle"),
-          description: result.message || t("contact.errorSendingDesc"),
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      toast({
-        title: t("contact.connectionErrorTitle"),
-        description: t("contact.connectionErrorDesc"),
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    // For GitHub Pages deployment, use mailto link
+    const subject = encodeURIComponent(formData.subject || t("contact.defaultSubject"));
+    const body = encodeURIComponent(
+      `${t("contact.name")}: ${formData.name}\n${t("contact.email")}: ${formData.email}\n\n${formData.message}`
+    );
+    
+    const mailtoLink = `mailto:chepelcr@outlook.com?subject=${subject}&body=${body}`;
+    window.open(mailtoLink, '_blank');
+    
+    toast({
+      title: t("contact.emailClientTitle"),
+      description: t("contact.emailClientDesc"),
+    });
+    
+    // Reset form
+    setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
   const handleInputChange = (field: string, value: string) => {
