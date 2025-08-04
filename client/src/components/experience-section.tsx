@@ -59,12 +59,10 @@ export default function ExperienceSection() {
             {experiences.map((exp, index) => (
               <div key={index} className="relative">
                 <div className="flex items-start gap-8">
-                  <div className="hidden md:block flex-shrink-0">
-                    <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center">
-                      <exp.icon className="h-6 w-6" />
-                    </div>
+                  <div className="hidden md:block flex-shrink-0 w-16">
+                    {/* Empty space for timeline circle positioning */}
                   </div>
-                  <Card className="flex-1 bg-card border-border card-hover h-full">
+                  <Card className="flex-1 bg-card border-border card-hover h-full relative">
                     <CardContent className="p-6 h-full flex flex-col">
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                         <h3 className="text-xl font-semibold text-accent">{exp.title}</h3>
@@ -82,6 +80,13 @@ export default function ExperienceSection() {
                         ))}
                       </div>
                     </CardContent>
+                    
+                    {/* Timeline circle positioned at bottom of card */}
+                    <div className="hidden md:block absolute -left-24 bottom-6">
+                      <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center">
+                        <exp.icon className="h-6 w-6" />
+                      </div>
+                    </div>
                   </Card>
                 </div>
               </div>
