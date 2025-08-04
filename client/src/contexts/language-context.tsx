@@ -85,6 +85,15 @@ const translations = {
     "skills.cloud": "Nube",
     "skills.databases": "Bases de Datos",
     "skills.tools": "Herramientas",
+    "skills.softSkills": "Habilidades Blandas",
+    "skills.analyticalThinking": "Pensamiento Analítico",
+    "skills.analyticalDesc": "Enfoque en resolución de problemas",
+    "skills.teamwork": "Trabajo Colaborativo",
+    "skills.teamworkDesc": "Comunicación efectiva con equipos multidisciplinarios",
+    "skills.adaptability": "Adaptabilidad",
+    "skills.adaptabilityDesc": "Capacidad de cambio y aprendizaje continuo",
+    "skills.initiative": "Iniciativa",
+    "skills.initiativeDesc": "Curiosidad por nuevas tecnologías y metodologías",
     
     // Experience Section
     "experience.title": "Experiencia Profesional",
@@ -161,6 +170,15 @@ const translations = {
     "skills.cloud": "Cloud",
     "skills.databases": "Databases",
     "skills.tools": "Tools",
+    "skills.softSkills": "Soft Skills",
+    "skills.analyticalThinking": "Analytical Thinking",
+    "skills.analyticalDesc": "Problem-solving focused approach",
+    "skills.teamwork": "Collaborative Work",
+    "skills.teamworkDesc": "Effective communication with multidisciplinary teams",
+    "skills.adaptability": "Adaptability",
+    "skills.adaptabilityDesc": "Capacity for change and continuous learning",
+    "skills.initiative": "Initiative",
+    "skills.initiativeDesc": "Curiosity for new technologies and methodologies",
     
     // Experience Section
     "experience.title": "Professional Experience",
