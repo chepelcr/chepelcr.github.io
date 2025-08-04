@@ -1,24 +1,24 @@
 # GitHub Pages Deployment Guide
 
-This guide will help you deploy your portfolio website to GitHub Pages.
+This guide will help you deploy your portfolio website to your GitHub Pages repository with custom domain.
 
 ## Quick Setup
 
 ### Option 1: Automatic Deployment (Recommended)
 
-1. **Create a GitHub repository:**
+1. **Push to your GitHub Pages repository:**
    ```bash
    # Initialize git if not already done
    git init
    
    # Add your GitHub repository as origin
-   git remote add origin https://github.com/yourusername/portfolio.git
+   git remote add origin https://github.com/chepelcr/chepelcr.github.io.git
    ```
 
 2. **Push your code to GitHub:**
    ```bash
    git add .
-   git commit -m "Initial portfolio commit"
+   git commit -m "Portfolio website deployment"
    git push -u origin main
    ```
 
@@ -29,7 +29,7 @@ This guide will help you deploy your portfolio website to GitHub Pages.
    - The workflow will automatically deploy your site
 
 4. **Your site will be available at:**
-   `https://yourusername.github.io/portfolio`
+   `https://jcampos.dev/`
 
 ### Option 2: Manual Build
 
@@ -49,9 +49,10 @@ This guide will help you deploy your portfolio website to GitHub Pages.
 
 ### Build Configuration
 - Uses `vite.config.gh-pages.ts` for GitHub Pages specific settings
-- Sets base path to `/portfolio/`
+- Sets base path to `/` for root domain deployment
 - Removes server-side dependencies
 - Optimizes for static hosting
+- Includes CNAME file for custom domain (jcampos.dev)
 
 ## Features Available on GitHub Pages
 
@@ -70,11 +71,11 @@ This guide will help you deploy your portfolio website to GitHub Pages.
 
 ## Customization
 
-### Change Repository Name
-If you want to use a different repository name, update the `base` path in `vite.config.gh-pages.ts`:
+### Change Domain
+If you want to use a different domain, update the CNAME file in `client/public/CNAME`:
 
-```typescript
-base: "/your-repo-name/",
+```
+yourdomain.com
 ```
 
 ### Custom Domain

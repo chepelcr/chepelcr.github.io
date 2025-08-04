@@ -73,6 +73,22 @@ Preferred communication style: Simple, everyday language.
 - **CDN/Assets**: Unsplash for placeholder images and Google Fonts for typography
 - **Development Platform**: Optimized for Replit deployment with specific plugins and configurations
 
+## GitHub Pages Deployment Setup
+
+### Deployment Configuration
+- **GitHub Actions Workflow**: Automated deployment pipeline configured in `.github/workflows/deploy.yml`
+- **Static Build Process**: Custom build script (`build-gh-pages.sh`) for GitHub Pages compatible static site generation
+- **Contact Form Adaptation**: Modified contact form to use mailto links for static hosting compatibility
+- **Base Path Configuration**: Set to work with root domain deployment (`/`) for jcampos.dev
+- **Custom Domain**: CNAME file configured for https://jcampos.dev/ deployment
+
+### Deployment Features
+- **Automated CI/CD**: Deploys automatically on push to main branch
+- **Static Site Optimization**: Removes server dependencies while maintaining full frontend functionality
+- **Email Integration**: Contact form opens default email client with pre-filled message
+- **PDF Generation**: CV download functionality works in static environment
+- **Custom Domain Support**: Configured for chepelcr.github.io repository with jcampos.dev domain
+
 ## Recent Changes (January 2025)
 
 ### Language and Translation System
