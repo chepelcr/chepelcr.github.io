@@ -24,26 +24,32 @@ export function ThemeToggle() {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="bg-card border-border">
+      <DropdownMenuContent align="end" className="bg-card border-border min-w-0">
         <DropdownMenuItem 
-          onClick={() => setTheme("light")}
-          className="hover:bg-accent hover:text-accent-foreground cursor-pointer"
+          onClick={() => theme !== "light" && setTheme("light")}
+          className={`hover:bg-accent hover:text-accent-foreground cursor-pointer flex items-center gap-2 ${
+            theme === "light" ? "bg-accent text-accent-foreground" : ""
+          }`}
         >
-          <Sun className="mr-2 h-4 w-4" />
+          <Sun className="h-4 w-4" />
           <span>Light</span>
         </DropdownMenuItem>
         <DropdownMenuItem 
-          onClick={() => setTheme("dark")}
-          className="hover:bg-accent hover:text-accent-foreground cursor-pointer"
+          onClick={() => theme !== "dark" && setTheme("dark")}
+          className={`hover:bg-accent hover:text-accent-foreground cursor-pointer flex items-center gap-2 ${
+            theme === "dark" ? "bg-accent text-accent-foreground" : ""
+          }`}
         >
-          <Moon className="mr-2 h-4 w-4" />
+          <Moon className="h-4 w-4" />
           <span>Dark</span>
         </DropdownMenuItem>
         <DropdownMenuItem 
-          onClick={() => setTheme("system")}
-          className="hover:bg-accent hover:text-accent-foreground cursor-pointer"
+          onClick={() => theme !== "system" && setTheme("system")}
+          className={`hover:bg-accent hover:text-accent-foreground cursor-pointer flex items-center gap-2 ${
+            theme === "system" ? "bg-accent text-accent-foreground" : ""
+          }`}
         >
-          <Monitor className="mr-2 h-4 w-4" />
+          <Monitor className="h-4 w-4" />
           <span>System</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
