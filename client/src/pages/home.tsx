@@ -37,9 +37,9 @@ export default function Home() {
       (entries) => {
         if (isScrollingProgrammatically) return;
 
-        // Find the most visible section
+        // Find the most visible section with lower threshold for better detection
         const visibleSections = entries
-          .filter(entry => entry.isIntersecting && entry.intersectionRatio > 0.6)
+          .filter(entry => entry.isIntersecting && entry.intersectionRatio > 0.3)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (visibleSections.length > 0) {
@@ -47,13 +47,14 @@ export default function Home() {
           const expectedPath = section === "home" ? `/${language}` : `/${language}/${section}`;
           
           if (window.location.pathname !== expectedPath) {
+            console.log(`Updating URL to: ${expectedPath} for section: ${section}`);
             window.history.replaceState({}, '', expectedPath);
           }
         }
       },
       {
-        threshold: [0.6, 0.8],
-        rootMargin: '-100px 0px -30% 0px'
+        threshold: [0.3, 0.5, 0.7], // Multiple thresholds for better detection
+        rootMargin: '-80px 0px -40% 0px' // Less aggressive margins
       }
     );
 
@@ -62,6 +63,8 @@ export default function Home() {
       const element = document.querySelector(`#${sectionId}`);
       if (element) {
         observer.observe(element);
+      } else {
+        console.warn(`Section element #${sectionId} not found`);
       }
     });
 
@@ -70,7 +73,7 @@ export default function Home() {
       isScrollingProgrammatically = true;
       setTimeout(() => {
         isScrollingProgrammatically = false;
-      }, 2000);
+      }, 1500); // Reduced timeout
     };
 
     // Listen for section changes to disable scroll spy temporarily
