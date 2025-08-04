@@ -109,11 +109,18 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   // Contact Information
   doc.setFontSize(10);
   doc.setTextColor(lightTextColor);
+  const contactLabels = {
+    email: language === 'es' ? 'Email:' : 'Email:',
+    phone: language === 'es' ? 'Teléfono:' : 'Phone:',
+    location: language === 'es' ? 'Ubicación:' : 'Location:',
+    languages: language === 'es' ? 'Idiomas:' : 'Languages:'
+  };
+  
   const contactInfo = [
-    `Email: ${data.personalInfo.email}`,
-    `Phone: ${data.personalInfo.phone}`,
-    `Location: ${data.personalInfo.location}`,
-    `Languages: ${data.personalInfo.languages}`
+    `${contactLabels.email} ${data.personalInfo.email}`,
+    `${contactLabels.phone} ${data.personalInfo.phone}`,
+    `${contactLabels.location} ${data.personalInfo.location}`,
+    `${contactLabels.languages} ${data.personalInfo.languages}`
   ];
   
   contactInfo.forEach((info) => {
