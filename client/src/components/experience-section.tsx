@@ -51,7 +51,7 @@ export default function ExperienceSection() {
             className="absolute left-8 w-0.5 bg-accent hidden md:block" 
             style={{
               top: '-64px',
-              height: `calc(100% - 112px)`
+              height: `calc(100% + 48px)`
             }}
           />
           
@@ -82,7 +82,7 @@ export default function ExperienceSection() {
                     </CardContent>
                     
                     {/* Timeline circle positioned at bottom of card */}
-                    <div className="hidden md:block absolute -left-24 bottom-6">
+                    <div className="hidden md:block absolute bottom-4" style={{left: '-96px'}}>
                       <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center">
                         <exp.icon className="h-6 w-6" />
                       </div>
