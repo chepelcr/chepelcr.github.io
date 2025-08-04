@@ -32,10 +32,7 @@ export default function Navigation() {
 
   const handleClick = (section: Section) => {
     setIsOpen(false);
-    // Only navigate if it's a different section
-    if (section !== currentSection) {
-      navigateToSection(section);
-    }
+    navigateToSection(section);
   };
 
   return (

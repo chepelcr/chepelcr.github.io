@@ -9,7 +9,7 @@ import EducationSection from "@/components/education-section";
 import ProjectsSection from "@/components/projects-section";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
-import { useLanguage } from "@/contexts/language-context";
+import { useLanguage, type Section } from "@/contexts/language-context";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
 
 export default function Home() {
@@ -26,7 +26,7 @@ export default function Home() {
           setScrolling(true);
           element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
-      }, 50);
+      }, 100);
       return () => clearTimeout(timer);
     }
   }, [currentSection, setScrolling]);
