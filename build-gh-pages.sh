@@ -5,16 +5,17 @@ echo "🚀 Building portfolio for GitHub Pages..."
 # Clean previous build
 rm -rf dist/gh-pages
 
-# Build the project using the standard vite build but with base path
-cd client
-npx vite build --outDir ../dist/gh-pages --base /portfolio/ --emptyOutDir
+# Build the project using the standard vite build
+npx vite build
+mkdir -p dist/gh-pages
+cp -r dist/public/* dist/gh-pages/
+cp client/public/CNAME dist/gh-pages/
 
 echo "✅ Build completed!"
 echo "📁 Build files are in: dist/gh-pages"
 echo ""
 echo "🔗 To deploy to GitHub Pages:"
-echo "1. Create a new repository named 'portfolio' on GitHub"
-echo "2. Push this code to the main branch"
-echo "3. Enable GitHub Pages in repository settings"
-echo "4. Set source to 'GitHub Actions'"
-echo "5. The site will be available at: https://yourusername.github.io/portfolio"
+echo "1. Push this code to your chepelcr.github.io repository"
+echo "2. Enable GitHub Pages in repository settings"
+echo "3. Set source to 'GitHub Actions'"
+echo "4. The site will be available at: https://jcampos.dev/"
