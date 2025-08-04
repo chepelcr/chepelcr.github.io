@@ -3,19 +3,19 @@ import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/contexts/language-context";
 import { GraduationCap, Award, BookOpen } from "lucide-react";
 
-const education = [
+const getEducation = (t: any) => [
   {
-    degree: "Bachiller en Informática Empresarial",
+    degree: t("education.businessInformatics"),
     institution: "Universidad de Costa Rica, Sede del Pacífico",
     period: "2017 - 2022",
   },
   {
-    degree: "Programa del Bachillerato Internacional",
+    degree: t("education.internationalBaccalaureate"),
     institution: "Liceo de Costa Rica",
     period: "2015 - 2016",
   },
   {
-    degree: "Bachiller en Educación Media",
+    degree: t("education.mediaEducation"),
     institution: "Liceo de Costa Rica",
     period: "2010 - 2016",
   },
@@ -81,6 +81,7 @@ const training = [
 
 export default function EducationSection() {
   const { t } = useLanguage();
+  const education = getEducation(t);
   
   return (
     <section id="education" className="section-spacing bg-navy">
@@ -100,7 +101,9 @@ export default function EducationSection() {
             {education.map((edu, index) => (
               <Card key={index} className="bg-card border-border card-hover h-full">
                 <CardContent className="p-6 h-full flex flex-col">
-                  <h4 className="text-lg font-semibold mb-3 leading-tight">{edu.degree}</h4>
+                  <div className="min-h-[3.5rem] mb-3">
+                    <h4 className="text-lg font-semibold leading-tight">{edu.degree}</h4>
+                  </div>
                   <p className="text-accent font-medium mb-3 flex-grow">{edu.institution}</p>
                   <p className="text-muted-foreground font-mono text-sm">{edu.period}</p>
                 </CardContent>
