@@ -78,7 +78,7 @@ export default function ProjectsSection() {
           {t("projects.title")}
         </h2>
         
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {mainProjects.map((project, index) => (
             <Card key={index} className="bg-card border-border card-hover h-full">
               <CardContent className="p-8 h-full flex flex-col">
@@ -155,7 +155,7 @@ export default function ProjectsSection() {
         {/* Additional Projects Preview */}
         <div className="text-center">
           <h3 className="text-xl font-semibold mb-8 text-accent">{t("projects.otherProjects")}</h3>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             {otherProjects.map((project, index) => (
               <Card key={index} className="bg-card border-border card-hover">
                 <CardContent className="p-6 text-center">
