@@ -78,9 +78,56 @@ export default function ProjectsSection() {
           {t("projects.title")}
         </h2>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {mainProjects.map((project, index) => (
-            <Card key={index} className="bg-card border-border card-hover h-full">
+        {/* ERP System - Full Width Row */}
+        <div className="mb-12">
+          <Card className="bg-card border-border card-hover h-full">
+            <CardContent className="p-8 h-full flex flex-col lg:flex-row gap-8">
+              <div className="lg:w-1/3">
+                <img
+                  src={mainProjects[0].image}
+                  alt={mainProjects[0].title}
+                  className="rounded-lg w-full h-48 lg:h-full object-cover"
+                />
+              </div>
+              <div className="lg:w-2/3 flex flex-col">
+                <h3 className="text-2xl font-semibold mb-4 text-accent">
+                  {mainProjects[0].title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  {mainProjects[0].description}
+                </p>
+                
+                <div className="mb-6 flex-grow">
+                  <h4 className="font-semibold mb-3">{t("projects.technologiesUsed")}</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {mainProjects[0].technologies.map((tech, techIndex) => (
+                      <Badge key={techIndex} className="bg-accent text-accent-foreground">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="flex flex-col sm:flex-row gap-4 mt-auto">
+                  {mainProjects[0].ivoiUrl && (
+                    <Button 
+                      className="bg-accent text-accent-foreground hover:bg-accent/90"
+                      onClick={() => window.open(mainProjects[0].ivoiUrl, "_blank")}
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      {t("projects.enterIvois")}
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Video Transcription and Linux Commands - Two Column Row */}        
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
+          {mainProjects.slice(1).map((project, index) => (
+            <Card key={index + 1} className="bg-card border-border card-hover h-full">
               <CardContent className="p-8 h-full flex flex-col">
                 <div className="mb-6">
                   <img
@@ -124,26 +171,13 @@ export default function ProjectsSection() {
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                  {project.ivoiUrl ? (
-                    <Button 
-                      className="bg-accent text-accent-foreground hover:bg-accent/90"
-                      onClick={() => window.open(project.ivoiUrl, "_blank")}
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      {t("projects.enterIvois")}
-                    </Button>
-                  ) : project.liveUrl ? (
+                  {project.liveUrl && (
                     <Button 
                       className="bg-accent text-accent-foreground hover:bg-accent/90"
                       onClick={() => window.open(project.liveUrl, "_blank")}
                     >
                       <ExternalLink className="mr-2 h-4 w-4" />
                       {t("projects.visitSite")}
-                    </Button>
-                  ) : (
-                    <Button className="bg-accent text-accent-foreground hover:bg-accent/90">
-                      <Eye className="mr-2 h-4 w-4" />
-                      {t("projects.viewDetails")}
                     </Button>
                   )}
                 </div>
