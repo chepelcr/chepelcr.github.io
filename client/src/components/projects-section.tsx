@@ -13,7 +13,7 @@ import {
   TrendingUp 
 } from "lucide-react";
 
-const getMainProjects = (t: any) => [
+const getMainProjects = (t: any, language: string) => [
   {
     title: t("projects.erpTitle"),
     description: t("projects.erpDesc"),
@@ -21,6 +21,20 @@ const getMainProjects = (t: any) => [
     technologies: ["Java Spring Boot", "Python", "AWS Services", "PostgreSQL", "Docker", "Kafka"],
     type: "ERP System",
     ivoiUrl: "https://frontend.dev.ivois.io",
+  },
+  {
+    title: t("projects.videoTranscriptTitle"),
+    description: t("projects.videoTranscriptDesc"),
+    image: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
+    technologies: ["React", "TypeScript", "AI Services", "Web APIs", "Tailwind CSS"],
+    type: "AI Tool",
+    liveUrl: `https://jcampos.dev/video-transcript/${language}`,
+    features: [
+      t("projects.videoFeature1"),
+      t("projects.videoFeature2"),
+      t("projects.videoFeature3"),
+      t("projects.videoFeature4"),
+    ],
   },
   {
     title: t("projects.linuxTitle"),
@@ -40,11 +54,6 @@ const getMainProjects = (t: any) => [
 
 const getOtherProjects = (t: any) => [
   {
-    title: t("projects.aiTitle"),
-    description: t("projects.aiDesc"),
-    icon: Bot,
-  },
-  {
     title: t("projects.ecommerceTitle"),
     description: t("projects.ecommerceDesc"),
     icon: ShoppingCart,
@@ -57,8 +66,8 @@ const getOtherProjects = (t: any) => [
 ];
 
 export default function ProjectsSection() {
-  const { t } = useLanguage();
-  const mainProjects = getMainProjects(t);
+  const { t, language } = useLanguage();
+  const mainProjects = getMainProjects(t, language);
   const otherProjects = getOtherProjects(t);
   
   return (

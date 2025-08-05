@@ -118,3 +118,17 @@ Preferred communication style: Simple, everyday language.
 - **Natural Scroll Behavior**: Manual scrolling controls URL updates without automatic section jumping
 - **Single-Click Navigation**: Fixed double-click issues for immediate navigation response
 - **Optimized Scroll Detection**: 40% visibility threshold for accurate section detection across all sections
+
+### UI/UX Enhancements (January 2025)
+- **Theme and Language Toggles**: Enhanced both selectors with visual feedback for active selection
+- **Smooth Transitions**: Implemented fade effects for theme changes and slide animations for language switching
+- **Contact Button Fix**: Added proper scrolling functionality to hero section contact button
+- **GitHub Pages Routing**: Fixed 404 errors on page reload with proper client-side routing support
+- **Prevented Unnecessary Transitions**: Language and theme selectors now prevent transitions when clicking already selected options
+
+### Projects Section Update (January 2025)
+- **Video Transcription Tool**: Added new main project featuring AI-powered video transcription
+- **Language-Aware Routing**: Project links automatically route to `/video-transcript/es` or `/video-transcript/en`
+- **Project Restructuring**: Removed AI Microservice from "Others" section, reorganized project hierarchy
+- **Complete Translations**: Added comprehensive Spanish and English translations for video transcription features
+- **Modern Tech Stack**: Updated project technologies to include React, TypeScript, AI Services, and Web APIs
