@@ -14,7 +14,7 @@ export default function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <img
-              src="/attached_assets/Foto perfil_1754522557015.png"
+              src="/profile-photo.png"
               alt="José Pablo Campos Solano - Professional Portrait"
               className="rounded-xl shadow-lg w-full max-w-md mx-auto"
             />

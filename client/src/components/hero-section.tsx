@@ -43,7 +43,7 @@ export default function HeroSection() {
           </div>
           <div className="flex-1 max-w-md lg:max-w-lg">
             <img
-              src="/attached_assets/Foto perfil_1754522557015.png"
+              src="/profile-photo.png"
               alt="José Pablo Campos Solano - Professional Profile"
               className="rounded-xl shadow-2xl w-full h-auto"
             />
