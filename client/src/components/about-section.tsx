@@ -14,8 +14,8 @@ export default function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <img
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=600"
-              alt="Professional developer portrait"
+              src="/attached_assets/Foto perfil_1754522557015.png"
+              alt="José Pablo Campos Solano - Professional Portrait"
               className="rounded-xl shadow-lg w-full max-w-md mx-auto"
             />
           </div>
