@@ -244,7 +244,7 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   if (ucr.length > 0) {
     addText(ucr[0].institution, 10, textColor, true);
     ucr.forEach((training) => {
-      bullet(training.name);
+      addBulletPoint(training.name);
     });
     yPosition += 4;
   }
@@ -253,7 +253,7 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   if (miramar.length > 0) {
     addText(miramar[0].institution, 10, textColor, true);
     miramar.forEach((training) => {
-      bullet(training.name);
+      addBulletPoint(training.name);
     });
     yPosition += 4;
   }
@@ -262,7 +262,7 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   if (aws.length > 0) {
     addText(aws[0].institution, 10, textColor, true);
     aws.forEach((training) => {
-      bullet(training.name);
+      addBulletPoint(training.name);
     });
   }
 
