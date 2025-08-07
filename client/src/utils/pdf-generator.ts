@@ -179,10 +179,14 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     yPosition += 8;
   });
 
-  // First Row: Education and Certifications
-  checkPageBreak();
-  
-  // Education Section (Left Column)
+  // Start second page with two-column layout
+  doc.addPage();
+  yPosition = 20;
+  currentColumn = 1;
+  isSecondPage = true;
+
+  // Left Column: Education (top) + Certifications (bottom)
+  // Education Section
   addTitle(language === 'es' ? 'Educación' : 'Education');
   
   data.education.forEach((edu) => {
@@ -192,47 +196,20 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     yPosition += 6;
   });
 
-  // Switch to right column for Certifications
-  const educationEndY = yPosition;
-  currentColumn = 2;
-  yPosition = 20;
+  yPosition += 20; // Space between Education and Certifications
 
-  // Certifications Section (Right Column)
-  checkPageBreak();
+  // Certifications Section (still left column, below education)
   addTitle(language === 'es' ? 'Certificaciones' : 'Certifications');
   
   data.certifications.forEach((cert) => {
     addBulletPoint(`${cert.name} (${cert.date})`);
   });
 
-  // Second Row: Technical Skills and Additional Training
-  // Start on second page for better layout
-  doc.addPage();
-  yPosition = 20;
-  currentColumn = 1;
-  isSecondPage = true;
-
-  // Technical Skills Section (Left Column)
-  addTitle(language === 'es' ? 'Habilidades Técnicas' : 'Technical Skills');
-  
-  const skillSections = [
-    { title: 'Backend', skills: data.skills.backend },
-    { title: language === 'es' ? 'Nube' : 'Cloud', skills: data.skills.cloud },
-    { title: language === 'es' ? 'Bases de Datos' : 'Databases', skills: data.skills.databases },
-    { title: language === 'es' ? 'Herramientas' : 'Tools', skills: data.skills.tools }
-  ];
-
-  skillSections.forEach((section) => {
-    addText(`${section.title}:`, 10, textColor, true);
-    addText(section.skills.join(', '), 10, lightTextColor);
-    yPosition += 4;
-  });
-
-  // Switch to right column for Additional Training
+  // Right Column: Additional Training (top) + Technical Skills (bottom)
   currentColumn = 2;
   yPosition = 20;
 
-  // Additional Training Section (Right Column)
+  // Additional Training Section (Right Column, top)
   addTitle(language === 'es' ? 'Capacitaciones Adicionales' : 'Additional Training');
   
   // Group by institution
@@ -266,8 +243,30 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     });
   }
 
-  // Projects Section - Refer to separate projects page
-  checkPageBreak();
+  yPosition += 20; // Space between Additional Training and Technical Skills
+
+  // Technical Skills Section (Right Column, bottom)
+  addTitle(language === 'es' ? 'Habilidades Técnicas' : 'Technical Skills');
+  
+  const skillSections = [
+    { title: 'Backend', skills: data.skills.backend },
+    { title: language === 'es' ? 'Nube' : 'Cloud', skills: data.skills.cloud },
+    { title: language === 'es' ? 'Bases de Datos' : 'Databases', skills: data.skills.databases },
+    { title: language === 'es' ? 'Herramientas' : 'Tools', skills: data.skills.tools }
+  ];
+
+  skillSections.forEach((section) => {
+    addText(`${section.title}:`, 10, textColor, true);
+    addText(section.skills.join(', '), 10, lightTextColor);
+    yPosition += 4;
+  });
+
+  // Projects Section on third page
+  doc.addPage();
+  yPosition = 20;
+  currentColumn = 1;
+  isSecondPage = false; // Reset for full-width content
+  
   addTitle(language === 'es' ? 'Proyectos Destacados' : 'Featured Projects');
   
   // First project (ERP) - Full width
@@ -283,6 +282,10 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   const rightProject = remainingProjects[1];
   
   if (leftProject) {
+    // Set up two-column layout for remaining projects
+    isSecondPage = true;
+    currentColumn = 1;
+    
     // Left column project
     const leftColumnY = yPosition;
     addText(leftProject.name, 11, textColor, true);
@@ -300,6 +303,7 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
       
       // Reset to left column for footer
       currentColumn = 1;
+      isSecondPage = false;
     }
   }
 
