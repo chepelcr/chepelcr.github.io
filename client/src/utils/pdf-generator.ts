@@ -251,11 +251,28 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   // Technical Skills Section (Right Column, bottom)
   addTitle(language === 'es' ? 'Habilidades Técnicas' : 'Technical Skills');
   
+  // Define actual skills matching the website
+  const coreSkills = [
+    "Java (Spring Boot)", "Python", "PHP", "JavaScript & HTML"
+  ];
+  
+  const cloudSkills = [
+    "AWS Infrastructure", "Microservices Architecture", "Serverless Programming", "Docker & Container"
+  ];
+  
+  const databaseSkills = [
+    "MySQL", "PostgreSQL", "Oracle", "Microsoft SQL Server"
+  ];
+  
+  const toolsSkills = [
+    "Rest API Services", "Linux", "Kafka", "Redis"
+  ];
+
   const skillSections = [
-    { title: 'Backend', skills: data.skills.backend },
-    { title: language === 'es' ? 'Nube' : 'Cloud', skills: data.skills.cloud },
-    { title: language === 'es' ? 'Bases de Datos' : 'Databases', skills: data.skills.databases },
-    { title: language === 'es' ? 'Herramientas' : 'Tools', skills: data.skills.tools }
+    { title: 'Backend', skills: coreSkills },
+    { title: language === 'es' ? 'Nube' : 'Cloud', skills: cloudSkills },
+    { title: language === 'es' ? 'Bases de Datos' : 'Databases', skills: databaseSkills },
+    { title: language === 'es' ? 'Herramientas' : 'Tools', skills: toolsSkills }
   ];
 
   skillSections.forEach((section) => {
