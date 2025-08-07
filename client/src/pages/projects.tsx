@@ -1,54 +1,42 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ArrowLeft, ExternalLink, Laptop, ShoppingCart, TrendingUp } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
-import { 
-  Laptop, 
-  Eye, 
-  Github, 
-  ExternalLink, 
-  Info, 
-  Bot, 
-  ShoppingCart, 
-  TrendingUp 
-} from "lucide-react";
 
 const getMainProjects = (t: any, language: string) => [
   {
     title: t("projects.erpTitle"),
     description: t("projects.erpDesc"),
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
-    technologies: ["Java Spring Boot", "Python", "AWS Services", "PostgreSQL", "Docker", "Kafka"],
-    type: "ERP System",
-    ivoiUrl: "https://frontend.dev.ivois.io",
+    image: "/attached_assets/image_1754274082825.png",
+    technologies: ["Java", "Spring Boot", "PostgreSQL", "AWS", "Microservices"],
+    ivoiUrl: language === 'es' ? "/ivois/es" : "/ivois/en",
   },
   {
     title: t("projects.videoTranscriptTitle"),
     description: t("projects.videoTranscriptDesc"),
-    image: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
-    technologies: ["React", "TypeScript", "AI Services", "Web APIs", "Tailwind CSS"],
-    type: "AI Tool",
-    liveUrl: `https://jcampos.dev/video-transcript/${language}`,
+    image: "/attached_assets/image_1754321230597.png", 
+    technologies: ["React", "TypeScript", "AI Services", "Web APIs"],
     features: [
-      t("projects.videoFeature1"),
-      t("projects.videoFeature2"),
-      t("projects.videoFeature3"),
-      t("projects.videoFeature4"),
+      t("projects.videoTranscriptFeature1"),
+      t("projects.videoTranscriptFeature2"),
+      t("projects.videoTranscriptFeature3"),
+      t("projects.videoTranscriptFeature4"),
     ],
+    liveUrl: language === 'es' ? "/video-transcript/es" : "/video-transcript/en",
   },
   {
     title: t("projects.linuxTitle"),
     description: t("projects.linuxDesc"),
-    image: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
-    technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
-    type: "Educational Platform",
-    liveUrl: "https://jcampos.dev/Comandos-linux/",
+    image: "/attached_assets/image_1754281123699.png",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Node.js"],
     features: [
       t("projects.feature1"),
       t("projects.feature2"),
       t("projects.feature3"),
       t("projects.feature4"),
     ],
+    liveUrl: "https://jcampos.dev/Comandos-linux/",
   },
 ];
 
@@ -65,18 +53,29 @@ const getOtherProjects = (t: any) => [
   },
 ];
 
-export default function ProjectsSection() {
-  const { t, language } = useLanguage();
+export default function ProjectsPage() {
+  const { t, language, navigateToSection } = useLanguage();
   const mainProjects = getMainProjects(t, language);
   const otherProjects = getOtherProjects(t);
   
   return (
-    <section id="projects" className="section-spacing bg-slate">
+    <div className="min-h-screen bg-slate pt-32">
       <div className="container-spacing">
-        <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16">
-          <Laptop className="inline-block text-accent mr-4" />
-          {t("projects.title")}
-        </h2>
+        {/* Header */}
+        <div className="flex items-center mb-12">
+          <Button 
+            variant="ghost" 
+            className="mr-4"
+            onClick={() => navigateToSection("home")}
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            {t("common.back")}
+          </Button>
+          <h1 className="text-3xl lg:text-4xl font-bold">
+            <Laptop className="inline-block text-accent mr-4" />
+            {t("projects.title")}
+          </h1>
+        </div>
         
         {/* ERP System - Full Width Row */}
         <div className="mb-12">
@@ -186,20 +185,8 @@ export default function ProjectsSection() {
           ))}
         </div>
 
-        {/* View All Projects Button */}
-        <div className="text-center">
-          <Button 
-            size="lg" 
-            className="bg-accent text-accent-foreground hover:bg-accent/90"
-            onClick={() => window.open(`/${language}/projects`, "_self")}
-          >
-            <Eye className="mr-2 h-4 w-4" />
-            {t("projects.viewAllProjects")}
-          </Button>
-        </div>
-
         {/* Additional Projects Preview */}
-        <div className="text-center mt-16">
+        <div className="text-center">
           <h3 className="text-xl font-semibold mb-8 text-accent">{t("projects.otherProjects")}</h3>
           <div className="grid md:grid-cols-2 gap-6">
             {otherProjects.map((project, index) => (
@@ -214,6 +201,6 @@ export default function ProjectsSection() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

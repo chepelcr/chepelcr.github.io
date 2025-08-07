@@ -26,6 +26,11 @@ interface CVData {
     name: string;
     date: string;
   }>;
+  additionalTraining: Array<{
+    name: string;
+    institution: string;
+    date: string;
+  }>;
   skills: {
     backend: string[];
     cloud: string[];
@@ -174,8 +179,10 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     yPosition += 8;
   });
 
-  // Education Section
+  // First Row: Education and Certifications
   checkPageBreak();
+  
+  // Education Section (Left Column)
   addTitle(language === 'es' ? 'Educación' : 'Education');
   
   data.education.forEach((edu) => {
@@ -185,7 +192,13 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     yPosition += 6;
   });
 
-  // Certifications Section
+  // Switch to right column for Certifications
+  if (isSecondPage && currentColumn === 1) {
+    currentColumn = 2;
+    yPosition = 20;
+  }
+
+  // Certifications Section (Right Column)
   checkPageBreak();
   addTitle(language === 'es' ? 'Certificaciones' : 'Certifications');
   
@@ -193,17 +206,18 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     addBulletPoint(`${cert.name} (${cert.date})`);
   });
 
-  // Add spacing before Skills Section
-  yPosition += 10;
-
-  // Force Skills Section to second column if on second page
-  if (isSecondPage && currentColumn === 1) {
-    currentColumn = 2;
+  // Second Row: Technical Skills and Additional Training
+  // Force new page or reset to left column
+  if (isSecondPage) {
+    doc.addPage();
     yPosition = 20;
+    currentColumn = 1;
+  } else {
+    currentColumn = 1;
+    yPosition = Math.max(yPosition + 20, 160); // Ensure proper spacing
   }
 
-  // Skills Section
-  checkPageBreak();
+  // Technical Skills Section (Left Column)
   addTitle(language === 'es' ? 'Habilidades Técnicas' : 'Technical Skills');
   
   const skillSections = [
@@ -219,17 +233,56 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     yPosition += 4;
   });
 
-  // Projects Section
+  // Switch to right column for Additional Training
+  currentColumn = 2;
+  yPosition = isSecondPage ? 20 : Math.max(160, yPosition - skillSections.length * 20);
+
+  // Additional Training Section (Right Column)
+  addTitle(language === 'es' ? 'Capacitación Adicional' : 'Additional Training');
+  
+  data.additionalTraining.forEach((training) => {
+    addText(training.name, 10, textColor, true);
+    addText(training.institution, 9, lightTextColor);
+    addText(training.date, 9, lightTextColor);
+    yPosition += 8;
+  });
+
+  // Projects Section - Refer to separate projects page
   checkPageBreak();
   addTitle(language === 'es' ? 'Proyectos Destacados' : 'Featured Projects');
   
-  data.projects.forEach((project) => {
-    checkPageBreak(25);
-    addText(project.name, 11, textColor, true);
-    addText(project.description);
-    addText(`${language === 'es' ? 'Tecnologías:' : 'Technologies:'} ${project.technologies.join(', ')}`, 10, lightTextColor);
-    yPosition += 8;
-  });
+  // First project (ERP) - Full width
+  const erpProject = data.projects[0];
+  addText(erpProject.name, 11, textColor, true);
+  addText(erpProject.description);
+  addText(`${language === 'es' ? 'Tecnologías:' : 'Technologies:'} ${erpProject.technologies.join(', ')}`, 10, lightTextColor);
+  yPosition += 12;
+  
+  // Other projects in two columns layout
+  const remainingProjects = data.projects.slice(1);
+  const leftProject = remainingProjects[0];
+  const rightProject = remainingProjects[1];
+  
+  if (leftProject) {
+    // Left column project
+    const leftColumnY = yPosition;
+    addText(leftProject.name, 11, textColor, true);
+    addText(leftProject.description);
+    addText(`${language === 'es' ? 'Tecnologías:' : 'Technologies:'} ${leftProject.technologies.join(', ')}`, 10, lightTextColor);
+    
+    if (rightProject) {
+      // Right column project
+      const rightColumnY = leftColumnY;
+      currentColumn = 2;
+      yPosition = rightColumnY;
+      addText(rightProject.name, 11, textColor, true);
+      addText(rightProject.description);
+      addText(`${language === 'es' ? 'Tecnologías:' : 'Technologies:'} ${rightProject.technologies.join(', ')}`, 10, lightTextColor);
+      
+      // Reset to left column for footer
+      currentColumn = 1;
+    }
+  }
 
   // Footer
   const pageCount = doc.getNumberOfPages();
@@ -320,6 +373,28 @@ export function downloadCV(language: 'es' | 'en') {
         date: '2023'
       }
     ],
+    additionalTraining: [
+      {
+        name: language === 'es' ? 'Curso de Microservicios con Spring Boot' : 'Microservices with Spring Boot Course',
+        institution: 'Udemy',
+        date: '2023'
+      },
+      {
+        name: language === 'es' ? 'AWS Solutions Architect Professional' : 'AWS Solutions Architect Professional',
+        institution: 'A Cloud Guru',
+        date: '2024'
+      },
+      {
+        name: language === 'es' ? 'Desarrollo de APIs RESTful' : 'RESTful API Development',
+        institution: 'Platzi',
+        date: '2022'
+      },
+      {
+        name: language === 'es' ? 'Docker y Kubernetes Fundamentals' : 'Docker and Kubernetes Fundamentals',
+        institution: 'Linux Academy',
+        date: '2023'
+      }
+    ],
     skills: {
       backend: ['Java', 'Spring Boot', 'Python', 'Node.js', 'PHP'],
       cloud: ['AWS', 'Microsoft Azure', 'Docker', 'Kubernetes'],
@@ -333,6 +408,13 @@ export function downloadCV(language: 'es' | 'en') {
           ? 'Sistema integral de gestión empresarial desarrollado con arquitectura de microservicios. Incluye facturación electrónica integrada con el Ministerio de Hacienda de Costa Rica, gestión de inventario, reportes avanzados y API REST para integraciones.'
           : 'Comprehensive business management system developed with microservices architecture. Includes electronic invoicing integrated with Costa Rica Ministry of Finance, inventory management, advanced reports and REST API for integrations.',
         technologies: ['Java', 'Spring Boot', 'PostgreSQL', 'AWS', 'Microservices']
+      },
+      {
+        name: language === 'es' ? 'Herramienta de Transcripción de Video' : 'Video Transcription Tool',
+        description: language === 'es'
+          ? 'Aplicación web para transcripción automática de videos usando IA. Soporta múltiples formatos de video, interfaz multiidioma, exportación de subtítulos y procesamiento en tiempo real con tecnologías de aprendizaje automático.'
+          : 'Web application for automatic video transcription using AI. Supports multiple video formats, multilingual interface, subtitle export and real-time processing with machine learning technologies.',
+        technologies: ['React', 'TypeScript', 'AI Services', 'Web APIs']
       },
       {
         name: language === 'es' ? 'Sitio Web de Comandos Linux' : 'Linux Commands Website',

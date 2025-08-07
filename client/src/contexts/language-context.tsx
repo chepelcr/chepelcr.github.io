@@ -226,6 +226,7 @@ const translations = {
     "projects.otherProjects": "Otros Proyectos",
     "projects.visitSite": "Visitar Sitio",
     "projects.viewDetails": "Ver Detalles",
+    "projects.viewAllProjects": "Ver Todos los Proyectos",
     
     // Contact Section
     "contact.title": "Contáctame",
@@ -273,6 +274,9 @@ const translations = {
     "contact.defaultSubject": "Contacto desde el portafolio",
     "contact.emailClientTitle": "Cliente de email abierto",
     "contact.emailClientDesc": "Se ha abierto tu cliente de email predeterminado con el mensaje preparado.",
+    
+    // Common
+    "common.back": "Volver",
     
     // Footer
     "footer.description": "Desarrollador de software especializado en soluciones Backend con Java, Python y AWS. Creando sistemas escalables que impulsan el crecimiento empresarial.",
@@ -380,6 +384,7 @@ const translations = {
     "projects.technologiesUsed": "Technologies Used:",
     "projects.otherProjects": "Other Projects",
     "projects.visitSite": "Visit Site",
+    "projects.viewAllProjects": "View All Projects",
     "projects.viewDetails": "View Details",
     
     // Contact Section
@@ -428,6 +433,9 @@ const translations = {
     "contact.defaultSubject": "Contact from portfolio",
     "contact.emailClientTitle": "Email client opened",
     "contact.emailClientDesc": "Your default email client has been opened with the prepared message.",
+    
+    // Common
+    "common.back": "Back",
     
     // Footer
     "footer.description": "Software developer specialized in Backend solutions with Java, Python and AWS. Creating scalable systems that drive business growth.",
