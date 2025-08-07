@@ -186,18 +186,6 @@ export default function ProjectsSection() {
           ))}
         </div>
 
-        {/* View All Projects Button */}
-        <div className="text-center">
-          <Button 
-            size="lg" 
-            className="bg-accent text-accent-foreground hover:bg-accent/90"
-            onClick={() => window.open(`/${language}/projects`, "_self")}
-          >
-            <Eye className="mr-2 h-4 w-4" />
-            {t("projects.viewAllProjects")}
-          </Button>
-        </div>
-
         {/* Additional Projects Preview */}
         <div className="text-center mt-16">
           <h3 className="text-xl font-semibold mb-8 text-accent">{t("projects.otherProjects")}</h3>
