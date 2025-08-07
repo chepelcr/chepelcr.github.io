@@ -193,10 +193,9 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   });
 
   // Switch to right column for Certifications
-  if (isSecondPage && currentColumn === 1) {
-    currentColumn = 2;
-    yPosition = 20;
-  }
+  const educationEndY = yPosition;
+  currentColumn = 2;
+  yPosition = 20;
 
   // Certifications Section (Right Column)
   checkPageBreak();
@@ -207,15 +206,11 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   });
 
   // Second Row: Technical Skills and Additional Training
-  // Force new page or reset to left column
-  if (isSecondPage) {
-    doc.addPage();
-    yPosition = 20;
-    currentColumn = 1;
-  } else {
-    currentColumn = 1;
-    yPosition = Math.max(yPosition + 20, 160); // Ensure proper spacing
-  }
+  // Start on second page for better layout
+  doc.addPage();
+  yPosition = 20;
+  currentColumn = 1;
+  isSecondPage = true;
 
   // Technical Skills Section (Left Column)
   addTitle(language === 'es' ? 'Habilidades Técnicas' : 'Technical Skills');
@@ -235,17 +230,41 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
 
   // Switch to right column for Additional Training
   currentColumn = 2;
-  yPosition = isSecondPage ? 20 : Math.max(160, yPosition - skillSections.length * 20);
+  yPosition = 20;
 
   // Additional Training Section (Right Column)
-  addTitle(language === 'es' ? 'Capacitación Adicional' : 'Additional Training');
+  addTitle(language === 'es' ? 'Capacitaciones Adicionales' : 'Additional Training');
   
-  data.additionalTraining.forEach((training) => {
-    addText(training.name, 10, textColor, true);
-    addText(training.institution, 9, lightTextColor);
-    addText(training.date, 9, lightTextColor);
-    yPosition += 8;
-  });
+  // Group by institution
+  const ucr = data.additionalTraining.filter(t => t.institution.includes('UCR') || t.institution.includes('Academia'));
+  const miramar = data.additionalTraining.filter(t => t.institution.includes('Miramar'));
+  const aws = data.additionalTraining.filter(t => t.institution.includes('AWS'));
+  
+  // UCR Academy section
+  if (ucr.length > 0) {
+    addText(ucr[0].institution, 10, textColor, true);
+    ucr.forEach((training) => {
+      bullet(training.name);
+    });
+    yPosition += 4;
+  }
+  
+  // Miramar Community Center section
+  if (miramar.length > 0) {
+    addText(miramar[0].institution, 10, textColor, true);
+    miramar.forEach((training) => {
+      bullet(training.name);
+    });
+    yPosition += 4;
+  }
+  
+  // AWS Skill Builder section
+  if (aws.length > 0) {
+    addText(aws[0].institution, 10, textColor, true);
+    aws.forEach((training) => {
+      bullet(training.name);
+    });
+  }
 
   // Projects Section - Refer to separate projects page
   checkPageBreak();
@@ -375,24 +394,44 @@ export function downloadCV(language: 'es' | 'en') {
     ],
     additionalTraining: [
       {
-        name: language === 'es' ? 'Curso de Microservicios con Spring Boot' : 'Microservices with Spring Boot Course',
-        institution: 'Udemy',
-        date: '2023'
+        name: 'CCNAv7: Introduction to networks',
+        institution: language === 'es' ? 'Academia de Tecnología UCR' : 'UCR Technology Academy',
+        date: ''
       },
       {
-        name: language === 'es' ? 'AWS Solutions Architect Professional' : 'AWS Solutions Architect Professional',
-        institution: 'A Cloud Guru',
-        date: '2024'
+        name: 'NDG Linux I',
+        institution: language === 'es' ? 'Academia de Tecnología UCR' : 'UCR Technology Academy',
+        date: ''
       },
       {
-        name: language === 'es' ? 'Desarrollo de APIs RESTful' : 'RESTful API Development',
-        institution: 'Platzi',
-        date: '2022'
+        name: language === 'es' ? 'PHP – Facturación Electrónica – Hacienda' : 'PHP – Electronic Billing – Hacienda',
+        institution: language === 'es' ? 'Centro Comunitario Miramar' : 'Miramar Community Center',
+        date: ''
       },
       {
-        name: language === 'es' ? 'Docker y Kubernetes Fundamentals' : 'Docker and Kubernetes Fundamentals',
-        institution: 'Linux Academy',
-        date: '2023'
+        name: language === 'es' ? 'Inteligencia Artificial' : 'Artificial Intelligence',
+        institution: language === 'es' ? 'Centro Comunitario Miramar' : 'Miramar Community Center',
+        date: ''
+      },
+      {
+        name: language === 'es' ? 'Excel Avanzado' : 'Advanced Excel',
+        institution: language === 'es' ? 'Centro Comunitario Miramar' : 'Miramar Community Center',
+        date: ''
+      },
+      {
+        name: 'AWS Cloud Practitioner Essentials',
+        institution: 'AWS Skill Builder',
+        date: ''
+      },
+      {
+        name: 'AWS Security Fundamentals',
+        institution: 'AWS Skill Builder',
+        date: ''
+      },
+      {
+        name: 'AWS Well-Architected Best Practices',
+        institution: 'AWS Skill Builder',
+        date: ''
       }
     ],
     skills: {
