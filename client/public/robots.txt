@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jcampos.dev/sitemap.xml
+
+# Specific pages
+Allow: /es
+Allow: /en
+Allow: /es/about
+Allow: /en/about
+Allow: /es/projects
+Allow: /en/projects
+Allow: /es/contact
+Allow: /en/contact
+
+# Block development files
+Disallow: /src/
+Disallow: /_next/
+Disallow: /.git/
