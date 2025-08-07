@@ -14,6 +14,11 @@ Allow: /en/projects
 Allow: /es/contact
 Allow: /en/contact
 
+# Project pages
+Allow: /video-transcription/es
+Allow: /video-transcription/en
+Allow: /Comandos-linux/
+
 # Block development files
 Disallow: /src/
 Disallow: /_next/

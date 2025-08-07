@@ -74,4 +74,31 @@
     <priority>0.7</priority>
   </url>
   
+  <!-- Video Transcription Project Pages -->
+  <url>
+    <loc>https://jcampos.dev/video-transcription/es</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jcampos.dev/video-transcription/es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jcampos.dev/video-transcription/en"/>
+  </url>
+  
+  <url>
+    <loc>https://jcampos.dev/video-transcription/en</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jcampos.dev/video-transcription/es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jcampos.dev/video-transcription/en"/>
+  </url>
+  
+  <!-- Linux Commands Project Page -->
+  <url>
+    <loc>https://jcampos.dev/Comandos-linux/</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
 </urlset>
