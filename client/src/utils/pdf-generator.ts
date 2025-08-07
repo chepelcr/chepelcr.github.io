@@ -63,7 +63,7 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
 
   // Helper functions
   const getCurrentX = () => currentColumn === 1 ? leftColumnX : rightColumnX;
-  const getCurrentWidth = () => isSecondPage ? columnWidth : contentWidth;
+  const getCurrentWidth = () => currentColumn === 1 && !isSecondPage ? contentWidth : columnWidth;
 
   const addTitle = (title: string, size: number = 16) => {
     doc.setFontSize(size);
