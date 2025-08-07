@@ -126,13 +126,13 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   doc.setTextColor(primaryColor);
   doc.setFont('helvetica', 'bold');
   doc.text(data.personalInfo.name, margin, yPosition);
-  yPosition += 18;
+  yPosition += 12; // Reduced from 18
 
   doc.setFontSize(14);
   doc.setTextColor(textColor);
   doc.setFont('helvetica', 'normal');
   doc.text(data.personalInfo.title, margin, yPosition);
-  yPosition += 20;
+  yPosition += 15; // Reduced from 20
 
   // Contact Information (always full width on first page)
   doc.setFontSize(10);
@@ -153,9 +153,9 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   
   contactInfo.forEach((info) => {
     doc.text(info, margin, yPosition);
-    yPosition += 8;
+    yPosition += 6; // Reduced from 8
   });
-  yPosition += 10;
+  yPosition += 8; // Reduced from 10
 
   // About Section
   checkPageBreak();
