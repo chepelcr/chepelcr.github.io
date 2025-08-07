@@ -196,7 +196,9 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     yPosition += 6;
   });
 
-  yPosition += 20; // Space between Education and Certifications
+  // Calculate position to align with Technical Skills section
+  const leftColumnEndY = yPosition;
+  yPosition = 150; // Fixed position to align with Technical Skills
 
   // Certifications Section (still left column, below education)
   addTitle(language === 'es' ? 'Certificaciones' : 'Certifications');
@@ -243,7 +245,8 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     });
   }
 
-  yPosition += 20; // Space between Additional Training and Technical Skills
+  // Set position to align with Certifications section
+  yPosition = 150; // Fixed position to align with Certifications
 
   // Technical Skills Section (Right Column, bottom)
   addTitle(language === 'es' ? 'Habilidades Técnicas' : 'Technical Skills');
