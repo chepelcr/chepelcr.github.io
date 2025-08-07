@@ -196,9 +196,14 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     yPosition += 6;
   });
 
-  // Store the position after Education to calculate alignment
-  const educationEndY = yPosition;
   yPosition += 20; // Space between Education and Certifications
+
+  // Certifications Section (still left column, below education)
+  addTitle(language === 'es' ? 'Certificaciones' : 'Certifications');
+  
+  data.certifications.forEach((cert) => {
+    addBulletPoint(`${cert.name} (${cert.date})`);
+  });
 
   // Right Column: Additional Training (top) + Technical Skills (bottom)
   currentColumn = 2;
@@ -238,30 +243,9 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     });
   }
 
-  // Store right column position for alignment
-  const rightColumnContentEnd = yPosition;
-  
-  // Go back to left column for Certifications
-  currentColumn = 1;
-  yPosition = educationEndY + 20;
+  yPosition += 20; // Space between Additional Training and Technical Skills
 
-  // Certifications Section (left column, below education)
-  addTitle(language === 'es' ? 'Certificaciones' : 'Certifications');
-  
-  data.certifications.forEach((cert) => {
-    addBulletPoint(`${cert.name} (${cert.date})`);
-  });
-
-  // Store left column position after certifications
-  const leftColumnContentEnd = yPosition;
-
-  // Calculate alignment position for Technical Skills
-  // Use the lower of the two column ends plus spacing
-  const alignmentY = Math.max(leftColumnContentEnd, rightColumnContentEnd) + 20;
-
-  // Technical Skills Section (Right Column, bottom) - aligned
-  currentColumn = 2;
-  yPosition = alignmentY;
+  // Technical Skills Section (Right Column, bottom)
   addTitle(language === 'es' ? 'Habilidades Técnicas' : 'Technical Skills');
   
   const skillSections = [
