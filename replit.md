@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a personal portfolio website for José Pablo Campos Solano, a backend software developer specializing in Java (Spring Boot) and Python. The application showcases his professional experience, skills, projects, and provides a contact form for potential clients or employers. The website is built as a full-stack application with a React frontend and Express.js backend, featuring a modern, responsive design with a dark theme optimized for developer portfolios.
+This is a personal portfolio website for José Pablo Campos Solano, a solutions architect specializing in Java (Spring Boot) and Python. The application showcases his professional experience, skills, projects, and provides a contact form for potential clients or employers. The website is built as a full-stack application with a React frontend and Express.js backend, featuring a modern, responsive design with a dark theme optimized for developer portfolios.
 
 ## User Preferences
 
@@ -90,6 +90,14 @@ Preferred communication style: Simple, everyday language.
 - **Custom Domain Support**: Configured for chepelcr.github.io repository with jcampos.dev domain
 
 ## Recent Changes (January 2025)
+
+### Professional Title Update (January 2025)
+- **Title Change**: Updated professional title from "Desarrollador Backend/Backend Developer" to "Arquitecto de Soluciones/Solutions Architect"
+- **Website Updates**: Updated all UI text, meta tags, and SEO content to reflect new title
+- **PDF Generation**: Updated CV/PDF generator to use new professional title
+- **SEO Optimization**: Updated keywords and descriptions for search engine optimization with new title
+
+## Previous Changes (January 2025)
 
 ### Language and Translation System
 - **Complete Translation Implementation**: All sections now fully translate between Spanish and English

@@ -348,7 +348,7 @@ export function downloadCV(language: 'es' | 'en') {
   const cvData: CVData = {
     personalInfo: {
       name: 'José Pablo Campos Solano',
-      title: language === 'es' ? 'Desarrollador Backend' : 'Backend Developer',
+      title: language === 'es' ? 'Arquitecto de Soluciones' : 'Solutions Architect',
       email: 'chepelcr@outlook.com',
       phone: '(506) 7039-1069',
       location: 'Costa Rica',

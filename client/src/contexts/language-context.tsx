@@ -137,7 +137,7 @@ const translations = {
     
     // Hero Section
     "hero.greeting": "¡Hola! Soy",
-    "hero.title": "Desarrollador Backend",
+    "hero.title": "Arquitecto de Soluciones",
     "hero.subtitle": "Especializado en Java, Python y AWS",
     "hero.description": "Desarrollador de software especializado en soluciones Backend con Java, Python y AWS. Creando sistemas escalables que impulsan el crecimiento empresarial.",
     "hero.contactMe": "Contáctame",
@@ -296,7 +296,7 @@ const translations = {
     
     // Hero Section
     "hero.greeting": "Hello! I'm",
-    "hero.title": "Backend Developer",
+    "hero.title": "Solutions Architect",
     "hero.subtitle": "Specialized in Java, Python and AWS",
     "hero.description": "Software developer specialized in Backend solutions with Java, Python and AWS. Creating scalable systems that drive business growth.",
     "hero.contactMe": "Contact Me",
