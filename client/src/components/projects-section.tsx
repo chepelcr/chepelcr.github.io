@@ -18,9 +18,9 @@ const getMainProjects = (t: any, language: string) => [
     title: t("projects.erpTitle"),
     description: t("projects.erpDesc"),
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
-    technologies: ["Java Spring Boot", "Python", "AWS Services", "PostgreSQL", "Docker", "Kafka"],
+    technologies: ["ExpressJS", "React", "AWS", "PostgreSQL", "Ivois"],
     type: "ERP System",
-    ivoiUrl: "https://frontend.dev.ivois.io",
+    erpRul: "https://biller.jcampos.dev",
   },
   {
     title: t("projects.videoTranscriptTitle"),
@@ -109,13 +109,13 @@ export default function ProjectsSection() {
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                  {mainProjects[0].ivoiUrl && (
+                  {mainProjects[0].erpRul && (
                     <Button 
                       className="bg-accent text-accent-foreground hover:bg-accent/90"
-                      onClick={() => window.open(mainProjects[0].ivoiUrl, "_blank")}
+                      onClick={() => window.open(mainProjects[0].erpRul, "_blank")}
                     >
                       <ExternalLink className="mr-2 h-4 w-4" />
-                      {t("projects.enterIvois")}
+                      {t("projects.enterERP")}
                     </Button>
                   )}
                 </div>

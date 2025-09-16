@@ -90,6 +90,16 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     yPosition += lines.length * fontSize * 0.6 + 4;
   };
 
+  const addSubtitle = (text: string, fontSize: number = 10, color: string = lightTextColor) => {
+    doc.setFontSize(fontSize);
+    doc.setTextColor(color);
+    doc.setFont('helvetica', 'normal');
+    
+    const lines = doc.splitTextToSize(text, getCurrentWidth());
+    doc.text(lines, getCurrentX(), yPosition);
+    yPosition += lines.length * fontSize * 0.6 + 2;
+  };
+
   const addBulletPoint = (text: string, indent: number = 5) => {
     doc.setFontSize(10);
     doc.setTextColor(textColor);
@@ -158,60 +168,25 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   yPosition += 8; // Reduced from 10
 
   // About Section
-  checkPageBreak();
   addTitle(language === 'es' ? 'Acerca de Mí' : 'About Me');
   addText(data.about);
+  yPosition += 10;
 
-  // Experience Section
-  checkPageBreak();
-  addTitle(language === 'es' ? 'Experiencia Profesional' : 'Professional Experience');
-  
-  data.experience.forEach((exp) => {
-    checkPageBreak(30);
-    addText(exp.title, 12, textColor, true);
-    addText(`${exp.company} | ${exp.period}`, 10, lightTextColor);
-    addText(exp.description);
-    
-    if (exp.skills.length > 0) {
-      addText(language === 'es' ? 'Tecnologías:' : 'Technologies:', 10, textColor, true);
-      addText(exp.skills.join(', '), 10, lightTextColor);
-    }
-    yPosition += 8;
-  });
-
-  // Start second page with two-column layout
-  doc.addPage();
-  yPosition = 20;
-  currentColumn = 1;
+  // Start two-column layout for certifications and additional training
   isSecondPage = true;
+  currentColumn = 1;
+  const columnsStartY = yPosition;
 
-  // Left Column: Education (top) + Certifications (bottom)
-  // Education Section
-  addTitle(language === 'es' ? 'Educación' : 'Education');
-  
-  data.education.forEach((edu) => {
-    addText(edu.degree, 11, textColor, true);
-    addText(edu.institution, 10, lightTextColor);
-    addText(edu.period, 10, lightTextColor);
-    yPosition += 6;
-  });
-
-  // Calculate position to align with Technical Skills section
-  const leftColumnEndY = yPosition;
-  yPosition = 150; // Fixed position to align with Technical Skills
-
-  // Certifications Section (still left column, below education)
+  // Left Column: Certifications
   addTitle(language === 'es' ? 'Certificaciones' : 'Certifications');
-  
   data.certifications.forEach((cert) => {
     addBulletPoint(`${cert.name} (${cert.date})`);
   });
 
-  // Right Column: Additional Training (top) + Technical Skills (bottom)
+  // Right Column: Additional Training
   currentColumn = 2;
-  yPosition = 20;
+  yPosition = columnsStartY;
 
-  // Additional Training Section (Right Column, top)
   addTitle(language === 'es' ? 'Capacitaciones Adicionales' : 'Additional Training');
   
   // Group by institution
@@ -245,10 +220,48 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     });
   }
 
-  // Set position to align with Certifications section
-  yPosition = 150; // Fixed position to align with Certifications
+  // Second page
+  doc.addPage();
+  yPosition = 20;
+  currentColumn = 1;
+  isSecondPage = false; // Reset for full-width content
 
-  // Technical Skills Section (Right Column, bottom)
+  // Professional Experience Section (full width)
+  addTitle(language === 'es' ? 'Experiencia Profesional' : 'Professional Experience');
+  
+  data.experience.forEach((exp) => {
+    addText(exp.title, 12, textColor, true);
+    addSubtitle(`${exp.company} | ${exp.period}`);
+    addText(exp.description);
+    
+    if (exp.skills.length > 0) {
+      addText(language === 'es' ? 'Tecnologías:' : 'Technologies:', 10, textColor, true);
+      addText(exp.skills.join(', '), 10, lightTextColor);
+    }
+    yPosition += 2;
+  });
+
+  yPosition += 5;
+
+  // Start two-column layout for education and technical skills
+  isSecondPage = true;
+  currentColumn = 1;
+  const educationSkillsStartY = yPosition;
+
+  // Left Column: Education
+  addTitle(language === 'es' ? 'Educación' : 'Education');
+  
+  data.education.forEach((edu) => {
+    addText(edu.degree, 11, textColor, true);
+    addText(edu.institution, 10, lightTextColor);
+    addText(edu.period, 10, lightTextColor);
+    yPosition += 3;
+  });
+
+  // Right Column: Technical Skills
+  currentColumn = 2;
+  yPosition = educationSkillsStartY;
+
   addTitle(language === 'es' ? 'Habilidades Técnicas' : 'Technical Skills');
   
   // Define actual skills matching the website
@@ -276,56 +289,11 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   ];
 
   skillSections.forEach((section) => {
-    addText(`${section.title}:`, 10, textColor, true);
+    addText(`${section.title}`, 10, textColor, true);
     addText(section.skills.join(', '), 10, lightTextColor);
-    yPosition += 4;
+    yPosition += 1;
   });
 
-  // Projects Section on third page
-  doc.addPage();
-  yPosition = 20;
-  currentColumn = 1;
-  isSecondPage = false; // Reset for full-width content
-  
-  addTitle(language === 'es' ? 'Proyectos Destacados' : 'Featured Projects');
-  
-  // First project (ERP) - Full width
-  const erpProject = data.projects[0];
-  addText(erpProject.name, 11, textColor, true);
-  addText(erpProject.description);
-  addText(`${language === 'es' ? 'Tecnologías:' : 'Technologies:'} ${erpProject.technologies.join(', ')}`, 10, lightTextColor);
-  yPosition += 12;
-  
-  // Other projects in two columns layout
-  const remainingProjects = data.projects.slice(1);
-  const leftProject = remainingProjects[0];
-  const rightProject = remainingProjects[1];
-  
-  if (leftProject) {
-    // Set up two-column layout for remaining projects
-    isSecondPage = true;
-    currentColumn = 1;
-    
-    // Left column project
-    const leftColumnY = yPosition;
-    addText(leftProject.name, 11, textColor, true);
-    addText(leftProject.description);
-    addText(`${language === 'es' ? 'Tecnologías:' : 'Technologies:'} ${leftProject.technologies.join(', ')}`, 10, lightTextColor);
-    
-    if (rightProject) {
-      // Right column project
-      const rightColumnY = leftColumnY;
-      currentColumn = 2;
-      yPosition = rightColumnY;
-      addText(rightProject.name, 11, textColor, true);
-      addText(rightProject.description);
-      addText(`${language === 'es' ? 'Tecnologías:' : 'Technologies:'} ${rightProject.technologies.join(', ')}`, 10, lightTextColor);
-      
-      // Reset to left column for footer
-      currentColumn = 1;
-      isSecondPage = false;
-    }
-  }
 
   // Footer
   const pageCount = doc.getNumberOfPages();
@@ -355,17 +323,17 @@ export function downloadCV(language: 'es' | 'en') {
       languages: language === 'es' ? 'Español (Nativo), Inglés (B2)' : 'Spanish (Native), English (B2)'
     },
     about: language === 'es' 
-      ? 'Desarrollador de software especializado en BackEnd con Java (Spring Boot) y Python. Durante los últimos dos años, he estado desarrollando mi propio sistema ERP para facturación electrónica, integrando microservicios, bases de datos relacionales, mensajería asíncrona y servicios cloud con AWS. He participado en comunidades de software de código abierto y asisto activamente a eventos de tecnología.'
-      : 'Software developer specialized in Backend with Java (Spring Boot) and Python. For the last two years, I have been developing my own ERP system for electronic invoicing, integrating microservices, relational databases, asynchronous messaging and cloud services with AWS. I have participated in open source software communities and actively attend technology events.',
+      ? 'Soy un desarrollador de software con experiencia en tecnologías serverless, especializado en Java con Spring Boot y Python. Mi pasión por la tecnología me ha llevado a obtener certificaciones en AWS, Microsoft Azure y Cisco, lo que me permite diseñar y desarrollar soluciones escalables en la nube.'
+      : 'I am a software developer with experience in backend technologies, specialized in Java with Spring Boot and Python. My passion for technology has led me to obtain certifications in AWS, Microsoft Azure and Cisco, which allows me to design and develop scalable cloud solutions.',
     experience: [
       {
         title: 'Java Developer',
-        company: 'IFZ Sociedad Anónima',
+        company: 'Interfaz',
         period: language === 'es' ? 'Julio 2022 - Junio 2025' : 'July 2022 - June 2025',
         description: language === 'es'
-          ? 'Desarrollo de microservicios, gestión de servicios AWS e infraestructura. Implementación de soluciones escalables utilizando arquitecturas modernas y mejores prácticas de desarrollo en la nube.'
-          : 'Development of microservices, AWS services management and infrastructure. Implementation of scalable solutions using modern architectures and cloud development best practices.',
-        skills: ['Java', 'AWS', 'Microservices', 'Spring Boot']
+          ? 'Analisis, diseño e implementación de infraestructura, microservicios, APIs en la nube, servicios de mensajeria, correo y almacenamiento de datos en Amazon Web Services.'
+          : 'Analysis, design and implementation of infrastructure, microservices, cloud APIs, messaging services, email and data storage in Amazon Web Services.',
+        skills: ['API Gateway', 'AWS Lambda', 'CI/CD', 'Cloudformation', 'ECR', 'ECS', 'RDS', 'S3', 'SES', 'SNS', 'SQS']
       },
       {
         title: language === 'es' ? 'Web Developer Ad Honorem' : 'Web Developer Ad Honorem',
@@ -374,7 +342,7 @@ export function downloadCV(language: 'es' | 'en') {
         description: language === 'es'
           ? 'Diseño y desarrollo de sistema ERP personalizado para la gestión empresarial. Implementación de soluciones de facturación electrónica y automatización de procesos de negocio.'
           : 'Design and development of custom ERP system for business management. Implementation of electronic invoicing solutions and business process automation.',
-        skills: ['ERP Development', 'Electronic Invoicing', 'PHP', 'MySQL']
+        skills: ['AWS Cognito', 'Postgres', 'TypeScript', 'React', 'SES']
       }
     ],
     education: [

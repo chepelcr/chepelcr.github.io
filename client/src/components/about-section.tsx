@@ -11,37 +11,36 @@ export default function AboutSection() {
           <User className="inline-block text-accent mr-4" />
           {t("about.title")}
         </h2>
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12">
           <div>
-            <img
-              src="/profile-photo.png"
-              alt="José Pablo Campos Solano - Professional Portrait"
-              className="rounded-xl shadow-lg w-full max-w-md mx-auto"
-            />
-          </div>
-          <div className="space-y-6">
-            <Card className="bg-card border-border card-hover">
-              <CardContent className="p-6">
+            <Card className="bg-card border-border card-hover h-full">
+              <CardContent className="p-6 h-full flex flex-col">
                 <h3 className="text-xl font-semibold mb-4 text-accent flex items-center">
                   <Briefcase className="mr-2" />
                   {t("about.professionalProfile")}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  {t("about.profileDesc1")}
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  {t("about.profileDesc2")}
-                </p>
+                <div className="flex-grow">
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    {t("about.profileDesc1")}
+                  </p>
+                    <p className="text-muted-foreground leading-relaxed mb-4">
+                    {t("about.profileDesc3")}
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {t("about.profileDesc2")}
+                  </p>
+                </div>
               </CardContent>
             </Card>
-            
-            <Card className="bg-card border-border card-hover">
-              <CardContent className="p-6">
+          </div>
+          <div>
+            <Card className="bg-card border-border card-hover h-full">
+              <CardContent className="p-6 h-full flex flex-col">
                 <h3 className="text-xl font-semibold mb-4 text-accent flex items-center">
                   <Heart className="mr-2" />
                   {t("about.personalInfo")}
                 </h3>
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-4 flex-grow">
                   <div>
                     <p className="text-muted-foreground">{t("about.nationality")}</p>
                     <p className="font-semibold">Costa Rica</p>
@@ -51,12 +50,8 @@ export default function AboutSection() {
                     <p className="font-semibold">{t("about.languageProficiency")}</p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground">{t("about.id")}</p>
-                    <p className="font-semibold font-mono">1-1664-0506</p>
-                  </div>
-                  <div>
                     <p className="text-muted-foreground">{t("about.phone")}</p>
-                    <p className="font-semibold">(506) 7039-1069</p>
+                    <a href="tel:+50670391069" className="font-semibold hover:text-accent transition-colors">(506) 7039-1069</a>
                   </div>
                 </div>
               </CardContent>

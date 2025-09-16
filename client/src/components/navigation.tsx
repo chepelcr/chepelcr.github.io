@@ -24,9 +24,9 @@ export default function Navigation() {
   const navigationItems = [
     { section: "home" as Section, label: t("nav.home") },
     { section: "about" as Section, label: t("nav.about") },
-    { section: "skills" as Section, label: t("nav.skills") },
-    { section: "experience" as Section, label: t("nav.experience") },
     { section: "education" as Section, label: t("nav.education") },
+    { section: "experience" as Section, label: t("nav.experience") },
+    { section: "skills" as Section, label: t("nav.skills") },
     { section: "projects" as Section, label: t("nav.projects") },
     { section: "contact" as Section, label: t("nav.contact") },
   ];

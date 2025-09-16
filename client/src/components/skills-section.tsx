@@ -12,32 +12,32 @@ import {
   Rocket 
 } from "lucide-react";
 
-const coreSkills = [
-  { name: "Java (Spring Boot)", level: "Experto", icon: "☕" },
-  { name: "Python", level: "Avanzado", icon: "🐍" },
-  { name: "PHP", level: "Intermedio", icon: "🔧" },
-  { name: "JavaScript & HTML", level: "Intermedio", icon: "🌐" },
+const getCoreSkills = (t: any) => [
+  { name: "Java (Spring Boot)", level: t("skills.expert"), icon: "☕" },
+  { name: "Python", level: t("skills.advanced"), icon: "🐍" },
+  { name: "PHP", level: t("skills.intermediate"), icon: "🔧" },
+  { name: "JavaScript & HTML", level: t("skills.intermediate"), icon: "🌐" },
 ];
 
-const cloudSkills = [
-  { name: "AWS Infrastructure", level: "Certificado", icon: "☁️" },
-  { name: "Microservices Architecture", level: "Experto", icon: "🏗️" },
-  { name: "Serverless Programming", level: "Avanzado", icon: "⚡" },
-  { name: "Docker & Container", level: "Avanzado", icon: "🐳" },
+const getCloudSkills = (t: any) => [
+  { name: "AWS Infrastructure", level: t("skills.certified"), icon: "☁️" },
+  { name: "Microservices Architecture", level: t("skills.expert"), icon: "🏗️" },
+  { name: "Serverless Programming", level: t("skills.advanced"), icon: "⚡" },
+  { name: "Docker & Container", level: t("skills.advanced"), icon: "🐳" },
 ];
 
-const databaseSkills = [
-  { name: "MySQL", level: "Avanzado", icon: "🗄️" },
-  { name: "PostgreSQL", level: "Avanzado", icon: "🐘" },
-  { name: "Oracle", level: "Intermedio", icon: "🔶" },
-  { name: "Microsoft SQL Server", level: "Intermedio", icon: "🗃️" },
+const getDatabaseSkills = (t: any) => [
+  { name: "MySQL", level: t("skills.advanced"), icon: "🗄️" },
+  { name: "PostgreSQL", level: t("skills.advanced"), icon: "🐘" },
+  { name: "Oracle", level: t("skills.basic"), icon: "🔶" },
+  { name: "Microsoft SQL Server", level: t("skills.basic"), icon: "🗃️" },
 ];
 
-const toolsSkills = [
-  { name: "Rest API Services", level: "Experto", icon: "🔗" },
-  { name: "Linux", level: "Avanzado", icon: "🐧" },
-  { name: "Kafka", level: "Intermedio", icon: "📊" },
-  { name: "Redis", level: "Intermedio", icon: "⚡" },
+const getToolsSkills = (t: any) => [
+  { name: "Rest API Services", level: t("skills.expert"), icon: "🔗" },
+  { name: "Linux", level: t("skills.advanced"), icon: "🐧" },
+  { name: "Kafka", level: t("skills.intermediate"), icon: "📊" },
+  { name: "Redis", level: t("skills.intermediate"), icon: "⚡" },
 ];
 
 const getSoftSkills = (t: any) => [
@@ -94,6 +94,10 @@ function SkillCard({ title, skills, icon: Icon }: { title: string; skills: any[]
 
 export default function SkillsSection() {
   const { t } = useLanguage();
+  const coreSkills = getCoreSkills(t);
+  const cloudSkills = getCloudSkills(t);
+  const databaseSkills = getDatabaseSkills(t);
+  const toolsSkills = getToolsSkills(t);
   const softSkills = getSoftSkills(t);
   
   return (
