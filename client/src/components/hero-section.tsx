@@ -4,7 +4,7 @@ import {useLanguage} from "@/contexts/language-context";
 import {downloadCV} from "@/utils/pdf-generator";
 
 export default function HeroSection() {
-    const {t, language, navigateToSection} = useLanguage();
+    const {t, language, cvData, navigateToSection} = useLanguage();
 
     return (
         <section id="home" className="section-spacing gradient-bg pt-32">
@@ -34,7 +34,13 @@ export default function HeroSection() {
                                 variant="outline"
                                 size="lg"
                                 className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
-                                onClick={() => downloadCV(language)}
+                                onClick={() => {
+                                    if (cvData) {
+                                        downloadCV(cvData, language, t);
+                                    } else {
+                                        console.log('CV data not ready yet');
+                                    }
+                                }}
                             >
                                 <Download className="mr-2 h-4 w-4"/>
                                 {t("hero.downloadCV")}

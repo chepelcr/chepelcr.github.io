@@ -71,9 +71,19 @@ export default function ExperienceSection() {
                                                 <span className="text-muted-foreground font-mono">{exp.period}</span>
                                             </div>
                                             <p className="text-lg font-medium mb-2">{exp.company}</p>
-                                            <p className="text-muted-foreground leading-relaxed mb-4 flex-grow">
-                                                {exp.description}
-                                            </p>
+                                            <div className="text-muted-foreground leading-relaxed mb-4 flex-grow">
+                                                {exp.description.includes('\n') ? (
+                                                    exp.description.split('\n').map((paragraph, index) => (
+                                                        paragraph.trim() && (
+                                                            <p key={index} className="text-justify mb-1">
+                                                                {paragraph.trim()}
+                                                            </p>
+                                                        )
+                                                    ))
+                                                ) : (
+                                                    <p className="text-justify">{exp.description}</p>
+                                                )}
+                                            </div>
                                             <div className="flex flex-wrap gap-2 mt-auto">
                                                 {exp.skills.map((skill, skillIndex) => (
                                                     <Badge key={skillIndex}

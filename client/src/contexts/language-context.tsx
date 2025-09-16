@@ -1,12 +1,57 @@
-import {createContext, useContext, useState, useEffect, ReactNode} from "react";
+import {createContext, useContext, useState, useEffect, ReactNode, useMemo} from "react";
 import {useLocation} from "wouter";
 
 export type Language = "es" | "en";
 export type Section = "home" | "about" | "skills" | "experience" | "education" | "projects" | "contact";
 
+export interface CVData {
+  personalInfo: {
+    name: string;
+    title: string;
+    email: string;
+    phone: string;
+    location: string;
+    languages: string;
+  };
+  about: string;
+  experience: Array<{
+    title: string;
+    company: string;
+    period: string;
+    description: string;
+    skills: string[];
+  }>;
+  education: Array<{
+    degree: string;
+    institution: string;
+    period: string;
+  }>;
+  certifications: Array<{
+    name: string;
+    date: string;
+  }>;
+  additionalTraining: Array<{
+    name: string;
+    institution: string;
+    date: string;
+  }>;
+  skills: {
+    backend: string[];
+    cloud: string[];
+    databases: string[];
+    tools: string[];
+  };
+  projects: Array<{
+    name: string;
+    description: string;
+    technologies: string[];
+  }>;
+}
+
 type LanguageContextType = {
     language: Language;
     currentSection: Section | null;
+    cvData: CVData;
     setLanguage: (lang: Language) => void;
     navigateToSection: (section: Section, updateUrl?: boolean) => void;
     t: (key: string) => string;
@@ -14,13 +59,13 @@ type LanguageContextType = {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function useLanguage() {
+export const useLanguage = () => {
     const context = useContext(LanguageContext);
     if (!context) {
         throw new Error("useLanguage must be used within a LanguageProvider");
     }
     return context;
-}
+};
 
 type LanguageProviderProps = {
     children: ReactNode;
@@ -117,8 +162,140 @@ export function LanguageProvider({children}: LanguageProviderProps) {
         return translation[key] || key;
     };
 
+    const cvData: CVData = useMemo(() => ({
+        personalInfo: {
+            name: 'José Pablo Campos Solano',
+            title: t('hero.title'),
+            email: 'chepelcr@outlook.com',
+            phone: '(506) 7039-1069',
+            location: 'Costa Rica',
+            languages: t('about.languageProficiency')
+        },
+        about: t('about.description'),
+        experience: [
+            {
+                title: t('experience.webDevTitle'),
+                company: t('experience.webDevCompany'),
+                period: t('experience.webDevPeriod'),
+                description: t('experience.webDevDesc'),
+                skills: ['AWS Cognito', 'Postgres', 'TypeScript', 'React', 'SES']
+            },
+            {
+                title: t('experience.javaDevTitle'),
+                company: t('experience.javaDevCompany'),
+                period: t('experience.javaDevPeriod'),
+                description: t('experience.javaDevDesc'),
+                skills: ['API Gateway', 'AWS Lambda', 'CI/CD', 'Cloudformation', 'ECR', 'ECS', 'RDS', 'S3', 'SES', 'SNS', 'SQS']
+            }
+        ],
+        education: [
+            {
+                degree: t('education.businessInformatics'),
+                institution: 'Universidad de Costa Rica, Sede del Pacífico',
+                period: '2017 - 2022'
+            },
+            {
+                degree: t('education.internationalBaccalaureate'),
+                institution: 'Liceo de Costa Rica',
+                period: '2015 - 2016'
+            },
+            {
+                degree: t('education.mediaEducation'),
+                institution: 'Liceo de Costa Rica',
+                period: '2010 - 2016'
+            }
+        ],
+        certifications: [
+            {
+                name: 'AWS Certified Solutions Architect',
+                date: '13-04-2023'
+            },
+            {
+                name: 'AWS Certified Cloud Practitioner',
+                date: '16-02-2023'
+            },
+            {
+                name: 'Microsoft Certified: Azure Fundamentals',
+                date: '22-03-2023'
+            },
+            {
+                name: 'CCNA: Introduction to Networks',
+                date: '2023'
+            },
+            {
+                name: 'EF SET English Certificate - Nivel B2',
+                date: '2023'
+            }
+        ],
+        additionalTraining: [
+            {
+                name: 'CCNAv7: Introduction to networks',
+                institution: language === 'es' ? 'Academia de Tecnología UCR' : 'UCR Technology Academy',
+                date: ''
+            },
+            {
+                name: 'NDG Linux I',
+                institution: language === 'es' ? 'Academia de Tecnología UCR' : 'UCR Technology Academy',
+                date: ''
+            },
+            {
+                name: language === 'es' ? 'PHP – Facturación Electrónica – Hacienda' : 'PHP – Electronic Billing – Hacienda',
+                institution: language === 'es' ? 'Centro Comunitario Miramar' : 'Miramar Community Center',
+                date: ''
+            },
+            {
+                name: language === 'es' ? 'Inteligencia Artificial' : 'Artificial Intelligence',
+                institution: language === 'es' ? 'Centro Comunitario Miramar' : 'Miramar Community Center',
+                date: ''
+            },
+            {
+                name: language === 'es' ? 'Excel Avanzado' : 'Advanced Excel',
+                institution: language === 'es' ? 'Centro Comunitario Miramar' : 'Miramar Community Center',
+                date: ''
+            },
+            {
+                name: 'AWS Cloud Practitioner Essentials',
+                institution: 'AWS Skill Builder',
+                date: ''
+            },
+            {
+                name: 'AWS Security Fundamentals',
+                institution: 'AWS Skill Builder',
+                date: ''
+            },
+            {
+                name: 'AWS Well-Architected Best Practices',
+                institution: 'AWS Skill Builder',
+                date: ''
+            }
+        ],
+        skills: {
+            backend: ['Java', 'Spring Boot', 'Python', 'Node.js', 'PHP'],
+            cloud: ['AWS', 'Microsoft Azure', 'Docker', 'Kubernetes'],
+            databases: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis'],
+            tools: ['Git', 'Jenkins', 'Postman', 'VS Code', 'IntelliJ IDEA']
+        },
+        projects: [
+            {
+                name: t('projects.erpTitle'),
+                description: t('projects.erpDesc'),
+                technologies: ['Java', 'Spring Boot', 'PostgreSQL', 'AWS', 'Microservices']
+            },
+            {
+                name: t('projects.videoTranscriptTitle'),
+                description: t('projects.videoTranscriptDesc'),
+                technologies: ['React', 'TypeScript', 'AI Services', 'Web APIs']
+            },
+            {
+                name: t('projects.linuxTitle'),
+                description: t('projects.linuxDesc'),
+                technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js']
+            }
+        ]
+    }), [language, t]);
+
     return (
-        <LanguageContext.Provider value={{language, currentSection, setLanguage, navigateToSection, t}}>
+        <LanguageContext.Provider value={{language, currentSection, cvData, setLanguage, navigateToSection, t}}>
             {children}
         </LanguageContext.Provider>
     );
@@ -180,6 +357,8 @@ const translations = {
         "skills.intermediate": "Intermedio",
         "skills.basic": "Básico",
         "skills.certified": "Certificado",
+        "cv.technologies": "Tecnologías:",
+        "cv.page": "Página",
 
         // Experience Section
         "experience.title": "Experiencia Profesional",
@@ -187,11 +366,19 @@ const translations = {
         "experience.javaDevTitle": "Java Developer",
         "experience.javaDevCompany": "Interfaz",
         "experience.javaDevPeriod": "Julio 2022 - Junio 2025",
-        "experience.javaDevDesc": "Desarrollo de microservicios, gestión de servicios AWS e infraestructura. Analisis, diseño e implementación de infraestructura, microservicios, APIs en la nube, servicios de mensajeria, correo y almacenamiento de datos en Amazon Web Services.",
+        "experience.javaDevDesc": "Analisis, diseño e implementación de infraestructura, microservicios, APIs en la nube, servicios de mensajeria, correo y almacenamiento de datos en Amazon Web Services. " +
+            "\nGeneración y firma de documentos electrónicos XML correspondientes con el formato requerido por el Ministerio de Hacienda." +
+            "\nGestión de sucursales, terminales y numeración consecutiva para documentos electrónicos." +
+            "\nGestión avanzada de productos con impuestos específicos, clientes y proveedores enfocado en multiples organizaciones." +
+            "\nImportación de datos preexistentes de documentos electrónicos (XML) generados en otros sistemas." +
+            "\nIntegración con servicios web del Ministerio de Hacienda: Personas, exoneraciones, codigos CABYS, tipo de cambio del dolar." +
+            "\nUso de APIs del Ministerio de Hacienda: Solicitudes de Histórico (documentos y sucursales), envio y validación de documentos electrónicos para multiples negocios.",
         "experience.webDevTitle": "Web Developer Ad Honorem",
         "experience.webDevCompany": "Modas Laura",
         "experience.webDevPeriod": "2021 - Actual",
-        "experience.webDevDesc": "Diseño y desarrollo de sistema ERP personalizado para la gestión empresarial. Implementación de soluciones de facturación electrónica y automatización de procesos de negocio.",
+        "experience.webDevDesc": "Diseño y desarrollo de sistema ERP personalizado para gestión empresarial." +
+            "\nImplementación de soluciones de facturación electrónica." +
+            "\nAutomatización de procesos de negocio.",
 
         // Education Section
         "education.title": "Educación y Certificaciones",
@@ -344,6 +531,8 @@ const translations = {
         "skills.intermediate": "Intermediate",
         "skills.basic": "Basic",
         "skills.certified": "Certified",
+        "cv.technologies": "Technologies:",
+        "cv.page": "Page",
 
         // Experience Section
         "experience.title": "Professional Experience",
@@ -351,7 +540,13 @@ const translations = {
         "experience.javaDevTitle": "Java Developer",
         "experience.javaDevCompany": "IFZ Sociedad Anónima",
         "experience.javaDevPeriod": "July 2022 - June 2025",
-        "experience.javaDevDesc": "Analysis, design and implementation of infrastructure, microservices, cloud APIs, messaging services, email and data storage in Amazon Web Services.",
+        "experience.javaDevDesc": "Analysis, design and implementation of infrastructure, microservices, cloud APIs, messaging services, email and data storage in Amazon Web Services." +
+            "\nGeneration and signing of XML electronic documents corresponding to the format required by the 'Ministerio de Hacienda'." +
+            "\nManagement of branches, terminals and consecutive numbering for electronic documents." +
+            "\nAdvanced management of products with specific taxes, customers and suppliers focused on multiple organizations." +
+            "\nImporting pre-existing data from electronic documents (XML) generated in other systems." +
+            "\nIntegration with 'Ministerio de Hacienda' web services: Persons, exemptions, CABYS codes, dollar exchange rate." +
+            "\nUse of 'Ministerio de Hacienda' APIs: Historical requests (documents and branches), sending and validation of electronic documents for multiple businesses.",
         "experience.webDevTitle": "Web Developer Ad Honorem",
         "experience.webDevCompany": "Modas Laura",
         "experience.webDevPeriod": "2021 - Current",

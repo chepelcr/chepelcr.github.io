@@ -20,13 +20,13 @@ export default function AboutSection() {
                   {t("about.professionalProfile")}
                 </h3>
                 <div className="flex-grow">
-                  <p className="text-muted-foreground leading-relaxed mb-4">
+                  <p className="text-muted-foreground leading-relaxed mb-4 text-justify">
                     {t("about.profileDesc1")}
                   </p>
-                    <p className="text-muted-foreground leading-relaxed mb-4">
+                    <p className="text-muted-foreground leading-relaxed mb-4 text-justify">
                     {t("about.profileDesc3")}
                   </p>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed text-justify">
                     {t("about.profileDesc2")}
                   </p>
                 </div>

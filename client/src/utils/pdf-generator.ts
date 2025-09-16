@@ -1,50 +1,7 @@
 import jsPDF from 'jspdf';
+import { CVData } from '@/contexts/language-context';
 
-interface CVData {
-  personalInfo: {
-    name: string;
-    title: string;
-    email: string;
-    phone: string;
-    location: string;
-    languages: string;
-  };
-  about: string;
-  experience: Array<{
-    title: string;
-    company: string;
-    period: string;
-    description: string;
-    skills: string[];
-  }>;
-  education: Array<{
-    degree: string;
-    institution: string;
-    period: string;
-  }>;
-  certifications: Array<{
-    name: string;
-    date: string;
-  }>;
-  additionalTraining: Array<{
-    name: string;
-    institution: string;
-    date: string;
-  }>;
-  skills: {
-    backend: string[];
-    cloud: string[];
-    databases: string[];
-    tools: string[];
-  };
-  projects: Array<{
-    name: string;
-    description: string;
-    technologies: string[];
-  }>;
-}
-
-export function generatePDF(data: CVData, language: 'es' | 'en') {
+export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string) => string) {
   const doc = new jsPDF();
   let yPosition = 20;
   let currentColumn = 1; // 1 for left, 2 for right
@@ -57,7 +14,7 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   const rightColumnX = margin + columnWidth + 10;
 
   // Colors
-  const primaryColor = '#22c55e'; // Green accent
+  const primaryColor = '#1e3a8a'; // Dark blue accent
   const textColor = '#374151';
   const lightTextColor = '#6b7280';
 
@@ -76,18 +33,48 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
     doc.setDrawColor(primaryColor);
     doc.setLineWidth(0.5);
     const titleWidth = doc.getTextWidth(title);
-    doc.line(getCurrentX(), yPosition - 2, getCurrentX() + titleWidth, yPosition - 2);
-    yPosition += 8;
+    doc.line(getCurrentX(), yPosition - 6, getCurrentX() + titleWidth, yPosition - 6);
+    yPosition += 4;
   };
 
-  const addText = (text: string, fontSize: number = 10, color: string = textColor, isBold: boolean = false) => {
+  const addText = (text: string, fontSize: number = 10, color: string = textColor, isBold: boolean = false, justify: boolean = false) => {
     doc.setFontSize(fontSize);
     doc.setTextColor(color);
     doc.setFont('helvetica', isBold ? 'bold' : 'normal');
     
-    const lines = doc.splitTextToSize(text, getCurrentWidth());
-    doc.text(lines, getCurrentX(), yPosition);
-    yPosition += lines.length * fontSize * 0.6 + 4;
+    if (justify && text.includes('\n')) {
+      // Handle text with line breaks - justify each paragraph separately
+      const paragraphs = text.split('\n');
+      paragraphs.forEach((paragraph, index) => {
+        if (paragraph.trim()) {
+          const lines = doc.splitTextToSize(paragraph.trim(), getCurrentWidth());
+          if (lines.length > 1) {
+            // Justify all lines except the last one in each paragraph
+            lines.forEach((line: string, lineIndex: number) => {
+              if (lineIndex < lines.length - 1) {
+                doc.text(line, getCurrentX(), yPosition, { align: 'justify', maxWidth: getCurrentWidth() });
+              } else {
+                doc.text(line, getCurrentX(), yPosition);
+              }
+              yPosition += fontSize * 0.6;
+            });
+          } else {
+            doc.text(lines, getCurrentX(), yPosition);
+            yPosition += fontSize * 0.6;
+          }
+        }
+        if (index < paragraphs.length - 1) yPosition += 0.25; // Space between paragraphs
+      });
+      yPosition += 4;
+    } else {
+      const lines = doc.splitTextToSize(text, getCurrentWidth());
+      if (justify && lines.length > 1) {
+        doc.text(lines, getCurrentX(), yPosition, { align: 'justify', maxWidth: getCurrentWidth() });
+      } else {
+        doc.text(lines, getCurrentX(), yPosition);
+      }
+      yPosition += lines.length * (lines.length > 4 ? fontSize * 0.5 : fontSize * 0.6) + (lines.length > 4 ? 1 : 4);
+    }
   };
 
   const addSubtitle = (text: string, fontSize: number = 10, color: string = lightTextColor) => {
@@ -148,10 +135,10 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   doc.setFontSize(10);
   doc.setTextColor(lightTextColor);
   const contactLabels = {
-    email: language === 'es' ? 'Email:' : 'Email:',
-    phone: language === 'es' ? 'Teléfono:' : 'Phone:',
-    location: language === 'es' ? 'Ubicación:' : 'Location:',
-    languages: language === 'es' ? 'Idiomas:' : 'Languages:'
+    email: 'Email:',
+    phone: t('about.phone'),
+    location: t('about.nationality'),
+    languages: t('about.languages')
   };
   
   const contactInfo = [
@@ -168,57 +155,28 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   yPosition += 8; // Reduced from 10
 
   // About Section
-  addTitle(language === 'es' ? 'Acerca de Mí' : 'About Me');
-  addText(data.about);
-  yPosition += 10;
+  addTitle(t('about.title'));
+  addText(data.about, 10, textColor, false, true);
+  yPosition += 2;
 
-  // Start two-column layout for certifications and additional training
-  isSecondPage = true;
-  currentColumn = 1;
-  const columnsStartY = yPosition;
-
-  // Left Column: Certifications
-  addTitle(language === 'es' ? 'Certificaciones' : 'Certifications');
-  data.certifications.forEach((cert) => {
-    addBulletPoint(`${cert.name} (${cert.date})`);
+  // Professional Experience Section (full width on first page)
+  addTitle(t('experience.title'));
+  
+  data.experience.forEach((exp: { title: string; company: string; period: string; description: string; skills: string[] }) => {
+    addText(exp.title, 12, textColor, true);
+    yPosition -= 4; // Reduce space between title and subtitle
+    addSubtitle(`${exp.company} | ${exp.period}`);
+    yPosition -= 1;
+    addText(exp.description, 10, textColor, false, true);
+    
+    if (exp.skills.length > 0) {
+      yPosition -= 3; // Reduce space before technologies label
+      addText(t('cv.technologies'), 10, textColor, true);
+      yPosition -= 4; // Reduce space after technologies label
+      addText(exp.skills.join(', '), 10, lightTextColor);
+    }
+    //yPosition += 1; // Add space between experience entries
   });
-
-  // Right Column: Additional Training
-  currentColumn = 2;
-  yPosition = columnsStartY;
-
-  addTitle(language === 'es' ? 'Capacitaciones Adicionales' : 'Additional Training');
-  
-  // Group by institution
-  const ucr = data.additionalTraining.filter(t => t.institution.includes('UCR') || t.institution.includes('Academia'));
-  const miramar = data.additionalTraining.filter(t => t.institution.includes('Miramar'));
-  const aws = data.additionalTraining.filter(t => t.institution.includes('AWS'));
-  
-  // UCR Academy section
-  if (ucr.length > 0) {
-    addText(ucr[0].institution, 10, textColor, true);
-    ucr.forEach((training) => {
-      addBulletPoint(training.name);
-    });
-    yPosition += 4;
-  }
-  
-  // Miramar Community Center section
-  if (miramar.length > 0) {
-    addText(miramar[0].institution, 10, textColor, true);
-    miramar.forEach((training) => {
-      addBulletPoint(training.name);
-    });
-    yPosition += 4;
-  }
-  
-  // AWS Skill Builder section
-  if (aws.length > 0) {
-    addText(aws[0].institution, 10, textColor, true);
-    aws.forEach((training) => {
-      addBulletPoint(training.name);
-    });
-  }
 
   // Second page
   doc.addPage();
@@ -226,43 +184,28 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   currentColumn = 1;
   isSecondPage = false; // Reset for full-width content
 
-  // Professional Experience Section (full width)
-  addTitle(language === 'es' ? 'Experiencia Profesional' : 'Professional Experience');
-  
-  data.experience.forEach((exp) => {
-    addText(exp.title, 12, textColor, true);
-    addSubtitle(`${exp.company} | ${exp.period}`);
-    addText(exp.description);
-    
-    if (exp.skills.length > 0) {
-      addText(language === 'es' ? 'Tecnologías:' : 'Technologies:', 10, textColor, true);
-      addText(exp.skills.join(', '), 10, lightTextColor);
-    }
-    yPosition += 2;
-  });
-
-  yPosition += 5;
-
   // Start two-column layout for education and technical skills
   isSecondPage = true;
   currentColumn = 1;
   const educationSkillsStartY = yPosition;
 
   // Left Column: Education
-  addTitle(language === 'es' ? 'Educación' : 'Education');
+  addTitle(t('education.educationSubtitle'));
   
-  data.education.forEach((edu) => {
+  data.education.forEach((edu: { degree: string; institution: string; period: string }) => {
     addText(edu.degree, 11, textColor, true);
+    yPosition -= 2; // Reduce space after degree
     addText(edu.institution, 10, lightTextColor);
+    yPosition -= 2; // Reduce space after institution
     addText(edu.period, 10, lightTextColor);
-    yPosition += 3;
+    yPosition += 4; // Add space between education entries
   });
 
   // Right Column: Technical Skills
   currentColumn = 2;
   yPosition = educationSkillsStartY;
 
-  addTitle(language === 'es' ? 'Habilidades Técnicas' : 'Technical Skills');
+  addTitle(t('skills.title'));
   
   // Define actual skills matching the website
   const coreSkills = [
@@ -282,17 +225,70 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   ];
 
   const skillSections = [
-    { title: 'Backend', skills: coreSkills },
-    { title: language === 'es' ? 'Nube' : 'Cloud', skills: cloudSkills },
-    { title: language === 'es' ? 'Bases de Datos' : 'Databases', skills: databaseSkills },
-    { title: language === 'es' ? 'Herramientas' : 'Tools', skills: toolsSkills }
+    { title: t('skills.backend'), skills: coreSkills },
+    { title: t('skills.cloud'), skills: cloudSkills },
+    { title: t('skills.databases'), skills: databaseSkills },
+    { title: t('skills.tools'), skills: toolsSkills }
   ];
 
   skillSections.forEach((section) => {
     addText(`${section.title}`, 10, textColor, true);
+    yPosition -= 2; // Reduce space after skill category title
     addText(section.skills.join(', '), 10, lightTextColor);
-    yPosition += 1;
+    yPosition += 2; // Add space between skill categories
   });
+
+  yPosition += 6;
+
+  // Start two-column layout for certifications and additional training
+  currentColumn = 1;
+  const certsTrainingStartY = yPosition;
+
+  // Left Column: Certifications
+  addTitle(t('education.certificationsSubtitle'));
+  data.certifications.forEach((cert: { name: string; date: string }) => {
+    addBulletPoint(`${cert.name} (${cert.date})`);
+  });
+
+  // Right Column: Additional Training
+  currentColumn = 2;
+  yPosition = certsTrainingStartY;
+
+  addTitle(t('education.trainingSubtitle'));
+  
+  // Group by institution
+  const ucr = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('UCR') || training.institution.includes('Academia'));
+  const miramar = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('Miramar'));
+  const aws = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('AWS'));
+  
+  // UCR Academy section
+  if (ucr.length > 0) {
+    addText(ucr[0].institution, 10, textColor, true);
+    yPosition -= 2; // Reduce space after institution title
+    ucr.forEach((training: { name: string; institution: string; date: string }) => {
+      addBulletPoint(training.name);
+    });
+    yPosition += 4; // Add space between institutions
+  }
+  
+  // Miramar Community Center section
+  if (miramar.length > 0) {
+    addText(miramar[0].institution, 10, textColor, true);
+    yPosition -= 2; // Reduce space after institution title
+    miramar.forEach((training: { name: string; institution: string; date: string }) => {
+      addBulletPoint(training.name);
+    });
+    yPosition += 4; // Add space between institutions
+  }
+  
+  // AWS Skill Builder section
+  if (aws.length > 0) {
+    addText(aws[0].institution, 10, textColor, true);
+    yPosition -= 2; // Reduce space after institution title
+    aws.forEach((training: { name: string; institution: string; date: string }) => {
+      addBulletPoint(training.name);
+    });
+  }
 
 
   // Footer
@@ -312,152 +308,13 @@ export function generatePDF(data: CVData, language: 'es' | 'en') {
   return doc;
 }
 
-export function downloadCV(language: 'es' | 'en') {
-  const cvData: CVData = {
-    personalInfo: {
-      name: 'José Pablo Campos Solano',
-      title: language === 'es' ? 'Arquitecto de Soluciones' : 'Solutions Architect',
-      email: 'chepelcr@outlook.com',
-      phone: '(506) 7039-1069',
-      location: 'Costa Rica',
-      languages: language === 'es' ? 'Español (Nativo), Inglés (B2)' : 'Spanish (Native), English (B2)'
-    },
-    about: language === 'es' 
-      ? 'Soy un desarrollador de software con experiencia en tecnologías serverless, especializado en Java con Spring Boot y Python. Mi pasión por la tecnología me ha llevado a obtener certificaciones en AWS, Microsoft Azure y Cisco, lo que me permite diseñar y desarrollar soluciones escalables en la nube.'
-      : 'I am a software developer with experience in backend technologies, specialized in Java with Spring Boot and Python. My passion for technology has led me to obtain certifications in AWS, Microsoft Azure and Cisco, which allows me to design and develop scalable cloud solutions.',
-    experience: [
-      {
-        title: 'Java Developer',
-        company: 'Interfaz',
-        period: language === 'es' ? 'Julio 2022 - Junio 2025' : 'July 2022 - June 2025',
-        description: language === 'es'
-          ? 'Analisis, diseño e implementación de infraestructura, microservicios, APIs en la nube, servicios de mensajeria, correo y almacenamiento de datos en Amazon Web Services.'
-          : 'Analysis, design and implementation of infrastructure, microservices, cloud APIs, messaging services, email and data storage in Amazon Web Services.',
-        skills: ['API Gateway', 'AWS Lambda', 'CI/CD', 'Cloudformation', 'ECR', 'ECS', 'RDS', 'S3', 'SES', 'SNS', 'SQS']
-      },
-      {
-        title: language === 'es' ? 'Web Developer Ad Honorem' : 'Web Developer Ad Honorem',
-        company: 'Modas Laura',
-        period: language === 'es' ? '2021 - Actual' : '2021 - Current',
-        description: language === 'es'
-          ? 'Diseño y desarrollo de sistema ERP personalizado para la gestión empresarial. Implementación de soluciones de facturación electrónica y automatización de procesos de negocio.'
-          : 'Design and development of custom ERP system for business management. Implementation of electronic invoicing solutions and business process automation.',
-        skills: ['AWS Cognito', 'Postgres', 'TypeScript', 'React', 'SES']
-      }
-    ],
-    education: [
-      {
-        degree: language === 'es' ? 'Bachiller en Informática Empresarial' : 'Bachelor in Business Informatics',
-        institution: 'Universidad de Costa Rica, Sede del Pacífico',
-        period: '2017 - 2022'
-      },
-      {
-        degree: language === 'es' ? 'Programa del Bachillerato Internacional' : 'International Baccalaureate Diploma Programme',
-        institution: 'Liceo de Costa Rica',
-        period: '2015 - 2016'
-      },
-      {
-        degree: language === 'es' ? 'Bachiller en Educación Media' : 'Bachelor in Media Education',
-        institution: 'Liceo de Costa Rica', 
-        period: '2010 - 2016'
-      }
-    ],
-    certifications: [
-      {
-        name: 'AWS Certified Solutions Architect',
-        date: '13-04-2023'
-      },
-      {
-        name: 'AWS Certified Cloud Practitioner',
-        date: '16-02-2023'
-      },
-      {
-        name: 'Microsoft Certified: Azure Fundamentals',
-        date: '22-03-2023'
-      },
-      {
-        name: 'CCNA: Introduction to Networks',
-        date: '2023'
-      },
-      {
-        name: 'EF SET English Certificate - Nivel B2',
-        date: '2023'
-      }
-    ],
-    additionalTraining: [
-      {
-        name: 'CCNAv7: Introduction to networks',
-        institution: language === 'es' ? 'Academia de Tecnología UCR' : 'UCR Technology Academy',
-        date: ''
-      },
-      {
-        name: 'NDG Linux I',
-        institution: language === 'es' ? 'Academia de Tecnología UCR' : 'UCR Technology Academy',
-        date: ''
-      },
-      {
-        name: language === 'es' ? 'PHP – Facturación Electrónica – Hacienda' : 'PHP – Electronic Billing – Hacienda',
-        institution: language === 'es' ? 'Centro Comunitario Miramar' : 'Miramar Community Center',
-        date: ''
-      },
-      {
-        name: language === 'es' ? 'Inteligencia Artificial' : 'Artificial Intelligence',
-        institution: language === 'es' ? 'Centro Comunitario Miramar' : 'Miramar Community Center',
-        date: ''
-      },
-      {
-        name: language === 'es' ? 'Excel Avanzado' : 'Advanced Excel',
-        institution: language === 'es' ? 'Centro Comunitario Miramar' : 'Miramar Community Center',
-        date: ''
-      },
-      {
-        name: 'AWS Cloud Practitioner Essentials',
-        institution: 'AWS Skill Builder',
-        date: ''
-      },
-      {
-        name: 'AWS Security Fundamentals',
-        institution: 'AWS Skill Builder',
-        date: ''
-      },
-      {
-        name: 'AWS Well-Architected Best Practices',
-        institution: 'AWS Skill Builder',
-        date: ''
-      }
-    ],
-    skills: {
-      backend: ['Java', 'Spring Boot', 'Python', 'Node.js', 'PHP'],
-      cloud: ['AWS', 'Microsoft Azure', 'Docker', 'Kubernetes'],
-      databases: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis'],
-      tools: ['Git', 'Jenkins', 'Postman', 'VS Code', 'IntelliJ IDEA']
-    },
-    projects: [
-      {
-        name: language === 'es' ? 'Sistema ERP para Facturación Electrónica' : 'ERP System for Electronic Invoicing',
-        description: language === 'es'
-          ? 'Sistema integral de gestión empresarial desarrollado con arquitectura de microservicios. Incluye facturación electrónica integrada con el Ministerio de Hacienda de Costa Rica, gestión de inventario, reportes avanzados y API REST para integraciones.'
-          : 'Comprehensive business management system developed with microservices architecture. Includes electronic invoicing integrated with Costa Rica Ministry of Finance, inventory management, advanced reports and REST API for integrations.',
-        technologies: ['Java', 'Spring Boot', 'PostgreSQL', 'AWS', 'Microservices']
-      },
-      {
-        name: language === 'es' ? 'Herramienta de Transcripción de Video' : 'Video Transcription Tool',
-        description: language === 'es'
-          ? 'Aplicación web para transcripción automática de videos usando IA. Soporta múltiples formatos de video, interfaz multiidioma, exportación de subtítulos y procesamiento en tiempo real con tecnologías de aprendizaje automático.'
-          : 'Web application for automatic video transcription using AI. Supports multiple video formats, multilingual interface, subtitle export and real-time processing with machine learning technologies.',
-        technologies: ['React', 'TypeScript', 'AI Services', 'Web APIs']
-      },
-      {
-        name: language === 'es' ? 'Sitio Web de Comandos Linux' : 'Linux Commands Website',
-        description: language === 'es'
-          ? 'Plataforma educativa interactiva para aprender comandos básicos de Linux. Incluye conceptos fundamentales, ejemplos prácticos, herramientas de administración y utilidades para desarrolladores y administradores de sistemas.'
-          : 'Interactive educational platform for learning basic Linux commands. Includes fundamental concepts, practical examples, administration tools and utilities for developers and system administrators.',
-        technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js']
-      }
-    ]
-  };
-
-  const pdf = generatePDF(cvData, language);
+export function downloadCV(cvData: CVData, language: 'es' | 'en', t: (key: string) => string) {
+  if (!cvData || !cvData.personalInfo) {
+    console.error('CV data is not available yet');
+    return;
+  }
+  
+  const pdf = generatePDF(cvData, language, t);
   const fileName = `Jose_Pablo_Campos_CV_${language.toUpperCase()}_${new Date().getFullYear()}.pdf`;
   pdf.save(fileName);
 }
