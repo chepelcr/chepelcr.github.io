@@ -334,7 +334,7 @@ const translations = {
         "about.phone": "Teléfono:",
         "about.id": "ID:",
         "about.profileDesc1": "Arquitecto de Soluciones, especializado en BackEnd con Java (Spring Boot), Python y Amazon Web Services.",
-        "about.profileDesc3": "Me encuentro en mejora continua de mi ERP para facturación electrónica, integrando APIs, mensajería asíncrona y servicios lambda de AWS.",
+        "about.profileDesc3": "Me encuentro en mejora continua de mi ERP para facturación electrónica, integrando APIs, mensajería asíncrona y servicios de AWS.",
         "about.profileDesc2": "He participado en comunidades de software de código abierto como Firefox y Drupal Camp y asisto activamente a eventos de tecnología. Me apasiona construir soluciones escalables y limpias enfocadas en generar un impacto real en los procesos de negocio.",
 
         // Skills Section
@@ -508,7 +508,8 @@ const translations = {
         "about.languageProficiency": "Spanish (Native), English (B2)",
         "about.phone": "Phone:",
         "about.id": "ID:",
-        "about.profileDesc1": "I am a software developer specialized in Backend with Java (Spring Boot) and Python. For the last two years, I have been developing my own ERP system for electronic invoicing, integrating microservices, relational databases, asynchronous messaging and cloud services with AWS.",
+        "about.profileDesc1": "Solutions Architect, specialized in BackEnd with Java (Spring Boot), Python and Amazon Web Services.",
+        "about.profileDesc3": "I am continuously improving my ERP for electronic invoicing, integrating APIs, asynchronous messaging and AWS services.",
         "about.profileDesc2": "I have participated in open source software communities and actively attend technology events such as Firefox and Drupal Camp. I am passionate about building scalable and clean solutions focused on generating real impact on business processes.",
 
         // Skills Section
