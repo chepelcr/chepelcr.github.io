@@ -48,32 +48,61 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
       paragraphs.forEach((paragraph, index) => {
         if (paragraph.trim()) {
           const lines = doc.splitTextToSize(paragraph.trim(), getCurrentWidth());
-          if (lines.length > 1) {
-            // Justify all lines except the last one in each paragraph
-            lines.forEach((line: string, lineIndex: number) => {
-              if (lineIndex < lines.length - 1) {
-                doc.text(line, getCurrentX(), yPosition, { align: 'justify', maxWidth: getCurrentWidth() });
+          lines.forEach((line: string, lineIndex: number) => {
+            if (justify && lineIndex < lines.length - 1 && lines.length > 1) {
+              // Justify line by distributing spaces
+              const words = line.split(' ');
+              if (words.length > 1) {
+                const totalTextWidth = words.reduce((sum, word) => sum + doc.getTextWidth(word), 0);
+                const totalSpaceNeeded = getCurrentWidth() - totalTextWidth;
+                const spacePerGap = totalSpaceNeeded / (words.length - 1);
+                
+                let currentX = getCurrentX();
+                words.forEach((word, wordIndex) => {
+                  doc.text(word, currentX, yPosition);
+                  if (wordIndex < words.length - 1) {
+                    currentX += doc.getTextWidth(word) + spacePerGap;
+                  }
+                });
               } else {
                 doc.text(line, getCurrentX(), yPosition);
               }
-              yPosition += fontSize * 0.6;
-            });
-          } else {
-            doc.text(lines, getCurrentX(), yPosition);
+            } else {
+              doc.text(line, getCurrentX(), yPosition);
+            }
             yPosition += fontSize * 0.6;
-          }
+          });
         }
         if (index < paragraphs.length - 1) yPosition += 0.25; // Space between paragraphs
       });
       yPosition += 4;
     } else {
       const lines = doc.splitTextToSize(text, getCurrentWidth());
-      if (justify && lines.length > 1) {
-        doc.text(lines, getCurrentX(), yPosition, { align: 'justify', maxWidth: getCurrentWidth() });
-      } else {
-        doc.text(lines, getCurrentX(), yPosition);
-      }
-      yPosition += lines.length * (lines.length > 4 ? fontSize * 0.5 : fontSize * 0.6) + (lines.length > 4 ? 1 : 4);
+      lines.forEach((line: string, lineIndex: number) => {
+        if (justify && lineIndex < lines.length - 1 && lines.length > 1) {
+          // Justify line by distributing spaces
+          const words = line.split(' ');
+          if (words.length > 1) {
+            const totalTextWidth = words.reduce((sum, word) => sum + doc.getTextWidth(word), 0);
+            const totalSpaceNeeded = getCurrentWidth() - totalTextWidth;
+            const spacePerGap = totalSpaceNeeded / (words.length - 1);
+            
+            let currentX = getCurrentX();
+            words.forEach((word, wordIndex) => {
+              doc.text(word, currentX, yPosition);
+              if (wordIndex < words.length - 1) {
+                currentX += doc.getTextWidth(word) + spacePerGap;
+              }
+            });
+          } else {
+            doc.text(line, getCurrentX(), yPosition);
+          }
+        } else {
+          doc.text(line, getCurrentX(), yPosition);
+        }
+        yPosition += fontSize * 0.6;
+      });
+      yPosition += lines.length > 4 ? 1 : 4;
     }
   };
 
@@ -162,14 +191,15 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
   // Professional Experience Section (full width on first page)
   addTitle(t('experience.title'));
   
-  data.experience.forEach((exp: { title: string; company: string; period: string; description: string; skills: string[] }) => {
+  data.experience.forEach((exp: { title: string; company: string; period: string; description: string; skills: string[] }, index: number) => {
     addText(exp.title, 12, textColor, true);
     yPosition -= 4; // Reduce space between title and subtitle
     addSubtitle(`${exp.company} | ${exp.period}`);
     yPosition -= 1;
     addText(exp.description, 10, textColor, false, true);
     
-    if (exp.skills.length > 0) {
+    // Only show technologies for the first experience (Web Developer), not for Java Developer
+    if (exp.skills.length > 0 && index === 0) {
       yPosition -= 3; // Reduce space before technologies label
       addText(t('cv.technologies'), 10, textColor, true);
       yPosition -= 4; // Reduce space after technologies label
@@ -181,8 +211,19 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
   // Second page
   doc.addPage();
   yPosition = 20;
-  currentColumn = 1;
-  isSecondPage = false; // Reset for full-width content
+  
+  // Add continuation of Java Developer experience (full width) - FIRST THING ON PAGE 2
+  addText(t('experience.javaDevDesc2'), 10, textColor, false, true);
+  
+  // Add technologies for Java Developer role
+  const javaDevSkills = data.experience.find(exp => exp.title === t('experience.javaDevTitle'))?.skills || [];
+  if (javaDevSkills.length > 0) {
+    yPosition -= 3;
+    addText(t('cv.technologies'), 10, textColor, true);
+    yPosition -= 4;
+    addText(javaDevSkills.join(', '), 10, lightTextColor);
+  }
+  yPosition += 5;
 
   // Start two-column layout for education and technical skills
   isSecondPage = true;
@@ -196,64 +237,13 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
     addText(edu.degree, 11, textColor, true);
     yPosition -= 2; // Reduce space after degree
     addText(edu.institution, 10, lightTextColor);
-    yPosition -= 2; // Reduce space after institution
+    yPosition -= 3; // Reduce space after institution
     addText(edu.period, 10, lightTextColor);
-    yPosition += 4; // Add space between education entries
+    yPosition += 2; // Add space between education entries
   });
 
-  // Right Column: Technical Skills
-  currentColumn = 2;
-  yPosition = educationSkillsStartY;
-
-  addTitle(t('skills.title'));
-  
-  // Define actual skills matching the website
-  const coreSkills = [
-    "Java (Spring Boot)", "Python", "PHP", "JavaScript & HTML"
-  ];
-  
-  const cloudSkills = [
-    "AWS Infrastructure", "Microservices Architecture", "Serverless Programming", "Docker & Container"
-  ];
-  
-  const databaseSkills = [
-    "MySQL", "PostgreSQL", "Oracle", "Microsoft SQL Server"
-  ];
-  
-  const toolsSkills = [
-    "Rest API Services", "Linux", "Kafka", "Redis"
-  ];
-
-  const skillSections = [
-    { title: t('skills.backend'), skills: coreSkills },
-    { title: t('skills.cloud'), skills: cloudSkills },
-    { title: t('skills.databases'), skills: databaseSkills },
-    { title: t('skills.tools'), skills: toolsSkills }
-  ];
-
-  skillSections.forEach((section) => {
-    addText(`${section.title}`, 10, textColor, true);
-    yPosition -= 2; // Reduce space after skill category title
-    addText(section.skills.join(', '), 10, lightTextColor);
-    yPosition += 2; // Add space between skill categories
-  });
-
-  yPosition += 6;
-
-  // Start two-column layout for certifications and additional training
-  currentColumn = 1;
-  const certsTrainingStartY = yPosition;
-
-  // Left Column: Certifications
-  addTitle(t('education.certificationsSubtitle'));
-  data.certifications.forEach((cert: { name: string; date: string }) => {
-    addBulletPoint(`${cert.name} (${cert.date})`);
-  });
-
-  // Right Column: Additional Training
-  currentColumn = 2;
-  yPosition = certsTrainingStartY;
-
+  // Add Additional Training in the same column after education
+  yPosition += 2;
   addTitle(t('education.trainingSubtitle'));
   
   // Group by institution
@@ -268,7 +258,7 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
     ucr.forEach((training: { name: string; institution: string; date: string }) => {
       addBulletPoint(training.name);
     });
-    yPosition += 4; // Add space between institutions
+    yPosition += 2; // Add space between institutions
   }
   
   // Miramar Community Center section
@@ -289,6 +279,51 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
       addBulletPoint(training.name);
     });
   }
+
+  // Right Column: Technical Skills
+  currentColumn = 2;
+  yPosition = educationSkillsStartY;
+
+  addTitle(t('skills.title'));
+  
+  // Define actual skills matching the website
+  const coreSkills = [
+    "Java (Spring Boot)", "Python (FastAPI)", "PHP", "Node.js", "JavaScript & HTML"
+  ];
+  
+  const cloudSkills = [
+    "AWS Infrastructure", "CloudFormation", "SAM Templates", "Microservices Architecture", "Serverless Programming"
+  ];
+  
+  const databaseSkills = [
+    "MySQL", "PostgreSQL", "Oracle", "Microsoft SQL Server"
+  ];
+  
+  const toolsSkills = [
+    "Rest API Services", "Bash Scripting", "Linux", "Git", "CI/CD"
+  ];
+
+  const skillSections = [
+    { title: t('skills.backend'), skills: coreSkills },
+    { title: t('skills.cloud'), skills: cloudSkills },
+    { title: t('skills.databases'), skills: databaseSkills },
+    { title: t('skills.tools'), skills: toolsSkills }
+  ];
+
+  skillSections.forEach((section) => {
+    addText(`${section.title}`, 10, textColor, true);
+    yPosition -= 2; // Reduce space after skill category title
+    addText(section.skills.join(', '), 10, lightTextColor);
+    yPosition += 2; // Add space between skill categories
+  });
+
+  yPosition += 6;
+
+  // Certifications (after Technical Skills in right column)
+  addTitle(t('education.certificationsSubtitle'));
+  data.certifications.forEach((cert: { name: string; date: string }) => {
+    addBulletPoint(`${cert.name} (${cert.date})`);
+  });
 
 
   // Footer

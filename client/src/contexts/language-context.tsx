@@ -178,14 +178,14 @@ export function LanguageProvider({children}: LanguageProviderProps) {
                 company: t('experience.webDevCompany'),
                 period: t('experience.webDevPeriod'),
                 description: t('experience.webDevDesc'),
-                skills: ['AWS Cognito', 'Postgres', 'TypeScript', 'React', 'SES']
+                skills: ['PHP', 'React', 'Node.js', 'Python', 'AWS Lambda', 'Excel Macros']
             },
             {
                 title: t('experience.javaDevTitle'),
                 company: t('experience.javaDevCompany'),
                 period: t('experience.javaDevPeriod'),
                 description: t('experience.javaDevDesc'),
-                skills: ['API Gateway', 'AWS Lambda', 'CI/CD', 'Cloudformation', 'ECR', 'ECS', 'RDS', 'S3', 'SES', 'SNS', 'SQS']
+                skills: ['Java', 'Spring Boot', 'Python', 'FastAPI', 'SQLAlchemy', 'Node.js', 'AWS', 'CloudFormation', 'SAM', 'Bash', 'Microservices', 'XML', 'PostgreSQL', 'API Gateway', 'Lambda', 'SES', 'SNS', 'SQS']
             }
         ],
         education: [
@@ -371,14 +371,16 @@ const translations = {
             "\nGestión de sucursales, terminales y numeración consecutiva para documentos electrónicos." +
             "\nGestión avanzada de productos con impuestos específicos, clientes y proveedores enfocado en multiples organizaciones." +
             "\nImportación de datos preexistentes de documentos electrónicos (XML) generados en otros sistemas." +
-            "\nIntegración con servicios web del Ministerio de Hacienda: Personas, exoneraciones, codigos CABYS, tipo de cambio del dolar." +
-            "\nUso de APIs del Ministerio de Hacienda: Solicitudes de Histórico (documentos y sucursales), envio y validación de documentos electrónicos para multiples negocios.",
+            "\nIntegración con servicios web del Ministerio de Hacienda: Personas, exoneraciones, codigos CABYS, tipo de cambio del dolar.",
+        "experience.javaDevDesc2": "Uso de APIs del Ministerio de Hacienda: Solicitudes de Histórico (documentos y sucursales), envio y validación de documentos electrónicos para multiples negocios." +
+            "\nCreación de infraestructura AWS como código utilizando AWS CloudFormation y plantillas SAM, usando archivos bash para despliegue en diferentes etapas y cuentas.",
         "experience.webDevTitle": "Web Developer Ad Honorem",
         "experience.webDevCompany": "Modas Laura",
         "experience.webDevPeriod": "2021 - Actual",
-        "experience.webDevDesc": "Diseño y desarrollo de sistema ERP personalizado para gestión empresarial." +
-            "\nImplementación de soluciones de facturación electrónica." +
-            "\nAutomatización de procesos de negocio.",
+        "experience.webDevDesc": "Desarrollo de sistema de facturación electrónica inicialmente con PHP y posteriormente migrado a React con Node.js e interconexión a API externa." +
+            "\nGestión integral de clientes, productos y facturación electrónica cumpliendo con normativas del Ministerio de Hacienda." +
+            "\nAutomatización de procesos manuales de creación de Excel mediante macros y posteriormente mediante Python en funciones Lambda." +
+            "\nImplementación de arquitectura moderna con frontend React y backend Node.js para mejorar la experiencia de usuario y escalabilidad del sistema.",
 
         // Education Section
         "education.title": "Educación y Certificaciones",
@@ -546,12 +548,16 @@ const translations = {
             "\nManagement of branches, terminals and consecutive numbering for electronic documents." +
             "\nAdvanced management of products with specific taxes, customers and suppliers focused on multiple organizations." +
             "\nImporting pre-existing data from electronic documents (XML) generated in other systems." +
-            "\nIntegration with 'Ministerio de Hacienda' web services: Persons, exemptions, CABYS codes, dollar exchange rate." +
-            "\nUse of 'Ministerio de Hacienda' APIs: Historical requests (documents and branches), sending and validation of electronic documents for multiple businesses.",
+            "\nIntegration with 'Ministerio de Hacienda' web services: Persons, exemptions, CABYS codes, dollar exchange rate.",
+        "experience.javaDevDesc2": "Use of 'Ministerio de Hacienda' APIs: Historical requests (documents and branches), sending and validation of electronic documents for multiple businesses." +
+            "\nCreation of AWS infrastructure as code using AWS CloudFormation and SAM templates, using bash files for deployment across different stages and accounts.",
         "experience.webDevTitle": "Web Developer Ad Honorem",
         "experience.webDevCompany": "Modas Laura",
         "experience.webDevPeriod": "2021 - Current",
-        "experience.webDevDesc": "Design and development of custom ERP system for business management. Implementation of electronic invoicing solutions and business process automation.",
+        "experience.webDevDesc": "Development of electronic invoicing system initially with PHP and later migrated to React with Node.js and external API integration." +
+            "\nComprehensive management of clients, products and electronic invoicing complying with Ministry of Finance regulations." +
+            "\nAutomation of manual Excel creation processes through macros and later through Python in Lambda functions." +
+            "\nImplementation of modern architecture with React frontend and Node.js backend to improve user experience and system scalability.",
 
         // Education Section
         "education.title": "Education and Certifications",
