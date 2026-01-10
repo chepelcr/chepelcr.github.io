@@ -188,49 +188,63 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
   addText(data.about, 10, textColor, false, true);
   yPosition += 2;
 
-  // Professional Experience Section (full width on first page)
+  // Professional Experience Section
   addTitle(t('experience.title'));
 
-  data.experience.forEach((exp: { title: string; company: string; period: string; description: string; skills: string[] }, index: number) => {
-    addText(exp.title, 12, textColor, true);
-    yPosition -= 4; // Reduce space between title and subtitle
-    addSubtitle(`${exp.company} | ${exp.period}`);
-    yPosition -= 1;
-
-    // For Java Developer (index 2), only show first part of description
-    if (index === 2) {
-        addText(exp.description, 10, textColor, false, true);
-    } else {
-        addText(exp.description, 10, textColor, false, true);
-
-        // Show technologies for Professional Services (index 0) and Web Developer (index 1)
-        if (exp.skills.length > 0) {
-            yPosition -= 3;
-            addText(t('cv.technologies'), 10, textColor, true);
-            yPosition -= 4;
-            addText(exp.skills.join(', '), 10, lightTextColor);
-        }
-    }
-  });
-
-  // Second page
-  doc.addPage();
-  yPosition = 20;
-  
-  // Add continuation of Java Developer experience (full width) - FIRST THING ON PAGE 2
-  addText(t('experience.javaDevDesc2'), 10, textColor, false, true);
-  
-  // Add technologies for Java Developer role
-  const javaDevSkills = data.experience.find(exp => exp.title === t('experience.javaDevTitle'))?.skills || [];
-  if (javaDevSkills.length > 0) {
+  // PAGE 1: Only Professional Services (index 0)
+  const professionalServices = data.experience[0];
+  addText(professionalServices.title, 12, textColor, true);
+  yPosition -= 4;
+  addSubtitle(`${professionalServices.company} | ${professionalServices.period}`);
+  yPosition -= 1;
+  addText(professionalServices.description, 10, textColor, false, true);
+  if (professionalServices.skills.length > 0) {
     yPosition -= 3;
     addText(t('cv.technologies'), 10, textColor, true);
     yPosition -= 4;
-    addText(javaDevSkills.join(', '), 10, lightTextColor);
+    addText(professionalServices.skills.join(', '), 10, lightTextColor);
+  }
+
+  // PAGE 2: Web Developer Ad Honorem + Java Developer
+  doc.addPage();
+  yPosition = 20;
+
+  // Web Developer Ad Honorem (index 1)
+  const webDeveloper = data.experience[1];
+  addText(webDeveloper.title, 12, textColor, true);
+  yPosition -= 4;
+  addSubtitle(`${webDeveloper.company} | ${webDeveloper.period}`);
+  yPosition -= 1;
+  addText(webDeveloper.description, 10, textColor, false, true);
+  if (webDeveloper.skills.length > 0) {
+    yPosition -= 3;
+    addText(t('cv.technologies'), 10, textColor, true);
+    yPosition -= 4;
+    addText(webDeveloper.skills.join(', '), 10, lightTextColor);
   }
   yPosition += 5;
 
-  // Start two-column layout for education and technical skills
+  // Java Developer (index 2) - Full description
+  const javaDeveloper = data.experience[2];
+  addText(javaDeveloper.title, 12, textColor, true);
+  yPosition -= 4;
+  addSubtitle(`${javaDeveloper.company} | ${javaDeveloper.period}`);
+  yPosition -= 1;
+  addText(javaDeveloper.description, 10, textColor, false, true);
+
+  // Add continuation of Java Developer
+  addText(t('experience.javaDevDesc2'), 10, textColor, false, true);
+
+  if (javaDeveloper.skills.length > 0) {
+    yPosition -= 3;
+    addText(t('cv.technologies'), 10, textColor, true);
+    yPosition -= 4;
+    addText(javaDeveloper.skills.join(', '), 10, lightTextColor);
+  }
+
+  yPosition += 5;
+
+  // Start two-column layout for Education and Technical Skills on PAGE 2
   isSecondPage = true;
   currentColumn = 1;
   const educationSkillsStartY = yPosition;
@@ -247,63 +261,25 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
     yPosition += 2; // Add space between education entries
   });
 
-  // Add Additional Training in the same column after education
-  yPosition += 2;
-  addTitle(t('education.trainingSubtitle'));
-  
-  // Group by institution
-  const ucr = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('UCR') || training.institution.includes('Academia'));
-  const miramar = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('Miramar'));
-  const aws = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('AWS'));
-  
-  // UCR Academy section
-  if (ucr.length > 0) {
-    addText(ucr[0].institution, 10, textColor, true);
-    yPosition -= 2; // Reduce space after institution title
-    ucr.forEach((training: { name: string; institution: string; date: string }) => {
-      addBulletPoint(training.name);
-    });
-    yPosition += 2; // Add space between institutions
-  }
-  
-  // Miramar Community Center section
-  if (miramar.length > 0) {
-    addText(miramar[0].institution, 10, textColor, true);
-    yPosition -= 2; // Reduce space after institution title
-    miramar.forEach((training: { name: string; institution: string; date: string }) => {
-      addBulletPoint(training.name);
-    });
-    yPosition += 4; // Add space between institutions
-  }
-  
-  // AWS Skill Builder section
-  if (aws.length > 0) {
-    addText(aws[0].institution, 10, textColor, true);
-    yPosition -= 2; // Reduce space after institution title
-    aws.forEach((training: { name: string; institution: string; date: string }) => {
-      addBulletPoint(training.name);
-    });
-  }
-
   // Right Column: Technical Skills
   currentColumn = 2;
   yPosition = educationSkillsStartY;
 
   addTitle(t('skills.title'));
-  
+
   // Define actual skills matching the website
   const coreSkills = [
     "Java (Spring Boot)", "Python (FastAPI)", "PHP", "Node.js", "JavaScript & HTML"
   ];
-  
+
   const cloudSkills = [
     "AWS Infrastructure", "CloudFormation", "SAM Templates", "Microservices Architecture", "Serverless Programming"
   ];
-  
+
   const databaseSkills = [
     "MySQL", "PostgreSQL", "Oracle", "Microsoft SQL Server"
   ];
-  
+
   const toolsSkills = [
     "Rest API Services", "Bash Scripting", "Linux", "Git", "CI/CD"
   ];
@@ -322,9 +298,54 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
     yPosition += 2; // Add space between skill categories
   });
 
-  yPosition += 6;
+  // PAGE 3: Additional Training and Certifications
+  doc.addPage();
+  yPosition = 20;
+  currentColumn = 1;
+  const trainingCertsStartY = yPosition;
 
-  // Certifications (after Technical Skills in right column)
+  // Left Column: Additional Training
+  addTitle(t('education.trainingSubtitle'));
+
+  // Group by institution
+  const ucr = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('UCR') || training.institution.includes('Academia'));
+  const miramar = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('Miramar'));
+  const aws = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('AWS'));
+
+  // UCR Academy section
+  if (ucr.length > 0) {
+    addText(ucr[0].institution, 10, textColor, true);
+    yPosition -= 2; // Reduce space after institution title
+    ucr.forEach((training: { name: string; institution: string; date: string }) => {
+      addBulletPoint(training.name);
+    });
+    yPosition += 2; // Add space between institutions
+  }
+
+  // Miramar Community Center section
+  if (miramar.length > 0) {
+    addText(miramar[0].institution, 10, textColor, true);
+    yPosition -= 2; // Reduce space after institution title
+    miramar.forEach((training: { name: string; institution: string; date: string }) => {
+      addBulletPoint(training.name);
+    });
+    yPosition += 4; // Add space between institutions
+  }
+
+  // AWS Skill Builder section
+  if (aws.length > 0) {
+    addText(aws[0].institution, 10, textColor, true);
+    yPosition -= 2; // Reduce space after institution title
+    aws.forEach((training: { name: string; institution: string; date: string }) => {
+      addBulletPoint(training.name);
+    });
+  }
+
+  // Right Column: Certifications
+  currentColumn = 2;
+  yPosition = trainingCertsStartY;
+
+  // Certifications
   addTitle(t('education.certificationsSubtitle'));
   data.certifications.forEach((cert: { name: string; date: string }) => {
     addBulletPoint(`${cert.name} (${cert.date})`);
