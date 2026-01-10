@@ -14,15 +14,6 @@ const getExperiences = (t: any) => [
         current: false,
     },
     {
-        title: t("experience.webDevTitle"),
-        company: t("experience.webDevCompany"),
-        period: t("experience.webDevPeriod"),
-        description: t("experience.webDevDesc"),
-        skills: ["AWS Cognito", "Postgres", "TypeScript", "React", "SES"],
-        icon: Globe,
-        current: true,
-    },
-    {
         title: t("experience.javaDevTitle"),
         company: t("experience.javaDevCompany"),
         period: t("experience.javaDevPeriod"),
@@ -30,6 +21,15 @@ const getExperiences = (t: any) => [
         skills: ["API Gateway", "AWS Lambda", "CI/CD", "Cloudformation", "ECR", "ECS", "RDS", "S3", "SES", "SNS", "SQS"],
         icon: Code,
         current: false,
+    },
+    {
+        title: t("experience.webDevTitle"),
+        company: t("experience.webDevCompany"),
+        period: t("experience.webDevPeriod"),
+        description: t("experience.webDevDesc"),
+        skills: ["AWS Cognito", "Postgres", "TypeScript", "React", "SES"],
+        icon: Globe,
+        current: true,
     },
 ];
 

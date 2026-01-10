@@ -205,27 +205,12 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
     addText(professionalServices.skills.join(', '), 10, lightTextColor);
   }
 
-  // PAGE 2: Web Developer Ad Honorem + Java Developer
+  // PAGE 2: Java Developer + Web Developer Ad Honorem
   doc.addPage();
   yPosition = 20;
 
-  // Web Developer Ad Honorem (index 1)
-  const webDeveloper = data.experience[1];
-  addText(webDeveloper.title, 12, textColor, true);
-  yPosition -= 4;
-  addSubtitle(`${webDeveloper.company} | ${webDeveloper.period}`);
-  yPosition -= 1;
-  addText(webDeveloper.description, 10, textColor, false, true);
-  if (webDeveloper.skills.length > 0) {
-    yPosition -= 3;
-    addText(t('cv.technologies'), 10, textColor, true);
-    yPosition -= 4;
-    addText(webDeveloper.skills.join(', '), 10, lightTextColor);
-  }
-  yPosition += 5;
-
-  // Java Developer (index 2) - Full description
-  const javaDeveloper = data.experience[2];
+  // Java Developer (index 1) - Full description
+  const javaDeveloper = data.experience[1];
   addText(javaDeveloper.title, 12, textColor, true);
   yPosition -= 4;
   addSubtitle(`${javaDeveloper.company} | ${javaDeveloper.period}`);
@@ -241,10 +226,25 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
     yPosition -= 4;
     addText(javaDeveloper.skills.join(', '), 10, lightTextColor);
   }
-
   yPosition += 5;
 
-  // Start two-column layout for Education and Technical Skills on PAGE 2
+  // Web Developer Ad Honorem (index 2)
+  const webDeveloper = data.experience[2];
+  addText(webDeveloper.title, 12, textColor, true);
+  yPosition -= 4;
+  addSubtitle(`${webDeveloper.company} | ${webDeveloper.period}`);
+  yPosition -= 1;
+  addText(webDeveloper.description, 10, textColor, false, true);
+  if (webDeveloper.skills.length > 0) {
+    yPosition -= 3;
+    addText(t('cv.technologies'), 10, textColor, true);
+    yPosition -= 4;
+    addText(webDeveloper.skills.join(', '), 10, lightTextColor);
+  }
+
+  // PAGE 3: Education, Technical Skills, Additional Training, Certifications
+  doc.addPage();
+  yPosition = 20;
   isSecondPage = true;
   currentColumn = 1;
   const educationSkillsStartY = yPosition;
@@ -260,6 +260,44 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
     addText(edu.period, 10, lightTextColor);
     yPosition += 2; // Add space between education entries
   });
+
+  // Additional Training in left column after Education
+  yPosition += 2;
+  addTitle(t('education.trainingSubtitle'));
+
+  // Group by institution
+  const ucr = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('UCR') || training.institution.includes('Academia'));
+  const miramar = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('Miramar'));
+  const aws = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('AWS'));
+
+  // UCR Academy section
+  if (ucr.length > 0) {
+    addText(ucr[0].institution, 10, textColor, true);
+    yPosition -= 2;
+    ucr.forEach((training: { name: string; institution: string; date: string }) => {
+      addBulletPoint(training.name);
+    });
+    yPosition += 2;
+  }
+
+  // Miramar Community Center section
+  if (miramar.length > 0) {
+    addText(miramar[0].institution, 10, textColor, true);
+    yPosition -= 2;
+    miramar.forEach((training: { name: string; institution: string; date: string }) => {
+      addBulletPoint(training.name);
+    });
+    yPosition += 4;
+  }
+
+  // AWS Skill Builder section
+  if (aws.length > 0) {
+    addText(aws[0].institution, 10, textColor, true);
+    yPosition -= 2;
+    aws.forEach((training: { name: string; institution: string; date: string }) => {
+      addBulletPoint(training.name);
+    });
+  }
 
   // Right Column: Technical Skills
   currentColumn = 2;
@@ -298,54 +336,9 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
     yPosition += 2; // Add space between skill categories
   });
 
-  // PAGE 3: Additional Training and Certifications
-  doc.addPage();
-  yPosition = 20;
-  currentColumn = 1;
-  const trainingCertsStartY = yPosition;
+  yPosition += 6;
 
-  // Left Column: Additional Training
-  addTitle(t('education.trainingSubtitle'));
-
-  // Group by institution
-  const ucr = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('UCR') || training.institution.includes('Academia'));
-  const miramar = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('Miramar'));
-  const aws = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('AWS'));
-
-  // UCR Academy section
-  if (ucr.length > 0) {
-    addText(ucr[0].institution, 10, textColor, true);
-    yPosition -= 2; // Reduce space after institution title
-    ucr.forEach((training: { name: string; institution: string; date: string }) => {
-      addBulletPoint(training.name);
-    });
-    yPosition += 2; // Add space between institutions
-  }
-
-  // Miramar Community Center section
-  if (miramar.length > 0) {
-    addText(miramar[0].institution, 10, textColor, true);
-    yPosition -= 2; // Reduce space after institution title
-    miramar.forEach((training: { name: string; institution: string; date: string }) => {
-      addBulletPoint(training.name);
-    });
-    yPosition += 4; // Add space between institutions
-  }
-
-  // AWS Skill Builder section
-  if (aws.length > 0) {
-    addText(aws[0].institution, 10, textColor, true);
-    yPosition -= 2; // Reduce space after institution title
-    aws.forEach((training: { name: string; institution: string; date: string }) => {
-      addBulletPoint(training.name);
-    });
-  }
-
-  // Right Column: Certifications
-  currentColumn = 2;
-  yPosition = trainingCertsStartY;
-
-  // Certifications
+  // Certifications in right column after Technical Skills
   addTitle(t('education.certificationsSubtitle'));
   data.certifications.forEach((cert: { name: string; date: string }) => {
     addBulletPoint(`${cert.name} (${cert.date})`);

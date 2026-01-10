@@ -181,18 +181,18 @@ export function LanguageProvider({children}: LanguageProviderProps) {
                 skills: ['Python 3.12', 'Java 17', 'Spring Boot', 'AWS Lambda', 'CloudFormation', 'SAM', 'SQLAlchemy', 'Pydantic', 'PostgreSQL', 'Redis', 'SQS', 'EventBridge', 'Docker', 'CI/CD', 'Microservices']
             },
             {
-                title: t('experience.webDevTitle'),
-                company: t('experience.webDevCompany'),
-                period: t('experience.webDevPeriod'),
-                description: t('experience.webDevDesc'),
-                skills: ['PHP', 'React', 'Node.js', 'Python', 'AWS Lambda', 'Excel Macros']
-            },
-            {
                 title: t('experience.javaDevTitle'),
                 company: t('experience.javaDevCompany'),
                 period: t('experience.javaDevPeriod'),
                 description: t('experience.javaDevDesc'),
                 skills: ['Java', 'Spring Boot', 'Python', 'FastAPI', 'SQLAlchemy', 'Node.js', 'AWS', 'CloudFormation', 'SAM', 'Bash', 'Microservices', 'XML', 'PostgreSQL', 'API Gateway', 'Lambda', 'SES', 'SNS', 'SQS']
+            },
+            {
+                title: t('experience.webDevTitle'),
+                company: t('experience.webDevCompany'),
+                period: t('experience.webDevPeriod'),
+                description: t('experience.webDevDesc'),
+                skills: ['PHP', 'React', 'Node.js', 'Python', 'AWS Lambda', 'Excel Macros']
             }
         ],
         education: [
