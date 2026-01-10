@@ -53,7 +53,7 @@ const getAvailability = (t: any) => [
 ];
 
 export default function ContactSection() {
-  const { t, language } = useLanguage();
+  const { t, language, cvData } = useLanguage();
   const contactInfo = getContactInfo(t);
   const availability = getAvailability(t);
   const [formData, setFormData] = useState({
@@ -244,9 +244,15 @@ export default function ContactSection() {
               <p className="text-muted-foreground mb-6">
                 {t("contact.downloadCVDesc")}
               </p>
-              <Button 
+              <Button
                 className="bg-accent text-accent-foreground hover:bg-accent/90"
-                onClick={() => downloadCV(language)}
+                onClick={() => {
+                    if (cvData) {
+                        downloadCV(cvData, language, t);
+                    } else {
+                        console.log('CV data not ready yet');
+                    }
+                }}
               >
                 <Download className="mr-2 h-4 w-4" />
                 {t("hero.downloadCV")}

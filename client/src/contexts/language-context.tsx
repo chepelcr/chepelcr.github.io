@@ -174,6 +174,13 @@ export function LanguageProvider({children}: LanguageProviderProps) {
         about: t('about.description'),
         experience: [
             {
+                title: t('experience.professionalServicesTitle'),
+                company: t('experience.professionalServicesCompany'),
+                period: t('experience.professionalServicesPeriod'),
+                description: t('experience.professionalServicesDesc'),
+                skills: ['Python 3.12', 'Java 17', 'Spring Boot', 'AWS Lambda', 'CloudFormation', 'SAM', 'SQLAlchemy', 'Pydantic', 'PostgreSQL', 'Redis', 'SQS', 'EventBridge', 'Docker', 'CI/CD', 'Microservices']
+            },
+            {
                 title: t('experience.webDevTitle'),
                 company: t('experience.webDevCompany'),
                 period: t('experience.webDevPeriod'),
@@ -363,6 +370,16 @@ const translations = {
         // Experience Section
         "experience.title": "Experiencia Profesional",
         "experience.current": "Actual",
+        "experience.professionalServicesTitle": "Profesional en Servicios",
+        "experience.professionalServicesCompany": "Interfaz",
+        "experience.professionalServicesPeriod": "Julio 2025 - Diciembre 2025",
+        "experience.professionalServicesDesc": "Migración empresarial de 17 microservicios desde Java Spring Boot (ECS) a arquitectura serverless Python (AWS Lambda), transformando 2,142 archivos Java con más de 1.2M líneas de código." +
+            "\nCreación de plantilla de estandarización con guía de migración de 648 líneas, estableciendo patrones reutilizables que redujeron tiempo de migración 40-50%." +
+            "\nImplementación de arquitectura serverless con procesamiento dirigido por eventos usando SQS, EventBridge y patrón dual Lambda (HTTP + procesamiento asíncrono)." +
+            "\nDesarrollo de infraestructura como código usando CloudFormation y SAM templates con pipelines CI/CD automatizados (CodePipeline, CodeBuild)." +
+            "\nTransformación de 170+ DTOs con Pydantic, 33+ mapeadores de datos complejos y 211+ reglas de validación para sistema de cumplimiento tributario." +
+            "\nOptimización de costos (70-80% reducción) mediante arquitectura serverless y ARM64, con Redis caching reduciendo carga de base de datos 40-60%." +
+            "\nUtilización de herramientas de desarrollo asistido por IA (AWS Amazon Q, Claude Code) para acelerar transformación de código y generación de infraestructura.",
         "experience.javaDevTitle": "Java Developer",
         "experience.javaDevCompany": "Interfaz",
         "experience.javaDevPeriod": "Julio 2022 - Junio 2025",
@@ -540,8 +557,18 @@ const translations = {
         // Experience Section
         "experience.title": "Professional Experience",
         "experience.current": "Current",
+        "experience.professionalServicesTitle": "Professional Services",
+        "experience.professionalServicesCompany": "Interfaz",
+        "experience.professionalServicesPeriod": "July 2025 - December 2025",
+        "experience.professionalServicesDesc": "Enterprise migration of 17 microservices from Java Spring Boot (ECS) to Python serverless architecture (AWS Lambda), transforming 2,142 Java files with over 1.2M lines of code." +
+            "\nCreation of standardization template with 648-line migration guide, establishing reusable patterns that reduced migration time by 40-50%." +
+            "\nImplementation of serverless architecture with event-driven processing using SQS, EventBridge, and dual Lambda pattern (HTTP + asynchronous processing)." +
+            "\nDevelopment of Infrastructure as Code using CloudFormation and SAM templates with automated CI/CD pipelines (CodePipeline, CodeBuild)." +
+            "\nTransformation of 170+ Pydantic DTOs, 33+ complex data mappers, and 211+ validation rules for tax compliance system." +
+            "\nCost optimization (70-80% reduction) through serverless architecture and ARM64, with Redis caching reducing database load by 40-60%." +
+            "\nUtilization of AI-assisted development tools (AWS Amazon Q, Claude Code) to accelerate code transformation and infrastructure generation.",
         "experience.javaDevTitle": "Java Developer",
-        "experience.javaDevCompany": "IFZ Sociedad Anónima",
+        "experience.javaDevCompany": "Interfaz",
         "experience.javaDevPeriod": "July 2022 - June 2025",
         "experience.javaDevDesc": "Analysis, design and implementation of infrastructure, microservices, cloud APIs, messaging services, email and data storage in Amazon Web Services." +
             "\nGeneration and signing of XML electronic documents corresponding to the format required by the 'Ministerio de Hacienda'." +

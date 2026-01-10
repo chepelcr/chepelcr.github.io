@@ -190,22 +190,27 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
 
   // Professional Experience Section (full width on first page)
   addTitle(t('experience.title'));
-  
+
   data.experience.forEach((exp: { title: string; company: string; period: string; description: string; skills: string[] }, index: number) => {
     addText(exp.title, 12, textColor, true);
     yPosition -= 4; // Reduce space between title and subtitle
     addSubtitle(`${exp.company} | ${exp.period}`);
     yPosition -= 1;
-    addText(exp.description, 10, textColor, false, true);
-    
-    // Only show technologies for the first experience (Web Developer), not for Java Developer
-    if (exp.skills.length > 0 && index === 0) {
-      yPosition -= 3; // Reduce space before technologies label
-      addText(t('cv.technologies'), 10, textColor, true);
-      yPosition -= 4; // Reduce space after technologies label
-      addText(exp.skills.join(', '), 10, lightTextColor);
+
+    // For Java Developer (index 2), only show first part of description
+    if (index === 2) {
+        addText(exp.description, 10, textColor, false, true);
+    } else {
+        addText(exp.description, 10, textColor, false, true);
+
+        // Show technologies for Professional Services (index 0) and Web Developer (index 1)
+        if (exp.skills.length > 0) {
+            yPosition -= 3;
+            addText(t('cv.technologies'), 10, textColor, true);
+            yPosition -= 4;
+            addText(exp.skills.join(', '), 10, lightTextColor);
+        }
     }
-    //yPosition += 1; // Add space between experience entries
   });
 
   // Second page

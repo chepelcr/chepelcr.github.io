@@ -1,9 +1,18 @@
 import {Card, CardContent} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import {useLanguage} from "@/contexts/language-context";
-import {Briefcase, Code, Globe, Play} from "lucide-react";
+import {Briefcase, Code, Cloud, Globe, Play} from "lucide-react";
 
 const getExperiences = (t: any) => [
+    {
+        title: t("experience.professionalServicesTitle"),
+        company: t("experience.professionalServicesCompany"),
+        period: t("experience.professionalServicesPeriod"),
+        description: t("experience.professionalServicesDesc"),
+        skills: ["Python 3.12", "AWS Lambda", "CloudFormation", "SAM", "SQLAlchemy", "Pydantic", "SQS", "EventBridge", "Docker", "CI/CD"],
+        icon: Cloud,
+        current: false,
+    },
     {
         title: t("experience.webDevTitle"),
         company: t("experience.webDevCompany"),
@@ -20,7 +29,7 @@ const getExperiences = (t: any) => [
         description: t("experience.javaDevDesc"),
         skills: ["API Gateway", "AWS Lambda", "CI/CD", "Cloudformation", "ECR", "ECS", "RDS", "S3", "SES", "SNS", "SQS"],
         icon: Code,
-        current: true,
+        current: false,
     },
 ];
 
