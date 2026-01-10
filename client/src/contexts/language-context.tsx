@@ -370,8 +370,8 @@ const translations = {
         // Experience Section
         "experience.title": "Experiencia Profesional",
         "experience.current": "Actual",
-        "experience.professionalServicesTitle": "Profesional en Servicios",
-        "experience.professionalServicesCompany": "Interfaz",
+        "experience.professionalServicesTitle": "Ingeniero de Software",
+        "experience.professionalServicesCompany": "Interfaz - Servicios Profesionales",
         "experience.professionalServicesPeriod": "Julio 2025 - Diciembre 2025",
         "experience.professionalServicesDesc": "Migración empresarial de 17 microservicios desde Java Spring Boot (ECS) a arquitectura serverless Python (AWS Lambda), transformando 2,142 archivos Java con más de 1.2M líneas de código." +
             "\nCreación de plantilla de estandarización con guía de migración de 648 líneas, estableciendo patrones reutilizables que redujeron tiempo de migración 40-50%." +
@@ -557,8 +557,8 @@ const translations = {
         // Experience Section
         "experience.title": "Professional Experience",
         "experience.current": "Current",
-        "experience.professionalServicesTitle": "Professional Services",
-        "experience.professionalServicesCompany": "Interfaz",
+        "experience.professionalServicesTitle": "Software Engineer",
+        "experience.professionalServicesCompany": "Interfaz - Professional Services",
         "experience.professionalServicesPeriod": "July 2025 - December 2025",
         "experience.professionalServicesDesc": "Enterprise migration of 17 microservices from Java Spring Boot (ECS) to Python serverless architecture (AWS Lambda), transforming 2,142 Java files with over 1.2M lines of code." +
             "\nCreation of standardization template with 648-line migration guide, establishing reusable patterns that reduced migration time by 40-50%." +
