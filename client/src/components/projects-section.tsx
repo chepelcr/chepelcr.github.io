@@ -26,6 +26,7 @@ const getMainProjects = (t: any, language: string) => [
       t("projects.beautyMarketFeature4"),
     ],
     githubUrl: "https://github.com/chepelcr/BeautyMarket",
+    liveUrl: "https://jmarkets.jcampos.dev",
   },
   {
     title: t("projects.videoTranscriptTitle"),
@@ -124,9 +125,18 @@ export default function ProjectsSection() {
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                  {mainProjects[0].githubUrl && (
+                  {mainProjects[0].liveUrl && (
                     <Button 
                       className="bg-accent text-accent-foreground hover:bg-accent/90"
+                      onClick={() => window.open(mainProjects[0].liveUrl, "_blank")}
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      {t("projects.visitSite")}
+                    </Button>
+                  )}
+                  {mainProjects[0].githubUrl && (
+                    <Button 
+                      variant="outline"
                       onClick={() => window.open(mainProjects[0].githubUrl, "_blank")}
                     >
                       <Github className="mr-2 h-4 w-4" />
