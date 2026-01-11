@@ -9,18 +9,23 @@ import {
   ExternalLink, 
   Info, 
   Bot, 
-  ShoppingCart, 
-  TrendingUp 
+  Github 
 } from "lucide-react";
 
 const getMainProjects = (t: any, language: string) => [
   {
-    title: t("projects.erpTitle"),
-    description: t("projects.erpDesc"),
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
-    technologies: ["ExpressJS", "React", "AWS", "PostgreSQL", "Ivois"],
-    type: "ERP System",
-    erpRul: "https://biller.jcampos.dev",
+    title: t("projects.beautyMarketTitle"),
+    description: t("projects.beautyMarketDesc"),
+    image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
+    technologies: ["React", "TypeScript", "Node.js", "AWS Lambda", "PostgreSQL", "Cognito", "CloudFormation"],
+    type: "SaaS Platform",
+    features: [
+      t("projects.beautyMarketFeature1"),
+      t("projects.beautyMarketFeature2"),
+      t("projects.beautyMarketFeature3"),
+      t("projects.beautyMarketFeature4"),
+    ],
+    githubUrl: "https://github.com/chepelcr/BeautyMarket",
   },
   {
     title: t("projects.videoTranscriptTitle"),
@@ -54,14 +59,10 @@ const getMainProjects = (t: any, language: string) => [
 
 const getOtherProjects = (t: any) => [
   {
-    title: t("projects.ecommerceTitle"),
-    description: t("projects.ecommerceDesc"),
-    icon: ShoppingCart,
-  },
-  {
-    title: t("projects.dashboardTitle"),
-    description: t("projects.dashboardDesc"),
-    icon: TrendingUp,
+    title: t("projects.erpTitle"),
+    description: t("projects.erpDesc"),
+    icon: Bot,
+    erpUrl: "https://biller.jcampos.dev",
   },
 ];
 
@@ -78,7 +79,7 @@ export default function ProjectsSection() {
           {t("projects.title")}
         </h2>
         
-        {/* ERP System - Full Width Row */}
+        {/* Beauty Market SaaS - Full Width Row */}
         <div className="mb-12">
           <Card className="bg-card border-border card-hover h-full">
             <CardContent className="p-8 h-full flex flex-col lg:flex-row gap-8">
@@ -97,6 +98,20 @@ export default function ProjectsSection() {
                   {mainProjects[0].description}
                 </p>
                 
+                {mainProjects[0].features && (
+                  <div className="mb-6">
+                    <h4 className="font-semibold mb-3">{t("projects.characteristics")}</h4>
+                    <ul className="text-muted-foreground space-y-2">
+                      {mainProjects[0].features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center">
+                          <span className="text-accent mr-2">✓</span>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                
                 <div className="mb-6 flex-grow">
                   <h4 className="font-semibold mb-3">{t("projects.technologiesUsed")}</h4>
                   <div className="flex flex-wrap gap-2">
@@ -109,13 +124,13 @@ export default function ProjectsSection() {
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                  {mainProjects[0].erpRul && (
+                  {mainProjects[0].githubUrl && (
                     <Button 
                       className="bg-accent text-accent-foreground hover:bg-accent/90"
-                      onClick={() => window.open(mainProjects[0].erpRul, "_blank")}
+                      onClick={() => window.open(mainProjects[0].githubUrl, "_blank")}
                     >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      {t("projects.enterERP")}
+                      <Github className="mr-2 h-4 w-4" />
+                      {t("projects.viewCode")}
                     </Button>
                   )}
                 </div>
@@ -189,13 +204,26 @@ export default function ProjectsSection() {
         {/* Additional Projects Preview */}
         <div className="text-center mt-16">
           <h3 className="text-xl font-semibold mb-8 text-accent">{t("projects.otherProjects")}</h3>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-1 gap-6 max-w-md mx-auto">
             {otherProjects.map((project, index) => (
-              <Card key={index} className="bg-card border-border card-hover">
+              <Card key={index} className="bg-card border-border card-hover cursor-pointer" onClick={() => project.erpUrl && window.open(project.erpUrl, "_blank")}>
                 <CardContent className="p-6 text-center">
                   <project.icon className="h-12 w-12 text-accent mx-auto mb-4" />
                   <h4 className="font-semibold mb-2">{project.title}</h4>
-                  <p className="text-muted-foreground text-sm">{project.description}</p>
+                  <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
+                  {project.erpUrl && (
+                    <Button 
+                      size="sm"
+                      className="bg-accent text-accent-foreground hover:bg-accent/90"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(project.erpUrl, "_blank");
+                      }}
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      {t("projects.enterERP")}
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             ))}

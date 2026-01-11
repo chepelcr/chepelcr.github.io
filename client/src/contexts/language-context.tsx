@@ -284,9 +284,9 @@ export function LanguageProvider({children}: LanguageProviderProps) {
         },
         projects: [
             {
-                name: t('projects.erpTitle'),
-                description: t('projects.erpDesc'),
-                technologies: ['Java', 'Spring Boot', 'PostgreSQL', 'AWS', 'Microservices']
+                name: t('projects.beautyMarketTitle'),
+                description: t('projects.beautyMarketDesc'),
+                technologies: ['React', 'TypeScript', 'Node.js', 'AWS Lambda', 'PostgreSQL', 'Cognito', 'CloudFormation']
             },
             {
                 name: t('projects.videoTranscriptTitle'),
@@ -413,7 +413,14 @@ const translations = {
         // Projects Section
         "projects.title": "Proyectos Destacados",
         "projects.viewProject": "Ver Proyecto",
+        "projects.viewCode": "Ver Código",
         "projects.enterERP": "Entrar",
+        "projects.beautyMarketTitle": "BeautyMarket - Plataforma SaaS",
+        "projects.beautyMarketDesc": "Plataforma SaaS multi-tenant para gestión de productos de belleza con arquitectura serverless completa en AWS. Incluye autenticación con Cognito, gestión de contenido CMS, dashboard administrativo y soporte multi-idioma.",
+        "projects.beautyMarketFeature1": "Arquitectura multi-tenant con aislamiento completo",
+        "projects.beautyMarketFeature2": "Infraestructura serverless escalable en AWS",
+        "projects.beautyMarketFeature3": "Sistema CMS integrado para gestión de contenido",
+        "projects.beautyMarketFeature4": "CI/CD automatizado con CodePipeline",
         "projects.erpTitle": "Sistema ERP para Facturación Electrónica",
         "projects.erpDesc": "Sistema integral de gestión empresarial desarrollado con arquitectura de microservicios. Incluye facturación electrónica integrada con IVOIS, gestión de inventario y reportes básicos.",
         "projects.videoTranscriptTitle": "Transcripción de Video con IA",
@@ -600,7 +607,14 @@ const translations = {
         // Projects Section
         "projects.title": "Featured Projects",
         "projects.viewProject": "View Project",
+        "projects.viewCode": "View Code",
         "projects.enterERP": "Enter",
+        "projects.beautyMarketTitle": "BeautyMarket - SaaS Platform",
+        "projects.beautyMarketDesc": "Multi-tenant SaaS platform for beauty product management with complete serverless architecture on AWS. Includes Cognito authentication, CMS content management, administrative dashboard and multi-language support.",
+        "projects.beautyMarketFeature1": "Multi-tenant architecture with complete isolation",
+        "projects.beautyMarketFeature2": "Scalable serverless infrastructure on AWS",
+        "projects.beautyMarketFeature3": "Integrated CMS system for content management",
+        "projects.beautyMarketFeature4": "Automated CI/CD with CodePipeline",
         "projects.erpTitle": "ERP System for Electronic Invoicing",
         "projects.erpDesc": "Comprehensive business management system developed with microservices architecture. Includes electronic invoicing integrated with IVOIS, inventory management and basic reporting.",
         "projects.videoTranscriptTitle": "AI Video Transcription",
