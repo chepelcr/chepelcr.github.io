@@ -2,14 +2,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/contexts/language-context";
-import { 
-  Laptop, 
-  Eye, 
-  Github, 
-  ExternalLink, 
-  Info, 
-  Bot, 
-  Github 
+import {
+  Laptop,
+  Bot,
+  Lock,
 } from "lucide-react";
 
 const getMainProjects = (t: any, language: string) => [
@@ -25,8 +21,6 @@ const getMainProjects = (t: any, language: string) => [
       t("projects.beautyMarketFeature3"),
       t("projects.beautyMarketFeature4"),
     ],
-    githubUrl: "https://github.com/chepelcr/BeautyMarket",
-    liveUrl: "https://jmarkets.jcampos.dev",
   },
   {
     title: t("projects.videoTranscriptTitle"),
@@ -34,7 +28,6 @@ const getMainProjects = (t: any, language: string) => [
     image: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
     technologies: ["React", "TypeScript", "AI Services", "Web APIs", "Tailwind CSS"],
     type: "AI Tool",
-    liveUrl: `https://jcampos.dev/video-transcript/${language}`,
     features: [
       t("projects.videoFeature1"),
       t("projects.videoFeature2"),
@@ -48,7 +41,6 @@ const getMainProjects = (t: any, language: string) => [
     image: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
     technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
     type: "Educational Platform",
-    liveUrl: "https://jcampos.dev/Comandos-linux/",
     features: [
       t("projects.feature1"),
       t("projects.feature2"),
@@ -63,15 +55,18 @@ const getOtherProjects = (t: any) => [
     title: t("projects.erpTitle"),
     description: t("projects.erpDesc"),
     icon: Bot,
-    erpUrl: "https://biller.jcampos.dev",
   },
 ];
 
 export default function ProjectsSection() {
-  const { t, language } = useLanguage();
+  const { t, language, navigateToSection } = useLanguage();
   const mainProjects = getMainProjects(t, language);
   const otherProjects = getOtherProjects(t);
-  
+
+  const handleRequestAccess = () => {
+    navigateToSection("contact");
+  };
+
   return (
     <section id="projects" className="section-spacing bg-slate">
       <div className="container-spacing">
@@ -79,7 +74,7 @@ export default function ProjectsSection() {
           <Laptop className="inline-block text-accent mr-4" />
           {t("projects.title")}
         </h2>
-        
+
         {/* Beauty Market SaaS - Full Width Row */}
         <div className="mb-12">
           <Card className="bg-card border-border card-hover h-full">
@@ -98,7 +93,7 @@ export default function ProjectsSection() {
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   {mainProjects[0].description}
                 </p>
-                
+
                 {mainProjects[0].features && (
                   <div className="mb-6">
                     <h4 className="font-semibold mb-3">{t("projects.characteristics")}</h4>
@@ -112,7 +107,7 @@ export default function ProjectsSection() {
                     </ul>
                   </div>
                 )}
-                
+
                 <div className="mb-6 flex-grow">
                   <h4 className="font-semibold mb-3">{t("projects.technologiesUsed")}</h4>
                   <div className="flex flex-wrap gap-2">
@@ -123,33 +118,22 @@ export default function ProjectsSection() {
                     ))}
                   </div>
                 </div>
-                
+
                 <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                  {mainProjects[0].liveUrl && (
-                    <Button 
-                      className="bg-accent text-accent-foreground hover:bg-accent/90"
-                      onClick={() => window.open(mainProjects[0].liveUrl, "_blank")}
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      {t("projects.visitSite")}
-                    </Button>
-                  )}
-                  {mainProjects[0].githubUrl && (
-                    <Button 
-                      variant="outline"
-                      onClick={() => window.open(mainProjects[0].githubUrl, "_blank")}
-                    >
-                      <Github className="mr-2 h-4 w-4" />
-                      {t("projects.viewCode")}
-                    </Button>
-                  )}
+                  <Button
+                    className="bg-accent text-accent-foreground hover:bg-accent/90"
+                    onClick={handleRequestAccess}
+                  >
+                    <Lock className="mr-2 h-4 w-4" />
+                    {t("projects.requestAccess")}
+                  </Button>
                 </div>
               </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Video Transcription and Linux Commands - Two Column Row */}        
+        {/* Video Transcription and Linux Commands - Two Column Row */}
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           {mainProjects.slice(1).map((project, index) => (
             <Card key={index + 1} className="bg-card border-border card-hover h-full">
@@ -167,7 +151,7 @@ export default function ProjectsSection() {
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   {project.description}
                 </p>
-                
+
                 {project.features && (
                   <div className="mb-6">
                     <h4 className="font-semibold mb-3">{t("projects.characteristics")}</h4>
@@ -181,7 +165,7 @@ export default function ProjectsSection() {
                     </ul>
                   </div>
                 )}
-                
+
                 <div className="mb-6 flex-grow">
                   <h4 className="font-semibold mb-3">
                     {project.features ? t("projects.technologies") : t("projects.technologiesUsed")}
@@ -194,17 +178,15 @@ export default function ProjectsSection() {
                     ))}
                   </div>
                 </div>
-                
+
                 <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                  {project.liveUrl && (
-                    <Button 
-                      className="bg-accent text-accent-foreground hover:bg-accent/90"
-                      onClick={() => window.open(project.liveUrl, "_blank")}
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      {t("projects.visitSite")}
-                    </Button>
-                  )}
+                  <Button
+                    className="bg-accent text-accent-foreground hover:bg-accent/90"
+                    onClick={handleRequestAccess}
+                  >
+                    <Lock className="mr-2 h-4 w-4" />
+                    {t("projects.requestAccess")}
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -216,24 +198,19 @@ export default function ProjectsSection() {
           <h3 className="text-xl font-semibold mb-8 text-accent">{t("projects.otherProjects")}</h3>
           <div className="grid md:grid-cols-1 gap-6 max-w-md mx-auto">
             {otherProjects.map((project, index) => (
-              <Card key={index} className="bg-card border-border card-hover cursor-pointer" onClick={() => project.erpUrl && window.open(project.erpUrl, "_blank")}>
+              <Card key={index} className="bg-card border-border card-hover">
                 <CardContent className="p-6 text-center">
                   <project.icon className="h-12 w-12 text-accent mx-auto mb-4" />
                   <h4 className="font-semibold mb-2">{project.title}</h4>
                   <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
-                  {project.erpUrl && (
-                    <Button 
-                      size="sm"
-                      className="bg-accent text-accent-foreground hover:bg-accent/90"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.open(project.erpUrl, "_blank");
-                      }}
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      {t("projects.enterERP")}
-                    </Button>
-                  )}
+                  <Button
+                    size="sm"
+                    className="bg-accent text-accent-foreground hover:bg-accent/90"
+                    onClick={handleRequestAccess}
+                  >
+                    <Lock className="mr-2 h-4 w-4" />
+                    {t("projects.requestAccess")}
+                  </Button>
                 </CardContent>
               </Card>
             ))}

@@ -15,10 +15,12 @@ export interface CVData {
   };
   about: string;
   experience: Array<{
-    title: string;
     company: string;
-    period: string;
-    description: string;
+    roles: Array<{
+      title: string;
+      period: string;
+      description: string;
+    }>;
     skills: string[];
   }>;
   education: Array<{
@@ -174,25 +176,36 @@ export function LanguageProvider({children}: LanguageProviderProps) {
         about: t('about.description'),
         experience: [
             {
-                title: t('experience.professionalServicesTitle'),
-                company: t('experience.professionalServicesCompany'),
-                period: t('experience.professionalServicesPeriod'),
-                description: t('experience.professionalServicesDesc'),
-                skills: ['Python 3.12', 'Java 17', 'Spring Boot', 'AWS Lambda', 'CloudFormation', 'SAM', 'SQLAlchemy', 'Pydantic', 'PostgreSQL', 'Redis', 'SQS', 'EventBridge', 'Docker', 'CI/CD', 'Microservices']
-            },
-            {
-                title: t('experience.javaDevTitle'),
                 company: t('experience.javaDevCompany'),
-                period: t('experience.javaDevPeriod'),
-                description: t('experience.javaDevDesc'),
-                skills: ['Java', 'Spring Boot', 'Python', 'FastAPI', 'SQLAlchemy', 'Node.js', 'AWS', 'CloudFormation', 'SAM', 'Bash', 'Microservices', 'XML', 'PostgreSQL', 'API Gateway', 'Lambda', 'SES', 'SNS', 'SQS']
+                roles: [
+                    {
+                        title: t('experience.professionalServicesTitle'),
+                        period: t('experience.professionalServicesPeriod'),
+                        description: t('experience.professionalServicesDesc'),
+                    },
+                    {
+                        title: t('experience.javaDevTitle'),
+                        period: t('experience.javaDevPeriod'),
+                        description: t('experience.javaDevDesc'),
+                    },
+                ],
+                skills: ['Python 3.12', 'Java 17', 'Spring Boot', 'AWS Lambda', 'CloudFormation', 'SAM', 'SQLAlchemy', 'Pydantic', 'PostgreSQL', 'Redis', 'SQS', 'EventBridge', 'Docker', 'CI/CD', 'Microservices', 'FastAPI', 'Node.js', 'API Gateway', 'ECR', 'ECS', 'RDS', 'S3', 'SES', 'SNS']
             },
             {
-                title: t('experience.webDevTitle'),
                 company: t('experience.webDevCompany'),
-                period: t('experience.webDevPeriod'),
-                description: t('experience.webDevDesc'),
-                skills: ['PHP', 'React', 'Node.js', 'Python', 'AWS Lambda', 'Excel Macros']
+                roles: [
+                    {
+                        title: t('experience.webDevTitle'),
+                        period: t('experience.webDevPeriod'),
+                        description: t('experience.webDevDesc'),
+                    },
+                    {
+                        title: t('experience.adminAssistantTitle'),
+                        period: t('experience.adminAssistantPeriod'),
+                        description: t('experience.adminAssistantDesc'),
+                    },
+                ],
+                skills: ['PHP', 'React', 'Node.js', 'Python', 'FastAPI', 'pandas', 'AWS Lambda', 'AWS S3', 'API Gateway', 'wkhtmltopdf', 'Excel']
             }
         ],
         education: [
@@ -383,21 +396,21 @@ const translations = {
         "experience.javaDevTitle": "Java Developer",
         "experience.javaDevCompany": "Interfaz",
         "experience.javaDevPeriod": "Julio 2022 - Junio 2025",
-        "experience.javaDevDesc": "Analisis, diseño e implementación de infraestructura, microservicios, APIs en la nube, servicios de mensajeria, correo y almacenamiento de datos en Amazon Web Services. " +
-            "\nGeneración y firma de documentos electrónicos XML correspondientes con el formato requerido por el Ministerio de Hacienda." +
-            "\nGestión de sucursales, terminales y numeración consecutiva para documentos electrónicos." +
-            "\nGestión avanzada de productos con impuestos específicos, clientes y proveedores enfocado en multiples organizaciones." +
-            "\nImportación de datos preexistentes de documentos electrónicos (XML) generados en otros sistemas." +
-            "\nIntegración con servicios web del Ministerio de Hacienda: Personas, exoneraciones, codigos CABYS, tipo de cambio del dolar.",
-        "experience.javaDevDesc2": "Uso de APIs del Ministerio de Hacienda: Solicitudes de Histórico (documentos y sucursales), envio y validación de documentos electrónicos para multiples negocios." +
-            "\nCreación de infraestructura AWS como código utilizando AWS CloudFormation y plantillas SAM, usando archivos bash para despliegue en diferentes etapas y cuentas.",
-        "experience.webDevTitle": "Web Developer Ad Honorem",
-        "experience.webDevCompany": "Modas Laura",
+        "experience.javaDevDesc": "Análisis, diseño e implementación de microservicios, APIs y servicios en AWS (Lambda, SQS, SES, S3). Generación, firma e integración completa con el sistema de facturación electrónica XML del Ministerio de Hacienda: personas, exoneraciones, códigos CABYS, tipo de cambio, histórico y validación de documentos para múltiples empresas. Gestión de sucursales, terminales, productos con impuestos específicos, clientes y proveedores para múltiples organizaciones. Infraestructura como código con CloudFormation y SAM templates, despliegue multi-etapa y multi-cuenta mediante scripts Bash.",
+        "experience.javaDevDesc2": "",
+        "experience.webDevTitle": "Web Developer",
+        "experience.webDevCompany": "Modas Laura - Ad Honorem",
         "experience.webDevPeriod": "2021 - Actual",
         "experience.webDevDesc": "Desarrollo de sistema de facturación electrónica inicialmente con PHP y posteriormente migrado a React con Node.js e interconexión a API externa." +
             "\nGestión integral de clientes, productos y facturación electrónica cumpliendo con normativas del Ministerio de Hacienda." +
             "\nAutomatización de procesos manuales de creación de Excel mediante macros y posteriormente mediante Python en funciones Lambda." +
             "\nImplementación de arquitectura moderna con frontend React y backend Node.js para mejorar la experiencia de usuario y escalabilidad del sistema.",
+        "experience.adminAssistantTitle": "Asistente Administrativo",
+        "experience.adminAssistantPeriod": "2012 - Actual",
+        "experience.adminAssistantDesc": "Gestión de correos electrónicos y coordinación de solicitudes de actualización de precios con proveedores." +
+            "\nCreación y mantenimiento de reportes en Excel para control operativo y administrativo." +
+            "\nElaboración de etiquetas para cajas y documentos de despacho para envío de productos al CEDI (Centro de Distribución)." +
+            "\nDiseño e implementación de sistema de procesamiento de crossdocking en Python, reduciendo la generación de reportes de 45 a 5 minutos. El sistema recibe una plantilla Excel con datos del pedido y otra con productos y cantidades por tienda, generando automáticamente el reporte de crossdocking, resumen de cajas, artículos faltantes y etiquetas de cajas mediante AWS Lambda, S3, API Gateway, FastAPI y pandas.",
 
         // Education Section
         "education.title": "Educación y Certificaciones",
@@ -446,6 +459,7 @@ const translations = {
         "projects.visitSite": "Visitar Sitio",
         "projects.viewDetails": "Ver Detalles",
         "projects.viewAllProjects": "Ver Todos los Proyectos",
+        "projects.requestAccess": "Solicitar Acceso",
 
         // Contact Section
         "contact.title": "Contáctame",
@@ -577,21 +591,21 @@ const translations = {
         "experience.javaDevTitle": "Java Developer",
         "experience.javaDevCompany": "Interfaz",
         "experience.javaDevPeriod": "July 2022 - June 2025",
-        "experience.javaDevDesc": "Analysis, design and implementation of infrastructure, microservices, cloud APIs, messaging services, email and data storage in Amazon Web Services." +
-            "\nGeneration and signing of XML electronic documents corresponding to the format required by the 'Ministerio de Hacienda'." +
-            "\nManagement of branches, terminals and consecutive numbering for electronic documents." +
-            "\nAdvanced management of products with specific taxes, customers and suppliers focused on multiple organizations." +
-            "\nImporting pre-existing data from electronic documents (XML) generated in other systems." +
-            "\nIntegration with 'Ministerio de Hacienda' web services: Persons, exemptions, CABYS codes, dollar exchange rate.",
-        "experience.javaDevDesc2": "Use of 'Ministerio de Hacienda' APIs: Historical requests (documents and branches), sending and validation of electronic documents for multiple businesses." +
-            "\nCreation of AWS infrastructure as code using AWS CloudFormation and SAM templates, using bash files for deployment across different stages and accounts.",
-        "experience.webDevTitle": "Web Developer Ad Honorem",
-        "experience.webDevCompany": "Modas Laura",
+        "experience.javaDevDesc": "Analysis, design and implementation of microservices, APIs and services on AWS (Lambda, SQS, SES, S3). Full generation, signing and integration with the Ministerio de Hacienda XML electronic invoicing system: persons, exemptions, CABYS codes, exchange rate, document history and validation for multiple businesses. Management of branches, terminals, products with specific taxes, clients and suppliers across multiple organizations. Infrastructure as code with CloudFormation and SAM templates, multi-stage and multi-account deployment via Bash scripts.",
+        "experience.javaDevDesc2": "",
+        "experience.webDevTitle": "Web Developer",
+        "experience.webDevCompany": "Modas Laura - Ad Honorem",
         "experience.webDevPeriod": "2021 - Current",
         "experience.webDevDesc": "Development of electronic invoicing system initially with PHP and later migrated to React with Node.js and external API integration." +
             "\nComprehensive management of clients, products and electronic invoicing complying with Ministry of Finance regulations." +
             "\nAutomation of manual Excel creation processes through macros and later through Python in Lambda functions." +
             "\nImplementation of modern architecture with React frontend and Node.js backend to improve user experience and system scalability.",
+        "experience.adminAssistantTitle": "Administrative Assistant",
+        "experience.adminAssistantPeriod": "2012 - Current",
+        "experience.adminAssistantDesc": "Email management and coordination of price update requests with suppliers." +
+            "\nCreation and maintenance of Excel reports for operational and administrative control." +
+            "\nCreation of box labels and shipping documents for product distribution to the CEDI (Distribution Center)." +
+            "\nDesign and implementation of a crossdocking processing system in Python, reducing report generation from 45 to 5 minutes. The system receives an Excel template with order data and another with store product quantities, automatically generating crossdocking reports, box summaries, missing items, and box labels using AWS Lambda, S3, API Gateway, FastAPI, and pandas.",
 
         // Education Section
         "education.title": "Education and Certifications",
@@ -639,6 +653,7 @@ const translations = {
         "projects.otherProjects": "Other Projects",
         "projects.visitSite": "Visit Site",
         "projects.viewAllProjects": "View All Projects",
+        "projects.requestAccess": "Request Access",
         "projects.viewDetails": "View Details",
 
         // Contact Section

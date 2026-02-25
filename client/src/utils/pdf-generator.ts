@@ -191,55 +191,58 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
   // Professional Experience Section
   addTitle(t('experience.title'));
 
-  // PAGE 1: Only Professional Services (index 0)
-  const professionalServices = data.experience[0];
-  addText(professionalServices.title, 12, textColor, true);
+  // PAGE 1: Interfaz - Software Engineer role (index 0, role 0)
+  const interfazExp = data.experience[0];
+  const softwareEngRole = interfazExp.roles[0];
+  addText(interfazExp.company, 12, textColor, true);
   yPosition -= 4;
-  addSubtitle(`${professionalServices.company} | ${professionalServices.period}`);
+  addText(softwareEngRole.title, 11, primaryColor, false);
+  yPosition -= 2;
+  addSubtitle(softwareEngRole.period);
   yPosition -= 1;
-  addText(professionalServices.description, 10, textColor, false, true);
-  if (professionalServices.skills.length > 0) {
-    yPosition -= 3;
-    addText(t('cv.technologies'), 10, textColor, true);
-    yPosition -= 4;
-    addText(professionalServices.skills.join(', '), 10, lightTextColor);
-  }
+  addText(softwareEngRole.description, 10, textColor, false, true);
 
-  // PAGE 2: Java Developer + Web Developer Ad Honorem
+  // PAGE 2: Interfaz - Java Developer role + Web Developer Ad Honorem
   doc.addPage();
   yPosition = 20;
 
-  // Java Developer (index 1) - Full description
-  const javaDeveloper = data.experience[1];
-  addText(javaDeveloper.title, 12, textColor, true);
+  // Java Developer role (index 0, role 1) - Full description
+  const javaDevRole = interfazExp.roles[1];
+  addText(interfazExp.company, 12, textColor, true);
   yPosition -= 4;
-  addSubtitle(`${javaDeveloper.company} | ${javaDeveloper.period}`);
+  addText(javaDevRole.title, 11, primaryColor, false);
+  yPosition -= 2;
+  addSubtitle(javaDevRole.period);
   yPosition -= 1;
-  addText(javaDeveloper.description, 10, textColor, false, true);
+  addText(javaDevRole.description, 10, textColor, false, true);
 
-  // Add continuation of Java Developer
-  addText(t('experience.javaDevDesc2'), 10, textColor, false, true);
-
-  if (javaDeveloper.skills.length > 0) {
-    yPosition -= 3;
+  if (interfazExp.skills.length > 0) {
+    yPosition += 4;
     addText(t('cv.technologies'), 10, textColor, true);
     yPosition -= 4;
-    addText(javaDeveloper.skills.join(', '), 10, lightTextColor);
+    addText(interfazExp.skills.join(', '), 10, lightTextColor);
   }
   yPosition += 5;
 
-  // Web Developer Ad Honorem (index 2)
-  const webDeveloper = data.experience[2];
-  addText(webDeveloper.title, 12, textColor, true);
+  // Modas Laura (index 1) - company header + all roles
+  const modasLaura = data.experience[1];
+  addText(modasLaura.company, 12, textColor, true);
   yPosition -= 4;
-  addSubtitle(`${webDeveloper.company} | ${webDeveloper.period}`);
-  yPosition -= 1;
-  addText(webDeveloper.description, 10, textColor, false, true);
-  if (webDeveloper.skills.length > 0) {
+
+  modasLaura.roles.forEach((role: { title: string; period: string; description: string }, roleIdx: number) => {
+    if (roleIdx > 0) yPosition += 3;
+    addText(role.title, 11, primaryColor, false);
+    yPosition -= 2;
+    addSubtitle(role.period);
+    yPosition -= 1;
+    addText(role.description, 10, textColor, false, true);
+  });
+
+  if (modasLaura.skills.length > 0) {
     yPosition -= 3;
     addText(t('cv.technologies'), 10, textColor, true);
     yPosition -= 4;
-    addText(webDeveloper.skills.join(', '), 10, lightTextColor);
+    addText(modasLaura.skills.join(', '), 10, lightTextColor);
   }
 
   // PAGE 3: Education, Technical Skills, Additional Training, Certifications
@@ -307,7 +310,7 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
 
   // Define actual skills matching the website
   const coreSkills = [
-    "Java (Spring Boot)", "Python (FastAPI)", "PHP", "Node.js", "JavaScript & HTML"
+    "Java (Spring Boot)", "Python (FastAPI, AWS Powertools)", "PHP", "Node.js", "JavaScript & HTML"
   ];
 
   const cloudSkills = [

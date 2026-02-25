@@ -1,33 +1,42 @@
 import {Card, CardContent} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import {useLanguage} from "@/contexts/language-context";
-import {Briefcase, Code, Cloud, Globe, Play} from "lucide-react";
+import {Briefcase, Code, Globe, Play} from "lucide-react";
 
 const getExperiences = (t: any) => [
     {
-        title: t("experience.professionalServicesTitle"),
-        company: t("experience.professionalServicesCompany"),
-        period: t("experience.professionalServicesPeriod"),
-        description: t("experience.professionalServicesDesc"),
-        skills: ["Python 3.12", "AWS Lambda", "CloudFormation", "SAM", "SQLAlchemy", "Pydantic", "SQS", "EventBridge", "Docker", "CI/CD"],
-        icon: Cloud,
-        current: false,
-    },
-    {
-        title: t("experience.javaDevTitle"),
         company: t("experience.javaDevCompany"),
-        period: t("experience.javaDevPeriod"),
-        description: t("experience.javaDevDesc"),
-        skills: ["API Gateway", "AWS Lambda", "CI/CD", "Cloudformation", "ECR", "ECS", "RDS", "S3", "SES", "SNS", "SQS"],
+        roles: [
+            {
+                title: t("experience.professionalServicesTitle"),
+                period: t("experience.professionalServicesPeriod"),
+                description: t("experience.professionalServicesDesc"),
+            },
+            {
+                title: t("experience.javaDevTitle"),
+                period: t("experience.javaDevPeriod"),
+                description: t("experience.javaDevDesc"),
+            },
+        ],
+        skills: ["Python 3.12", "Java", "Spring Boot", "AWS Lambda", "CloudFormation", "SAM", "Pydantic", "SQS", "EventBridge", "Docker", "CI/CD", "API Gateway", "ECR", "ECS", "RDS", "S3"],
         icon: Code,
         current: false,
     },
     {
-        title: t("experience.webDevTitle"),
         company: t("experience.webDevCompany"),
-        period: t("experience.webDevPeriod"),
-        description: t("experience.webDevDesc"),
-        skills: ["AWS Cognito", "Postgres", "TypeScript", "React", "SES"],
+        roles: [
+            {
+                title: t("experience.webDevTitle"),
+                period: t("experience.webDevPeriod"),
+                description: t("experience.webDevDesc"),
+            },
+            {
+                title: t("experience.adminAssistantTitle"),
+                period: t("experience.adminAssistantPeriod"),
+                description: t("experience.adminAssistantDesc"),
+            },
+        ],
+        skills: ["Python", "FastAPI", "pandas", "AWS Lambda", "AWS S3", "API Gateway", "wkhtmltopdf", "React", "Node.js", "PHP", "Excel"],
         icon: Globe,
         current: true,
     },
@@ -74,25 +83,36 @@ export default function ExperienceSection() {
                                     </div>
                                     <Card className="flex-1 bg-card border-border card-hover h-full relative">
                                         <CardContent className="p-6 h-full flex flex-col">
-                                            <div
-                                                className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                                <h3 className="text-xl font-semibold text-accent">{exp.title}</h3>
-                                                <span className="text-muted-foreground font-mono">{exp.period}</span>
-                                            </div>
-                                            <p className="text-lg font-medium mb-2">{exp.company}</p>
-                                            <div className="text-muted-foreground leading-relaxed mb-4 flex-grow">
-                                                {exp.description.includes('\n') ? (
-                                                    exp.description.split('\n').map((paragraph, index) => (
-                                                        paragraph.trim() && (
-                                                            <p key={index} className="text-justify mb-1">
-                                                                {paragraph.trim()}
-                                                            </p>
-                                                        )
-                                                    ))
-                                                ) : (
-                                                    <p className="text-justify">{exp.description}</p>
-                                                )}
-                                            </div>
+                                            {/* Company Name */}
+                                            <p className="text-xl font-bold mb-4">{exp.company}</p>
+
+                                            {/* Roles */}
+                                            {exp.roles.map((role, roleIndex) => (
+                                                <div key={roleIndex}>
+                                                    {roleIndex > 0 && (
+                                                        <hr className="border-border my-5"/>
+                                                    )}
+                                                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                                        <h3 className="text-lg font-semibold text-accent">{role.title}</h3>
+                                                        <span className="text-muted-foreground font-mono text-sm">{role.period}</span>
+                                                    </div>
+                                                    <div className="text-muted-foreground leading-relaxed mb-4">
+                                                        {role.description.includes('\n') ? (
+                                                            role.description.split('\n').map((paragraph: string, pIndex: number) => (
+                                                                paragraph.trim() && (
+                                                                    <p key={pIndex} className="text-justify mb-1">
+                                                                        {paragraph.trim()}
+                                                                    </p>
+                                                                )
+                                                            ))
+                                                        ) : (
+                                                            <p className="text-justify">{role.description}</p>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            ))}
+
+                                            {/* Skills */}
                                             <div className="flex flex-wrap gap-2 mt-auto">
                                                 {exp.skills.map((skill, skillIndex) => (
                                                     <Badge key={skillIndex}
