@@ -334,7 +334,7 @@ const translations = {
 
         // Hero Section
         "hero.greeting": "¡Hola! Soy",
-        "hero.title": "Arquitecto de Soluciones",
+        "hero.title": "Ingeniero de Software",
         "hero.subtitle": "BackEnd Developer",
         "hero.description": "Desarrollador de software especializado en soluciones Backend con Java, Python y AWS. Creando sistemas escalables que impulsan el crecimiento empresarial.",
         "hero.contactMe": "Contáctame",
@@ -353,7 +353,7 @@ const translations = {
         "about.languageProficiency": "Español (Nativo), Inglés (B2)",
         "about.phone": "Teléfono:",
         "about.id": "ID:",
-        "about.profileDesc1": "Arquitecto de Soluciones, especializado en BackEnd con Java (Spring Boot), Python y Amazon Web Services.",
+        "about.profileDesc1": "Ingeniero de Software, especializado en BackEnd con Java (Spring Boot), Python y Amazon Web Services.",
         "about.profileDesc3": "Me encuentro en mejora continua de mi ERP para facturación electrónica, integrando APIs, mensajería asíncrona y servicios de AWS.",
         "about.profileDesc2": "He participado en comunidades de software de código abierto como Firefox y Drupal Camp y asisto activamente a eventos de tecnología. Me apasiona construir soluciones escalables y limpias enfocadas en generar un impacto real en los procesos de negocio.",
 
@@ -529,7 +529,7 @@ const translations = {
 
         // Hero Section
         "hero.greeting": "Hello! I'm",
-        "hero.title": "Solutions Architect",
+        "hero.title": "Software Engineer",
         "hero.subtitle": "BackEnd developer",
         "hero.description": "Software developer specialized in Backend solutions with Java, Python and AWS. Creating scalable systems that drive business growth.",
         "hero.contactMe": "Contact Me",
@@ -548,7 +548,7 @@ const translations = {
         "about.languageProficiency": "Spanish (Native), English (B2)",
         "about.phone": "Phone:",
         "about.id": "ID:",
-        "about.profileDesc1": "Solutions Architect, specialized in BackEnd with Java (Spring Boot), Python and Amazon Web Services.",
+        "about.profileDesc1": "Software Engineer, specialized in BackEnd with Java (Spring Boot), Python and Amazon Web Services.",
         "about.profileDesc3": "I am continuously improving my ERP for electronic invoicing, integrating APIs, asynchronous messaging and AWS services.",
         "about.profileDesc2": "I have participated in open source software communities and actively attend technology events such as Firefox and Drupal Camp. I am passionate about building scalable and clean solutions focused on generating real impact on business processes.",
 
