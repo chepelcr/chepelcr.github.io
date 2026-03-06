@@ -6,6 +6,7 @@ import {
   Laptop,
   Bot,
   Lock,
+  ExternalLink,
 } from "lucide-react";
 
 const getMainProjects = (t: any, language: string) => [
@@ -41,6 +42,7 @@ const getMainProjects = (t: any, language: string) => [
     image: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
     technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
     type: "Educational Platform",
+    link: "https://linux.jcampos.dev",
     features: [
       t("projects.feature1"),
       t("projects.feature2"),
@@ -180,13 +182,25 @@ export default function ProjectsSection() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                  <Button
-                    className="bg-accent text-accent-foreground hover:bg-accent/90"
-                    onClick={handleRequestAccess}
-                  >
-                    <Lock className="mr-2 h-4 w-4" />
-                    {t("projects.requestAccess")}
-                  </Button>
+                  {(project as any).link ? (
+                    <Button
+                      className="bg-accent text-accent-foreground hover:bg-accent/90"
+                      asChild
+                    >
+                      <a href={(project as any).link} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        {t("projects.accessSite")}
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button
+                      className="bg-accent text-accent-foreground hover:bg-accent/90"
+                      onClick={handleRequestAccess}
+                    >
+                      <Lock className="mr-2 h-4 w-4" />
+                      {t("projects.requestAccess")}
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>

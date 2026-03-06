@@ -460,6 +460,7 @@ const translations = {
         "projects.viewDetails": "Ver Detalles",
         "projects.viewAllProjects": "Ver Todos los Proyectos",
         "projects.requestAccess": "Solicitar Acceso",
+        "projects.accessSite": "Acceder al Sitio",
 
         // Contact Section
         "contact.title": "Contáctame",
@@ -654,6 +655,7 @@ const translations = {
         "projects.visitSite": "Visit Site",
         "projects.viewAllProjects": "View All Projects",
         "projects.requestAccess": "Request Access",
+        "projects.accessSite": "Access Site",
         "projects.viewDetails": "View Details",
 
         // Contact Section
