@@ -3,6 +3,7 @@
 # Colors for output
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+MAGENTA='\033[0;35m'
 NC='\033[0m' # No Color
 
 echo -e "${GREEN}🔄 Rebooting JCampos server...${NC}"
@@ -27,13 +28,14 @@ sleep 2
 # Clean Vite caches
 echo "Cleaning Vite caches..."
 rm -rf client/node_modules/.vite client/.vite client/dist
+rm -rf node_modules/.vite .vite dist
 echo "Caches cleared"
 
 # Create logs directory if it doesn't exist
 mkdir -p logs
 
 # Start server in background
-echo -e "${GREEN}🚀 Starting server...${NC}"
+echo -e "${GREEN}🚀 Starting server (Express + Vite HMR)...${NC}"
 nohup npm run dev > logs/server.log 2>&1 &
 DEV_PID=$!
 
@@ -47,7 +49,7 @@ if ps -p $DEV_PID > /dev/null; then
     echo -e "${YELLOW}Process PID:${NC} $DEV_PID"
     echo ""
     echo -e "${YELLOW}URLs:${NC}"
-    echo "  • App: http://localhost:9100"
+    echo -e "  • ${MAGENTA}Portfolio:${NC} http://localhost:9100"
     echo ""
     echo -e "${YELLOW}Logs:${NC}"
     echo "  • Server: tail -f logs/server.log"

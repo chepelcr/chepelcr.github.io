@@ -1,363 +1,320 @@
 import jsPDF from 'jspdf';
 import { CVData } from '@/contexts/language-context';
+import { formatPhoneDisplay } from '@/lib/phone';
 
 export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string) => string) {
   const doc = new jsPDF();
-  let yPosition = 20;
-  let currentColumn = 1; // 1 for left, 2 for right
-  let isSecondPage = false;
   const pageWidth = doc.internal.pageSize.width;
-  const margin = 20;
+  const pageHeight = doc.internal.pageSize.height;
+  const margin = 18;
   const contentWidth = pageWidth - 2 * margin;
-  const columnWidth = (contentWidth - 10) / 2; // 10 for column gap
-  const leftColumnX = margin;
-  const rightColumnX = margin + columnWidth + 10;
+  const bottomMargin = 18;
+  let yPosition = 18;
 
-  // Colors
-  const primaryColor = '#1e3a8a'; // Dark blue accent
+  const primaryColor = '#1e3a8a';
   const textColor = '#374151';
   const lightTextColor = '#6b7280';
+  const accentColor = '#1e3a8a';
 
-  // Helper functions
-  const getCurrentX = () => currentColumn === 1 ? leftColumnX : rightColumnX;
-  const getCurrentWidth = () => currentColumn === 1 && !isSecondPage ? contentWidth : columnWidth;
-
-  const addTitle = (title: string, size: number = 16) => {
-    doc.setFontSize(size);
-    doc.setTextColor(primaryColor);
-    doc.setFont('helvetica', 'bold');
-    doc.text(title, getCurrentX(), yPosition);
-    yPosition += size === 16 ? 12 : 8;
-    
-    // Add underline
-    doc.setDrawColor(primaryColor);
-    doc.setLineWidth(0.5);
-    const titleWidth = doc.getTextWidth(title);
-    doc.line(getCurrentX(), yPosition - 6, getCurrentX() + titleWidth, yPosition - 6);
-    yPosition += 4;
+  const checkPageBreak = (additionalSpace: number = 12) => {
+    if (yPosition + additionalSpace > pageHeight - bottomMargin) {
+      doc.addPage();
+      yPosition = 18;
+      return true;
+    }
+    return false;
   };
 
-  const addText = (text: string, fontSize: number = 10, color: string = textColor, isBold: boolean = false, justify: boolean = false) => {
+  const addSectionTitle = (title: string) => {
+    checkPageBreak(18);
+    doc.setFontSize(14);
+    doc.setTextColor(accentColor);
+    doc.setFont('helvetica', 'bold');
+    doc.text(title, margin, yPosition);
+    yPosition += 2;
+    doc.setDrawColor(accentColor);
+    doc.setLineWidth(0.4);
+    doc.line(margin, yPosition, margin + contentWidth, yPosition);
+    yPosition += 6;
+  };
+
+  const addParagraph = (text: string, fontSize = 10, color = textColor, isBold = false, justify = false) => {
     doc.setFontSize(fontSize);
     doc.setTextColor(color);
     doc.setFont('helvetica', isBold ? 'bold' : 'normal');
-    
-    if (justify && text.includes('\n')) {
-      // Handle text with line breaks - justify each paragraph separately
-      const paragraphs = text.split('\n');
-      paragraphs.forEach((paragraph, index) => {
-        if (paragraph.trim()) {
-          const lines = doc.splitTextToSize(paragraph.trim(), getCurrentWidth());
-          lines.forEach((line: string, lineIndex: number) => {
-            if (justify && lineIndex < lines.length - 1 && lines.length > 1) {
-              // Justify line by distributing spaces
-              const words = line.split(' ');
-              if (words.length > 1) {
-                const totalTextWidth = words.reduce((sum, word) => sum + doc.getTextWidth(word), 0);
-                const totalSpaceNeeded = getCurrentWidth() - totalTextWidth;
-                const spacePerGap = totalSpaceNeeded / (words.length - 1);
-                
-                let currentX = getCurrentX();
-                words.forEach((word, wordIndex) => {
-                  doc.text(word, currentX, yPosition);
-                  if (wordIndex < words.length - 1) {
-                    currentX += doc.getTextWidth(word) + spacePerGap;
-                  }
-                });
-              } else {
-                doc.text(line, getCurrentX(), yPosition);
-              }
-            } else {
-              doc.text(line, getCurrentX(), yPosition);
-            }
-            yPosition += fontSize * 0.6;
-          });
-        }
-        if (index < paragraphs.length - 1) yPosition += 0.25; // Space between paragraphs
-      });
-      yPosition += 4;
-    } else {
-      const lines = doc.splitTextToSize(text, getCurrentWidth());
-      lines.forEach((line: string, lineIndex: number) => {
-        if (justify && lineIndex < lines.length - 1 && lines.length > 1) {
-          // Justify line by distributing spaces
-          const words = line.split(' ');
-          if (words.length > 1) {
-            const totalTextWidth = words.reduce((sum, word) => sum + doc.getTextWidth(word), 0);
-            const totalSpaceNeeded = getCurrentWidth() - totalTextWidth;
-            const spacePerGap = totalSpaceNeeded / (words.length - 1);
-            
-            let currentX = getCurrentX();
-            words.forEach((word, wordIndex) => {
-              doc.text(word, currentX, yPosition);
-              if (wordIndex < words.length - 1) {
-                currentX += doc.getTextWidth(word) + spacePerGap;
-              }
-            });
-          } else {
-            doc.text(line, getCurrentX(), yPosition);
-          }
-        } else {
-          doc.text(line, getCurrentX(), yPosition);
-        }
-        yPosition += fontSize * 0.6;
-      });
-      yPosition += lines.length > 4 ? 1 : 4;
-    }
-  };
-
-  const addSubtitle = (text: string, fontSize: number = 10, color: string = lightTextColor) => {
-    doc.setFontSize(fontSize);
-    doc.setTextColor(color);
-    doc.setFont('helvetica', 'normal');
-    
-    const lines = doc.splitTextToSize(text, getCurrentWidth());
-    doc.text(lines, getCurrentX(), yPosition);
-    yPosition += lines.length * fontSize * 0.6 + 2;
-  };
-
-  const addBulletPoint = (text: string, indent: number = 5) => {
-    doc.setFontSize(10);
-    doc.setTextColor(textColor);
-    doc.setFont('helvetica', 'normal');
-    doc.text('•', getCurrentX() + indent, yPosition);
-    
-    const lines = doc.splitTextToSize(text, getCurrentWidth() - indent - 5);
-    doc.text(lines, getCurrentX() + indent + 8, yPosition);
-    yPosition += lines.length * 6 + 2;
-  };
-
-  const checkPageBreak = (additionalSpace: number = 20) => {
-    if (yPosition + additionalSpace > doc.internal.pageSize.height - 20) {
-      if (!isSecondPage) {
-        doc.addPage();
-        yPosition = 20;
-        isSecondPage = true;
-        currentColumn = 1;
-      } else if (currentColumn === 1) {
-        // Switch to right column
-        currentColumn = 2;
-        yPosition = 20;
+    const lineHeight = fontSize * 0.5;
+    const lines: string[] = doc.splitTextToSize(text, contentWidth);
+    lines.forEach((line: string, idx: number) => {
+      checkPageBreak(lineHeight + 2);
+      if (justify && idx < lines.length - 1 && line.trim().split(' ').length > 1) {
+        const words = line.trim().split(' ');
+        const textW = words.reduce((s, w) => s + doc.getTextWidth(w), 0);
+        const gap = (contentWidth - textW) / (words.length - 1);
+        let x = margin;
+        words.forEach((w, i) => {
+          doc.text(w, x, yPosition);
+          x += doc.getTextWidth(w) + (i < words.length - 1 ? gap : 0);
+        });
       } else {
-        // Add new page and reset
-        doc.addPage();
-        yPosition = 20;
-        currentColumn = 1;
+        doc.text(line, margin, yPosition);
       }
-    }
-  };
-
-  // Header (always full width on first page)
-  doc.setFontSize(24);
-  doc.setTextColor(primaryColor);
-  doc.setFont('helvetica', 'bold');
-  doc.text(data.personalInfo.name, margin, yPosition);
-  yPosition += 12; // Reduced from 18
-
-  doc.setFontSize(14);
-  doc.setTextColor(textColor);
-  doc.setFont('helvetica', 'normal');
-  doc.text(data.personalInfo.title, margin, yPosition);
-  yPosition += 15; // Reduced from 20
-
-  // Contact Information (always full width on first page)
-  doc.setFontSize(10);
-  doc.setTextColor(lightTextColor);
-  const contactLabels = {
-    email: 'Email:',
-    phone: t('about.phone'),
-    location: t('about.nationality'),
-    languages: t('about.languages')
-  };
-  
-  const contactInfo = [
-    `${contactLabels.email} ${data.personalInfo.email}`,
-    `${contactLabels.phone} ${data.personalInfo.phone}`,
-    `${contactLabels.location} ${data.personalInfo.location}`,
-    `${contactLabels.languages} ${data.personalInfo.languages}`
-  ];
-  
-  contactInfo.forEach((info) => {
-    doc.text(info, margin, yPosition);
-    yPosition += 6; // Reduced from 8
-  });
-  yPosition += 8; // Reduced from 10
-
-  // About Section
-  addTitle(t('about.title'));
-  addText(data.about, 10, textColor, false, true);
-  yPosition += 2;
-
-  // Professional Experience Section
-  addTitle(t('experience.title'));
-
-  // PAGE 1: Interfaz - Software Engineer role (index 0, role 0)
-  const interfazExp = data.experience[0];
-  const softwareEngRole = interfazExp.roles[0];
-  addText(interfazExp.company, 12, textColor, true);
-  yPosition -= 4;
-  addText(softwareEngRole.title, 11, primaryColor, false);
-  yPosition -= 2;
-  addSubtitle(softwareEngRole.period);
-  yPosition -= 1;
-  addText(softwareEngRole.description, 10, textColor, false, true);
-
-  // PAGE 2: Interfaz - Java Developer role + Web Developer Ad Honorem
-  doc.addPage();
-  yPosition = 20;
-
-  // Java Developer role (index 0, role 1) - Full description
-  const javaDevRole = interfazExp.roles[1];
-  addText(interfazExp.company, 12, textColor, true);
-  yPosition -= 4;
-  addText(javaDevRole.title, 11, primaryColor, false);
-  yPosition -= 2;
-  addSubtitle(javaDevRole.period);
-  yPosition -= 1;
-  addText(javaDevRole.description, 10, textColor, false, true);
-
-  if (interfazExp.skills.length > 0) {
-    yPosition += 4;
-    addText(t('cv.technologies'), 10, textColor, true);
-    yPosition -= 4;
-    addText(interfazExp.skills.join(', '), 10, lightTextColor);
-  }
-  yPosition += 5;
-
-  // Modas Laura (index 1) - company header + all roles
-  const modasLaura = data.experience[1];
-  addText(modasLaura.company, 12, textColor, true);
-  yPosition -= 4;
-
-  modasLaura.roles.forEach((role: { title: string; period: string; description: string }, roleIdx: number) => {
-    if (roleIdx > 0) yPosition += 3;
-    addText(role.title, 11, primaryColor, false);
-    yPosition -= 2;
-    addSubtitle(role.period);
-    yPosition -= 1;
-    addText(role.description, 10, textColor, false, true);
-  });
-
-  if (modasLaura.skills.length > 0) {
-    yPosition -= 3;
-    addText(t('cv.technologies'), 10, textColor, true);
-    yPosition -= 4;
-    addText(modasLaura.skills.join(', '), 10, lightTextColor);
-  }
-
-  // PAGE 3: Education, Technical Skills, Additional Training, Certifications
-  doc.addPage();
-  yPosition = 20;
-  isSecondPage = true;
-  currentColumn = 1;
-  const educationSkillsStartY = yPosition;
-
-  // Left Column: Education
-  addTitle(t('education.educationSubtitle'));
-  
-  data.education.forEach((edu: { degree: string; institution: string; period: string }) => {
-    addText(edu.degree, 11, textColor, true);
-    yPosition -= 2; // Reduce space after degree
-    addText(edu.institution, 10, lightTextColor);
-    yPosition -= 3; // Reduce space after institution
-    addText(edu.period, 10, lightTextColor);
-    yPosition += 2; // Add space between education entries
-  });
-
-  // Additional Training in left column after Education
-  yPosition += 2;
-  addTitle(t('education.trainingSubtitle'));
-
-  // Group by institution
-  const ucr = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('UCR') || training.institution.includes('Academia'));
-  const miramar = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('Miramar'));
-  const aws = data.additionalTraining.filter((training: { name: string; institution: string; date: string }) => training.institution.includes('AWS'));
-
-  // UCR Academy section
-  if (ucr.length > 0) {
-    addText(ucr[0].institution, 10, textColor, true);
-    yPosition -= 2;
-    ucr.forEach((training: { name: string; institution: string; date: string }) => {
-      addBulletPoint(training.name);
+      yPosition += lineHeight;
     });
     yPosition += 2;
-  }
+  };
 
-  // Miramar Community Center section
-  if (miramar.length > 0) {
-    addText(miramar[0].institution, 10, textColor, true);
-    yPosition -= 2;
-    miramar.forEach((training: { name: string; institution: string; date: string }) => {
-      addBulletPoint(training.name);
+  const addLabelValue = (label: string, value: string, labelWidth = 50) => {
+    const fontSize = 10;
+    const lineHeight = fontSize * 0.5;
+    doc.setFontSize(fontSize);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(textColor);
+    doc.text(label, margin, yPosition);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(lightTextColor);
+    const valueX = margin + labelWidth;
+    const valueWidth = contentWidth - labelWidth;
+    const lines: string[] = doc.splitTextToSize(value, valueWidth);
+    const startY = yPosition;
+    lines.forEach((line: string, idx: number) => {
+      doc.text(line, valueX, startY + idx * lineHeight);
     });
-    yPosition += 4;
-  }
+    yPosition = startY + lines.length * lineHeight + 2;
+    checkPageBreak(4);
+  };
 
-  // AWS Skill Builder section
-  if (aws.length > 0) {
-    addText(aws[0].institution, 10, textColor, true);
-    yPosition -= 2;
-    aws.forEach((training: { name: string; institution: string; date: string }) => {
-      addBulletPoint(training.name);
+  const addBullet = (text: string) => {
+    const fontSize = 10;
+    const lineHeight = fontSize * 0.5;
+    doc.setFontSize(fontSize);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(textColor);
+    const indent = 5;
+    const bulletX = margin + indent;
+    const textX = margin + indent + 4;
+    const lines: string[] = doc.splitTextToSize(text, contentWidth - indent - 4);
+    checkPageBreak(lines.length * lineHeight + 2);
+    doc.text('•', bulletX, yPosition);
+    lines.forEach((line: string, idx: number) => {
+      doc.text(line, textX, yPosition + idx * lineHeight);
     });
-  }
+    yPosition += lines.length * lineHeight + 0.8;
+  };
 
-  // Right Column: Technical Skills
-  currentColumn = 2;
-  yPosition = educationSkillsStartY;
+  const measureBulletHeight = (text: string): number => {
+    const fontSize = 10;
+    const lineHeight = fontSize * 0.5;
+    const indent = 5;
+    doc.setFontSize(fontSize);
+    doc.setFont('helvetica', 'normal');
+    const lines: string[] = doc.splitTextToSize(text, contentWidth - indent - 4);
+    return lines.length * lineHeight + 0.8;
+  };
 
-  addTitle(t('skills.title'));
+  // ─── Header ──────────────────────────────────────────────────────
+  doc.setFontSize(22);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(primaryColor);
+  doc.text(data.personalInfo.name, margin, yPosition);
+  yPosition += 8;
 
-  // Define actual skills matching the website
-  const coreSkills = [
-    "Java (Spring Boot)", "Python (FastAPI, AWS Powertools)", "PHP", "Node.js", "JavaScript & HTML"
-  ];
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(textColor);
+  doc.text(data.personalInfo.title, margin, yPosition);
+  yPosition += 7;
 
-  const cloudSkills = [
-    "AWS Infrastructure", "CloudFormation", "SAM Templates", "Microservices Architecture", "Serverless Programming"
-  ];
+  // Contact block
+  doc.setFontSize(9);
+  doc.setTextColor(lightTextColor);
+  const contactLine = [
+    data.personalInfo.email,
+    formatPhoneDisplay(data.personalInfo.phone),
+    data.personalInfo.location,
+    data.personalInfo.languages,
+  ].join('   |   ');
+  const contactLines: string[] = doc.splitTextToSize(contactLine, contentWidth);
+  contactLines.forEach((line: string) => {
+    doc.text(line, margin, yPosition);
+    yPosition += 4.5;
+  });
+  yPosition += 3;
 
-  const databaseSkills = [
-    "MySQL", "PostgreSQL", "Oracle", "Microsoft SQL Server"
-  ];
+  // ─── Profile paragraph (with ATS-friendly heading, left-aligned) ─
+  addSectionTitle(language === 'es' ? 'Resumen Profesional' : 'Professional Summary');
+  addParagraph(data.about, 10, textColor, false, false);
+  yPosition += 2;
 
-  const toolsSkills = [
-    "Rest API Services", "Bash Scripting", "Linux", "Git", "CI/CD"
-  ];
+  // ─── Technical Skills (label/value rows) ─────────────────────────
+  addSectionTitle(t('skills.title'));
 
-  const skillSections = [
-    { title: t('skills.backend'), skills: coreSkills },
-    { title: t('skills.cloud'), skills: cloudSkills },
-    { title: t('skills.databases'), skills: databaseSkills },
-    { title: t('skills.tools'), skills: toolsSkills }
-  ];
+  const coreSkills = ['Python (FastAPI, Flask)', 'JavaScript', 'TypeScript', 'Java (Spring Boot)', 'PHP', 'HTML', 'CSS'];
+  const frontendSkills = ['React', 'Node.js', 'Tailwind CSS', 'shadcn/ui', 'TanStack Query'];
+  const cloudSkills = ['AWS (Lambda, API Gateway, SQS, EventBridge, S3, RDS, Cognito)', 'Microsoft Azure', 'CloudFormation', 'SAM', 'Docker', 'GitHub Actions', 'CodePipeline'];
+  const aiSkills = ['Azure AI Foundry agents', 'OpenAI-compatible REST APIs', 'httpx', 'tenacity', 'AI-assisted development (Amazon Q, Claude Code)'];
+  const databaseSkills = ['PostgreSQL', 'MSSQL', 'MySQL', 'Redis', 'MongoDB'];
+  const toolsSkills = ['REST APIs', 'Git', 'CI/CD', 'Bash scripting', 'Linux', 'Pytest'];
 
-  skillSections.forEach((section) => {
-    addText(`${section.title}`, 10, textColor, true);
-    yPosition -= 2; // Reduce space after skill category title
-    addText(section.skills.join(', '), 10, lightTextColor);
-    yPosition += 2; // Add space between skill categories
+  const programmingLabel = language === 'es' ? 'Lenguajes de Programación' : 'Programming Languages';
+  const frontendLabel = language === 'es' ? 'Frameworks & Frontend' : 'Frameworks & Frontend';
+  const cloudLabel = language === 'es' ? 'Nube & Infraestructura' : 'Cloud & Infrastructure';
+  const aiLabel = language === 'es' ? 'IA / Integración LLM' : 'AI / LLM Integration';
+  const dbLabel = language === 'es' ? 'Bases de Datos' : 'Databases';
+  const toolsLabel = language === 'es' ? 'Herramientas & Otros' : 'Tools & Other';
+
+  addLabelValue(`${programmingLabel}:`, coreSkills.join(', '));
+  addLabelValue(`${frontendLabel}:`, frontendSkills.join(', '));
+  addLabelValue(`${cloudLabel}:`, cloudSkills.join(', '));
+  addLabelValue(`${aiLabel}:`, aiSkills.join(', '));
+  addLabelValue(`${dbLabel}:`, databaseSkills.join(', '));
+  addLabelValue(`${toolsLabel}:`, toolsSkills.join(', '));
+  yPosition += 2;
+
+  // ─── Work Experience ─────────────────────────────────────────────
+  addSectionTitle(t('experience.title'));
+
+  const techLabel = language === 'es' ? 'Tecnologías y herramientas principales:' : 'Main technologies and tools:';
+  const respLabel = language === 'es' ? 'Principales tareas y responsabilidades:' : 'Main Tasks and Responsibilities:';
+
+  data.experience.forEach((company) => {
+    const visibleRoles = company.roles.filter((r) => !r.hideFromPdf);
+    visibleRoles.forEach((role, idx) => {
+      checkPageBreak(28);
+
+      // Role line: "Title – Company"
+      doc.setFontSize(11);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(textColor);
+      doc.text(`${role.title} – ${company.company}`, margin, yPosition);
+      yPosition += 5;
+
+      // Period
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'italic');
+      doc.setTextColor(lightTextColor);
+      doc.text(role.period, margin, yPosition);
+      yPosition += 5;
+
+      // Technologies (only once per company, with first visible role)
+      if (idx === 0 && company.skills.length > 0) {
+        doc.setFontSize(9.5);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(textColor);
+        const techPrefix = `${techLabel} `;
+        const techPrefixWidth = doc.getTextWidth(techPrefix);
+        doc.text(techPrefix, margin, yPosition);
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(lightTextColor);
+        const techText = company.skills.join(', ');
+        const techLines: string[] = doc.splitTextToSize(techText, contentWidth - techPrefixWidth);
+        techLines.forEach((line: string, lineIdx: number) => {
+          if (lineIdx === 0) {
+            doc.text(line, margin + techPrefixWidth, yPosition);
+          } else {
+            yPosition += 4.5;
+            doc.text(line, margin, yPosition);
+          }
+        });
+        yPosition += 5;
+      }
+
+      // Responsibilities
+      doc.setFontSize(9.5);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(textColor);
+      doc.text(respLabel, margin, yPosition);
+      yPosition += 3.5;
+
+      const bullets = role.description.split('\n').map((b) => b.trim()).filter(Boolean);
+
+      // Widow control: render bullets, but if only the last bullet would land alone
+      // on a new page, page-break one bullet earlier so at least 2 stay together.
+      bullets.forEach((b, bIdx) => {
+        const h = measureBulletHeight(b);
+        const isLast = bIdx === bullets.length - 1;
+        const isSecondToLast = bIdx === bullets.length - 2;
+
+        if (isSecondToLast && bullets.length >= 2) {
+          const lastH = measureBulletHeight(bullets[bullets.length - 1]);
+          if (yPosition + h + lastH > pageHeight - bottomMargin && yPosition + h <= pageHeight - bottomMargin) {
+            doc.addPage();
+            yPosition = 18;
+          }
+        }
+
+        if (isLast && yPosition + h > pageHeight - bottomMargin && yPosition < 30) {
+          // Last bullet alone at top of new page — keep with role by ensuring it doesn't orphan
+          // (already handled above, just render)
+        }
+
+        addBullet(b);
+      });
+      yPosition += 2;
+    });
   });
 
-  yPosition += 6;
-
-  // Certifications in right column after Technical Skills
-  addTitle(t('education.certificationsSubtitle'));
-  data.certifications.forEach((cert: { name: string; date: string }) => {
-    addBulletPoint(`${cert.name} (${cert.date})`);
+  // ─── Education ───────────────────────────────────────────────────
+  addSectionTitle(t('education.educationSubtitle'));
+  data.education.forEach((edu) => {
+    checkPageBreak(14);
+    doc.setFontSize(10.5);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(textColor);
+    doc.text(edu.degree, margin, yPosition);
+    yPosition += 5;
+    doc.setFontSize(9.5);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(lightTextColor);
+    doc.text(`${edu.institution} — ${edu.period}`, margin, yPosition);
+    yPosition += 6;
   });
 
+  // ─── Continuing Education ────────────────────────────────────────
+  addSectionTitle(t('education.trainingSubtitle'));
 
-  // Footer
+  const groups: { [key: string]: typeof data.additionalTraining } = {};
+  data.additionalTraining.forEach((tr) => {
+    if (!groups[tr.institution]) groups[tr.institution] = [];
+    groups[tr.institution].push(tr);
+  });
+  Object.entries(groups).forEach(([institution, items]) => {
+    checkPageBreak(12);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(textColor);
+    doc.text(institution, margin, yPosition);
+    yPosition += 5;
+    items.forEach((item) => addBullet(item.name));
+    yPosition += 2;
+  });
+
+  // ─── Certifications ──────────────────────────────────────────────
+  // Keep all certs together: if they won't all fit on the current page,
+  // start them on a new page.
+  const certsTotalHeight = data.certifications.reduce(
+    (sum, cert) => sum + measureBulletHeight(cert.name),
+    18 // section title height
+  );
+  if (yPosition + certsTotalHeight > pageHeight - bottomMargin) {
+    doc.addPage();
+    yPosition = 18;
+  }
+  addSectionTitle(t('education.certificationsSubtitle'));
+  data.certifications.forEach((cert) => {
+    addBullet(cert.name);
+  });
+
+  // ─── Footer ──────────────────────────────────────────────────────
   const pageCount = doc.getNumberOfPages();
   for (let i = 1; i <= pageCount; i++) {
     doc.setPage(i);
     doc.setFontSize(8);
     doc.setTextColor(lightTextColor);
+    doc.setFont('helvetica', 'normal');
     doc.text(
-      `José Pablo Campos Solano - CV | ${language === 'es' ? 'Página' : 'Page'} ${i}`,
+      `${data.personalInfo.name} — CV  |  ${language === 'es' ? 'Página' : 'Page'} ${i}/${pageCount}`,
       pageWidth / 2,
-      doc.internal.pageSize.height - 10,
+      pageHeight - 8,
       { align: 'center' }
     );
   }
@@ -370,7 +327,6 @@ export function downloadCV(cvData: CVData, language: 'es' | 'en', t: (key: strin
     console.error('CV data is not available yet');
     return;
   }
-  
   const pdf = generatePDF(cvData, language, t);
   const fileName = `Jose_Pablo_Campos_CV_${language.toUpperCase()}_${new Date().getFullYear()}.pdf`;
   pdf.save(fileName);

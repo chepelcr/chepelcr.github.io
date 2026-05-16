@@ -20,6 +20,7 @@ export interface CVData {
       title: string;
       period: string;
       description: string;
+      hideFromPdf?: boolean;
     }>;
     skills: string[];
   }>;
@@ -169,7 +170,7 @@ export function LanguageProvider({children}: LanguageProviderProps) {
             name: 'José Pablo Campos Solano',
             title: t('hero.title'),
             email: 'chepelcr@outlook.com',
-            phone: '(506) 7039-1069',
+            phone: '+50664839625',
             location: 'Costa Rica',
             languages: t('about.languageProficiency')
         },
@@ -182,11 +183,6 @@ export function LanguageProvider({children}: LanguageProviderProps) {
                         title: t('experience.professionalServicesTitle'),
                         period: t('experience.professionalServicesPeriod'),
                         description: t('experience.professionalServicesDesc'),
-                    },
-                    {
-                        title: t('experience.javaDevTitle'),
-                        period: t('experience.javaDevPeriod'),
-                        description: t('experience.javaDevDesc'),
                     },
                 ],
                 skills: ['Python 3.12', 'Java 17', 'Spring Boot', 'AWS Lambda', 'CloudFormation', 'SAM', 'SQLAlchemy', 'Pydantic', 'PostgreSQL', 'Redis', 'SQS', 'EventBridge', 'Docker', 'CI/CD', 'Microservices', 'FastAPI', 'Node.js', 'API Gateway', 'ECR', 'ECS', 'RDS', 'S3', 'SES', 'SNS']
@@ -203,9 +199,10 @@ export function LanguageProvider({children}: LanguageProviderProps) {
                         title: t('experience.adminAssistantTitle'),
                         period: t('experience.adminAssistantPeriod'),
                         description: t('experience.adminAssistantDesc'),
+                        hideFromPdf: true,
                     },
                 ],
-                skills: ['PHP', 'React', 'Node.js', 'Python', 'FastAPI', 'pandas', 'AWS Lambda', 'AWS S3', 'API Gateway', 'wkhtmltopdf', 'Excel']
+                skills: ['PHP', 'React', 'Node.js', 'Python', 'FastAPI', 'pandas', 'AWS Lambda', 'AWS S3', 'API Gateway', 'wkhtmltopdf']
             }
         ],
         education: [
@@ -342,7 +339,7 @@ const translations = {
 
         // About Section
         "about.title": "Acerca de Mí",
-        "about.description": "Soy un desarrollador de software con experiencia en tecnologías serverless, especializado en Java con Spring Boot y Python. Mi pasión por la tecnología me ha llevado a obtener certificaciones en AWS, Microsoft Azure y Cisco, lo que me permite diseñar y desarrollar soluciones escalables en la nube.",
+        "about.description": "Cuento con más de 5 años de experiencia como Ingeniero de Software, enfocado en construir back-ends y plataformas en la nube para el sector de facturación y cumplimiento tributario. Recientemente lideré la migración de 17 microservicios de Java a Python serverless, reduciendo costos de infraestructura entre 70 y 80%. En el último mes inicié FireCode CR, un asistente con LLM para ingenieros de protección contra incendios construido con Azure AI Foundry y AWS Lambda. Soy proficiente en Python (FastAPI), JavaScript (React, Node.js) y la nube en AWS y Microsoft Azure. Me considero un ingeniero comprometido, proactivo y de aprendizaje rápido, que disfruta colaborando con equipos de distintos países para entregar software seguro y mantenible.",
         "about.yearsExperience": "Años de Experiencia",
         "about.projectsCompleted": "Proyectos Completados",
         "about.certifications": "Certificaciones",
@@ -353,8 +350,8 @@ const translations = {
         "about.languageProficiency": "Español (Nativo), Inglés (B2)",
         "about.phone": "Teléfono:",
         "about.id": "ID:",
-        "about.profileDesc1": "Ingeniero de Software, especializado en BackEnd con Java (Spring Boot), Python y Amazon Web Services.",
-        "about.profileDesc3": "Me encuentro en mejora continua de mi ERP para facturación electrónica, integrando APIs, mensajería asíncrona y servicios de AWS.",
+        "about.profileDesc1": "Ingeniero de Software con experiencia en desarrollo de aplicaciones con asistencia de IA, trabajo full-stack en Python y arquitectura en la nube sobre AWS y Microsoft Azure.",
+        "about.profileDesc3": "Actualmente construyo FireCode CR — un asistente con LLM para ingenieros de protección contra incendios que combina un dataset de normativa NFPA con un agente de Azure AI Foundry — y continúo mejorando mi ERP de facturación electrónica.",
         "about.profileDesc2": "He participado en comunidades de software de código abierto como Firefox y Drupal Camp y asisto activamente a eventos de tecnología. Me apasiona construir soluciones escalables y limpias enfocadas en generar un impacto real en los procesos de negocio.",
 
         // Skills Section
@@ -384,33 +381,33 @@ const translations = {
         "experience.title": "Experiencia Profesional",
         "experience.current": "Actual",
         "experience.professionalServicesTitle": "Ingeniero de Software",
-        "experience.professionalServicesCompany": "Interfaz - Servicios Profesionales",
-        "experience.professionalServicesPeriod": "Julio 2025 - Diciembre 2025",
-        "experience.professionalServicesDesc": "Migración empresarial de 17 microservicios desde Java Spring Boot (ECS) a arquitectura serverless Python (AWS Lambda), transformando 2,142 archivos Java con más de 1.2M líneas de código." +
-            "\nCreación de plantilla de estandarización con guía de migración de 648 líneas, estableciendo patrones reutilizables que redujeron tiempo de migración 40-50%." +
-            "\nImplementación de arquitectura serverless con procesamiento dirigido por eventos usando SQS, EventBridge y patrón dual Lambda (HTTP + procesamiento asíncrono)." +
-            "\nDesarrollo de infraestructura como código usando CloudFormation y SAM templates con pipelines CI/CD automatizados (CodePipeline, CodeBuild)." +
-            "\nTransformación de 170+ DTOs con Pydantic, 33+ mapeadores de datos complejos y 211+ reglas de validación para sistema de cumplimiento tributario." +
-            "\nOptimización de costos (70-80% reducción) mediante arquitectura serverless y ARM64, con Redis caching reduciendo carga de base de datos 40-60%." +
-            "\nUtilización de herramientas de desarrollo asistido por IA (AWS Amazon Q, Claude Code) para acelerar transformación de código y generación de infraestructura.",
+        "experience.professionalServicesCompany": "Interfaz",
+        "experience.professionalServicesPeriod": "Julio 2022 - Diciembre 2025",
+        "experience.professionalServicesDesc": "Análisis, diseño e implementación de microservicios, APIs y servicios serverless en AWS (Lambda, SQS, EventBridge, SES, S3, API Gateway)." +
+            "\nIntegración completa con el sistema de facturación electrónica XML del Ministerio de Hacienda: personas, exoneraciones, códigos CABYS, tipo de cambio, histórico y validación de documentos para múltiples empresas." +
+            "\nLiderazgo en la migración empresarial de 17 microservicios desde Java Spring Boot (ECS) a arquitectura serverless en Python (AWS Lambda), transformando 2,142 archivos Java con más de 1.2M líneas de código." +
+            "\nAutoría de una guía de estandarización de migración de 648 líneas con patrones reutilizables, reduciendo el tiempo de migración 40-50%." +
+            "\nImplementación de arquitectura dirigida por eventos con SQS, EventBridge y patrón dual Lambda (HTTP + procesamiento asíncrono)." +
+            "\nInfraestructura como código con CloudFormation y SAM, pipelines CI/CD (CodePipeline, CodeBuild) y despliegue multi-etapa / multi-cuenta mediante scripts Bash." +
+            "\nTransformación de 170+ DTOs con Pydantic, 33+ mapeadores complejos y 211+ reglas de validación; optimización de costos 70-80% mediante arquitectura serverless y ARM64, con Redis caching reduciendo carga de base de datos 40-60%." +
+            "\nUso de herramientas de desarrollo asistido por IA (AWS Amazon Q, Claude Code) para acelerar transformación de código y generación de infraestructura.",
         "experience.javaDevTitle": "Java Developer",
         "experience.javaDevCompany": "Interfaz",
         "experience.javaDevPeriod": "Julio 2022 - Junio 2025",
-        "experience.javaDevDesc": "Análisis, diseño e implementación de microservicios, APIs y servicios en AWS (Lambda, SQS, SES, S3). Generación, firma e integración completa con el sistema de facturación electrónica XML del Ministerio de Hacienda: personas, exoneraciones, códigos CABYS, tipo de cambio, histórico y validación de documentos para múltiples empresas. Gestión de sucursales, terminales, productos con impuestos específicos, clientes y proveedores para múltiples organizaciones. Infraestructura como código con CloudFormation y SAM templates, despliegue multi-etapa y multi-cuenta mediante scripts Bash.",
+        "experience.javaDevDesc": "",
         "experience.javaDevDesc2": "",
         "experience.webDevTitle": "Web Developer",
-        "experience.webDevCompany": "Modas Laura - Ad Honorem",
+        "experience.webDevCompany": "Modas Laura",
         "experience.webDevPeriod": "2021 - Actual",
         "experience.webDevDesc": "Desarrollo de sistema de facturación electrónica inicialmente con PHP y posteriormente migrado a React con Node.js e interconexión a API externa." +
             "\nGestión integral de clientes, productos y facturación electrónica cumpliendo con normativas del Ministerio de Hacienda." +
-            "\nAutomatización de procesos manuales de creación de Excel mediante macros y posteriormente mediante Python en funciones Lambda." +
+            "\nDiseño e implementación de un servicio de procesamiento de reportes de crossdocking en Python que recibe una plantilla Excel con datos del pedido y otra con productos y cantidades por tienda, generando automáticamente el reporte de crossdocking, resumen de cajas, artículos faltantes y etiquetas — construido sobre AWS Lambda, S3, API Gateway, FastAPI y pandas. Redujo la generación de reportes de 45 a 5 minutos." +
             "\nImplementación de arquitectura moderna con frontend React y backend Node.js para mejorar la experiencia de usuario y escalabilidad del sistema.",
         "experience.adminAssistantTitle": "Asistente Administrativo",
         "experience.adminAssistantPeriod": "2012 - Actual",
         "experience.adminAssistantDesc": "Gestión de correos electrónicos y coordinación de solicitudes de actualización de precios con proveedores." +
             "\nCreación y mantenimiento de reportes en Excel para control operativo y administrativo." +
-            "\nElaboración de etiquetas para cajas y documentos de despacho para envío de productos al CEDI (Centro de Distribución)." +
-            "\nDiseño e implementación de sistema de procesamiento de crossdocking en Python, reduciendo la generación de reportes de 45 a 5 minutos. El sistema recibe una plantilla Excel con datos del pedido y otra con productos y cantidades por tienda, generando automáticamente el reporte de crossdocking, resumen de cajas, artículos faltantes y etiquetas de cajas mediante AWS Lambda, S3, API Gateway, FastAPI y pandas.",
+            "\nElaboración de etiquetas para cajas y documentos de despacho para envío de productos al CEDI (Centro de Distribución).",
 
         // Education Section
         "education.title": "Educación y Certificaciones",
@@ -538,7 +535,7 @@ const translations = {
 
         // About Section
         "about.title": "About Me",
-        "about.description": "I am a software developer with experience in backend technologies, specialized in Java with Spring Boot and Python. My passion for technology has led me to obtain certifications in AWS, Microsoft Azure and Cisco, which allows me to design and develop scalable cloud solutions.",
+        "about.description": "I have over 5 years of experience as a Software Engineer, focused on building back-ends and cloud platforms for the billing and tax-compliance sector. I recently led the migration of 17 microservices from Java to Python serverless, cutting infrastructure costs by 70-80%. In the last month I started FireCode CR, an LLM-powered assistant for fire-protection engineers built with Azure AI Foundry on AWS Lambda. I am proficient in Python (FastAPI), JavaScript (React, Node.js) and cloud on AWS and Microsoft Azure. I consider myself a committed, proactive, fast-learning engineer who enjoys collaborating with cross-country teams to deliver secure and maintainable software.",
         "about.yearsExperience": "Years of Experience",
         "about.projectsCompleted": "Projects Completed",
         "about.certifications": "Certifications",
@@ -549,8 +546,8 @@ const translations = {
         "about.languageProficiency": "Spanish (Native), English (B2)",
         "about.phone": "Phone:",
         "about.id": "ID:",
-        "about.profileDesc1": "Software Engineer, specialized in BackEnd with Java (Spring Boot), Python and Amazon Web Services.",
-        "about.profileDesc3": "I am continuously improving my ERP for electronic invoicing, integrating APIs, asynchronous messaging and AWS services.",
+        "about.profileDesc1": "Software Engineer with experience in AI-assisted application development, Python full-stack work, and cloud architecture on AWS and Microsoft Azure.",
+        "about.profileDesc3": "Currently building FireCode CR — an LLM-powered assistant for fire-protection engineers that combines an NFPA-rules dataset with an Azure AI Foundry agent — and continuously improving my electronic-invoicing ERP.",
         "about.profileDesc2": "I have participated in open source software communities and actively attend technology events such as Firefox and Drupal Camp. I am passionate about building scalable and clean solutions focused on generating real impact on business processes.",
 
         // Skills Section
@@ -580,33 +577,33 @@ const translations = {
         "experience.title": "Professional Experience",
         "experience.current": "Current",
         "experience.professionalServicesTitle": "Software Engineer",
-        "experience.professionalServicesCompany": "Interfaz - Professional Services",
-        "experience.professionalServicesPeriod": "July 2025 - December 2025",
-        "experience.professionalServicesDesc": "Enterprise migration of 17 microservices from Java Spring Boot (ECS) to Python serverless architecture (AWS Lambda), transforming 2,142 Java files with over 1.2M lines of code." +
-            "\nCreation of standardization template with 648-line migration guide, establishing reusable patterns that reduced migration time by 40-50%." +
-            "\nImplementation of serverless architecture with event-driven processing using SQS, EventBridge, and dual Lambda pattern (HTTP + asynchronous processing)." +
-            "\nDevelopment of Infrastructure as Code using CloudFormation and SAM templates with automated CI/CD pipelines (CodePipeline, CodeBuild)." +
-            "\nTransformation of 170+ Pydantic DTOs, 33+ complex data mappers, and 211+ validation rules for tax compliance system." +
-            "\nCost optimization (70-80% reduction) through serverless architecture and ARM64, with Redis caching reducing database load by 40-60%." +
-            "\nUtilization of AI-assisted development tools (AWS Amazon Q, Claude Code) to accelerate code transformation and infrastructure generation.",
+        "experience.professionalServicesCompany": "Interfaz",
+        "experience.professionalServicesPeriod": "July 2022 - December 2025",
+        "experience.professionalServicesDesc": "Analysis, design and implementation of microservices, APIs and serverless services on AWS (Lambda, SQS, EventBridge, SES, S3, API Gateway)." +
+            "\nFull integration with the Ministerio de Hacienda XML electronic invoicing system — persons, exemptions, CABYS codes, exchange-rate sync, document history and validation across multiple businesses." +
+            "\nLed the enterprise migration of 17 microservices from Java Spring Boot (ECS) to a Python serverless architecture (AWS Lambda), transforming 2,142 Java files and 1.2M+ lines of code." +
+            "\nAuthored a 648-line migration standardization guide with reusable patterns, reducing migration time 40-50%." +
+            "\nImplemented event-driven architecture using SQS, EventBridge and a dual-Lambda HTTP + async processing pattern." +
+            "\nInfrastructure as code with CloudFormation and SAM, multi-stage / multi-account deployment via Bash scripts, CI/CD pipelines (CodePipeline, CodeBuild)." +
+            "\nTransformed 170+ Pydantic DTOs, 33+ complex data mappers and 211+ validation rules; optimized cost 70-80% via serverless + ARM64, with Redis caching reducing DB load 40-60%." +
+            "\nUsed AI-assisted development tools (AWS Amazon Q, Claude Code) to accelerate code transformation and infrastructure generation.",
         "experience.javaDevTitle": "Java Developer",
         "experience.javaDevCompany": "Interfaz",
         "experience.javaDevPeriod": "July 2022 - June 2025",
-        "experience.javaDevDesc": "Analysis, design and implementation of microservices, APIs and services on AWS (Lambda, SQS, SES, S3). Full generation, signing and integration with the Ministerio de Hacienda XML electronic invoicing system: persons, exemptions, CABYS codes, exchange rate, document history and validation for multiple businesses. Management of branches, terminals, products with specific taxes, clients and suppliers across multiple organizations. Infrastructure as code with CloudFormation and SAM templates, multi-stage and multi-account deployment via Bash scripts.",
+        "experience.javaDevDesc": "",
         "experience.javaDevDesc2": "",
         "experience.webDevTitle": "Web Developer",
-        "experience.webDevCompany": "Modas Laura - Ad Honorem",
+        "experience.webDevCompany": "Modas Laura",
         "experience.webDevPeriod": "2021 - Current",
         "experience.webDevDesc": "Development of electronic invoicing system initially with PHP and later migrated to React with Node.js and external API integration." +
             "\nComprehensive management of clients, products and electronic invoicing complying with Ministry of Finance regulations." +
-            "\nAutomation of manual Excel creation processes through macros and later through Python in Lambda functions." +
+            "\nDesigned and deployed a Python crossdocking-report processing service that ingests an order Excel and a per-store quantities Excel and auto-generates the crossdocking report, box summary, missing-items list, and box labels — built on AWS Lambda, S3, API Gateway, FastAPI, and pandas. Reduced report generation from 45 minutes to 5." +
             "\nImplementation of modern architecture with React frontend and Node.js backend to improve user experience and system scalability.",
         "experience.adminAssistantTitle": "Administrative Assistant",
         "experience.adminAssistantPeriod": "2012 - Current",
         "experience.adminAssistantDesc": "Email management and coordination of price update requests with suppliers." +
             "\nCreation and maintenance of Excel reports for operational and administrative control." +
-            "\nCreation of box labels and shipping documents for product distribution to the CEDI (Distribution Center)." +
-            "\nDesign and implementation of a crossdocking processing system in Python, reducing report generation from 45 to 5 minutes. The system receives an Excel template with order data and another with store product quantities, automatically generating crossdocking reports, box summaries, missing items, and box labels using AWS Lambda, S3, API Gateway, FastAPI, and pandas.",
+            "\nCreation of box labels and shipping documents for product distribution to the CEDI (Distribution Center).",
 
         // Education Section
         "education.title": "Education and Certifications",

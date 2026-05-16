@@ -12,11 +12,6 @@ const getExperiences = (t: any) => [
                 period: t("experience.professionalServicesPeriod"),
                 description: t("experience.professionalServicesDesc"),
             },
-            {
-                title: t("experience.javaDevTitle"),
-                period: t("experience.javaDevPeriod"),
-                description: t("experience.javaDevDesc"),
-            },
         ],
         skills: ["Python 3.12", "Java", "Spring Boot", "AWS Lambda", "CloudFormation", "SAM", "Pydantic", "SQS", "EventBridge", "Docker", "CI/CD", "API Gateway", "ECR", "ECS", "RDS", "S3"],
         icon: Code,

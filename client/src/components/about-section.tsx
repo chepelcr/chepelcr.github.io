@@ -1,9 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { User, Briefcase, Heart, Phone, Mail, MapPin, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
+import { formatPhoneDisplay, formatPhoneHref } from "@/lib/phone";
 
 export default function AboutSection() {
-  const { t } = useLanguage();
+  const { t, cvData } = useLanguage();
+  const phone = cvData.personalInfo.phone;
   return (
     <section id="about" className="section-spacing bg-slate">
       <div className="container-spacing">
@@ -51,7 +53,7 @@ export default function AboutSection() {
                   </div>
                   <div>
                     <p className="text-muted-foreground">{t("about.phone")}</p>
-                    <a href="tel:+50670391069" className="font-semibold hover:text-accent transition-colors">(506) 7039-1069</a>
+                    <a href={formatPhoneHref(phone)} className="font-semibold hover:text-accent transition-colors">{formatPhoneDisplay(phone)}</a>
                   </div>
                 </div>
               </CardContent>

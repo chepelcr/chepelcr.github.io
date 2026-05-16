@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/language-context";
 import { downloadCV } from "@/utils/pdf-generator";
+import { formatPhoneDisplay, formatPhoneHref } from "@/lib/phone";
 import { 
   Mail, 
   Phone, 
@@ -19,12 +20,12 @@ import {
   Clock
 } from "lucide-react";
 
-const getContactInfo = (t: any) => [
+const getContactInfo = (t: any, phone: string) => [
   {
     icon: Phone,
     label: t("contact.phone"),
-    value: "(506) 7039-1069",
-    href: "tel:+50670391069",
+    value: formatPhoneDisplay(phone),
+    href: formatPhoneHref(phone),
   },
   {
     icon: Mail,
@@ -54,7 +55,7 @@ const getAvailability = (t: any) => [
 
 export default function ContactSection() {
   const { t, language, cvData } = useLanguage();
-  const contactInfo = getContactInfo(t);
+  const contactInfo = getContactInfo(t, cvData.personalInfo.phone);
   const availability = getAvailability(t);
   const [formData, setFormData] = useState({
     name: "",

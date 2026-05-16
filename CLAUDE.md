@@ -1,7 +1,7 @@
 # CLAUDE.md — Portfolio / PDF CV Generator
 
 Personal portfolio and bilingual PDF CV generator for José Pablo Campos Solano (Solutions Architect).
-Live at: **https://jcampos.dev/**
+Live at: **https://www.jcampos.dev/**
 
 ---
 
