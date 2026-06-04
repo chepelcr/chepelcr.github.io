@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ucr",
+    "degree": {
+      "es": "Bachiller en Informática Empresarial",
+      "en": "Bachelor in Computer Business"
+    },
+    "institution": {
+      "es": "Universidad de Costa Rica, Sede del Pacífico",
+      "en": "University of Costa Rica, Pacific Campus"
+    },
+    "period": "2017 - 2022"
+  },
+  {
+    "id": "ib",
+    "degree": {
+      "es": "Programa del Bachillerato Internacional",
+      "en": "International Baccalaureate Diploma Programme"
+    },
+    "institution": {
+      "es": "Liceo de Costa Rica",
+      "en": "Liceo de Costa Rica"
+    },
+    "period": "2015 - 2016"
+  },
+  {
+    "id": "media",
+    "degree": {
+      "es": "Bachiller en Educación Media",
+      "en": "Secondary Education"
+    },
+    "institution": {
+      "es": "Liceo de Costa Rica",
+      "en": "Liceo de Costa Rica"
+    },
+    "period": "2010 - 2016"
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "default",
+    "name": "Default",
+    "isActive": true,
+    "colors": {
+      "accent": "#a3e635",
+      "primary": "#a3e635",
+      "background": "#ffffff",
+      "navyLight": "#f1f5f9",
+      "slateLight": "#ffffff",
+      "navyDark": "#1c2333",
+      "slateDark": "#2c3444"
+    }
+  }
+]

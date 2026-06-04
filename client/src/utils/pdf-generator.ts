@@ -1,5 +1,6 @@
 import jsPDF from 'jspdf';
 import { CVData } from '@/contexts/language-context';
+import { getCvSkillGroups } from '@/services/cv.service';
 import { formatPhoneDisplay } from '@/lib/phone';
 
 export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string) => string) {
@@ -141,40 +142,23 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
   yPosition += 3;
 
   // ─── Profile paragraph (with ATS-friendly heading, left-aligned) ─
-  addSectionTitle(language === 'es' ? 'Resumen Profesional' : 'Professional Summary');
+  addSectionTitle(t('cv.summary'));
   addParagraph(data.about, 10, textColor, false, false);
   yPosition += 2;
 
   // ─── Technical Skills (label/value rows) ─────────────────────────
   addSectionTitle(t('skills.title'));
 
-  const coreSkills = ['Python (FastAPI, Flask)', 'JavaScript', 'TypeScript', 'Java (Spring Boot)', 'PHP', 'HTML', 'CSS'];
-  const frontendSkills = ['React', 'Node.js', 'Tailwind CSS', 'shadcn/ui', 'TanStack Query'];
-  const cloudSkills = ['AWS (Lambda, API Gateway, SQS, EventBridge, S3, RDS, Cognito)', 'Microsoft Azure', 'CloudFormation', 'SAM', 'Docker', 'GitHub Actions', 'CodePipeline'];
-  const aiSkills = ['Azure AI Foundry agents', 'OpenAI-compatible REST APIs', 'httpx', 'tenacity', 'AI-assisted development (Amazon Q, Claude Code)'];
-  const databaseSkills = ['PostgreSQL', 'MSSQL', 'MySQL', 'Redis', 'MongoDB'];
-  const toolsSkills = ['REST APIs', 'Git', 'CI/CD', 'Bash scripting', 'Linux', 'Pytest'];
-
-  const programmingLabel = language === 'es' ? 'Lenguajes de Programación' : 'Programming Languages';
-  const frontendLabel = language === 'es' ? 'Frameworks & Frontend' : 'Frameworks & Frontend';
-  const cloudLabel = language === 'es' ? 'Nube & Infraestructura' : 'Cloud & Infrastructure';
-  const aiLabel = language === 'es' ? 'IA / Integración LLM' : 'AI / LLM Integration';
-  const dbLabel = language === 'es' ? 'Bases de Datos' : 'Databases';
-  const toolsLabel = language === 'es' ? 'Herramientas & Otros' : 'Tools & Other';
-
-  addLabelValue(`${programmingLabel}:`, coreSkills.join(', '));
-  addLabelValue(`${frontendLabel}:`, frontendSkills.join(', '));
-  addLabelValue(`${cloudLabel}:`, cloudSkills.join(', '));
-  addLabelValue(`${aiLabel}:`, aiSkills.join(', '));
-  addLabelValue(`${dbLabel}:`, databaseSkills.join(', '));
-  addLabelValue(`${toolsLabel}:`, toolsSkills.join(', '));
+  getCvSkillGroups(t).forEach((group) => {
+    addLabelValue(`${group.label}:`, group.items.join(', '));
+  });
   yPosition += 2;
 
   // ─── Work Experience ─────────────────────────────────────────────
   addSectionTitle(t('experience.title'));
 
-  const techLabel = language === 'es' ? 'Tecnologías y herramientas principales:' : 'Main technologies and tools:';
-  const respLabel = language === 'es' ? 'Principales tareas y responsabilidades:' : 'Main Tasks and Responsibilities:';
+  const techLabel = `${t('cv.techLabel')}:`;
+  const respLabel = `${t('cv.respLabel')}:`;
 
   data.experience.forEach((company) => {
     const visibleRoles = company.roles.filter((r) => !r.hideFromPdf);
@@ -312,7 +296,7 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
     doc.setTextColor(lightTextColor);
     doc.setFont('helvetica', 'normal');
     doc.text(
-      `${data.personalInfo.name} — CV  |  ${language === 'es' ? 'Página' : 'Page'} ${i}/${pageCount}`,
+      `${data.personalInfo.name} — CV  |  ${t('cv.page')} ${i}/${pageCount}`,
       pageWidth / 2,
       pageHeight - 8,
       { align: 'center' }

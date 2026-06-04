@@ -1,0 +1,83 @@
+[
+  {
+    "id": "interfaz",
+    "company": { "es": "Interfaz", "en": "Interfaz" },
+    "iconName": "code",
+    "current": false,
+    "roles": [
+      {
+        "title": { "es": "Ingeniero de Software", "en": "Software Engineer" },
+        "period": { "es": "Julio 2022 - Diciembre 2025", "en": "July 2022 - December 2025" },
+        "description": {
+          "es": "Análisis, diseño e implementación de microservicios, APIs y servicios serverless en AWS (Lambda, SQS, EventBridge, SES, S3, API Gateway).\nIntegración completa con el sistema de facturación electrónica XML del Ministerio de Hacienda: personas, exoneraciones, códigos CABYS, tipo de cambio, histórico y validación de documentos para múltiples empresas.\nLiderazgo en la migración empresarial de 17 microservicios desde Java Spring Boot (ECS) a arquitectura serverless en Python (AWS Lambda), transformando 2,142 archivos Java con más de 1.2M líneas de código.\nAutoría de una guía de estandarización de migración de 648 líneas con patrones reutilizables, reduciendo el tiempo de migración 40-50%.\nImplementación de arquitectura dirigida por eventos con SQS, EventBridge y patrón dual Lambda (HTTP + procesamiento asíncrono).\nInfraestructura como código con CloudFormation y SAM, pipelines CI/CD (CodePipeline, CodeBuild) y despliegue multi-etapa / multi-cuenta mediante scripts Bash.\nTransformación de 170+ DTOs con Pydantic, 33+ mapeadores complejos y 211+ reglas de validación; optimización de costos 70-80% mediante arquitectura serverless y ARM64, con Redis caching reduciendo carga de base de datos 40-60%.\nUso de herramientas de desarrollo asistido por IA (AWS Amazon Q, Claude Code) para acelerar transformación de código y generación de infraestructura.",
+          "en": "Analysis, design and implementation of microservices, APIs and serverless services on AWS (Lambda, SQS, EventBridge, SES, S3, API Gateway).\nFull integration with the Ministerio de Hacienda XML electronic invoicing system — persons, exemptions, CABYS codes, exchange-rate sync, document history and validation across multiple businesses.\nLed the enterprise migration of 17 microservices from Java Spring Boot (ECS) to a Python serverless architecture (AWS Lambda), transforming 2,142 Java files and 1.2M+ lines of code.\nAuthored a 648-line migration standardization guide with reusable patterns, reducing migration time 40-50%.\nImplemented event-driven architecture using SQS, EventBridge and a dual-Lambda HTTP + async processing pattern.\nInfrastructure as code with CloudFormation and SAM, multi-stage / multi-account deployment via Bash scripts, CI/CD pipelines (CodePipeline, CodeBuild).\nTransformed 170+ Pydantic DTOs, 33+ complex data mappers and 211+ validation rules; optimized cost 70-80% via serverless + ARM64, with Redis caching reducing DB load 40-60%.\nUsed AI-assisted development tools (AWS Amazon Q, Claude Code) to accelerate code transformation and infrastructure generation."
+        },
+        "hideFromPdf": false
+      }
+    ],
+    "skills": [
+      "Python 3.12",
+      "Java 17",
+      "Spring Boot",
+      "AWS Lambda",
+      "CloudFormation",
+      "SAM",
+      "SQLAlchemy",
+      "Pydantic",
+      "PostgreSQL",
+      "Redis",
+      "SQS",
+      "EventBridge",
+      "Docker",
+      "CI/CD",
+      "Microservices",
+      "FastAPI",
+      "Node.js",
+      "API Gateway",
+      "ECR",
+      "ECS",
+      "RDS",
+      "S3",
+      "SES",
+      "SNS"
+    ]
+  },
+  {
+    "id": "modas-laura",
+    "company": { "es": "Modas Laura", "en": "Modas Laura" },
+    "iconName": "globe",
+    "current": true,
+    "roles": [
+      {
+        "title": { "es": "Web Developer", "en": "Web Developer" },
+        "period": { "es": "2021 - Actual", "en": "2021 - Current" },
+        "description": {
+          "es": "Desarrollo de sistema de facturación electrónica inicialmente con PHP y posteriormente migrado a React con Node.js e interconexión a API externa.\nGestión integral de clientes, productos y facturación electrónica cumpliendo con normativas del Ministerio de Hacienda.\nDiseño e implementación de un servicio de procesamiento de reportes de crossdocking en Python que recibe una plantilla Excel con datos del pedido y otra con productos y cantidades por tienda, generando automáticamente el reporte de crossdocking, resumen de cajas, artículos faltantes y etiquetas — construido sobre AWS Lambda, S3, API Gateway, FastAPI y pandas. Redujo la generación de reportes de 45 a 5 minutos.\nImplementación de arquitectura moderna con frontend React y backend Node.js para mejorar la experiencia de usuario y escalabilidad del sistema.",
+          "en": "Development of electronic invoicing system initially with PHP and later migrated to React with Node.js and external API integration.\nComprehensive management of clients, products and electronic invoicing complying with Ministry of Finance regulations.\nDesigned and deployed a Python crossdocking-report processing service that ingests an order Excel and a per-store quantities Excel and auto-generates the crossdocking report, box summary, missing-items list, and box labels — built on AWS Lambda, S3, API Gateway, FastAPI, and pandas. Reduced report generation from 45 minutes to 5.\nImplementation of modern architecture with React frontend and Node.js backend to improve user experience and system scalability."
+        },
+        "hideFromPdf": false
+      },
+      {
+        "title": { "es": "Asistente Administrativo", "en": "Administrative Assistant" },
+        "period": { "es": "2012 - Actual", "en": "2012 - Current" },
+        "description": {
+          "es": "Gestión de correos electrónicos y coordinación de solicitudes de actualización de precios con proveedores.\nCreación y mantenimiento de reportes en Excel para control operativo y administrativo.\nElaboración de etiquetas para cajas y documentos de despacho para envío de productos al CEDI (Centro de Distribución).",
+          "en": "Email management and coordination of price update requests with suppliers.\nCreation and maintenance of Excel reports for operational and administrative control.\nCreation of box labels and shipping documents for product distribution to the CEDI (Distribution Center)."
+        },
+        "hideFromPdf": true
+      }
+    ],
+    "skills": [
+      "PHP",
+      "React",
+      "Node.js",
+      "Python",
+      "FastAPI",
+      "pandas",
+      "AWS Lambda",
+      "AWS S3",
+      "API Gateway",
+      "wkhtmltopdf"
+    ]
+  }
+]

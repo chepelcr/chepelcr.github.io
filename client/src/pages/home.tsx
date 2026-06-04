@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useParams} from "wouter";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
@@ -10,10 +10,16 @@ import ProjectsSection from "@/components/projects-section";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 import {useLanguage, type Section} from "@/contexts/language-context";
+import {useHeadTags} from "@/lib/seo";
 
 export default function Home() {
     const params = useParams();
     const {language} = useLanguage();
+    const [activeSection, setActiveSection] = useState<string>(
+        () => window.location.pathname.split('/').filter(Boolean)[1] ?? "home",
+    );
+
+    useHeadTags(language, activeSection);
 
     // Handle direct URL navigation
     useEffect(() => {
@@ -63,6 +69,7 @@ export default function Home() {
                 if (window.location.pathname !== expectedPath) {
                     window.history.replaceState({}, '', expectedPath);
                 }
+                setActiveSection(currentSection);
 
                 ticking = false;
             });

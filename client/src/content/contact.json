@@ -1,0 +1,58 @@
+{
+  "subtitle": {
+    "es": "¿Tienes un proyecto en mente? ¡Hablemos!",
+    "en": "Have a project in mind? Let's talk!"
+  },
+  "description": {
+    "es": "Estoy siempre interesado en nuevas oportunidades y proyectos desafiantes. No dudes en contactarme.",
+    "en": "I'm always interested in new opportunities and challenging projects. Don't hesitate to contact me."
+  },
+  "availability": [
+    {
+      "label": { "es": "Proyectos Freelance", "en": "Freelance Projects" },
+      "statusToken": "available"
+    },
+    {
+      "label": { "es": "Consultorías AWS", "en": "AWS Consulting" },
+      "statusToken": "available"
+    },
+    {
+      "label": { "es": "Desarrollo de ERP", "en": "ERP Development" },
+      "statusToken": "available"
+    },
+    {
+      "label": { "es": "Tiempo Completo", "en": "Full Time" },
+      "statusToken": "considering"
+    }
+  ],
+  "subjectOptions": [
+    {
+      "value": "desarrollo",
+      "label": { "es": "Desarrollo de Software", "en": "Software Development" }
+    },
+    {
+      "value": "aws",
+      "label": { "es": "Consultoría AWS", "en": "AWS Consulting" }
+    },
+    {
+      "value": "erp",
+      "label": { "es": "Sistema ERP", "en": "ERP System" }
+    },
+    {
+      "value": "freelance",
+      "label": { "es": "Proyecto Freelance", "en": "Freelance Project" }
+    },
+    {
+      "value": "laboral",
+      "label": { "es": "Oportunidad Laboral", "en": "Job Opportunity" }
+    },
+    {
+      "value": "otro",
+      "label": { "es": "Otro", "en": "Other" }
+    }
+  ],
+  "downloadCvBlurb": {
+    "es": "Obtén una copia completa de mi currículum vitae",
+    "en": "Get a complete copy of my curriculum vitae"
+  }
+}

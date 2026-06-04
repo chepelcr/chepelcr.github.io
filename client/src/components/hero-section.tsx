@@ -2,9 +2,20 @@ import {Button} from "@/components/ui/button";
 import {Download, Mail, ExternalLink} from "lucide-react";
 import {useLanguage} from "@/contexts/language-context";
 import {downloadCV} from "@/utils/pdf-generator";
+import {getHero} from "@/repositories/hero.repository";
+import {getPersonalInfo} from "@/repositories/personal-info.repository";
+import {pickLang} from "@/lib/i18n-field";
+import {parseRichText} from "@/lib/rich-text";
+import {resolveAssetUrl} from "@/lib/media";
 
 export default function HeroSection() {
     const {t, language, cvData, navigateToSection} = useLanguage();
+    const hero = getHero();
+    const personalInfo = getPersonalInfo();
+
+    const nameParts = personalInfo.name.split(" ");
+    const nameLead = nameParts.slice(0, 2).join(" ");
+    const nameAccent = nameParts.slice(2).join(" ");
 
     return (
         <section id="home" className="section-spacing gradient-bg pt-32">
@@ -12,14 +23,14 @@ export default function HeroSection() {
                 <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
                     <div className="flex-1 text-center lg:text-left">
                         <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-                            José Pablo{" "}
-                            <span className="text-accent">Campos Solano</span>
+                            {nameLead}{" "}
+                            <span className="text-accent">{nameAccent}</span>
                         </h1>
                         <h2 className="text-xl lg:text-2xl text-muted-foreground mb-8">
-                            {t("hero.title")} | {t("hero.subtitle")}
+                            {parseRichText(pickLang(hero.title, language))} | {parseRichText(pickLang(hero.subtitle, language))}
                         </h2>
                         <p className="text-lg text-muted-foreground mb-8 max-w-2xl">
-                            {t("hero.description")}
+                            {parseRichText(pickLang(hero.description, language))}
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                             <Button
@@ -49,8 +60,8 @@ export default function HeroSection() {
                     </div>
                     <div className="flex-1 max-w-md lg:max-w-lg">
                         <img
-                            src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
-                            alt="José Pablo Campos Solano - Professional Profile"
+                            src={resolveAssetUrl(hero.photo)}
+                            alt={`${personalInfo.name} - ${t("hero.photoAlt")}`}
                             className="rounded-xl shadow-2xl w-full h-auto"
                         />
                     </div>

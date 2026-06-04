@@ -6,6 +6,10 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
 import { useLanguage, type Section } from "@/contexts/language-context";
 import { useLocation } from "wouter";
+import { getNavigation } from "@/repositories/navigation.repository";
+import { getBranding } from "@/repositories/branding.repository";
+import { pickLang } from "@/lib/i18n-field";
+import { ADMIN_ENABLED } from "@/lib/admin-enabled";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,16 +24,14 @@ export default function Navigation() {
   };
   
   const currentSection = getCurrentSection();
+  const brandName = getBranding().shortName;
 
-  const navigationItems = [
-    { section: "home" as Section, label: t("nav.home") },
-    { section: "about" as Section, label: t("nav.about") },
-    { section: "education" as Section, label: t("nav.education") },
-    { section: "experience" as Section, label: t("nav.experience") },
-    { section: "skills" as Section, label: t("nav.skills") },
-    { section: "projects" as Section, label: t("nav.projects") },
-    { section: "contact" as Section, label: t("nav.contact") },
-  ];
+  const navigationItems = [...getNavigation().items]
+    .sort((a, b) => a.order - b.order)
+    .map((item) => ({
+      section: item.section as Section,
+      label: pickLang(item.label, language),
+    }));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,7 +70,7 @@ export default function Navigation() {
             onClick={() => handleClick("home")}
             className="text-xl font-bold text-accent hover:text-accent/80 transition-colors"
           >
-            José Pablo Campos
+            {brandName}
           </button>
 
           {/* Desktop Navigation */}
@@ -85,6 +87,14 @@ export default function Navigation() {
               </button>
             ))}
             <div className="flex items-center space-x-2">
+              {ADMIN_ENABLED && (
+                <a
+                  href="/admin"
+                  className="hover:text-accent transition-colors cursor-pointer"
+                >
+                  Admin
+                </a>
+              )}
               <LanguageToggle />
               <ThemeToggle />
             </div>

@@ -10,53 +10,66 @@ import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/language-context";
 import { downloadCV } from "@/utils/pdf-generator";
 import { formatPhoneDisplay, formatPhoneHref } from "@/lib/phone";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Globe, 
-  Send, 
+import { getContact } from "@/repositories/contact.repository";
+import { getPersonalInfo } from "@/repositories/personal-info.repository";
+import { pickLang } from "@/lib/i18n-field";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Globe,
+  Send,
   Download,
   Clock
 } from "lucide-react";
 
-const getContactInfo = (t: any, phone: string) => [
-  {
-    icon: Phone,
-    label: t("contact.phone"),
-    value: formatPhoneDisplay(phone),
-    href: formatPhoneHref(phone),
-  },
-  {
-    icon: Mail,
-    label: "Email",
-    value: "chepelcr@outlook.com",
-    href: "mailto:chepelcr@outlook.com",
-  },
-  {
-    icon: MapPin,
-    label: t("contact.location"),
-    value: "Costa Rica",
-  },
-  {
-    icon: Globe,
-    label: t("contact.website"),
-    value: "jcampos.dev",
-    href: "https://jcampos.dev",
-  },
-];
+const getContactInfo = (t: any, language: "es" | "en") => {
+  const personalInfo = getPersonalInfo();
+  return [
+    {
+      icon: Phone,
+      label: t("contact.phone"),
+      value: formatPhoneDisplay(personalInfo.phone),
+      href: formatPhoneHref(personalInfo.phone),
+    },
+    {
+      icon: Mail,
+      label: t("contact.email"),
+      value: personalInfo.email,
+      href: `mailto:${personalInfo.email}`,
+    },
+    {
+      icon: MapPin,
+      label: t("contact.location"),
+      value: pickLang(personalInfo.location, language),
+    },
+    {
+      icon: Globe,
+      label: t("contact.website"),
+      value: personalInfo.website.replace(/^https?:\/\//, ""),
+      href: personalInfo.website,
+    },
+  ];
+};
 
-const getAvailability = (t: any) => [
-  { service: t("contact.freelanceProjects"), status: t("contact.available"), color: "bg-green-500" },
-  { service: t("contact.awsConsulting"), status: t("contact.available"), color: "bg-green-500" },
-  { service: t("contact.erpDevelopment"), status: t("contact.available"), color: "bg-green-500" },
-  { service: t("contact.fullTime"), status: t("contact.considering"), color: "bg-yellow-500" },
-];
+const STATUS_COLORS: Record<string, string> = {
+  available: "bg-green-500",
+  considering: "bg-yellow-500",
+  unavailable: "bg-red-500",
+};
+
+const getAvailability = (t: any, language: "es" | "en") =>
+  getContact().availability.map((item) => ({
+    service: pickLang(item.label, language),
+    status: t(`contact.${item.statusToken}`),
+    color: STATUS_COLORS[item.statusToken] ?? "bg-gray-500",
+  }));
 
 export default function ContactSection() {
   const { t, language, cvData } = useLanguage();
-  const contactInfo = getContactInfo(t, cvData.personalInfo.phone);
-  const availability = getAvailability(t);
+  const contactInfo = getContactInfo(t, language);
+  const availability = getAvailability(t, language);
+  const subjectOptions = getContact().subjectOptions;
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -76,7 +89,7 @@ export default function ContactSection() {
       `${t("contact.name")}: ${formData.name}\n${t("contact.email")}: ${formData.email}\n\n${formData.message}`
     );
     
-    const mailtoLink = `mailto:chepelcr@outlook.com?subject=${subject}&body=${body}`;
+    const mailtoLink = `mailto:${getPersonalInfo().email}?subject=${subject}&body=${body}`;
     window.open(mailtoLink, '_blank');
     
     toast({
@@ -199,12 +212,11 @@ export default function ContactSection() {
                       <SelectValue placeholder={t("contact.selectSubject")} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="desarrollo">{t("contact.softwareDev")}</SelectItem>
-                      <SelectItem value="aws">{t("contact.awsConsultancy")}</SelectItem>
-                      <SelectItem value="erp">{t("contact.erpSystem")}</SelectItem>
-                      <SelectItem value="freelance">{t("contact.freelanceProject")}</SelectItem>
-                      <SelectItem value="laboral">{t("contact.jobOpportunity")}</SelectItem>
-                      <SelectItem value="otro">{t("contact.other")}</SelectItem>
+                      {subjectOptions.map((option) => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {pickLang(option.label, language)}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>

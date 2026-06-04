@@ -7,9 +7,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useTheme } from "@/components/theme-provider"
+import { useLanguage } from "@/contexts/language-context"
 
 export function ThemeToggle() {
   const { setTheme, theme } = useTheme()
+  const { t } = useLanguage()
 
   return (
     <DropdownMenu>
@@ -21,7 +23,7 @@ export function ThemeToggle() {
         >
           <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
+          <span className="sr-only">{t("nav.toggleTheme")}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="bg-card border-border min-w-0">
@@ -32,7 +34,7 @@ export function ThemeToggle() {
           }`}
         >
           <Sun className="h-4 w-4" />
-          <span>Light</span>
+          <span>{t("theme.light")}</span>
         </DropdownMenuItem>
         <DropdownMenuItem 
           onClick={() => theme !== "dark" && setTheme("dark")}
@@ -41,7 +43,7 @@ export function ThemeToggle() {
           }`}
         >
           <Moon className="h-4 w-4" />
-          <span>Dark</span>
+          <span>{t("theme.dark")}</span>
         </DropdownMenuItem>
         <DropdownMenuItem 
           onClick={() => theme !== "system" && setTheme("system")}
@@ -50,7 +52,7 @@ export function ThemeToggle() {
           }`}
         >
           <Monitor className="h-4 w-4" />
-          <span>System</span>
+          <span>{t("theme.system")}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

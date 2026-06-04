@@ -36,7 +36,7 @@ mkdir -p logs
 
 # Start server in background
 echo -e "${GREEN}🚀 Starting server (Express + Vite HMR)...${NC}"
-nohup npm run dev > logs/server.log 2>&1 &
+nohup pnpm dev > logs/server.log 2>&1 &
 DEV_PID=$!
 
 # Wait a moment to check if process started successfully

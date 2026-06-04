@@ -1,0 +1,28 @@
+[
+  {
+    "id": "ucr-academy",
+    "institution": { "es": "Academia de Tecnología UCR", "en": "UCR Technology Academy" },
+    "courses": [
+      { "es": "CCNAv7: Introduction to networks", "en": "CCNAv7: Introduction to networks" },
+      { "es": "NDG Linux I", "en": "NDG Linux I" }
+    ]
+  },
+  {
+    "id": "miramar",
+    "institution": { "es": "Centro Comunitario Miramar", "en": "Miramar Community Center" },
+    "courses": [
+      { "es": "PHP – Facturación Electrónica – Hacienda", "en": "PHP – Electronic Billing – Hacienda" },
+      { "es": "Inteligencia Artificial", "en": "Artificial Intelligence" },
+      { "es": "Excel Avanzado", "en": "Advanced Excel" }
+    ]
+  },
+  {
+    "id": "aws-skill",
+    "institution": { "es": "AWS Skill Builder", "en": "AWS Skill Builder" },
+    "courses": [
+      { "es": "AWS Cloud Practitioner Essentials", "en": "AWS Cloud Practitioner Essentials" },
+      { "es": "AWS Security Fundamentals", "en": "AWS Security Fundamentals" },
+      { "es": "AWS Well-Architected Best Practices", "en": "AWS Well-Architected Best Practices" }
+    ]
+  }
+]

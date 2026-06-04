@@ -1,0 +1,60 @@
+{
+  "description": {
+    "es": "Cuento con más de 5 años de experiencia como Ingeniero de Software, enfocado en construir back-ends y plataformas en la nube para el sector de facturación y cumplimiento tributario. Recientemente lideré la migración de 17 microservicios de Java a Python serverless, reduciendo costos de infraestructura entre 70 y 80%. En el último mes inicié FireCode CR, un asistente con LLM para ingenieros de protección contra incendios construido con Azure AI Foundry y AWS Lambda. Soy proficiente en Python (FastAPI), JavaScript (React, Node.js) y la nube en AWS y Microsoft Azure. Me considero un ingeniero comprometido, proactivo y de aprendizaje rápido, que disfruta colaborando con equipos de distintos países para entregar software seguro y mantenible.",
+    "en": "I have over 5 years of experience as a Software Engineer, focused on building back-ends and cloud platforms for the billing and tax-compliance sector. I recently led the migration of 17 microservices from Java to Python serverless, cutting infrastructure costs by 70-80%. In the last month I started FireCode CR, an LLM-powered assistant for fire-protection engineers built with Azure AI Foundry on AWS Lambda. I am proficient in Python (FastAPI), JavaScript (React, Node.js) and cloud on AWS and Microsoft Azure. I consider myself a committed, proactive, fast-learning engineer who enjoys collaborating with cross-country teams to deliver secure and maintainable software."
+  },
+  "profileParagraphs": [
+    {
+      "es": "Ingeniero de Software con experiencia en desarrollo de aplicaciones con asistencia de IA, trabajo full-stack en Python y arquitectura en la nube sobre AWS y Microsoft Azure.",
+      "en": "Software Engineer with experience in AI-assisted application development, Python full-stack work, and cloud architecture on AWS and Microsoft Azure."
+    },
+    {
+      "es": "Actualmente construyo FireCode CR — un asistente con LLM para ingenieros de protección contra incendios que combina un dataset de normativa NFPA con un agente de Azure AI Foundry — y continúo mejorando mi ERP de facturación electrónica.",
+      "en": "Currently building FireCode CR — an LLM-powered assistant for fire-protection engineers that combines an NFPA-rules dataset with an Azure AI Foundry agent — and continuously improving my electronic-invoicing ERP."
+    },
+    {
+      "es": "He participado en comunidades de software de código abierto como Firefox y Drupal Camp y asisto activamente a eventos de tecnología. Me apasiona construir soluciones escalables y limpias enfocadas en generar un impacto real en los procesos de negocio.",
+      "en": "I have participated in open source software communities and actively attend technology events such as Firefox and Drupal Camp. I am passionate about building scalable and clean solutions focused on generating real impact on business processes."
+    }
+  ],
+  "stats": [
+    {
+      "iconName": "briefcase",
+      "value": "5+",
+      "label": {
+        "es": "Años de Experiencia",
+        "en": "Years of Experience"
+      }
+    },
+    {
+      "iconName": "laptop",
+      "value": "20+",
+      "label": {
+        "es": "Proyectos Completados",
+        "en": "Projects Completed"
+      }
+    },
+    {
+      "iconName": "award",
+      "value": "5",
+      "label": {
+        "es": "Certificaciones",
+        "en": "Certifications"
+      }
+    }
+  ],
+  "personalInfo": {
+    "nationalityLabel": {
+      "es": "Nacionalidad:",
+      "en": "Nationality:"
+    },
+    "languagesLabel": {
+      "es": "Idiomas:",
+      "en": "Languages:"
+    },
+    "phoneLabel": {
+      "es": "Teléfono:",
+      "en": "Phone:"
+    }
+  }
+}

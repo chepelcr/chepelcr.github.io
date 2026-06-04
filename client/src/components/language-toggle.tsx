@@ -9,7 +9,7 @@ import {
 import { useLanguage } from "@/contexts/language-context"
 
 export function LanguageToggle() {
-  const { language, setLanguage } = useLanguage()
+  const { t, language, setLanguage } = useLanguage()
 
   return (
     <DropdownMenu>
@@ -20,7 +20,7 @@ export function LanguageToggle() {
           className="relative w-10 h-10 rounded-full border-border bg-card hover:bg-accent hover:text-accent-foreground transition-all duration-300"
         >
           <Globe className="h-[1.2rem] w-[1.2rem]" />
-          <span className="sr-only">Toggle language</span>
+          <span className="sr-only">{t("nav.toggleLanguage")}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="bg-card border-border min-w-0">

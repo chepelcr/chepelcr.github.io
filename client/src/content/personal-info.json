@@ -1,0 +1,20 @@
+{
+  "name": "José Pablo Campos Solano",
+  "email": "chepelcr@outlook.com",
+  "phone": "+50664839625",
+  "location": {
+    "es": "Costa Rica",
+    "en": "Costa Rica"
+  },
+  "languages": {
+    "es": "Español (Nativo), Inglés (B2)",
+    "en": "Spanish (Native), English (B2)"
+  },
+  "website": "https://jcampos.dev",
+  "linkedin": "https://www.linkedin.com/in/jose-pablo-campos/",
+  "github": "https://github.com/chepelcr",
+  "nationality": {
+    "es": "Costa Rica",
+    "en": "Costa Rica"
+  }
+}

@@ -1,0 +1,3033 @@
+{
+  "generatedAt": "",
+  "counts": {
+    "nodes": 154,
+    "edges": 386,
+    "byGroup": {
+      "App.tsx": 1,
+      "admin": 1,
+      "components": 90,
+      "content": 19,
+      "contexts": 1,
+      "hooks": 3,
+      "lib": 14,
+      "main.tsx": 1,
+      "pages": 2,
+      "repositories": 16,
+      "services": 5,
+      "utils": 1
+    }
+  },
+  "nodes": [
+    {
+      "id": "admin/manifest.ts",
+      "label": "manifest",
+      "type": "ts",
+      "group": "admin",
+      "path": "client/src/admin/manifest.ts"
+    },
+    {
+      "id": "App.tsx",
+      "label": "App",
+      "type": "tsx",
+      "group": "App.tsx",
+      "path": "client/src/App.tsx"
+    },
+    {
+      "id": "components/about-section.tsx",
+      "label": "about-section",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/about-section.tsx"
+    },
+    {
+      "id": "components/admin/AdminLayout.tsx",
+      "label": "AdminLayout",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/AdminLayout.tsx"
+    },
+    {
+      "id": "components/admin/AdminRouter.tsx",
+      "label": "AdminRouter",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/AdminRouter.tsx"
+    },
+    {
+      "id": "components/admin/AdminSidebar.tsx",
+      "label": "AdminSidebar",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/AdminSidebar.tsx"
+    },
+    {
+      "id": "components/admin/AdminTopbar.tsx",
+      "label": "AdminTopbar",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/AdminTopbar.tsx"
+    },
+    {
+      "id": "components/admin/AdminUI.tsx",
+      "label": "AdminUI",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/AdminUI.tsx"
+    },
+    {
+      "id": "components/admin/FloatingSaveButton.tsx",
+      "label": "FloatingSaveButton",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/FloatingSaveButton.tsx"
+    },
+    {
+      "id": "components/admin/MediaPicker.tsx",
+      "label": "MediaPicker",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/MediaPicker.tsx"
+    },
+    {
+      "id": "components/admin/Modal.tsx",
+      "label": "Modal",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/Modal.tsx"
+    },
+    {
+      "id": "components/admin/PageHeader.tsx",
+      "label": "PageHeader",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/PageHeader.tsx"
+    },
+    {
+      "id": "components/admin/pages/AboutPage.tsx",
+      "label": "AboutPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/AboutPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/CertificationsPage.tsx",
+      "label": "CertificationsPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/CertificationsPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/ContactPage.tsx",
+      "label": "ContactPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/ContactPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/ContentExplorerPage.tsx",
+      "label": "ContentExplorerPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/ContentExplorerPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/ContentVersionsPage.tsx",
+      "label": "ContentVersionsPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/ContentVersionsPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/DashboardPage.tsx",
+      "label": "DashboardPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/DashboardPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/DiagnosticsPage.tsx",
+      "label": "DiagnosticsPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/DiagnosticsPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/EducationPage.tsx",
+      "label": "EducationPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/EducationPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/ExperiencePage.tsx",
+      "label": "ExperiencePage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/ExperiencePage.tsx"
+    },
+    {
+      "id": "components/admin/pages/FooterPage.tsx",
+      "label": "FooterPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/FooterPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/HeroPage.tsx",
+      "label": "HeroPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/HeroPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/InventoryPage.tsx",
+      "label": "InventoryPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/InventoryPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/MediaPage.tsx",
+      "label": "MediaPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/MediaPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/NavigationPage.tsx",
+      "label": "NavigationPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/NavigationPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/PersonalInfoPage.tsx",
+      "label": "PersonalInfoPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/PersonalInfoPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/ProjectsPage.tsx",
+      "label": "ProjectsPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/ProjectsPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/SeoPage.tsx",
+      "label": "SeoPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/SeoPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/SiteIdentityPage.tsx",
+      "label": "SiteIdentityPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/SiteIdentityPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/SkillsPage.tsx",
+      "label": "SkillsPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/SkillsPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/TrainingPage.tsx",
+      "label": "TrainingPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/TrainingPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/TranslationsPage.tsx",
+      "label": "TranslationsPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/TranslationsPage.tsx"
+    },
+    {
+      "id": "components/admin/UnsavedChangesModal.tsx",
+      "label": "UnsavedChangesModal",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/UnsavedChangesModal.tsx"
+    },
+    {
+      "id": "components/contact-section.tsx",
+      "label": "contact-section",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/contact-section.tsx"
+    },
+    {
+      "id": "components/education-section.tsx",
+      "label": "education-section",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/education-section.tsx"
+    },
+    {
+      "id": "components/experience-section.tsx",
+      "label": "experience-section",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/experience-section.tsx"
+    },
+    {
+      "id": "components/footer.tsx",
+      "label": "footer",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/footer.tsx"
+    },
+    {
+      "id": "components/hero-section.tsx",
+      "label": "hero-section",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/hero-section.tsx"
+    },
+    {
+      "id": "components/language-toggle.tsx",
+      "label": "language-toggle",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/language-toggle.tsx"
+    },
+    {
+      "id": "components/navigation.tsx",
+      "label": "navigation",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/navigation.tsx"
+    },
+    {
+      "id": "components/projects-section.tsx",
+      "label": "projects-section",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/projects-section.tsx"
+    },
+    {
+      "id": "components/skills-section.tsx",
+      "label": "skills-section",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/skills-section.tsx"
+    },
+    {
+      "id": "components/theme-provider.tsx",
+      "label": "theme-provider",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/theme-provider.tsx"
+    },
+    {
+      "id": "components/theme-toggle.tsx",
+      "label": "theme-toggle",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/theme-toggle.tsx"
+    },
+    {
+      "id": "components/ui/accordion.tsx",
+      "label": "accordion",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/accordion.tsx"
+    },
+    {
+      "id": "components/ui/alert-dialog.tsx",
+      "label": "alert-dialog",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/alert-dialog.tsx"
+    },
+    {
+      "id": "components/ui/alert.tsx",
+      "label": "alert",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/alert.tsx"
+    },
+    {
+      "id": "components/ui/aspect-ratio.tsx",
+      "label": "aspect-ratio",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/aspect-ratio.tsx"
+    },
+    {
+      "id": "components/ui/avatar.tsx",
+      "label": "avatar",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/avatar.tsx"
+    },
+    {
+      "id": "components/ui/badge.tsx",
+      "label": "badge",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/badge.tsx"
+    },
+    {
+      "id": "components/ui/breadcrumb.tsx",
+      "label": "breadcrumb",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/breadcrumb.tsx"
+    },
+    {
+      "id": "components/ui/button.tsx",
+      "label": "button",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/button.tsx"
+    },
+    {
+      "id": "components/ui/calendar.tsx",
+      "label": "calendar",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/calendar.tsx"
+    },
+    {
+      "id": "components/ui/card.tsx",
+      "label": "card",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/card.tsx"
+    },
+    {
+      "id": "components/ui/carousel.tsx",
+      "label": "carousel",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/carousel.tsx"
+    },
+    {
+      "id": "components/ui/chart.tsx",
+      "label": "chart",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/chart.tsx"
+    },
+    {
+      "id": "components/ui/checkbox.tsx",
+      "label": "checkbox",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/checkbox.tsx"
+    },
+    {
+      "id": "components/ui/collapsible.tsx",
+      "label": "collapsible",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/collapsible.tsx"
+    },
+    {
+      "id": "components/ui/command.tsx",
+      "label": "command",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/command.tsx"
+    },
+    {
+      "id": "components/ui/context-menu.tsx",
+      "label": "context-menu",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/context-menu.tsx"
+    },
+    {
+      "id": "components/ui/dialog.tsx",
+      "label": "dialog",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/dialog.tsx"
+    },
+    {
+      "id": "components/ui/drawer.tsx",
+      "label": "drawer",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/drawer.tsx"
+    },
+    {
+      "id": "components/ui/dropdown-menu.tsx",
+      "label": "dropdown-menu",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/dropdown-menu.tsx"
+    },
+    {
+      "id": "components/ui/form.tsx",
+      "label": "form",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/form.tsx"
+    },
+    {
+      "id": "components/ui/hover-card.tsx",
+      "label": "hover-card",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/hover-card.tsx"
+    },
+    {
+      "id": "components/ui/input-otp.tsx",
+      "label": "input-otp",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/input-otp.tsx"
+    },
+    {
+      "id": "components/ui/input.tsx",
+      "label": "input",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/input.tsx"
+    },
+    {
+      "id": "components/ui/label.tsx",
+      "label": "label",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/label.tsx"
+    },
+    {
+      "id": "components/ui/menubar.tsx",
+      "label": "menubar",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/menubar.tsx"
+    },
+    {
+      "id": "components/ui/navigation-menu.tsx",
+      "label": "navigation-menu",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/navigation-menu.tsx"
+    },
+    {
+      "id": "components/ui/pagination.tsx",
+      "label": "pagination",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/pagination.tsx"
+    },
+    {
+      "id": "components/ui/popover.tsx",
+      "label": "popover",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/popover.tsx"
+    },
+    {
+      "id": "components/ui/progress.tsx",
+      "label": "progress",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/progress.tsx"
+    },
+    {
+      "id": "components/ui/radio-group.tsx",
+      "label": "radio-group",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/radio-group.tsx"
+    },
+    {
+      "id": "components/ui/resizable.tsx",
+      "label": "resizable",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/resizable.tsx"
+    },
+    {
+      "id": "components/ui/scroll-area.tsx",
+      "label": "scroll-area",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/scroll-area.tsx"
+    },
+    {
+      "id": "components/ui/select.tsx",
+      "label": "select",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/select.tsx"
+    },
+    {
+      "id": "components/ui/separator.tsx",
+      "label": "separator",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/separator.tsx"
+    },
+    {
+      "id": "components/ui/sheet.tsx",
+      "label": "sheet",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/sheet.tsx"
+    },
+    {
+      "id": "components/ui/sidebar.tsx",
+      "label": "sidebar",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/sidebar.tsx"
+    },
+    {
+      "id": "components/ui/skeleton.tsx",
+      "label": "skeleton",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/skeleton.tsx"
+    },
+    {
+      "id": "components/ui/slider.tsx",
+      "label": "slider",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/slider.tsx"
+    },
+    {
+      "id": "components/ui/switch.tsx",
+      "label": "switch",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/switch.tsx"
+    },
+    {
+      "id": "components/ui/table.tsx",
+      "label": "table",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/table.tsx"
+    },
+    {
+      "id": "components/ui/tabs.tsx",
+      "label": "tabs",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/tabs.tsx"
+    },
+    {
+      "id": "components/ui/textarea.tsx",
+      "label": "textarea",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/textarea.tsx"
+    },
+    {
+      "id": "components/ui/toast.tsx",
+      "label": "toast",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/toast.tsx"
+    },
+    {
+      "id": "components/ui/toaster.tsx",
+      "label": "toaster",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/toaster.tsx"
+    },
+    {
+      "id": "components/ui/toggle-group.tsx",
+      "label": "toggle-group",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/toggle-group.tsx"
+    },
+    {
+      "id": "components/ui/toggle.tsx",
+      "label": "toggle",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/toggle.tsx"
+    },
+    {
+      "id": "components/ui/tooltip.tsx",
+      "label": "tooltip",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/ui/tooltip.tsx"
+    },
+    {
+      "id": "content/about.json",
+      "label": "about",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/about.json"
+    },
+    {
+      "id": "content/branding.json",
+      "label": "branding",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/branding.json"
+    },
+    {
+      "id": "content/certifications.json",
+      "label": "certifications",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/certifications.json"
+    },
+    {
+      "id": "content/contact.json",
+      "label": "contact",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/contact.json"
+    },
+    {
+      "id": "content/education.json",
+      "label": "education",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/education.json"
+    },
+    {
+      "id": "content/experience.json",
+      "label": "experience",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/experience.json"
+    },
+    {
+      "id": "content/footer.json",
+      "label": "footer",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/footer.json"
+    },
+    {
+      "id": "content/hero.json",
+      "label": "hero",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/hero.json"
+    },
+    {
+      "id": "content/inventory.json",
+      "label": "inventory",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/inventory.json"
+    },
+    {
+      "id": "content/media.json",
+      "label": "media",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/media.json"
+    },
+    {
+      "id": "content/navigation.json",
+      "label": "navigation",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/navigation.json"
+    },
+    {
+      "id": "content/personal-info.json",
+      "label": "personal-info",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/personal-info.json"
+    },
+    {
+      "id": "content/projects.json",
+      "label": "projects",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/projects.json"
+    },
+    {
+      "id": "content/seo.json",
+      "label": "seo",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/seo.json"
+    },
+    {
+      "id": "content/skills.json",
+      "label": "skills",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/skills.json"
+    },
+    {
+      "id": "content/themes.json",
+      "label": "themes",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/themes.json"
+    },
+    {
+      "id": "content/training.json",
+      "label": "training",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/training.json"
+    },
+    {
+      "id": "contexts/language-context.tsx",
+      "label": "language-context",
+      "type": "tsx",
+      "group": "contexts",
+      "path": "client/src/contexts/language-context.tsx"
+    },
+    {
+      "id": "hooks/use-mobile.tsx",
+      "label": "use-mobile",
+      "type": "tsx",
+      "group": "hooks",
+      "path": "client/src/hooks/use-mobile.tsx"
+    },
+    {
+      "id": "hooks/use-scroll-spy.tsx",
+      "label": "use-scroll-spy",
+      "type": "tsx",
+      "group": "hooks",
+      "path": "client/src/hooks/use-scroll-spy.tsx"
+    },
+    {
+      "id": "hooks/use-toast.ts",
+      "label": "use-toast",
+      "type": "ts",
+      "group": "hooks",
+      "path": "client/src/hooks/use-toast.ts"
+    },
+    {
+      "id": "lib/admin-enabled.ts",
+      "label": "admin-enabled",
+      "type": "ts",
+      "group": "lib",
+      "path": "client/src/lib/admin-enabled.ts"
+    },
+    {
+      "id": "lib/admin-store.ts",
+      "label": "admin-store",
+      "type": "ts",
+      "group": "lib",
+      "path": "client/src/lib/admin-store.ts"
+    },
+    {
+      "id": "lib/admin-ui.ts",
+      "label": "admin-ui",
+      "type": "ts",
+      "group": "lib",
+      "path": "client/src/lib/admin-ui.ts"
+    },
+    {
+      "id": "lib/brand-theme.ts",
+      "label": "brand-theme",
+      "type": "ts",
+      "group": "lib",
+      "path": "client/src/lib/brand-theme.ts"
+    },
+    {
+      "id": "lib/i18n-field.ts",
+      "label": "i18n-field",
+      "type": "ts",
+      "group": "lib",
+      "path": "client/src/lib/i18n-field.ts"
+    },
+    {
+      "id": "lib/icons.ts",
+      "label": "icons",
+      "type": "ts",
+      "group": "lib",
+      "path": "client/src/lib/icons.ts"
+    },
+    {
+      "id": "lib/local-cms.ts",
+      "label": "local-cms",
+      "type": "ts",
+      "group": "lib",
+      "path": "client/src/lib/local-cms.ts"
+    },
+    {
+      "id": "lib/media-upload.ts",
+      "label": "media-upload",
+      "type": "ts",
+      "group": "lib",
+      "path": "client/src/lib/media-upload.ts"
+    },
+    {
+      "id": "lib/media.ts",
+      "label": "media",
+      "type": "ts",
+      "group": "lib",
+      "path": "client/src/lib/media.ts"
+    },
+    {
+      "id": "lib/phone.ts",
+      "label": "phone",
+      "type": "ts",
+      "group": "lib",
+      "path": "client/src/lib/phone.ts"
+    },
+    {
+      "id": "lib/queryClient.ts",
+      "label": "queryClient",
+      "type": "ts",
+      "group": "lib",
+      "path": "client/src/lib/queryClient.ts"
+    },
+    {
+      "id": "lib/rich-text.tsx",
+      "label": "rich-text",
+      "type": "tsx",
+      "group": "lib",
+      "path": "client/src/lib/rich-text.tsx"
+    },
+    {
+      "id": "lib/seo.ts",
+      "label": "seo",
+      "type": "ts",
+      "group": "lib",
+      "path": "client/src/lib/seo.ts"
+    },
+    {
+      "id": "lib/utils.ts",
+      "label": "utils",
+      "type": "ts",
+      "group": "lib",
+      "path": "client/src/lib/utils.ts"
+    },
+    {
+      "id": "main.tsx",
+      "label": "main",
+      "type": "tsx",
+      "group": "main.tsx",
+      "path": "client/src/main.tsx"
+    },
+    {
+      "id": "pages/home.tsx",
+      "label": "home",
+      "type": "tsx",
+      "group": "pages",
+      "path": "client/src/pages/home.tsx"
+    },
+    {
+      "id": "pages/not-found.tsx",
+      "label": "not-found",
+      "type": "tsx",
+      "group": "pages",
+      "path": "client/src/pages/not-found.tsx"
+    },
+    {
+      "id": "repositories/about.repository.ts",
+      "label": "about.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/about.repository.ts"
+    },
+    {
+      "id": "repositories/branding.repository.ts",
+      "label": "branding.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/branding.repository.ts"
+    },
+    {
+      "id": "repositories/certifications.repository.ts",
+      "label": "certifications.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/certifications.repository.ts"
+    },
+    {
+      "id": "repositories/contact.repository.ts",
+      "label": "contact.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/contact.repository.ts"
+    },
+    {
+      "id": "repositories/education.repository.ts",
+      "label": "education.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/education.repository.ts"
+    },
+    {
+      "id": "repositories/experience.repository.ts",
+      "label": "experience.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/experience.repository.ts"
+    },
+    {
+      "id": "repositories/footer.repository.ts",
+      "label": "footer.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/footer.repository.ts"
+    },
+    {
+      "id": "repositories/hero.repository.ts",
+      "label": "hero.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/hero.repository.ts"
+    },
+    {
+      "id": "repositories/media.repository.ts",
+      "label": "media.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/media.repository.ts"
+    },
+    {
+      "id": "repositories/navigation.repository.ts",
+      "label": "navigation.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/navigation.repository.ts"
+    },
+    {
+      "id": "repositories/personal-info.repository.ts",
+      "label": "personal-info.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/personal-info.repository.ts"
+    },
+    {
+      "id": "repositories/projects.repository.ts",
+      "label": "projects.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/projects.repository.ts"
+    },
+    {
+      "id": "repositories/seo.repository.ts",
+      "label": "seo.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/seo.repository.ts"
+    },
+    {
+      "id": "repositories/skills.repository.ts",
+      "label": "skills.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/skills.repository.ts"
+    },
+    {
+      "id": "repositories/themes.repository.ts",
+      "label": "themes.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/themes.repository.ts"
+    },
+    {
+      "id": "repositories/training.repository.ts",
+      "label": "training.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/training.repository.ts"
+    },
+    {
+      "id": "services/cv.service.ts",
+      "label": "cv.service",
+      "type": "ts",
+      "group": "services",
+      "path": "client/src/services/cv.service.ts"
+    },
+    {
+      "id": "services/experience.service.ts",
+      "label": "experience.service",
+      "type": "ts",
+      "group": "services",
+      "path": "client/src/services/experience.service.ts"
+    },
+    {
+      "id": "services/projects.service.ts",
+      "label": "projects.service",
+      "type": "ts",
+      "group": "services",
+      "path": "client/src/services/projects.service.ts"
+    },
+    {
+      "id": "services/skills.service.ts",
+      "label": "skills.service",
+      "type": "ts",
+      "group": "services",
+      "path": "client/src/services/skills.service.ts"
+    },
+    {
+      "id": "services/training.service.ts",
+      "label": "training.service",
+      "type": "ts",
+      "group": "services",
+      "path": "client/src/services/training.service.ts"
+    },
+    {
+      "id": "translations/en.json",
+      "label": "en",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/translations/en.json"
+    },
+    {
+      "id": "translations/es.json",
+      "label": "es",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/translations/es.json"
+    },
+    {
+      "id": "utils/pdf-generator.ts",
+      "label": "pdf-generator",
+      "type": "ts",
+      "group": "utils",
+      "path": "client/src/utils/pdf-generator.ts"
+    }
+  ],
+  "edges": [
+    {
+      "from": "admin/manifest.ts",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "App.tsx",
+      "to": "components/admin/AdminRouter.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "App.tsx",
+      "to": "components/theme-provider.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "App.tsx",
+      "to": "components/ui/toaster.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "App.tsx",
+      "to": "components/ui/tooltip.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "App.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "App.tsx",
+      "to": "lib/admin-enabled.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "App.tsx",
+      "to": "lib/queryClient.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "App.tsx",
+      "to": "pages/home.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "App.tsx",
+      "to": "pages/not-found.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/about-section.tsx",
+      "to": "components/ui/card.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/about-section.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/about-section.tsx",
+      "to": "lib/i18n-field.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/about-section.tsx",
+      "to": "lib/phone.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/about-section.tsx",
+      "to": "lib/rich-text.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/about-section.tsx",
+      "to": "repositories/about.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/about-section.tsx",
+      "to": "repositories/personal-info.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminLayout.tsx",
+      "to": "components/admin/AdminSidebar.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminLayout.tsx",
+      "to": "components/admin/AdminTopbar.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminLayout.tsx",
+      "to": "components/admin/UnsavedChangesModal.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "admin/manifest.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/AdminLayout.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/AboutPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/CertificationsPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/ContactPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/ContentExplorerPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/ContentVersionsPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/DashboardPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/DiagnosticsPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/EducationPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/ExperiencePage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/FooterPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/HeroPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/InventoryPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/MediaPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/NavigationPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/PersonalInfoPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/ProjectsPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/SeoPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/SiteIdentityPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/SkillsPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/TrainingPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/TranslationsPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
+      "to": "lib/admin-enabled.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminSidebar.tsx",
+      "to": "admin/manifest.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminSidebar.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminSidebar.tsx",
+      "to": "lib/admin-ui.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminSidebar.tsx",
+      "to": "lib/icons.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminSidebar.tsx",
+      "to": "repositories/branding.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminTopbar.tsx",
+      "to": "components/theme-provider.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminTopbar.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminTopbar.tsx",
+      "to": "lib/admin-ui.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminTopbar.tsx",
+      "to": "lib/local-cms.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/FloatingSaveButton.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/MediaPicker.tsx",
+      "to": "components/admin/Modal.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/MediaPicker.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/MediaPicker.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/MediaPicker.tsx",
+      "to": "lib/media-upload.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/MediaPicker.tsx",
+      "to": "lib/media.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/PageHeader.tsx",
+      "to": "admin/manifest.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/PageHeader.tsx",
+      "to": "components/admin/FloatingSaveButton.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/PageHeader.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/PageHeader.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/PageHeader.tsx",
+      "to": "lib/admin-ui.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/AboutPage.tsx",
+      "to": "components/admin/AdminUI.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/AboutPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/AboutPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/AboutPage.tsx",
+      "to": "lib/icons.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/AboutPage.tsx",
+      "to": "lib/rich-text.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/CertificationsPage.tsx",
+      "to": "components/admin/AdminUI.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/CertificationsPage.tsx",
+      "to": "components/admin/Modal.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/CertificationsPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/CertificationsPage.tsx",
+      "to": "content/certifications.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/CertificationsPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContactPage.tsx",
+      "to": "components/admin/AdminUI.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContactPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContactPage.tsx",
+      "to": "content/contact.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContactPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContentExplorerPage.tsx",
+      "to": "admin/manifest.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContentExplorerPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContentExplorerPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContentVersionsPage.tsx",
+      "to": "admin/manifest.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContentVersionsPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContentVersionsPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContentVersionsPage.tsx",
+      "to": "lib/icons.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContentVersionsPage.tsx",
+      "to": "translations/en.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContentVersionsPage.tsx",
+      "to": "translations/es.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/DashboardPage.tsx",
+      "to": "admin/manifest.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/DashboardPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/DashboardPage.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/DashboardPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/DashboardPage.tsx",
+      "to": "lib/icons.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/DiagnosticsPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/DiagnosticsPage.tsx",
+      "to": "components/theme-provider.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/DiagnosticsPage.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/DiagnosticsPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/DiagnosticsPage.tsx",
+      "to": "lib/icons.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/DiagnosticsPage.tsx",
+      "to": "lib/local-cms.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/EducationPage.tsx",
+      "to": "components/admin/AdminUI.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/EducationPage.tsx",
+      "to": "components/admin/Modal.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/EducationPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/EducationPage.tsx",
+      "to": "content/education.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/EducationPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ExperiencePage.tsx",
+      "to": "components/admin/AdminUI.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ExperiencePage.tsx",
+      "to": "components/admin/Modal.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ExperiencePage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ExperiencePage.tsx",
+      "to": "content/experience.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ExperiencePage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ExperiencePage.tsx",
+      "to": "lib/icons.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ExperiencePage.tsx",
+      "to": "lib/rich-text.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/FooterPage.tsx",
+      "to": "components/admin/AdminUI.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/FooterPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/FooterPage.tsx",
+      "to": "content/footer.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/FooterPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/FooterPage.tsx",
+      "to": "lib/icons.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/HeroPage.tsx",
+      "to": "components/admin/AdminUI.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/HeroPage.tsx",
+      "to": "components/admin/MediaPicker.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/HeroPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/HeroPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/HeroPage.tsx",
+      "to": "lib/rich-text.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/InventoryPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/InventoryPage.tsx",
+      "to": "content/inventory.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/InventoryPage.tsx",
+      "to": "lib/icons.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/MediaPage.tsx",
+      "to": "components/admin/AdminUI.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/MediaPage.tsx",
+      "to": "components/admin/Modal.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/MediaPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/MediaPage.tsx",
+      "to": "content/media.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/MediaPage.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/MediaPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/MediaPage.tsx",
+      "to": "lib/local-cms.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/NavigationPage.tsx",
+      "to": "components/admin/AdminUI.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/NavigationPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/NavigationPage.tsx",
+      "to": "content/navigation.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/NavigationPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/PersonalInfoPage.tsx",
+      "to": "components/admin/AdminUI.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/PersonalInfoPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/PersonalInfoPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ProjectsPage.tsx",
+      "to": "components/admin/AdminUI.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ProjectsPage.tsx",
+      "to": "components/admin/MediaPicker.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ProjectsPage.tsx",
+      "to": "components/admin/Modal.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ProjectsPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ProjectsPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ProjectsPage.tsx",
+      "to": "lib/icons.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ProjectsPage.tsx",
+      "to": "lib/rich-text.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ProjectsPage.tsx",
+      "to": "repositories/projects.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SeoPage.tsx",
+      "to": "components/admin/AdminUI.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SeoPage.tsx",
+      "to": "components/admin/MediaPicker.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SeoPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SeoPage.tsx",
+      "to": "content/seo.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SeoPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SiteIdentityPage.tsx",
+      "to": "components/admin/AdminUI.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SiteIdentityPage.tsx",
+      "to": "components/admin/FloatingSaveButton.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SiteIdentityPage.tsx",
+      "to": "components/admin/MediaPicker.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SiteIdentityPage.tsx",
+      "to": "content/branding.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SiteIdentityPage.tsx",
+      "to": "content/themes.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SiteIdentityPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SiteIdentityPage.tsx",
+      "to": "lib/admin-ui.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SkillsPage.tsx",
+      "to": "components/admin/AdminUI.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SkillsPage.tsx",
+      "to": "components/admin/Modal.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SkillsPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SkillsPage.tsx",
+      "to": "content/skills.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SkillsPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SkillsPage.tsx",
+      "to": "lib/icons.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/TrainingPage.tsx",
+      "to": "components/admin/AdminUI.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/TrainingPage.tsx",
+      "to": "components/admin/Modal.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/TrainingPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/TrainingPage.tsx",
+      "to": "content/training.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/TrainingPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/TranslationsPage.tsx",
+      "to": "components/admin/FloatingSaveButton.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/TranslationsPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/TranslationsPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/TranslationsPage.tsx",
+      "to": "lib/admin-ui.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/TranslationsPage.tsx",
+      "to": "translations/en.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/TranslationsPage.tsx",
+      "to": "translations/es.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/UnsavedChangesModal.tsx",
+      "to": "components/admin/Modal.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/UnsavedChangesModal.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/UnsavedChangesModal.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/UnsavedChangesModal.tsx",
+      "to": "lib/admin-ui.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/contact-section.tsx",
+      "to": "components/ui/badge.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/contact-section.tsx",
+      "to": "components/ui/button.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/contact-section.tsx",
+      "to": "components/ui/card.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/contact-section.tsx",
+      "to": "components/ui/input.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/contact-section.tsx",
+      "to": "components/ui/label.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/contact-section.tsx",
+      "to": "components/ui/select.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/contact-section.tsx",
+      "to": "components/ui/textarea.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/contact-section.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/contact-section.tsx",
+      "to": "hooks/use-toast.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/contact-section.tsx",
+      "to": "lib/i18n-field.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/contact-section.tsx",
+      "to": "lib/phone.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/contact-section.tsx",
+      "to": "repositories/contact.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/contact-section.tsx",
+      "to": "repositories/personal-info.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/contact-section.tsx",
+      "to": "utils/pdf-generator.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/education-section.tsx",
+      "to": "components/ui/badge.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/education-section.tsx",
+      "to": "components/ui/card.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/education-section.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/education-section.tsx",
+      "to": "lib/i18n-field.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/education-section.tsx",
+      "to": "repositories/certifications.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/education-section.tsx",
+      "to": "repositories/education.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/education-section.tsx",
+      "to": "services/training.service.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/experience-section.tsx",
+      "to": "components/ui/badge.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/experience-section.tsx",
+      "to": "components/ui/card.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/experience-section.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/experience-section.tsx",
+      "to": "lib/i18n-field.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/experience-section.tsx",
+      "to": "lib/icons.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/experience-section.tsx",
+      "to": "lib/rich-text.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/experience-section.tsx",
+      "to": "services/experience.service.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/footer.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/footer.tsx",
+      "to": "lib/i18n-field.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/footer.tsx",
+      "to": "lib/icons.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/footer.tsx",
+      "to": "repositories/footer.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/footer.tsx",
+      "to": "repositories/personal-info.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/hero-section.tsx",
+      "to": "components/ui/button.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/hero-section.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/hero-section.tsx",
+      "to": "lib/i18n-field.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/hero-section.tsx",
+      "to": "lib/rich-text.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/hero-section.tsx",
+      "to": "repositories/hero.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/hero-section.tsx",
+      "to": "repositories/personal-info.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/hero-section.tsx",
+      "to": "utils/pdf-generator.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/language-toggle.tsx",
+      "to": "components/ui/button.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/language-toggle.tsx",
+      "to": "components/ui/dropdown-menu.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/language-toggle.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/navigation.tsx",
+      "to": "components/language-toggle.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/navigation.tsx",
+      "to": "components/theme-toggle.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/navigation.tsx",
+      "to": "components/ui/button.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/navigation.tsx",
+      "to": "components/ui/sheet.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/navigation.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/navigation.tsx",
+      "to": "lib/admin-enabled.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/navigation.tsx",
+      "to": "lib/i18n-field.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/navigation.tsx",
+      "to": "repositories/navigation.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/projects-section.tsx",
+      "to": "components/ui/badge.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/projects-section.tsx",
+      "to": "components/ui/button.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/projects-section.tsx",
+      "to": "components/ui/card.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/projects-section.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/projects-section.tsx",
+      "to": "lib/i18n-field.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/projects-section.tsx",
+      "to": "lib/icons.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/projects-section.tsx",
+      "to": "lib/rich-text.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/projects-section.tsx",
+      "to": "services/projects.service.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/skills-section.tsx",
+      "to": "components/ui/badge.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/skills-section.tsx",
+      "to": "components/ui/card.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/skills-section.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/skills-section.tsx",
+      "to": "lib/icons.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/skills-section.tsx",
+      "to": "services/skills.service.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/theme-toggle.tsx",
+      "to": "components/theme-provider.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/theme-toggle.tsx",
+      "to": "components/ui/button.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/theme-toggle.tsx",
+      "to": "components/ui/dropdown-menu.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/accordion.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/alert-dialog.tsx",
+      "to": "components/ui/button.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/alert-dialog.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/alert.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/avatar.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/badge.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/breadcrumb.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/button.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/calendar.tsx",
+      "to": "components/ui/button.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/calendar.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/card.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/carousel.tsx",
+      "to": "components/ui/button.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/carousel.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/chart.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/checkbox.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/command.tsx",
+      "to": "components/ui/dialog.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/command.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/context-menu.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/dialog.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/drawer.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/dropdown-menu.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/form.tsx",
+      "to": "components/ui/label.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/form.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/hover-card.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/input-otp.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/input.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/label.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/menubar.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/navigation-menu.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/pagination.tsx",
+      "to": "components/ui/button.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/pagination.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/popover.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/progress.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/radio-group.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/resizable.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/scroll-area.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/select.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/separator.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/sheet.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/sidebar.tsx",
+      "to": "components/ui/button.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/sidebar.tsx",
+      "to": "components/ui/input.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/sidebar.tsx",
+      "to": "components/ui/separator.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/sidebar.tsx",
+      "to": "components/ui/sheet.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/sidebar.tsx",
+      "to": "components/ui/skeleton.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/sidebar.tsx",
+      "to": "components/ui/tooltip.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/sidebar.tsx",
+      "to": "hooks/use-mobile.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/sidebar.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/skeleton.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/slider.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/switch.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/table.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/tabs.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/textarea.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/toast.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/toaster.tsx",
+      "to": "components/ui/toast.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/toaster.tsx",
+      "to": "hooks/use-toast.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/toggle-group.tsx",
+      "to": "components/ui/toggle.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/toggle-group.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/toggle.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/ui/tooltip.tsx",
+      "to": "lib/utils.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "contexts/language-context.tsx",
+      "to": "services/cv.service.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "contexts/language-context.tsx",
+      "to": "translations/en.json",
+      "kind": "imports"
+    },
+    {
+      "from": "contexts/language-context.tsx",
+      "to": "translations/es.json",
+      "kind": "imports"
+    },
+    {
+      "from": "hooks/use-scroll-spy.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "hooks/use-toast.ts",
+      "to": "components/ui/toast.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "content/about.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "content/branding.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "content/certifications.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "content/contact.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "content/education.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "content/experience.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "content/footer.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "content/hero.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "content/media.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "content/navigation.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "content/personal-info.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "content/projects.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "content/seo.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "content/skills.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "content/themes.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "content/training.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "lib/local-cms.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
+      "to": "repositories/projects.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-ui.ts",
+      "to": "lib/local-cms.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/brand-theme.ts",
+      "to": "lib/media.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/brand-theme.ts",
+      "to": "repositories/branding.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/brand-theme.ts",
+      "to": "repositories/themes.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/media-upload.ts",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/media-upload.ts",
+      "to": "lib/local-cms.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/media-upload.ts",
+      "to": "repositories/media.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/media.ts",
+      "to": "content/seo.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/media.ts",
+      "to": "repositories/media.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/seo.ts",
+      "to": "lib/i18n-field.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/seo.ts",
+      "to": "lib/media.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/seo.ts",
+      "to": "repositories/seo.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "main.tsx",
+      "to": "App.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "main.tsx",
+      "to": "lib/brand-theme.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "pages/home.tsx",
+      "to": "components/about-section.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "pages/home.tsx",
+      "to": "components/contact-section.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "pages/home.tsx",
+      "to": "components/education-section.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "pages/home.tsx",
+      "to": "components/experience-section.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "pages/home.tsx",
+      "to": "components/footer.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "pages/home.tsx",
+      "to": "components/hero-section.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "pages/home.tsx",
+      "to": "components/navigation.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "pages/home.tsx",
+      "to": "components/projects-section.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "pages/home.tsx",
+      "to": "components/skills-section.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "pages/home.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "pages/home.tsx",
+      "to": "lib/seo.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "pages/not-found.tsx",
+      "to": "components/ui/card.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/about.repository.ts",
+      "to": "content/about.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/branding.repository.ts",
+      "to": "content/branding.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/certifications.repository.ts",
+      "to": "content/certifications.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/contact.repository.ts",
+      "to": "content/contact.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/education.repository.ts",
+      "to": "content/education.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/experience.repository.ts",
+      "to": "content/experience.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/footer.repository.ts",
+      "to": "content/footer.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/hero.repository.ts",
+      "to": "content/hero.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/media.repository.ts",
+      "to": "content/media.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/navigation.repository.ts",
+      "to": "content/navigation.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/personal-info.repository.ts",
+      "to": "content/personal-info.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/projects.repository.ts",
+      "to": "content/projects.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/seo.repository.ts",
+      "to": "content/seo.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/skills.repository.ts",
+      "to": "content/skills.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/themes.repository.ts",
+      "to": "content/themes.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/training.repository.ts",
+      "to": "content/training.json",
+      "kind": "imports"
+    },
+    {
+      "from": "services/cv.service.ts",
+      "to": "lib/i18n-field.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/cv.service.ts",
+      "to": "repositories/about.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/cv.service.ts",
+      "to": "repositories/certifications.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/cv.service.ts",
+      "to": "repositories/education.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/cv.service.ts",
+      "to": "repositories/experience.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/cv.service.ts",
+      "to": "repositories/personal-info.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/cv.service.ts",
+      "to": "repositories/training.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/cv.service.ts",
+      "to": "services/projects.service.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/cv.service.ts",
+      "to": "services/skills.service.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/experience.service.ts",
+      "to": "repositories/experience.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/projects.service.ts",
+      "to": "repositories/projects.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/skills.service.ts",
+      "to": "repositories/skills.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/training.service.ts",
+      "to": "repositories/training.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "utils/pdf-generator.ts",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "utils/pdf-generator.ts",
+      "to": "lib/phone.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "utils/pdf-generator.ts",
+      "to": "services/cv.service.ts",
+      "kind": "imports"
+    }
+  ]
+}

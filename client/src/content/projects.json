@@ -1,0 +1,134 @@
+[
+  {
+    "id": "beautymarket",
+    "title": {
+      "es": "BeautyMarket - Plataforma SaaS",
+      "en": "BeautyMarket - SaaS Platform"
+    },
+    "description": {
+      "es": "Plataforma SaaS multi-tenant para gestión de productos de belleza con arquitectura serverless completa en AWS. Incluye autenticación con Cognito, gestión de contenido CMS, dashboard administrativo y soporte multi-idioma.",
+      "en": "Multi-tenant SaaS platform for beauty product management with complete serverless architecture on AWS. Includes Cognito authentication, CMS content management, administrative dashboard and multi-language support."
+    },
+    "type": "SaaS Platform",
+    "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
+    "technologies": ["React", "TypeScript", "Node.js", "AWS Lambda", "PostgreSQL", "Cognito", "CloudFormation"],
+    "features": [
+      {
+        "es": "Arquitectura multi-tenant con aislamiento completo",
+        "en": "Multi-tenant architecture with complete isolation"
+      },
+      {
+        "es": "Infraestructura serverless escalable en AWS",
+        "en": "Scalable serverless infrastructure on AWS"
+      },
+      {
+        "es": "Sistema CMS integrado para gestión de contenido",
+        "en": "Integrated CMS system for content management"
+      },
+      {
+        "es": "CI/CD automatizado con CodePipeline",
+        "en": "Automated CI/CD with CodePipeline"
+      }
+    ],
+    "githubUrl": "https://github.com/chepelcr/BeautyMarket",
+    "liveUrl": "https://jmarkets.jcampos.dev",
+    "accessMode": "request",
+    "featured": true,
+    "includeInCv": true,
+    "order": 1
+  },
+  {
+    "id": "video-transcript",
+    "title": {
+      "es": "Transcripción de Video con IA",
+      "en": "AI Video Transcription"
+    },
+    "description": {
+      "es": "Herramienta inteligente que extrae automáticamente el texto y subtítulos de videos utilizando servicios de inteligencia artificial avanzados. Soporta múltiples formatos de video y proporciona transcripciones precisas en tiempo real.",
+      "en": "Intelligent tool that automatically extracts text and subtitles from videos using advanced artificial intelligence services. Supports multiple video formats and provides accurate real-time transcriptions."
+    },
+    "type": "AI Tool",
+    "image": "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
+    "technologies": ["React", "TypeScript", "AI Services", "Web APIs", "Tailwind CSS"],
+    "features": [
+      {
+        "es": "Transcripción automática con IA",
+        "en": "Automatic AI transcription"
+      },
+      {
+        "es": "Soporte para múltiples formatos",
+        "en": "Multiple format support"
+      },
+      {
+        "es": "Interface multiidioma",
+        "en": "Multilingual interface"
+      },
+      {
+        "es": "Exportación de subtítulos",
+        "en": "Subtitle export"
+      }
+    ],
+    "accessMode": "request",
+    "featured": true,
+    "includeInCv": true,
+    "order": 2
+  },
+  {
+    "id": "linux",
+    "title": {
+      "es": "Sitio Web de Comandos Linux",
+      "en": "Linux Commands Website"
+    },
+    "description": {
+      "es": "Plataforma educativa interactiva para aprender comandos básicos de Linux. Incluye conceptos fundamentales, ejemplos prácticos, herramientas de administración y utilidades para desarrolladores y administradores de sistemas.",
+      "en": "Interactive educational platform for learning basic Linux commands. Includes fundamental concepts, practical examples, administration tools and utilities for developers and system administrators."
+    },
+    "type": "Educational Platform",
+    "image": "https://images.unsplash.com/photo-1629654297299-c8506221ca97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
+    "technologies": ["HTML", "CSS", "JavaScript", "Responsive Design"],
+    "features": [
+      {
+        "es": "Interface interactiva y responsive",
+        "en": "Interactive and responsive interface"
+      },
+      {
+        "es": "Ejemplos de comandos categorizados",
+        "en": "Categorized command examples"
+      },
+      {
+        "es": "Guías de seguridad informática",
+        "en": "Information security guides"
+      },
+      {
+        "es": "Herramientas de administración",
+        "en": "Administration tools"
+      }
+    ],
+    "liveUrl": "https://linux.jcampos.dev",
+    "accessMode": "link",
+    "featured": true,
+    "includeInCv": true,
+    "order": 3
+  },
+  {
+    "id": "erp",
+    "title": {
+      "es": "Sistema ERP para Facturación Electrónica",
+      "en": "ERP System for Electronic Invoicing"
+    },
+    "description": {
+      "es": "Sistema integral de gestión empresarial desarrollado con arquitectura de microservicios. Incluye facturación electrónica integrada con IVOIS, gestión de inventario y reportes básicos.",
+      "en": "Comprehensive business management system developed with microservices architecture. Includes electronic invoicing integrated with IVOIS, inventory management and basic reporting."
+    },
+    "type": "Enterprise System",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400",
+    "technologies": ["React", "TypeScript", "Microservices", "AWS"],
+    "features": [],
+    "liveUrl": "https://biller.jcampos.dev",
+    "accessMode": "request",
+    "featured": false,
+    "includeInCv": false,
+    "order": 4,
+    "iconName": "bot"
+  }
+]

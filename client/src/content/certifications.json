@@ -1,0 +1,62 @@
+[
+  {
+    "id": "aws-saa",
+    "name": "AWS Certified Solutions Architect",
+    "provider": "AWS",
+    "badge": "AWS",
+    "date": "13-04-2023",
+    "description": {
+      "es": "Certificación de nivel asociado en arquitectura de soluciones AWS",
+      "en": "Associate-level certification in AWS solutions architecture"
+    },
+    "verifyUrl": "https://www.credly.com/badges/44e22e53-62a4-4bd5-9211-12d3b428623a/linked_in_profile"
+  },
+  {
+    "id": "aws-cp",
+    "name": "AWS Certified Cloud Practitioner",
+    "provider": "AWS",
+    "badge": "AWS",
+    "date": "16-02-2023",
+    "description": {
+      "es": "Certificación fundamental de servicios y conceptos de AWS",
+      "en": "Foundational certification of AWS services and concepts"
+    },
+    "verifyUrl": "https://www.credly.com/badges/2c7deda1-87a3-44c5-aa78-324803af975c/linked_in_profile"
+  },
+  {
+    "id": "azure-fund",
+    "name": "Microsoft Certified: Azure Fundamentals",
+    "provider": "Azure",
+    "badge": "Azure",
+    "date": "22-03-2023",
+    "description": {
+      "es": "Certificación fundamental de servicios de Microsoft Azure",
+      "en": "Foundational certification of Microsoft Azure services"
+    },
+    "verifyUrl": "https://www.credly.com/badges/58f0d676-95d7-409f-bb29-16219c4b982b/linked_in_profile"
+  },
+  {
+    "id": "ccna",
+    "name": "CCNA: Introduction to Networks",
+    "provider": "Cisco",
+    "badge": "Cisco",
+    "date": "2023",
+    "description": {
+      "es": "Certificación en fundamentos de redes y tecnologías Cisco",
+      "en": "Certification in networking fundamentals and Cisco technologies"
+    },
+    "verifyUrl": "https://www.youracclaim.com/badges/9c7bdce0-a8f3-4502-9ec2-efd607822f72?source=linked_in_profile"
+  },
+  {
+    "id": "efset",
+    "name": "EF SET English Certificate",
+    "provider": "EF Education First",
+    "badge": "EF SET",
+    "date": "2023",
+    "description": {
+      "es": "Certificación de nivel de inglés - Nivel B2",
+      "en": "English proficiency certification - Level B2"
+    },
+    "verifyUrl": "https://www.efset.org/cert/Km8PLK"
+  }
+]

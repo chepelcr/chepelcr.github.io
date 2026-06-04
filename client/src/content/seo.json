@@ -1,0 +1,39 @@
+{
+  "siteUrl": "https://jcampos.dev",
+  "defaultTitle": {
+    "es": "José Pablo Campos Solano - Solutions Architect | Java Spring Boot & Python Expert",
+    "en": "José Pablo Campos Solano - Solutions Architect | Java Spring Boot & Python Expert"
+  },
+  "defaultDescription": {
+    "es": "Arquitecto de Soluciones especializado en Java Spring Boot, Python, AWS y microservicios. Certificado AWS Solutions Architect con experiencia en sistemas ERP y APIs REST en Costa Rica.",
+    "en": "Solutions Architect specialized in Java Spring Boot, Python, AWS and microservices. AWS Certified Solutions Architect with experience in ERP systems and REST APIs in Costa Rica."
+  },
+  "ogImage": "/profile-photo.png",
+  "keywords": {
+    "es": "arquitecto de soluciones, solutions architect, java spring boot, python, aws certified, costa rica, microservicios, api rest, mysql, postgresql, sistemas erp",
+    "en": "solutions architect, java spring boot, python, aws certified, costa rica, microservices, rest api, mysql, postgresql, erp systems"
+  },
+  "twitterHandle": "",
+  "routes": {
+    "home": {
+      "title": {
+        "es": "José Pablo Campos Solano - Solutions Architect | Java Spring Boot & Python",
+        "en": "José Pablo Campos Solano - Solutions Architect | Java Spring Boot & Python"
+      },
+      "description": {
+        "es": "Arquitecto de Soluciones especializado en Java Spring Boot, Python, AWS y microservicios. AWS Certified Solutions Architect con experiencia en sistemas ERP.",
+        "en": "Solutions Architect specialized in Java Spring Boot, Python, AWS and microservices. AWS Certified Solutions Architect with experience in ERP systems."
+      }
+    },
+    "projects": {
+      "title": {
+        "es": "Proyectos - José Pablo Campos Solano | Solutions Architect",
+        "en": "Projects - José Pablo Campos Solano | Solutions Architect"
+      },
+      "description": {
+        "es": "Portafolio de proyectos de arquitectura de software, microservicios y soluciones en la nube desarrollados con Java Spring Boot, Python y AWS.",
+        "en": "Portfolio of software architecture projects, microservices and cloud solutions built with Java Spring Boot, Python and AWS."
+      }
+    }
+  }
+}

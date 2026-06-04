@@ -85,12 +85,13 @@ Puedes responder directamente a este email para contactar a ${data.name}.
     };
 
     const info = await transporter.sendMail(mailOptions);
-    
-    // If using development transporter, log the email
-    if (info.message) {
+
+    // If using development transporter (stream/json), it exposes the raw message.
+    const devMessage = (info as { message?: unknown }).message;
+    if (devMessage) {
       console.log('📧 Email would be sent:');
       console.log('---');
-      console.log(info.message.toString());
+      console.log(devMessage.toString());
       console.log('---');
     }
     

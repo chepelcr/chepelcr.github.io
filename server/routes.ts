@@ -2,8 +2,14 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { sendContactEmail } from "./email.js";
+import { registerLocalCmsRoutes } from "./local-cms";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // DEV-ONLY local CMS endpoints (file writes, git publish). Never registered in production.
+  if (app.get("env") === "development") {
+    registerLocalCmsRoutes(app);
+  }
+
   // Contact form endpoint
   app.post("/api/contact", async (req, res) => {
     try {

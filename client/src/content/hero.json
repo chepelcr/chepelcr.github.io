@@ -1,0 +1,21 @@
+{
+  "greeting": {
+    "es": "¡Hola! Soy",
+    "en": "Hello! I'm"
+  },
+  "title": {
+    "es": "Ingeniero de Software",
+    "en": "Software Engineer"
+  },
+  "subtitle": {
+    "es": "BackEnd Developer",
+    "en": "BackEnd developer"
+  },
+  "description": {
+    "es": "Desarrollador de software especializado en soluciones Backend con Java, Python y AWS. Creando sistemas escalables que impulsan el crecimiento empresarial.",
+    "en": "Software developer specialized in Backend solutions with Java, Python and AWS. Creating scalable systems that drive business growth."
+  },
+  "photo": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+  "ctaContactIcon": "mail",
+  "ctaDownloadIcon": "download"
+}

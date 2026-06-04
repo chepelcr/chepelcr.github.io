@@ -6,8 +6,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/contexts/language-context";
 import { useEffect } from "react";
+import { ADMIN_ENABLED } from "@/lib/admin-enabled";
+import AdminRouter from "@/components/admin/AdminRouter";
 import Home from "@/pages/home";
-import ProjectsPage from "@/pages/projects";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -23,16 +24,18 @@ function Router() {
 
   return (
     <Switch>
-      {/* Language-prefixed routes */}
+      {/* Admin (dev-only, tree-shaken from prod) */}
+      {ADMIN_ENABLED && <Route path="/admin" component={AdminRouter} />}
+      {ADMIN_ENABLED && <Route path="/admin/*" component={AdminRouter} />}
+
+      {/* Language-prefixed routes. "projects" is a SECTION of the landing
+          (scroll-spy drives /{lang}/projects), so it is handled by :section
+          below — there is no separate projects page. */}
       <Route path="/es" component={Home} />
       <Route path="/es/:section" component={Home} />
       <Route path="/en" component={Home} />
       <Route path="/en/:section" component={Home} />
-      
-      {/* Projects page routes */}
-      <Route path="/es/projects" component={ProjectsPage} />
-      <Route path="/en/projects" component={ProjectsPage} />
-      
+
       {/* Fallback for old URLs without language prefix */}
       <Route path="/" component={() => null} />
       <Route component={NotFound} />
@@ -45,7 +48,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
         <LanguageProvider>
-          <TooltipProvider>
+          <TooltipProvider delayDuration={200} skipDelayDuration={400}>
             <div className="scroll-smooth">
               <Toaster />
               <Router />

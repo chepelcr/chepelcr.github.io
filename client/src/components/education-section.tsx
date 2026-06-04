@@ -2,86 +2,16 @@ import {Card, CardContent} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import {useLanguage} from "@/contexts/language-context";
 import {GraduationCap, Award, BookOpen, ExternalLink} from "lucide-react";
-
-const getEducation = (t: any) => [
-    {
-        degree: t("education.businessInformatics"),
-        institution: "Universidad de Costa Rica, Sede del Pacífico",
-        period: "2017 - 2022",
-    },
-    {
-        degree: t("education.internationalBaccalaureate"),
-        institution: "Liceo de Costa Rica",
-        period: "2015 - 2016",
-    },
-    {
-        degree: t("education.mediaEducation"),
-        institution: "Liceo de Costa Rica",
-        period: "2010 - 2016",
-    },
-];
-
-const certifications = [
-    {
-        name: "AWS Certified Solutions Architect",
-        provider: "AWS",
-        date: "13-04-2023",
-        description: "Certificación de nivel asociado en arquitectura de soluciones AWS",
-        badge: "AWS",
-        verifyUrl: "https://www.credly.com/badges/44e22e53-62a4-4bd5-9211-12d3b428623a/linked_in_profile",
-    },
-    {
-        name: "AWS Certified Cloud Practitioner",
-        provider: "AWS",
-        date: "16-02-2023",
-        description: "Certificación fundamental de servicios y conceptos de AWS",
-        badge: "AWS",
-        verifyUrl: "https://www.credly.com/badges/2c7deda1-87a3-44c5-aa78-324803af975c/linked_in_profile",
-    },
-    {
-        name: "Microsoft Certified: Azure Fundamentals",
-        provider: "Azure",
-        date: "22-03-2023",
-        description: "Certificación fundamental de servicios de Microsoft Azure",
-        badge: "Azure",
-        verifyUrl: "https://www.credly.com/badges/58f0d676-95d7-409f-bb29-16219c4b982b/linked_in_profile",
-    },
-    {
-        name: "CCNA: Introduction to Networks",
-        provider: "Cisco",
-        date: "2023",
-        description: "Certificación en fundamentos de redes y tecnologías Cisco",
-        badge: "Cisco",
-        verifyUrl: "https://www.youracclaim.com/badges/9c7bdce0-a8f3-4502-9ec2-efd607822f72?source=linked_in_profile",
-    },
-    {
-        name: "EF SET English Certificate",
-        provider: "EF Education First",
-        date: "2023",
-        description: "Certificación de nivel de inglés - Nivel B2",
-        badge: "EF SET",
-        verifyUrl: "https://www.efset.org/cert/Km8PLK",
-    },
-];
-
-const training = [
-    {
-        institution: "Academia de Tecnología UCR",
-        courses: ["CCNAv7: Introduction to networks", "NDG Linux I"],
-    },
-    {
-        institution: "Centro Comunitario Miramar",
-        courses: ["PHP – Electronic Billing – Hacienda", "Inteligencia Artificial", "Advanced Excel"],
-    },
-    {
-        institution: "AWS Skill Builder",
-        courses: ["AWS Cloud Practitioner Essentials", "AWS Security Fundamentals", "AWS Well-Architected Best Practices"],
-    },
-];
+import {getEducation} from "@/repositories/education.repository";
+import {getCertifications} from "@/repositories/certifications.repository";
+import {getGrouped} from "@/services/training.service";
+import {pickLang} from "@/lib/i18n-field";
 
 export default function EducationSection() {
-    const {t} = useLanguage();
-    const education = getEducation(t);
+    const {t, language} = useLanguage();
+    const education = getEducation();
+    const certifications = getCertifications();
+    const training = getGrouped();
 
     return (
         <section id="education" className="section-spacing bg-navy">
@@ -112,7 +42,7 @@ export default function EducationSection() {
                                             {t("education.activationDate")} {cert.date}
                                         </p>
                                     </div>
-                                    <p className="text-muted-foreground text-sm mb-6 flex-grow leading-relaxed">{cert.description}</p>
+                                    <p className="text-muted-foreground text-sm mb-6 flex-grow leading-relaxed">{pickLang(cert.description, language)}</p>
                                     {cert.verifyUrl && (
                                         <div className="mt-auto">
                                             <a
@@ -143,9 +73,9 @@ export default function EducationSection() {
                             <Card key={index} className="bg-card border-border card-hover h-full">
                                 <CardContent className="p-6 h-full flex flex-col">
                                     <div className="min-h-[3.5rem] mb-3">
-                                        <h4 className="text-lg font-semibold leading-tight">{edu.degree}</h4>
+                                        <h4 className="text-lg font-semibold leading-tight">{pickLang(edu.degree, language)}</h4>
                                     </div>
-                                    <p className="text-accent font-medium mb-3 flex-grow">{edu.institution}</p>
+                                    <p className="text-accent font-medium mb-3 flex-grow">{pickLang(edu.institution, language)}</p>
                                     <p className="text-muted-foreground font-mono text-sm">{edu.period}</p>
                                 </CardContent>
                             </Card>
@@ -163,10 +93,10 @@ export default function EducationSection() {
                         {training.map((item, index) => (
                             <Card key={index} className="bg-card border-border card-hover">
                                 <CardContent className="p-4">
-                                    <h4 className="font-semibold mb-2">{item.institution}</h4>
+                                    <h4 className="font-semibold mb-2">{pickLang(item.institution, language)}</h4>
                                     <ul className="text-sm text-muted-foreground space-y-1">
                                         {item.courses.map((course, courseIndex) => (
-                                            <li key={courseIndex}>• {course}</li>
+                                            <li key={courseIndex}>• {pickLang(course, language)}</li>
                                         ))}
                                     </ul>
                                 </CardContent>

@@ -1,0 +1,35 @@
+{
+  "description": {
+    "es": "Desarrollador de software especializado en soluciones Backend con Java, Python y AWS. Creando sistemas escalables que impulsan el crecimiento empresarial.",
+    "en": "Software developer specialized in Backend solutions with Java, Python and AWS. Creating scalable systems that drive business growth."
+  },
+  "copyrightName": "José Pablo Campos Solano",
+  "copyrightYear": "auto",
+  "social": [
+    {
+      "iconName": "mail",
+      "href": "mailto:chepelcr@outlook.com",
+      "label": "Email"
+    },
+    {
+      "iconName": "phone",
+      "href": "tel:+50664839625",
+      "label": "Phone"
+    },
+    {
+      "iconName": "globe",
+      "href": "https://jcampos.dev",
+      "label": "Website"
+    },
+    {
+      "iconName": "linkedin",
+      "href": "https://www.linkedin.com/in/jose-pablo-campos/",
+      "label": "LinkedIn"
+    },
+    {
+      "iconName": "github",
+      "href": "https://github.com/chepelcr",
+      "label": "GitHub"
+    }
+  ]
+}

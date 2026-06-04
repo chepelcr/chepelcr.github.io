@@ -1,0 +1,11 @@
+{
+  "items": [
+    { "section": "home", "label": { "es": "Inicio", "en": "Home" }, "order": 1 },
+    { "section": "about", "label": { "es": "Acerca de", "en": "About" }, "order": 2 },
+    { "section": "education", "label": { "es": "Educación", "en": "Education" }, "order": 3 },
+    { "section": "experience", "label": { "es": "Experiencia", "en": "Experience" }, "order": 4 },
+    { "section": "skills", "label": { "es": "Habilidades", "en": "Skills" }, "order": 5 },
+    { "section": "projects", "label": { "es": "Proyectos", "en": "Projects" }, "order": 6 },
+    { "section": "contact", "label": { "es": "Contacto", "en": "Contact" }, "order": 7 }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "categories": [
+    {
+      "key": "backend",
+      "iconName": "code",
+      "items": [
+        { "name": "Java (Spring Boot)", "levelToken": "expert", "emoji": "☕" },
+        { "name": "Python", "levelToken": "advanced", "emoji": "🐍" },
+        { "name": "PHP", "levelToken": "intermediate", "emoji": "🔧" },
+        { "name": "JavaScript & HTML", "levelToken": "intermediate", "emoji": "🌐" }
+      ]
+    },
+    {
+      "key": "cloud",
+      "iconName": "cloud",
+      "items": [
+        { "name": "AWS Infrastructure", "levelToken": "certified", "emoji": "☁️" },
+        { "name": "Microservices Architecture", "levelToken": "expert", "emoji": "🏗️" },
+        { "name": "Serverless Programming", "levelToken": "advanced", "emoji": "⚡" },
+        { "name": "Docker & Container", "levelToken": "advanced", "emoji": "🐳" }
+      ]
+    },
+    {
+      "key": "databases",
+      "iconName": "database",
+      "items": [
+        { "name": "MySQL", "levelToken": "advanced", "emoji": "🗄️" },
+        { "name": "PostgreSQL", "levelToken": "advanced", "emoji": "🐘" },
+        { "name": "Oracle", "levelToken": "basic", "emoji": "🔶" },
+        { "name": "Microsoft SQL Server", "levelToken": "basic", "emoji": "🗃️" }
+      ]
+    },
+    {
+      "key": "tools",
+      "iconName": "settings",
+      "items": [
+        { "name": "Rest API Services", "levelToken": "expert", "emoji": "🔗" },
+        { "name": "Linux", "levelToken": "advanced", "emoji": "🐧" },
+        { "name": "Kafka", "levelToken": "intermediate", "emoji": "📊" },
+        { "name": "Redis", "levelToken": "intermediate", "emoji": "⚡" }
+      ]
+    }
+  ],
+  "soft": [
+    { "iconName": "brain", "titleKey": "skills.analyticalThinking", "descKey": "skills.analyticalDesc" },
+    { "iconName": "users", "titleKey": "skills.teamwork", "descKey": "skills.teamworkDesc" },
+    { "iconName": "rotate", "titleKey": "skills.adaptability", "descKey": "skills.adaptabilityDesc" },
+    { "iconName": "rocket", "titleKey": "skills.initiative", "descKey": "skills.initiativeDesc" }
+  ],
+  "pdf": {
+    "groups": [
+      { "labelKey": "cv.skills.programming", "items": ["Python", "Java", "JavaScript", "TypeScript", "PHP"] },
+      { "labelKey": "cv.skills.frameworks", "items": ["Spring Boot", "FastAPI", "Flask", "React", "Node.js"] },
+      { "labelKey": "cv.skills.cloud", "items": ["AWS Lambda", "CloudFormation", "SAM", "Docker", "API Gateway", "S3", "SQS", "EventBridge"] },
+      { "labelKey": "cv.skills.databases", "items": ["PostgreSQL", "MySQL", "Redis", "Oracle"] },
+      { "labelKey": "cv.skills.tools", "items": ["Git", "CI/CD", "CodePipeline", "Linux", "Postman"] },
+      { "labelKey": "cv.skills.ai", "items": ["Azure AI Foundry", "Amazon Q", "Claude Code", "pandas"] }
+    ]
+  }
+}
