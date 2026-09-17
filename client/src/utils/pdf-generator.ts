@@ -84,29 +84,6 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
       doc.text(role.period, margin, L.y);
       L.y += 5;
 
-      // Technologies (only once per company, with first visible role)
-      if (idx === 0 && company.skills.length > 0) {
-        doc.setFontSize(9.5);
-        doc.setFont('helvetica', 'bold');
-        doc.setTextColor(textColor);
-        const techPrefix = `${techLabel} `;
-        const techPrefixWidth = doc.getTextWidth(techPrefix);
-        doc.text(techPrefix, margin, L.y);
-        doc.setFont('helvetica', 'normal');
-        doc.setTextColor(lightTextColor);
-        const techText = company.skills.join(', ');
-        const techLines: string[] = doc.splitTextToSize(techText, contentWidth - techPrefixWidth);
-        techLines.forEach((line: string, lineIdx: number) => {
-          if (lineIdx === 0) {
-            doc.text(line, margin + techPrefixWidth, L.y);
-          } else {
-            L.y += 4.5;
-            doc.text(line, margin, L.y);
-          }
-        });
-        L.y += 5;
-      }
-
       // Responsibilities
       const respBullets = role.responsibilities ? toBullets(role.responsibilities) : [];
       const achievBullets = role.achievements ? toBullets(role.achievements) : [];
@@ -147,6 +124,30 @@ export function generatePDF(data: CVData, language: 'es' | 'en', t: (key: string
 
         addBulletsWithWidowControl(L, toBullets(role.description));
         L.y += 2;
+      }
+
+      // Technologies (rendered after achievements)
+      if (idx === visibleRoles.length - 1 && company.skills.length > 0) {
+        L.checkPageBreak(10);
+        doc.setFontSize(9.5);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(textColor);
+        const techPrefix = `${techLabel} `;
+        const techPrefixWidth = doc.getTextWidth(techPrefix);
+        doc.text(techPrefix, margin, L.y);
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(lightTextColor);
+        const techText = company.skills.join(', ');
+        const techLines: string[] = doc.splitTextToSize(techText, contentWidth - techPrefixWidth);
+        techLines.forEach((line: string, lineIdx: number) => {
+          if (lineIdx === 0) {
+            doc.text(line, margin + techPrefixWidth, L.y);
+          } else {
+            L.y += 4.5;
+            doc.text(line, margin, L.y);
+          }
+        });
+        L.y += 5;
       }
     });
   });
