@@ -19,6 +19,7 @@
   "hero.photoAlt": "Perfil Profesional",
   "hero.contactMe": "Contáctame",
   "hero.downloadCV": "Descargar CV",
+  "hero.downloadSimpleCV": "Descargar CV Simple",
 
   "about.title": "Acerca de Mí",
   "about.description": "Cuento con más de 5 años de experiencia como Ingeniero de Software, enfocado en construir back-ends y plataformas en la nube para el sector de facturación y cumplimiento tributario. Recientemente lideré la migración de 17 microservicios de Java a Python serverless, reduciendo costos de infraestructura entre 70 y 80%. En el último mes inicié FireCode CR, un asistente con LLM para ingenieros de protección contra incendios construido con Azure AI Foundry y AWS Lambda. Soy proficiente en Python (FastAPI), JavaScript (React, Node.js) y la nube en AWS y Microsoft Azure. Me considero un ingeniero comprometido, proactivo y de aprendizaje rápido, que disfruta colaborando con equipos de distintos países para entregar software seguro y mantenible.",
@@ -59,6 +60,8 @@
   "cv.page": "Página",
 
   "experience.title": "Experiencia Profesional",
+  "experience.responsibilities": "Responsabilidades",
+  "experience.achievements": "Logros Destacados",
   "experience.current": "Actual",
   "experience.professionalServicesTitle": "Ingeniero de Software",
   "experience.professionalServicesCompany": "Interfaz",
@@ -183,8 +186,11 @@
   "footer.modernTech": "utilizando tecnologías modernas",
 
   "cv.summary": "Resumen Profesional",
+  "simpleCv.toolsLabel": "Herramientas y Conocimientos",
+  "simpleCv.softSkillsLabel": "Competencias Personales",
   "cv.techLabel": "Tecnologías",
   "cv.respLabel": "Responsabilidades",
+  "cv.achieveLabel": "Logros Principales",
   "cv.skills.programming": "Lenguajes de Programación",
   "cv.skills.frameworks": "Frameworks y Librerías",
   "cv.skills.cloud": "Nube e Infraestructura",

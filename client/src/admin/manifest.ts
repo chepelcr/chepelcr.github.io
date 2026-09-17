@@ -37,6 +37,7 @@ export const CONTENT_PAGES: ContentPage[] = [
   { file: "certifications.json", label: { es: "Certificaciones", en: "Certifications" }, route: "/admin/certifications", icon: "award", group: "content" },
   { file: "training.json", label: { es: "Capacitaciones", en: "Training" }, route: "/admin/training", icon: "book", group: "content" },
   { file: "projects.json", label: { es: "Proyectos", en: "Projects" }, route: "/admin/projects", icon: "laptop", group: "content" },
+  { file: "simple-cv.json", label: { es: "CV Simple", en: "Simple CV" }, route: "/admin/simple-cv", icon: "users", group: "content" },
   { file: "contact.json", label: { es: "Contacto", en: "Contact" }, route: "/admin/contact", icon: "mail", group: "content" },
   { file: "navigation.json", label: { es: "Navegación", en: "Navigation" }, route: "/admin/navigation", icon: "menu", group: "content" },
   { file: "footer.json", label: { es: "Pie de Página", en: "Footer" }, route: "/admin/footer", icon: "panelBottom", group: "content" },

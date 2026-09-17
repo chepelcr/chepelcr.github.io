@@ -1,21 +1,21 @@
 {
   "generatedAt": "",
   "counts": {
-    "nodes": 154,
-    "edges": 386,
+    "nodes": 161,
+    "edges": 434,
     "byGroup": {
       "App.tsx": 1,
       "admin": 1,
-      "components": 90,
-      "content": 19,
+      "components": 92,
+      "content": 20,
       "contexts": 1,
       "hooks": 3,
       "lib": 14,
       "main.tsx": 1,
       "pages": 2,
-      "repositories": 16,
-      "services": 5,
-      "utils": 1
+      "repositories": 17,
+      "services": 6,
+      "utils": 3
     }
   },
   "nodes": [
@@ -81,6 +81,13 @@
       "type": "tsx",
       "group": "components",
       "path": "client/src/components/admin/FloatingSaveButton.tsx"
+    },
+    {
+      "id": "components/admin/Hint.tsx",
+      "label": "Hint",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/Hint.tsx"
     },
     {
       "id": "components/admin/MediaPicker.tsx",
@@ -221,6 +228,13 @@
       "type": "tsx",
       "group": "components",
       "path": "client/src/components/admin/pages/SeoPage.tsx"
+    },
+    {
+      "id": "components/admin/pages/SimpleCvPage.tsx",
+      "label": "SimpleCvPage",
+      "type": "tsx",
+      "group": "components",
+      "path": "client/src/components/admin/pages/SimpleCvPage.tsx"
     },
     {
       "id": "components/admin/pages/SiteIdentityPage.tsx",
@@ -762,6 +776,13 @@
       "path": "client/src/content/seo.json"
     },
     {
+      "id": "content/simple-cv.json",
+      "label": "simple-cv",
+      "type": "json",
+      "group": "content",
+      "path": "client/src/content/simple-cv.json"
+    },
+    {
       "id": "content/skills.json",
       "label": "skills",
       "type": "json",
@@ -1021,6 +1042,13 @@
       "path": "client/src/repositories/seo.repository.ts"
     },
     {
+      "id": "repositories/simple-cv.repository.ts",
+      "label": "simple-cv.repository",
+      "type": "ts",
+      "group": "repositories",
+      "path": "client/src/repositories/simple-cv.repository.ts"
+    },
+    {
       "id": "repositories/skills.repository.ts",
       "label": "skills.repository",
       "type": "ts",
@@ -1063,6 +1091,13 @@
       "path": "client/src/services/projects.service.ts"
     },
     {
+      "id": "services/simple-cv.service.ts",
+      "label": "simple-cv.service",
+      "type": "ts",
+      "group": "services",
+      "path": "client/src/services/simple-cv.service.ts"
+    },
+    {
       "id": "services/skills.service.ts",
       "label": "skills.service",
       "type": "ts",
@@ -1096,6 +1131,20 @@
       "type": "ts",
       "group": "utils",
       "path": "client/src/utils/pdf-generator.ts"
+    },
+    {
+      "id": "utils/pdf-layout.ts",
+      "label": "pdf-layout",
+      "type": "ts",
+      "group": "utils",
+      "path": "client/src/utils/pdf-layout.ts"
+    },
+    {
+      "id": "utils/simple-pdf-generator.ts",
+      "label": "simple-pdf-generator",
+      "type": "ts",
+      "group": "utils",
+      "path": "client/src/utils/simple-pdf-generator.ts"
     }
   ],
   "edges": [
@@ -1296,6 +1345,11 @@
     },
     {
       "from": "components/admin/AdminRouter.tsx",
+      "to": "components/admin/pages/SimpleCvPage.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminRouter.tsx",
       "to": "components/admin/pages/SiteIdentityPage.tsx",
       "kind": "imports"
     },
@@ -1326,6 +1380,11 @@
     },
     {
       "from": "components/admin/AdminSidebar.tsx",
+      "to": "components/admin/Hint.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminSidebar.tsx",
       "to": "contexts/language-context.tsx",
       "kind": "imports"
     },
@@ -1342,6 +1401,11 @@
     {
       "from": "components/admin/AdminSidebar.tsx",
       "to": "repositories/branding.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/AdminTopbar.tsx",
+      "to": "components/admin/Hint.tsx",
       "kind": "imports"
     },
     {
@@ -1367,6 +1431,11 @@
     {
       "from": "components/admin/FloatingSaveButton.tsx",
       "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/Hint.tsx",
+      "to": "components/ui/tooltip.tsx",
       "kind": "imports"
     },
     {
@@ -1431,6 +1500,11 @@
     },
     {
       "from": "components/admin/pages/AboutPage.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/AboutPage.tsx",
       "to": "lib/admin-store.ts",
       "kind": "imports"
     },
@@ -1466,6 +1540,11 @@
     },
     {
       "from": "components/admin/pages/CertificationsPage.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/CertificationsPage.tsx",
       "to": "lib/admin-store.ts",
       "kind": "imports"
     },
@@ -1486,6 +1565,11 @@
     },
     {
       "from": "components/admin/pages/ContactPage.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContactPage.tsx",
       "to": "lib/admin-store.ts",
       "kind": "imports"
     },
@@ -1501,7 +1585,17 @@
     },
     {
       "from": "components/admin/pages/ContentExplorerPage.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContentExplorerPage.tsx",
       "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContentExplorerPage.tsx",
+      "to": "lib/icons.ts",
       "kind": "imports"
     },
     {
@@ -1512,6 +1606,11 @@
     {
       "from": "components/admin/pages/ContentVersionsPage.tsx",
       "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ContentVersionsPage.tsx",
+      "to": "contexts/language-context.tsx",
       "kind": "imports"
     },
     {
@@ -1611,6 +1710,11 @@
     },
     {
       "from": "components/admin/pages/EducationPage.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/EducationPage.tsx",
       "to": "lib/admin-store.ts",
       "kind": "imports"
     },
@@ -1632,6 +1736,11 @@
     {
       "from": "components/admin/pages/ExperiencePage.tsx",
       "to": "content/experience.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ExperiencePage.tsx",
+      "to": "contexts/language-context.tsx",
       "kind": "imports"
     },
     {
@@ -1666,6 +1775,11 @@
     },
     {
       "from": "components/admin/pages/FooterPage.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/FooterPage.tsx",
       "to": "lib/admin-store.ts",
       "kind": "imports"
     },
@@ -1691,6 +1805,11 @@
     },
     {
       "from": "components/admin/pages/HeroPage.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/HeroPage.tsx",
       "to": "lib/admin-store.ts",
       "kind": "imports"
     },
@@ -1711,7 +1830,12 @@
     },
     {
       "from": "components/admin/pages/InventoryPage.tsx",
-      "to": "lib/icons.ts",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/InventoryPage.tsx",
+      "to": "lib/admin-store.ts",
       "kind": "imports"
     },
     {
@@ -1766,6 +1890,11 @@
     },
     {
       "from": "components/admin/pages/NavigationPage.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/NavigationPage.tsx",
       "to": "lib/admin-store.ts",
       "kind": "imports"
     },
@@ -1777,6 +1906,11 @@
     {
       "from": "components/admin/pages/PersonalInfoPage.tsx",
       "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/PersonalInfoPage.tsx",
+      "to": "contexts/language-context.tsx",
       "kind": "imports"
     },
     {
@@ -1802,6 +1936,11 @@
     {
       "from": "components/admin/pages/ProjectsPage.tsx",
       "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/ProjectsPage.tsx",
+      "to": "contexts/language-context.tsx",
       "kind": "imports"
     },
     {
@@ -1846,7 +1985,42 @@
     },
     {
       "from": "components/admin/pages/SeoPage.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SeoPage.tsx",
       "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SimpleCvPage.tsx",
+      "to": "components/admin/AdminUI.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SimpleCvPage.tsx",
+      "to": "components/admin/PageHeader.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SimpleCvPage.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SimpleCvPage.tsx",
+      "to": "lib/admin-store.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SimpleCvPage.tsx",
+      "to": "lib/i18n-field.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SimpleCvPage.tsx",
+      "to": "repositories/experience.repository.ts",
       "kind": "imports"
     },
     {
@@ -1872,6 +2046,11 @@
     {
       "from": "components/admin/pages/SiteIdentityPage.tsx",
       "to": "content/themes.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SiteIdentityPage.tsx",
+      "to": "contexts/language-context.tsx",
       "kind": "imports"
     },
     {
@@ -1906,6 +2085,11 @@
     },
     {
       "from": "components/admin/pages/SkillsPage.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/SkillsPage.tsx",
       "to": "lib/admin-store.ts",
       "kind": "imports"
     },
@@ -1932,6 +2116,11 @@
     {
       "from": "components/admin/pages/TrainingPage.tsx",
       "to": "content/training.json",
+      "kind": "imports"
+    },
+    {
+      "from": "components/admin/pages/TrainingPage.tsx",
+      "to": "contexts/language-context.tsx",
       "kind": "imports"
     },
     {
@@ -2166,7 +2355,17 @@
     },
     {
       "from": "components/hero-section.tsx",
+      "to": "lib/admin-enabled.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/hero-section.tsx",
       "to": "lib/i18n-field.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/hero-section.tsx",
+      "to": "lib/media.ts",
       "kind": "imports"
     },
     {
@@ -2241,6 +2440,11 @@
     },
     {
       "from": "components/navigation.tsx",
+      "to": "repositories/branding.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/navigation.tsx",
       "to": "repositories/navigation.repository.ts",
       "kind": "imports"
     },
@@ -2272,6 +2476,11 @@
     {
       "from": "components/projects-section.tsx",
       "to": "lib/icons.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "components/projects-section.tsx",
+      "to": "lib/media.ts",
       "kind": "imports"
     },
     {
@@ -2322,6 +2531,11 @@
     {
       "from": "components/theme-toggle.tsx",
       "to": "components/ui/dropdown-menu.tsx",
+      "kind": "imports"
+    },
+    {
+      "from": "components/theme-toggle.tsx",
+      "to": "contexts/language-context.tsx",
       "kind": "imports"
     },
     {
@@ -2716,6 +2930,11 @@
     },
     {
       "from": "lib/admin-store.ts",
+      "to": "content/simple-cv.json",
+      "kind": "imports"
+    },
+    {
+      "from": "lib/admin-store.ts",
       "to": "content/skills.json",
       "kind": "imports"
     },
@@ -2870,6 +3089,11 @@
       "kind": "imports"
     },
     {
+      "from": "pages/not-found.tsx",
+      "to": "contexts/language-context.tsx",
+      "kind": "imports"
+    },
+    {
       "from": "repositories/about.repository.ts",
       "to": "content/about.json",
       "kind": "imports"
@@ -2932,6 +3156,16 @@
     {
       "from": "repositories/seo.repository.ts",
       "to": "content/seo.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/simple-cv.repository.ts",
+      "to": "content/simple-cv.json",
+      "kind": "imports"
+    },
+    {
+      "from": "repositories/simple-cv.repository.ts",
+      "to": "lib/i18n-field.ts",
       "kind": "imports"
     },
     {
@@ -3005,6 +3239,41 @@
       "kind": "imports"
     },
     {
+      "from": "services/simple-cv.service.ts",
+      "to": "lib/i18n-field.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/simple-cv.service.ts",
+      "to": "repositories/certifications.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/simple-cv.service.ts",
+      "to": "repositories/education.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/simple-cv.service.ts",
+      "to": "repositories/experience.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/simple-cv.service.ts",
+      "to": "repositories/personal-info.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/simple-cv.service.ts",
+      "to": "repositories/simple-cv.repository.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "services/simple-cv.service.ts",
+      "to": "repositories/training.repository.ts",
+      "kind": "imports"
+    },
+    {
       "from": "services/skills.service.ts",
       "to": "repositories/skills.repository.ts",
       "kind": "imports"
@@ -3027,6 +3296,26 @@
     {
       "from": "utils/pdf-generator.ts",
       "to": "services/cv.service.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "utils/pdf-generator.ts",
+      "to": "utils/pdf-layout.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "utils/simple-pdf-generator.ts",
+      "to": "lib/phone.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "utils/simple-pdf-generator.ts",
+      "to": "services/simple-cv.service.ts",
+      "kind": "imports"
+    },
+    {
+      "from": "utils/simple-pdf-generator.ts",
+      "to": "utils/pdf-layout.ts",
       "kind": "imports"
     }
   ]

@@ -23,7 +23,9 @@ export interface CVData {
     roles: Array<{
       title: string;
       period: string;
-      description: string;
+      responsibilities?: string;
+      achievements?: string;
+      description?: string;
       hideFromPdf?: boolean;
     }>;
     skills: string[];
@@ -75,12 +77,19 @@ export function buildCvData(lang: Lang, t: (key: string) => string): CVData {
     about: pickLang(getAbout().description, lang),
     experience: getExperience().map((entry) => ({
       company: pickLang(entry.company, lang),
-      roles: entry.roles.map((role) => ({
-        title: pickLang(role.title, lang),
-        period: pickLang(role.period, lang),
-        description: pickLang(role.description, lang),
-        hideFromPdf: role.hideFromPdf,
-      })),
+      roles: entry.roles.map((role) => {
+        const resp = "responsibilities" in role && role.responsibilities ? pickLang(role.responsibilities, lang) : "";
+        const ach = "achievements" in role && role.achievements ? pickLang(role.achievements, lang) : "";
+        const desc = "description" in role && role.description ? pickLang((role as { description?: { es: string; en: string } }).description, lang) : [resp, ach].filter(Boolean).join("\n");
+        return {
+          title: pickLang(role.title, lang),
+          period: pickLang(role.period, lang),
+          responsibilities: resp,
+          achievements: ach,
+          description: desc,
+          hideFromPdf: role.hideFromPdf,
+        };
+      }),
       skills: entry.skills,
     })),
     education: getEducation().map((edu) => ({

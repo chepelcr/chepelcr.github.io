@@ -13,6 +13,7 @@ import EducationPage from "@/components/admin/pages/EducationPage";
 import CertificationsPage from "@/components/admin/pages/CertificationsPage";
 import TrainingPage from "@/components/admin/pages/TrainingPage";
 import ProjectsPage from "@/components/admin/pages/ProjectsPage";
+import SimpleCvPage from "@/components/admin/pages/SimpleCvPage";
 import ContactPage from "@/components/admin/pages/ContactPage";
 import NavigationPage from "@/components/admin/pages/NavigationPage";
 import FooterPage from "@/components/admin/pages/FooterPage";
@@ -37,6 +38,7 @@ const PAGE_COMPONENTS: Record<string, ComponentType<RouteComponentProps>> = {
   "/admin/certifications": CertificationsPage,
   "/admin/training": TrainingPage,
   "/admin/projects": ProjectsPage,
+  "/admin/simple-cv": SimpleCvPage,
   "/admin/contact": ContactPage,
   "/admin/navigation": NavigationPage,
   "/admin/footer": FooterPage,

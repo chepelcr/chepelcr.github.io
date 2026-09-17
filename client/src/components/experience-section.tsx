@@ -1,7 +1,7 @@
 import {Card, CardContent} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import {useLanguage} from "@/contexts/language-context";
-import {Briefcase, Play} from "lucide-react";
+import {Briefcase, Play, ListTodo, Award} from "lucide-react";
 import {getExperience} from "@/services/experience.service";
 import {pickLang} from "@/lib/i18n-field";
 import {parseRichText} from "@/lib/rich-text";
@@ -54,33 +54,70 @@ export default function ExperienceSection() {
                                             <p className="text-xl font-bold mb-4">{pickLang(exp.company, language)}</p>
 
                                             {/* Roles */}
-                                            {exp.roles.map((role, roleIndex) => {
-                                                const description = pickLang(role.description, language);
-                                                return (
+                                            {exp.roles.map((role, roleIndex) => (
                                                 <div key={roleIndex}>
                                                     {roleIndex > 0 && (
                                                         <hr className="border-border my-5"/>
                                                     )}
-                                                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
                                                         <h3 className="text-lg font-semibold text-accent">{pickLang(role.title, language)}</h3>
                                                         <span className="text-muted-foreground font-mono text-sm">{pickLang(role.period, language)}</span>
                                                     </div>
-                                                    <div className="text-muted-foreground leading-relaxed mb-4">
-                                                        {description.includes('\n') ? (
-                                                            description.split('\n').map((paragraph: string, pIndex: number) => (
+
+                                                    {/* Responsibilities */}
+                                                    {"responsibilities" in role && role.responsibilities && (
+                                                        <div className="mb-4">
+                                                            <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/90 flex items-center gap-1.5 mb-2">
+                                                                <ListTodo className="h-3.5 w-3.5 text-accent" />
+                                                                {t("experience.responsibilities")}
+                                                            </h4>
+                                                            <ul className="space-y-1.5 text-muted-foreground leading-relaxed">
+                                                                {pickLang(role.responsibilities, language).split('\n').map((item: string, i: number) => (
+                                                                    item.trim() && (
+                                                                        <li key={i} className="flex items-start gap-2 text-justify">
+                                                                            <span className="text-accent select-none mt-1 text-xs leading-none">•</span>
+                                                                            <span className="flex-1">{parseRichText(item.trim())}</span>
+                                                                        </li>
+                                                                    )
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    )}
+
+                                                    {/* Achievements */}
+                                                    {"achievements" in role && role.achievements && (
+                                                        <div className="mb-4">
+                                                            <h4 className="text-xs font-semibold uppercase tracking-wider text-accent flex items-center gap-1.5 mb-2">
+                                                                <Award className="h-3.5 w-3.5 text-accent" />
+                                                                {t("experience.achievements")}
+                                                            </h4>
+                                                            <ul className="space-y-1.5 text-muted-foreground leading-relaxed">
+                                                                {pickLang(role.achievements, language).split('\n').map((item: string, i: number) => (
+                                                                    item.trim() && (
+                                                                        <li key={i} className="flex items-start gap-2 text-justify">
+                                                                            <span className="text-accent select-none mt-1 text-xs leading-none">•</span>
+                                                                            <span className="flex-1">{parseRichText(item.trim())}</span>
+                                                                        </li>
+                                                                    )
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    )}
+
+                                                    {/* Fallback for legacy description */}
+                                                    {!("responsibilities" in role && role.responsibilities) && !("achievements" in role && role.achievements) && "description" in role && (
+                                                        <div className="text-muted-foreground leading-relaxed mb-4">
+                                                            {pickLang((role as { description: { es: string; en: string } }).description, language).split('\n').map((paragraph: string, pIndex: number) => (
                                                                 paragraph.trim() && (
                                                                     <p key={pIndex} className="text-justify mb-1">
                                                                         {parseRichText(paragraph.trim())}
                                                                     </p>
                                                                 )
-                                                            ))
-                                                        ) : (
-                                                            <p className="text-justify">{parseRichText(description)}</p>
-                                                        )}
-                                                    </div>
+                                                            ))}
+                                                        </div>
+                                                    )}
                                                 </div>
-                                                );
-                                            })}
+                                            ))}
 
                                             {/* Skills */}
                                             <div className="flex flex-wrap gap-2 mt-auto">

@@ -17,6 +17,7 @@ import certifications from "@/content/certifications.json";
 import training from "@/content/training.json";
 import projectsData from "@/content/projects.json";
 import media from "@/content/media.json";
+import simpleCv from "@/content/simple-cv.json";
 import type { Project } from "@/repositories/projects.repository";
 
 const projects = projectsData as Project[];
@@ -39,6 +40,7 @@ export const ENTITY_BY_FILE: Record<string, string> = {
   "training.json": "training",
   "projects.json": "projects",
   "media.json": "media",
+  "simple-cv.json": "simpleCv",
 };
 
 interface AdminStoreState {
@@ -74,6 +76,8 @@ interface AdminStoreState {
   setProjects: (value: Project[]) => void;
   media: typeof media;
   setMedia: (value: typeof media) => void;
+  simpleCv: typeof simpleCv;
+  setSimpleCv: (value: typeof simpleCv) => void;
 
   savedSnapshots: Record<string, string>;
   markSaved: (file: string, value: unknown) => void;
@@ -113,6 +117,8 @@ export const useAdminStore = /*#__PURE__*/ create<AdminStoreState>((set) => ({
   setProjects: (value) => set({ projects: value }),
   media,
   setMedia: (value) => set({ media: value }),
+  simpleCv,
+  setSimpleCv: (value) => set({ simpleCv: value }),
 
   savedSnapshots: {
     "personal-info.json": JSON.stringify(personalInfo),
@@ -131,6 +137,7 @@ export const useAdminStore = /*#__PURE__*/ create<AdminStoreState>((set) => ({
     "training.json": JSON.stringify(training),
     "projects.json": JSON.stringify(projects),
     "media.json": JSON.stringify(media),
+    "simple-cv.json": JSON.stringify(simpleCv),
   },
 
   markSaved: (file, value) =>

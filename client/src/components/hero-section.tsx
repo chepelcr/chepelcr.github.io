@@ -1,7 +1,8 @@
 import {Button} from "@/components/ui/button";
-import {Download, Mail, ExternalLink} from "lucide-react";
+import {Download, FileText, Mail, ExternalLink} from "lucide-react";
 import {useLanguage} from "@/contexts/language-context";
 import {downloadCV} from "@/utils/pdf-generator";
+import {ADMIN_ENABLED} from "@/lib/admin-enabled";
 import {getHero} from "@/repositories/hero.repository";
 import {getPersonalInfo} from "@/repositories/personal-info.repository";
 import {pickLang} from "@/lib/i18n-field";
@@ -56,6 +57,24 @@ export default function HeroSection() {
                                 <Download className="mr-2 h-4 w-4"/>
                                 {t("hero.downloadCV")}
                             </Button>
+                            {/* Simplified, non-technical CV — dev-only, tree-shaken from prod. */}
+                            {ADMIN_ENABLED && (
+                                <Button
+                                    variant="ghost"
+                                    size="lg"
+                                    className="text-muted-foreground hover:text-accent"
+                                    onClick={async () => {
+                                        const [{downloadSimpleCV}, {buildSimpleCvData}] = await Promise.all([
+                                            import("@/utils/simple-pdf-generator"),
+                                            import("@/services/simple-cv.service"),
+                                        ]);
+                                        downloadSimpleCV(buildSimpleCvData(language), language, t);
+                                    }}
+                                >
+                                    <FileText className="mr-2 h-4 w-4"/>
+                                    {t("hero.downloadSimpleCV")}
+                                </Button>
+                            )}
                         </div>
                     </div>
                     <div className="flex-1 max-w-md lg:max-w-lg">

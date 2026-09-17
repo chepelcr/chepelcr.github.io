@@ -1,0 +1,73 @@
+{
+  "title": {
+    "es": "Profesional en Informática Empresarial",
+    "en": "Business Informatics Professional"
+  },
+  "summary": {
+    "es": "Profesional con Bachillerato Universitario en Informática Empresarial y más de 10 años de experiencia combinando labores administrativas y de gestión de sistemas. He atendido a clientes y proveedores y automatizado procesos manuales con resultados medibles: reduje entre 70% y 80% los costos de operación de una plataforma empresarial y bajé de 45 a 5 minutos la preparación de reportes de distribución. Persona organizada, proactiva y de aprendizaje rápido, acostumbrada a trabajar con orden y confidencialidad.",
+    "en": "Professional with a Bachelor's degree in Business Informatics and over 10 years of experience combining administrative work with systems management. I have supported clients and suppliers and automated manual processes with measurable results: I reduced a business platform's operating costs by 70-80% and cut distribution report preparation from 45 minutes to 5. Organized, proactive and a fast learner, used to working with order and confidentiality."
+  },
+  "toolsLine": {
+    "es": "Microsoft Excel (nivel avanzado), Microsoft Office y Google Workspace, gestión de correo electrónico y agenda, facturación electrónica y normativa del Ministerio de Hacienda, elaboración y control de reportes, atención a clientes y proveedores, documentación de despacho e inventario.",
+    "en": "Microsoft Excel (advanced level), Microsoft Office and Google Workspace, email and calendar management, electronic invoicing and Ministry of Finance regulations, report preparation and control, client and supplier support, shipping and inventory documentation."
+  },
+  "softSkills": [
+    {
+      "es": "Organización y atención al detalle en el manejo de documentos y reportes",
+      "en": "Organization and attention to detail when handling documents and reports"
+    },
+    {
+      "es": "Comunicación clara con clientes, proveedores y equipos de trabajo",
+      "en": "Clear communication with clients, suppliers and work teams"
+    },
+    {
+      "es": "Coordinación de proyectos y cumplimiento de plazos de entrega",
+      "en": "Project coordination and meeting delivery deadlines"
+    },
+    {
+      "es": "Resolución de problemas y mejora de procesos existentes",
+      "en": "Problem solving and improvement of existing processes"
+    },
+    {
+      "es": "Trabajo en equipo y colaboración con distintas áreas",
+      "en": "Teamwork and collaboration across different areas"
+    },
+    {
+      "es": "Aprendizaje rápido y adaptación a nuevas herramientas y procedimientos",
+      "en": "Fast learning and adaptation to new tools and procedures"
+    },
+    {
+      "es": "Discreción y manejo responsable de información confidencial",
+      "en": "Discretion and responsible handling of confidential information"
+    }
+  ],
+  "positions": [
+    {
+      "experienceId": "interfaz",
+      "roleIndex": 0,
+      "description": {
+        "es": "Lideré un proyecto de modernización de 17 sistemas de la empresa, coordinando la planificación, los tiempos de entrega y el trabajo del equipo hasta su finalización.\nReduje entre un 70% y un 80% los costos de operación de la plataforma mediante el rediseño de los procesos y un uso más eficiente de los recursos.\nElaboré una guía de estandarización utilizada por todo el equipo, que redujo entre 40% y 50% el tiempo requerido en cada proceso de migración.\nImplementé la integración con el sistema de facturación electrónica del Ministerio de Hacienda, asegurando el cumplimiento de la normativa tributaria para múltiples empresas.",
+        "en": "Led a modernization project covering 17 of the company's systems, coordinating planning, delivery timelines and the team's work through to completion.\nReduced the platform's operating costs by 70-80% by redesigning processes and making more efficient use of resources.\nWrote a standardization guide used by the whole team, cutting the time required for each migration process by 40-50%.\nImplemented the integration with the Ministry of Finance electronic invoicing system, ensuring tax compliance for multiple businesses."
+      }
+    },
+    {
+      "experienceId": "modas-laura",
+      "roleIndex": 1,
+      "title": {
+        "es": "Asistente Administrativo / Desarrollador Web",
+        "en": "Administrative Assistant / Web Developer"
+      },
+      "period": {
+        "es": "2012 - Actual",
+        "en": "2012 - Current"
+      },
+      "description": {
+        "es": "Gestión de correo electrónico y coordinación de solicitudes de actualización de precios con proveedores.\nCreación y mantenimiento de reportes en Excel para el control operativo y administrativo del negocio.\nElaboración de etiquetas para cajas y documentos de despacho para el envío de productos al Centro de Distribución (CEDI).\nDesarrollo y mantenimiento del sistema de facturación electrónica del negocio, cumpliendo con la normativa del Ministerio de Hacienda.\nGestión integral de clientes, productos y facturación.\nAutomatización de los reportes de distribución a tiendas, reduciendo el tiempo de preparación de 45 minutos a 5.",
+        "en": "Email management and coordination of price update requests with suppliers.\nCreation and maintenance of Excel reports for the operational and administrative control of the business.\nPreparation of box labels and shipping documents for sending products to the Distribution Center (CEDI).\nDevelopment and maintenance of the business's electronic invoicing system, complying with Ministry of Finance regulations.\nEnd-to-end management of clients, products and invoicing.\nAutomated store distribution reports, cutting preparation time from 45 minutes to 5."
+      }
+    }
+  ],
+  "educationIds": [],
+  "certificationIds": [],
+  "includeTraining": true
+}

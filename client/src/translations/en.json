@@ -19,6 +19,7 @@
   "hero.photoAlt": "Professional Profile",
   "hero.contactMe": "Contact Me",
   "hero.downloadCV": "Download CV",
+  "hero.downloadSimpleCV": "Download Simple CV",
 
   "about.title": "About Me",
   "about.description": "I have over 5 years of experience as a Software Engineer, focused on building back-ends and cloud platforms for the billing and tax-compliance sector. I recently led the migration of 17 microservices from Java to Python serverless, cutting infrastructure costs by 70-80%. In the last month I started FireCode CR, an LLM-powered assistant for fire-protection engineers built with Azure AI Foundry on AWS Lambda. I am proficient in Python (FastAPI), JavaScript (React, Node.js) and cloud on AWS and Microsoft Azure. I consider myself a committed, proactive, fast-learning engineer who enjoys collaborating with cross-country teams to deliver secure and maintainable software.",
@@ -59,6 +60,8 @@
   "cv.page": "Page",
 
   "experience.title": "Professional Experience",
+  "experience.responsibilities": "Responsibilities",
+  "experience.achievements": "Key Achievements",
   "experience.current": "Current",
   "experience.professionalServicesTitle": "Software Engineer",
   "experience.professionalServicesCompany": "Interfaz",
@@ -183,8 +186,11 @@
   "footer.modernTech": "using modern technologies",
 
   "cv.summary": "Professional Summary",
+  "simpleCv.toolsLabel": "Tools & Skills",
+  "simpleCv.softSkillsLabel": "Personal Skills",
   "cv.techLabel": "Technologies",
   "cv.respLabel": "Responsibilities",
+  "cv.achieveLabel": "Key Achievements",
   "cv.skills.programming": "Programming Languages",
   "cv.skills.frameworks": "Frameworks & Libraries",
   "cv.skills.cloud": "Cloud & Infrastructure",

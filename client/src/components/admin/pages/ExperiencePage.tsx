@@ -23,7 +23,8 @@ function emptyRole(): Role {
   return {
     title: { es: "", en: "" },
     period: { es: "", en: "" },
-    description: { es: "", en: "" },
+    responsibilities: { es: "", en: "" },
+    achievements: { es: "", en: "" },
     hideFromPdf: false,
   };
 }
@@ -66,8 +67,9 @@ export default function ExperiencePage() {
       remove: "Quitar",
       title: "Cargo",
       period: "Período",
-      description: "Descripción",
-      oneAchievement: "Un logro por línea.",
+      responsibilities: "Responsabilidades",
+      achievements: "Logros",
+      onePerLine: "Un elemento por línea.",
       hideFromPdf: "Ocultar del PDF",
       addRole: "+ Añadir rol",
       skills: "Habilidades",
@@ -97,8 +99,9 @@ export default function ExperiencePage() {
       remove: "Remove",
       title: "Title",
       period: "Period",
-      description: "Description",
-      oneAchievement: "One achievement per line.",
+      responsibilities: "Responsibilities",
+      achievements: "Achievements",
+      onePerLine: "One item per line.",
       hideFromPdf: "Hide from PDF",
       addRole: "+ Add role",
       skills: "Skills",
@@ -178,7 +181,7 @@ export default function ExperiencePage() {
 
   const setRoleBilingual = (
     roleIndex: number,
-    key: "title" | "period" | "description",
+    key: "title" | "period" | "responsibilities" | "achievements",
     lang: "es" | "en",
     value: string,
   ) =>
@@ -383,13 +386,23 @@ export default function ExperiencePage() {
                     }
                   />
                   <BilingualTextArea
-                    label={T.description}
-                    es={role.description.es}
-                    en={role.description.en}
-                    rows={8}
-                    hint={`${T.oneAchievement} ${RICH_TEXT_HINT}`}
+                    label={T.responsibilities}
+                    es={role.responsibilities?.es ?? ""}
+                    en={role.responsibilities?.en ?? ""}
+                    rows={4}
+                    hint={`${T.onePerLine} ${RICH_TEXT_HINT}`}
                     onChange={(lang, value) =>
-                      setRoleBilingual(roleIndex, "description", lang, value)
+                      setRoleBilingual(roleIndex, "responsibilities", lang, value)
+                    }
+                  />
+                  <BilingualTextArea
+                    label={T.achievements}
+                    es={role.achievements?.es ?? ""}
+                    en={role.achievements?.en ?? ""}
+                    rows={4}
+                    hint={`${T.onePerLine} ${RICH_TEXT_HINT}`}
+                    onChange={(lang, value) =>
+                      setRoleBilingual(roleIndex, "achievements", lang, value)
                     }
                   />
                   <label className="flex items-center gap-2 text-sm text-foreground">
